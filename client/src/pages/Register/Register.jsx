@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 import axios from "axios";
 import "./Register.css";
-import back from "../../images/back.svg"
+import back from "../../images/back.svg";
+import { Link } from "react-router-dom";
 
 export default function Register() {
   const [firstname, setFirstname] = useState("");
@@ -28,10 +29,10 @@ export default function Register() {
 
   return (
     <div className="register-page-wrapper">
-      <div className="go-back-wrapper" >
+      {/* <div className="go-back-wrapper" >
         <img className="go-back-img" src={back} alt="" />
         <p className="go-back">Back</p>
-      </div>
+      </div> */}
       <div className="register-page">
         <form onSubmit={handleRegister}>
           <div className="input-group">
@@ -53,7 +54,7 @@ export default function Register() {
                 required
               />
             </div>
-            
+
             <input
               className="input-field"
               type="email"
@@ -75,12 +76,11 @@ export default function Register() {
                 className="input-field-code"
                 type="text"
                 placeholder="Code"
-                required
               />
-              <span className="phone-code-text">confirm your phone <br />
-              number to register</span>
+              {/* <span className="phone-code-text">confirm your phone <br />
+              number to register</span> */}
             </div>
-            
+
             <input
               className="input-field-password"
               type="password"
@@ -95,19 +95,18 @@ export default function Register() {
               placeholder="Submit password"
               value={confirmPassword}
               onChange={(e) => setConfirmPassword(e.target.value)}
-              required
             />
           </div>
           <div className="form-end">
             <button className="register-button" type="submit">
-              REGISTER
+              Зареєструватися
             </button>
-            <span className="have-account">have an account? <span>log in</span></span>
+            <Link className="have-account" to={"/login"}>
+              have an account?
+            </Link>
           </div>
-          
         </form>
       </div>
-      
     </div>
   );
 }

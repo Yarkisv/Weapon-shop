@@ -1,13 +1,21 @@
-import React from "react";
+import React, { useContext } from "react";
 import "./UserPanel.css";
 import { useNavigate } from "react-router-dom";
+import ModalWindowsContext from "../../contexts/modalContext";
 
 export default function UserPanel() {
+  const { isUserPanelOpen, setUserPanelOpen } = useContext(ModalWindowsContext);
+
   const navigate = useNavigate();
+
+  const handleLoginClick = () => {
+    navigate("/login");
+    setUserPanelOpen(!isUserPanelOpen);
+  };
 
   return (
     <div className="user-panel">
-      <button className="login-button" onClick={() => navigate("/login")}>
+      <button className="login-button" onClick={handleLoginClick}>
         Увійти
       </button>
       <ul className="modal-list">

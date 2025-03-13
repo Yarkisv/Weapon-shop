@@ -1,151 +1,150 @@
 .register-page-wrapper {
-    display: flex;
-    flex-direction: column;
-    margin: 0 auto;
-    width: 550px;
-    margin-top: 80px;
+  display: flex;
+  flex-direction: column;
+  margin: 0 auto;
+  width: 550px;
+  margin-top: 80px;
 }
 
 form {
-    text-align: center;
+  text-align: center;
 }
 .register-page {
-    width: 550px;
-    height: 720px;
-    border: 1px solid black;
+  width: 550px;
+  height: 720px;
+  border: 1px solid black;
 }
 
-.go-back-wrapper {
-    display: flex;
-    margin-bottom: 5px;
+/* .go-back-wrapper {
+  display: flex;
+  margin-bottom: 5px;
 }
 
 .go-back-img {
-    width: 20px;
-    height: 22px;
+  width: 20px;
+  height: 22px;
 }
 
 .go-back {
-    font-family: Liberation Sans;
-    margin: 0;
-    font-size: 20px;
-}
+  font-family: Liberation Sans;
+  margin: 0;
+  font-size: 20px;
+} */
 
 .input-field-name-surname {
-    all: unset;
-    text-align: start;
-    width: 200px;
-    height: 50px;
-    border: 1px solid black;
-    color: black;
-    box-sizing: border-box;
-    font-family: Liberation Sans;
-    padding-left: 5px;
-    font-size: 20px;
-    margin-top: 40px;
+  all: unset;
+  text-align: start;
+  width: 200px;
+  height: 50px;
+  border: 1px solid black;
+  color: black;
+  box-sizing: border-box;
+  font-family: Liberation Sans;
+  padding-left: 5px;
+  font-size: 20px;
+  margin-top: 40px;
 }
 
 .input-field-name-surname::placeholder {
-    font-size: 20px;
-    font-family:  Liberation Sans;
-    padding-left: 5px;
+  font-size: 20px;
+  font-family: Liberation Sans;
+  padding-left: 5px;
 }
 
 .name-surname-wrapper {
-    display: flex;
-    justify-content: space-between;
-    margin: 0 40px;
+  display: flex;
+  justify-content: space-between;
+  margin: 0 40px;
 }
 
 .input-group {
-    display: flex;
-    flex-direction: column;
+  display: flex;
+  flex-direction: column;
 }
 
 .input-field {
-    all: unset;
-    text-align: start;
-    width: 470px;
-    height: 50px;
-    border: 1px solid black;
-    color: black;
-    box-sizing: border-box;
-    font-family: Liberation Sans;
-    font-size: 20px;
-    padding-left: 5px;
-    margin-top: 40px;
-    margin-left: 40px;
+  all: unset;
+  text-align: start;
+  width: 470px;
+  height: 50px;
+  border: 1px solid black;
+  color: black;
+  box-sizing: border-box;
+  font-family: Liberation Sans;
+  font-size: 20px;
+  padding-left: 5px;
+  margin-top: 40px;
+  margin-left: 40px;
 }
 
 .input-field-password {
-    all: unset;
-    text-align: start;
-    width: 470px;
-    height: 50px;
-    border: 1px solid black;
-    color: black;
-    box-sizing: border-box;
-    font-family: Liberation Sans;
-    font-size: 20px;
-    padding-left: 5px;
-    margin-top: 40px;
-    margin-left: 40px;
+  all: unset;
+  text-align: start;
+  width: 470px;
+  height: 50px;
+  border: 1px solid black;
+  color: black;
+  box-sizing: border-box;
+  font-family: Liberation Sans;
+  font-size: 20px;
+  padding-left: 5px;
+  margin-top: 40px;
+  margin-left: 40px;
 }
 
-.input-field-code{
-    all: unset;
-    text-align: start;
-    width: 200px;
-    height: 50px;
-    border: 1px solid black;
-    color: black;
-    box-sizing: border-box;
-    font-family: Liberation Sans;
-    font-size: 20px;
-    padding-left: 5px;
-    margin-top: 40px;
-    margin-left: 40px; 
+.input-field-code {
+  all: unset;
+  text-align: start;
+  width: 200px;
+  height: 50px;
+  border: 1px solid black;
+  color: black;
+  box-sizing: border-box;
+  font-family: Liberation Sans;
+  font-size: 20px;
+  padding-left: 5px;
+  margin-top: 40px;
+  margin-left: 40px;
 }
 
 .phone-code {
-    display: flex;
+  display: flex;
 }
 
 .phone-code-text {
-    margin: 0;
-    margin-top: 40px;
-    font-family: Liberation Sans;
-    font-size: 20px;
-    text-align: start;
-    margin-left: 30px;
+  margin: 0;
+  margin-top: 40px;
+  font-family: Liberation Sans;
+  font-size: 20px;
+  text-align: start;
+  margin-left: 30px;
 }
 
 .register-button {
-    width: 470px;
-    height: 60px;
-    background-color: #121212;
-    font-family: Liberation Sans;
-    color: white;
-    font-size: 20px;
-    margin: 0;
-    margin-top: 40px;
-    
+  width: 470px;
+  height: 60px;
+  background-color: #121212;
+  font-family: Liberation Sans;
+  color: white;
+  font-size: 20px;
+  margin: 0;
+  margin-top: 40px;
 }
 
 .have-account {
-    font-family: Liberation Sans;
-    font-size: 25px;
-    margin: 0;
-    margin-top: 30px;
-    color: #7F7F7F;
+  font-family: Liberation Sans;
+  font-size: 25px;
+  margin: 0;
+  margin-top: 30px;
+  color: #7f7f7f;
 }
 
 .have-account span {
-    color: #474747;
+  color: #474747;
 }
 
 .form-end {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }

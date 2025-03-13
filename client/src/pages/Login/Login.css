@@ -1,89 +1,88 @@
 .login-page-wrapper {
-    display: flex;
-    flex-direction: column;
-    margin: 0 auto;
-    width: 550px;
-    margin-top: 80px;
+  display: flex;
+  flex-direction: column;
+  margin: 0 auto;
+  width: 550px;
+  margin-top: 80px;
 }
 
 .login-page {
-    width: 550px;
-    height: 540px;
-    border: 1px solid black;
+  width: 550px;
+  height: 540px;
+  border: 1px solid black;
 }
 
-.login-button{
-    width: 470px;
-    height: 60px;
-    background-color: #121212;
-    font-family: Liberation Sans;
-    color: white;
-    font-size: 20px;
-    margin: 0;
-    margin-top: 40px;
+.login-button {
+  width: 470px;
+  height: 60px;
+  background-color: #121212;
+  font-family: Liberation Sans;
+  color: white;
+  font-size: 20px;
+  margin: 0;
+  margin-top: 40px;
 }
 
 .dont-have-account {
-    font-family: Liberation Sans;
-    font-size: 25px;
-    margin: 0;
-    margin-top: 30px;
-    color: #7F7F7F;
+  font-family: Liberation Sans;
+  font-size: 25px;
+  margin: 0;
+  margin-top: 30px;
+  color: #7f7f7f;
 }
 
 .dont-have-account span {
-    color: #474747;
+  color: #474747;
 }
 
 .another-login {
-    color: #474747;
-    font-family: Liberation Sans;
-    font-size: 25px;
-    margin: 0;
-    margin-top: 18px;
+  color: #474747;
+  font-family: Liberation Sans;
+  font-size: 25px;
+  margin: 0;
+  margin-top: 18px;
 }
 
 .gogle-or-face {
-    display: flex;
-    justify-content: space-between;
-    font-family: Liberation Sans;
-    font-size: 20px;
-    margin: 0;
-    margin: 0 40px;
-    margin-top: 20px;
+  display: flex;
+  justify-content: space-between;
+  font-family: Liberation Sans;
+  font-size: 20px;
+  margin: 0;
+  margin: 0 40px;
+  margin-top: 20px;
 }
 
 .gogle {
-    display: flex;
-    align-items: center;
-    box-sizing: border-box;
-    padding-left: 20px;
-    width: 200px;
-    height: 50px;
-    border: 1px solid black;
+  display: flex;
+  align-items: center;
+  box-sizing: border-box;
+  padding-left: 20px;
+  width: 200px;
+  height: 50px;
+  border: 1px solid black;
 }
 
 .gogle span {
-    margin-left: 15px;
+  margin-left: 15px;
 }
 
-.gogle-face-img{
-    width: 25px;
-    height: 25px;
+.gogle-face-img {
+  width: 25px;
+  height: 25px;
 }
 
 .face {
-    display: flex;
-    align-items: center;
-    box-sizing: border-box;
-    padding-left: 20px;
-    width: 200px;
-    height: 50px;
-    margin-left: 70px;
-    border: 1px solid black;
+  display: flex;
+  align-items: center;
+  box-sizing: border-box;
+  padding-left: 20px;
+  width: 200px;
+  height: 50px;
+  margin-left: 70px;
+  border: 1px solid black;
 }
 
-
 .face-text {
-    margin-left: 15px;
+  margin-left: 15px;
 }
