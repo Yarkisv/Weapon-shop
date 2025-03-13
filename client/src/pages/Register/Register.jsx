@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import axios from "axios";
 import "./Register.css";
+import back from "../../images/back.svg"
 
 export default function Register() {
   const [firstname, setFirstname] = useState("");
@@ -26,62 +27,87 @@ export default function Register() {
   };
 
   return (
-    <div className="register-page">
-      <form onSubmit={handleRegister}>
-        <div className="input-group">
-          <input
-            className="input-field"
-            type="text"
-            placeholder="Ім'я"
-            value={firstname}
-            onChange={(e) => setFirstname(e.target.value)}
-            required
-          />
-          <input
-            className="input-field"
-            type="text"
-            placeholder="Прізвище"
-            value={lastname}
-            onChange={(e) => setLatsname(e.target.value)}
-            required
-          />
-          <input
-            className="input-field"
-            type="email"
-            placeholder="Email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            required
-          />
-          <input
-            className="input-field"
-            type="text"
-            placeholder="Телефон"
-            value={phone}
-            onChange={(e) => setPhone(e.target.value)}
-            required
-          />
-          <input
-            className="input-field"
-            type="password"
-            placeholder="Пароль"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            required
-          />
-          <input
-            className="input-field"
-            type="password"
-            placeholder="Підтвердіть пароль"
-            value={confirmPassword}
-            onChange={(e) => setConfirmPassword(e.target.value)}
-            required
-          />
-        </div>
-        <button className="register-button" type="submit">
-          Зареєструватися
-        </button>
-      </form>
+    <div className="register-page-wrapper">
+      <div className="go-back-wrapper" >
+        <img className="go-back-img" src={back} alt="" />
+        <p className="go-back">Back</p>
+      </div>
+      <div className="register-page">
+        <form onSubmit={handleRegister}>
+          <div className="input-group">
+            <div className="name-surname-wrapper">
+              <input
+                className="input-field-name-surname"
+                type="text"
+                placeholder="Name"
+                value={firstname}
+                onChange={(e) => setFirstname(e.target.value)}
+                required
+              />
+              <input
+                className="input-field-name-surname"
+                type="text"
+                placeholder="Surname"
+                value={lastname}
+                onChange={(e) => setLatsname(e.target.value)}
+                required
+              />
+            </div>
+            
+            <input
+              className="input-field"
+              type="email"
+              placeholder="Email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              required
+            />
+            <input
+              className="input-field"
+              type="text"
+              placeholder="Phone"
+              value={phone}
+              onChange={(e) => setPhone(e.target.value)}
+              required
+            />
+            <div className="phone-code">
+              <input
+                className="input-field-code"
+                type="text"
+                placeholder="Code"
+                required
+              />
+              <span className="phone-code-text">confirm your phone <br />
+              number to register</span>
+            </div>
+            
+            <input
+              className="input-field-password"
+              type="password"
+              placeholder="Password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              required
+            />
+            <input
+              className="input-field-password"
+              type="password"
+              placeholder="Submit password"
+              value={confirmPassword}
+              onChange={(e) => setConfirmPassword(e.target.value)}
+              required
+            />
+          </div>
+          <div className="form-end">
+            <button className="register-button" type="submit">
+              REGISTER
+            </button>
+            <span className="have-account">have an account? <span>log in</span></span>
+          </div>
+          
+        </form>
+      </div>
+      
     </div>
   );
 }
