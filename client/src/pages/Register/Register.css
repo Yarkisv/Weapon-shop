@@ -37,18 +37,29 @@ form {
   width: 200px;
   height: 50px;
   border: 1px solid black;
+  border-radius: 5px;
   color: black;
   box-sizing: border-box;
   font-family: Liberation Sans;
+  background-color: #F8F8F8;
   padding-left: 5px;
   font-size: 20px;
   margin-top: 40px;
+  transition:  background-color 0.3s ease, transform 0.2s ease;
+}
+
+.input-field-name-surname:hover{
+  background-color: #EBEBEB ;
+}
+
+.input-field-name-surname:active{
+  background-color: #EBEBEB ;
 }
 
 .input-field-name-surname::placeholder {
   font-size: 20px;
   font-family: Liberation Sans;
-  padding-left: 5px;
+  
 }
 
 .name-surname-wrapper {
@@ -68,13 +79,24 @@ form {
   width: 470px;
   height: 50px;
   border: 1px solid black;
+  border-radius: 5px;
   color: black;
   box-sizing: border-box;
   font-family: Liberation Sans;
+  background-color: #F8F8F8;
   font-size: 20px;
   padding-left: 5px;
   margin-top: 40px;
   margin-left: 40px;
+  transition:  background-color 0.3s ease, transform 0.2s ease;
+}
+
+.input-field:hover {
+  background-color: #EBEBEB ;
+}
+
+.input-field:active {
+  background-color: #EBEBEB ;
 }
 
 .input-field-password {
@@ -83,14 +105,26 @@ form {
   width: 470px;
   height: 50px;
   border: 1px solid black;
+  border-radius: 5px;
   color: black;
   box-sizing: border-box;
   font-family: Liberation Sans;
+  background-color: #F8F8F8;
   font-size: 20px;
   padding-left: 5px;
   margin-top: 40px;
   margin-left: 40px;
+  transition:  background-color 0.3s ease, transform 0.2s ease;
 }
+
+.input-field-password:hover {
+  background-color: #EBEBEB ;
+}
+
+.input-field-password:active {
+  background-color: #EBEBEB ;
+}
+
 
 .input-field-code {
   all: unset;
@@ -98,13 +132,24 @@ form {
   width: 200px;
   height: 50px;
   border: 1px solid black;
+  border-radius: 5px;
   color: black;
   box-sizing: border-box;
   font-family: Liberation Sans;
+  background-color: #F8F8F8;
   font-size: 20px;
   padding-left: 5px;
   margin-top: 40px;
   margin-left: 40px;
+  transition:  background-color 0.3s ease, transform 0.2s ease;
+}
+
+.input-field-code:hover {
+  background-color: #EBEBEB ;
+}
+
+.input-field-code:active {
+  background-color: #EBEBEB ;
 }
 
 .phone-code {
@@ -128,7 +173,20 @@ form {
   color: white;
   font-size: 20px;
   margin: 0;
+  border-radius: 5px;
   margin-top: 40px;
+  cursor: pointer;
+  transition:  background-color 0.3s ease, transform 0.2s ease;
+}
+
+.register-button:hover {
+  background-color: #1a1a1a;
+  transform: scale(1.02);
+}
+
+.register-button:active {
+  background-color: #0d0d0d; 
+  transform: scale(0.98); 
 }
 
 .have-account {

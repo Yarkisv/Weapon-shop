@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
 import "./Header.css";
-import logo from "../../images/logo.svg";
+import logoFinal from "../../images/logoFinal.svg";
 import basket from "../../images/basket.svg";
 import liked from "../../images/liked.svg";
 import profile from "../../images/profile.svg";
@@ -16,7 +16,7 @@ export default function Header() {
   return (
     <div className="header-wrapper">
       <div className="header">
-        <img className="logo-img" src={logo} />
+        <img className="logo-img" src={logoFinal} />
         <div className="header-icons">
           <div className="header-icon-item">
             <img className="header-img-like" src={liked} />

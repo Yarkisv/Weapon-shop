@@ -1,9 +1,12 @@
 .categories {
   display: flex;
+  flex-direction: column;
+  margin: 0 auto;
   margin-top: 20px;
   gap: 20px;
   padding-left: 100px;
   padding-right: 100px;
+  max-width: 1440px;
 }
 
 .guns,
@@ -16,6 +19,15 @@
   cursor: pointer;
 }
 
+.guns-knifes {
+  display: flex;
+  flex-direction: row;
+}
+
+.bullets-clothes {
+  display: flex;
+  flex-direction: row;
+}
 .guns {
   width: 700px;
   height: 350px;
@@ -23,16 +35,18 @@
 
 .khifes {
   width: 500px;
-  height: 250px;
+  height: 378px;
+  margin-right: 20px;
 }
 
 .bullets {
-  width: 600px;
+  width: 740px;
   height: 350px;
+  margin-left: 20px;
 }
 
 .clothes {
-  width: 672px;
+  width: 940px;
   height: 378px;
 }
 

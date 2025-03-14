@@ -39,7 +39,7 @@ export default function Login() {
             <input
               className="input-field"
               type="password"
-              placeholder="Пароль"
+              placeholder="Password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
               required
@@ -47,7 +47,7 @@ export default function Login() {
           </div>
           <div className="form-end">
             <button className="login-button" type="submit">
-              Увійти
+              LOGIN
             </button>
             <Link className="dont-have-account" to={"/register"}>
               don`t have an account?

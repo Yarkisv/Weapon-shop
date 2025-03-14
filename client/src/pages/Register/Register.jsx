@@ -99,7 +99,7 @@ export default function Register() {
           </div>
           <div className="form-end">
             <button className="register-button" type="submit">
-              Зареєструватися
+              REGISTER
             </button>
             <Link className="have-account" to={"/login"}>
               have an account?

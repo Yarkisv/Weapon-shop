@@ -1,0 +1,42 @@
+.user-panel {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: absolute;
+    z-index: 9999;
+    right: 0;
+    top: 0;
+    margin-top: 100px;
+    background-color: #2C4A3E;
+    border-radius: 5px;
+    width: 500px;
+    height: 550px;
+}
+
+.modal-list {
+    display: grid;
+    gap: 36px;
+    position: absolute;
+    list-style-type: none ;
+    padding-left: 0;
+    left: 0;
+    top: 100px;
+}
+
+.modal-item {
+    display: flex;
+    font-family: Khmer;
+    font-size: 30px;
+    margin: 0;
+    color: white;
+    margin-left: 16px;
+    align-items: center;
+    cursor: pointer;
+}
+
+.modal-item img {
+    margin-right: 10px;
+    width: 35px;
+    height: 35px;
+}
