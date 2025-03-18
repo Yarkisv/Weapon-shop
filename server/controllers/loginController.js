@@ -49,14 +49,8 @@ export default async function loginUser(req, res) {
         return res.status(401).json({ message: "Wrong password" });
       }
 
-      const payload = {
-        id: user.id,
-        email: user.email_,
-        name: user.name_,
-        role: user.user_role,
-      };
-      const token = jwt.sign(payload, process.env.JWT_SECRET, {
-        expiresIn: "7d",
+      const token = jwt.sign(user, process.env.JWT_SECRET, {
+        expiresIn: "1h",
       });
 
       console.log("User found, login successful");
@@ -64,6 +58,7 @@ export default async function loginUser(req, res) {
       return res.status(200).json({
         message: "Login successful",
         token,
+        isAuth: true,
       });
     });
   } catch (error) {

@@ -2,14 +2,16 @@ import React, { useState } from "react";
 import axios from "axios";
 import "./Login.css";
 import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
-import back from "../../images/back.svg";
 import gogle from "../../images/gogle.svg";
 import face from "../../images/face.svg";
 
 export default function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+
+  const navigate = useNavigate();
 
   const handleLogin = async (event) => {
     event.preventDefault();
@@ -18,6 +20,18 @@ export default function Login() {
         email,
         password,
       });
+
+      if (response.status === 200) {
+        const token = response.data.token;
+        const IsAuth = response.status.IsAuth;
+
+        localStorage.setItem("token", token);
+        localStorage.setItem("isAuth", IsAuth);
+
+        console.log("Login successful, token: " + token);
+
+        navigate("/");
+      }
     } catch (error) {
       console.log(error);
     }

@@ -7,11 +7,13 @@ import "./App.css";
 import UserPanel from "./components/UserPanel/UserPanel";
 import { useState } from "react";
 import ModalWindowsContext from "./contexts/modalContext";
+import ProfilePage from "./pages/ProfilePage/ProfilePage";
+import ProtectedAuthRoute from "./Routes/ProtectedAuthRoute";
 
 function App() {
   const [isUserPanelOpen, setUserPanelOpen] = useState(false);
 
-  const modalWindowsValues = {isUserPanelOpen, setUserPanelOpen};
+  const modalWindowsValues = { isUserPanelOpen, setUserPanelOpen };
 
   return (
     <ModalWindowsContext.Provider value={modalWindowsValues}>
@@ -21,6 +23,14 @@ function App() {
           <Route path="/register" element={<Register />} />
           <Route path="/login" element={<Login />} />
           <Route path="/catalog/:category" element={<CatalogPage />} />
+          <Route
+            path="/profile"
+            element={
+              <ProtectedAuthRoute>
+                <ProfilePage />
+              </ProtectedAuthRoute>
+            }
+          />
         </Routes>
         {isUserPanelOpen && <UserPanel />}
       </Router>
