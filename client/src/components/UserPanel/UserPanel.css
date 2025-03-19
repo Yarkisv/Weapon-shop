@@ -2,7 +2,6 @@
     position: relative;
     display: flex;
     flex-direction: column;
-    align-items: center;
     position: absolute;
     z-index: 9999;
     right: 0;
@@ -11,22 +10,22 @@
     background-color: #2C4A3E;
     border-radius: 5px;
     width: 500px;
-    height: 550px;
+    height: 100%;
 }
 
 .modal-list {
     display: grid;
-    gap: 36px;
-    position: absolute;
+    text-align: left;
+    gap: 30px;
     list-style-type: none ;
     padding-left: 0;
     left: 0;
-    top: 100px;
+    
 }
 
 .modal-item {
     display: flex;
-    font-family: Khmer;
+    font-family: "Khmer", sans-serif;
     font-size: 30px;
     margin: 0;
     color: white;
@@ -39,4 +38,73 @@
     margin-right: 10px;
     width: 35px;
     height: 35px;
+}
+
+.Profile {
+    width: 470px;
+    height: 60px;
+    background-color: #121212;
+    font-family: Liberation Sans;
+    cursor: pointer;
+    
+    color: white;
+    font-size: 20px;
+    border-radius: 5px;
+    border: 1px solid black;
+    margin: 0;
+    margin-top: 40px;
+    transition:  background-color 0.3s ease, transform 0.2s ease;
+    margin-left: 15px;
+}
+
+.Profile:hover {
+    background-color: #1a1a1a;
+    transform: scale(1.02);
+}
+  
+.Profile:active {
+    background-color: #0d0d0d; 
+    transform: scale(0.98); 
+}
+  
+
+.logout-button{
+    width: 470px;
+    height: 60px;
+    background-color: #121212;
+    font-family: Liberation Sans;
+    cursor: pointer;
+    color: white;
+    font-size: 20px;
+    border-radius: 5px;
+    border: 1px solid black;
+    margin: 0;
+    margin-top: 40px;
+    margin-left: 15px;
+    transition:  background-color 0.3s ease, transform 0.2s ease;
+}
+
+.logout-button:hover {
+    background-color: #1a1a1a;
+    transform: scale(1.02);
+}
+  
+.logout-button:active {
+    background-color: #0d0d0d; 
+    transform: scale(0.98); 
+}
+  
+.login-button-user {
+    width: 470px;
+    height: 60px;
+    background-color: #121212;
+    font-family: Liberation Sans;
+    cursor: pointer;
+    color: white;
+    font-size: 20px;
+    border-radius: 5px;
+    margin: 0;
+    margin-top: 40px;
+    transition:  background-color 0.3s ease, transform 0.2s ease;
+    margin-left: 15px;
 }

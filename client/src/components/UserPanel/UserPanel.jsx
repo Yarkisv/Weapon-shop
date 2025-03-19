@@ -43,7 +43,7 @@ export default function UserPanel() {
   return (
     <div className="user-panel">
       {!isAuth ? (
-        <button className="login-button" onClick={handleLoginClick}>
+        <button className="login-button-user" onClick={handleLoginClick}>
           Увійти
         </button>
       ) : (
