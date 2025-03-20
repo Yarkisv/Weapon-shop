@@ -6,7 +6,7 @@ import dotenv from "dotenv";
 
 dotenv.config();
 
-export default async function loginUser(req, res) {
+export const loginUser = async (req, res) => {
   const { email, password } = req.body;
 
   if (!email || !password) {
@@ -65,4 +65,4 @@ export default async function loginUser(req, res) {
     console.log(error);
     return res.status(500).json({ message: "Server error" });
   }
-}
+};

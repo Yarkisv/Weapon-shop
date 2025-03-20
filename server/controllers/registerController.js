@@ -2,14 +2,14 @@ import connection from "../db_config.js";
 import { UserModel } from "../models/usermodel.js";
 import bcrypt from "bcrypt";
 
-export default async function regUser(req, res) {
+export const regUser = async (req, res) => {
   const newUser = new UserModel(
-    req.body.email, 
-    req.body.password, 
-    req.body.firstname, 
-    req.body.lastname, 
+    req.body.email,
+    req.body.password,
+    req.body.firstname,
+    req.body.lastname,
     req.body.phone
-);
+  );
 
   // валидация
   // if (
@@ -71,4 +71,4 @@ export default async function regUser(req, res) {
     console.error("Error with hashing or querry: " + err);
     return res.status(500).json({ message: "Server error" });
   }
-}
+};

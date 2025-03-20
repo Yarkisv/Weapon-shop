@@ -24,7 +24,7 @@ function App() {
           <Route path="/login" element={<Login />} />
           <Route path="/catalog/:category" element={<CatalogPage />} />
           <Route
-            path="/profile"
+            path="/profile/*"
             element={
               <ProtectedAuthRoute>
                 <ProfilePage />

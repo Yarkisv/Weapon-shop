@@ -3,7 +3,7 @@ import "./UserPanel.css";
 import { useNavigate } from "react-router-dom";
 import ModalWindowsContext from "../../contexts/modalContext";
 import basket from "../../images/basket.svg";
-import cancel from "../../images/cancel.svg"
+import cancel from "../../images/cancel.svg";
 import bonuses from "../../images/bonuses.svg";
 import chat from "../../images/chat.svg";
 import history from "../../images/history.svg";
@@ -40,14 +40,19 @@ export default function UserPanel() {
     navigate("/profile");
     setUserPanelOpen(!isUserPanelOpen);
   };
-  
+
   const handleClosePanel = () => {
     setUserPanelOpen(false);
   };
 
   return (
     <div className="user-panel">
-      <img className="close-window" src={cancel} alt=""  onClick={handleClosePanel}/>
+      <img
+        className="close-window"
+        src={cancel}
+        alt=""
+        onClick={handleClosePanel}
+      />
       {!isAuth ? (
         <button className="login-button-user" onClick={handleLoginClick}>
           Увійти
