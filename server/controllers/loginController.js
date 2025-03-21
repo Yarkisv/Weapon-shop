@@ -19,12 +19,12 @@ export const loginUser = async (req, res) => {
     return res.status(401).json({ message: "Email is incorrect" });
   }
 
-    if (!UserModel.validatePassword(password)) {
-      console.error("Password must be more than 8 and less than 30 symbols");
-      return res.status(401).json({
-        message: "Password must be more than 8 and less than 30 symbols",
-      });
-    }
+  // if (!UserModel.validatePassword(password)) {
+  //   console.error("Password must be more than 8 and less than 30 symbols");
+  //   return res.status(401).json({
+  //     message: "Password must be more than 8 and less than 30 symbols",
+  //   });
+  // }
 
   try {
     const query = "select * from users where email = ?";
