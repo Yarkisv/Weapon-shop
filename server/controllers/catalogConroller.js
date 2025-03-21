@@ -1,0 +1,144 @@
+import connection from "../db_config.js";
+import path from 'path';
+import fs from "fs";
+
+export function getCatalog(req, res) {
+    console.log("Received request for catalog");
+
+    const query = `SELECT category_id,
+                          manufacturer_id,
+                          name_,
+                          caliber,
+                          weight,
+                          price,
+                          stock,
+                          length,
+                          color,
+                          stock_type,
+                          path_to
+                   FROM Weapons;`;
+
+    connection.query(query, async (err, result) => {
+        if (err) {
+            console.error("Query error:", err);
+            return res.status(500).json({ message: "Server error" });
+        }
+
+        console.log(`Fetched ${result.length} records from database`);
+
+        const weaponsData = await Promise.all(
+            result.map(async (weapon) => {
+                const filePath = path.join(process.cwd(), "public", weapon.path_to);
+                let imageBlob = "not found";
+
+                if (fs.existsSync(filePath)) {
+                    console.log(`Reading file: ${filePath}`);
+                    try {
+                        const fileBuffer = fs.readFileSync(filePath);
+                        imageBlob = fileBuffer.toString("base64"); // Кодируем в base64 для передачи в JSON
+                    } catch (readErr) {
+                        console.error(`Error reading file: ${filePath}`, readErr);
+                    }
+                } else {
+                    console.warn(`File not found: ${filePath}`);
+                }
+
+                return {
+                    category_id: weapon.category_id,
+                    manufacturer_id: weapon.manufacturer_id,
+                    name: weapon.name_,
+                    caliber: weapon.caliber,
+                    weight: weapon.weight,
+                    price: weapon.price,
+                    stock: weapon.stock,
+                    length: weapon.length,
+                    color: weapon.color,
+                    stock_type: weapon.stock_type,
+                    image: imageBlob,
+                };
+            })
+        );
+
+        console.log("Sending response to client");
+        res.status(200).json(weaponsData);
+    });
+}
+
+// export function getAllWeapons(req, res) {
+//     const query = `SELECT category_id,
+//                           manufacturer_id,
+//                           name_,
+//                           caliber,
+//                           weight,
+//                           price,
+//                           stock,
+//                           length,
+//                           color,
+//                           stock_type,
+//                           path_to
+//                    FROM Weapons;`;
+
+//     connection.query(query, (err, result) => {
+//         if (err) {
+//             console.error("Query is invalid:", err);
+//             return res.status(500).json({ message: "Server error" });
+//         }
+
+//         console.log("Weapons returned:", result);
+
+//         res.status(200).json({ weapons: result })
+//     });
+// }
+
+// export function getAllPhotos(req, res) {
+//     const query = `SELECT path_to FROM Weapons;`;
+
+//     connection.query(query, (err, result) => {
+//         if (err) {
+//             console.error("Query is invalid:", err);
+//             return res.status(500).json({ message: "Server error" });
+//         }
+
+//         if (result.length === 0) {
+//             console.error("Photos not found");
+//             return res.status(404).json({ message: "Photos not found" });
+//         }
+
+//         console.log("Photos found");
+//         res.setHeader("Content-Type", "multipart/mixed; boundary=boundary123");
+
+//         let index = 0;
+        
+//         function sendNextFile() {
+//             if (index >= result.length) {
+//                 res.write(`\n--boundary123--\n`);
+//                 return res.end();
+//             }
+
+//             const filePath = path.join(process.cwd(), "public", result[index].path_to);
+//             index++;
+
+//             fs.stat(filePath, (err, stats) => {
+//                 if (err || !stats.isFile()) {
+//                     console.error("File not found:", filePath);
+//                     sendNextFile(); // Пропускаем отсутствующий файл
+//                     return;
+//                 }
+
+//                 res.write(`\n--boundary123\n`);
+//                 res.write(`Content-Type: image/jpeg\n\n`);
+
+//                 const fileStream = fs.createReadStream(filePath);
+//                 fileStream.pipe(res, { end: false });
+
+//                 fileStream.on("end", sendNextFile);
+//                 fileStream.on("error", (err) => {
+//                     console.error("Error sending file:", err);
+//                     sendNextFile();
+//                 });
+//             });
+//         }
+
+//         sendNextFile();
+//     });
+// }

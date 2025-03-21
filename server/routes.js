@@ -3,6 +3,8 @@ import { regUser } from "./controllers/registerController.js";
 import { loginUser } from "./controllers/loginController.js";
 import { getUser } from "./controllers/userController.js";
 import { authMiddleware } from "./middlewares/authMiddleware.js";
+// import { getAllWeapons } from "./controllers/catalogConroller.js";
+import { getCatalog } from "./controllers/catalogConroller.js";
 
 const router = express.Router();
 
@@ -16,6 +18,14 @@ router.post("/login", (req, res) => {
 
 router.get("/profile", authMiddleware, (req, res) => {
   getUser(req, res);
+});
+
+// router.get("/catalog", (req, res) => {
+//   getAllWeapons(req, res);
+// });
+
+router.get("/catalog", (req, res) => {
+  getCatalog(req, res);
 });
 
 export default router;
