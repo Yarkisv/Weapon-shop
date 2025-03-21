@@ -1,0 +1,77 @@
+.product-card-wrapper {
+    width: 300px;
+    height: auto;
+    background-color: #DFDFC0;
+    border: 1px solid black;
+    box-sizing: border-box;
+}
+
+.product-card-img {
+    width: 280px;
+    height: 200px;
+    padding-left: 10px;
+    padding-top: 5px;
+    padding-right: 10px;
+}
+
+.product-img {
+    max-width: 280px;
+    max-height: 200px;
+}
+
+.product-name {
+    font-family: "M PLUS 2", sans-serif;
+    color: #9B181A;
+    font-size: 16px;
+    padding-left: 10px;
+    margin: 0;
+    display: -webkit-box;
+    line-clamp: 2;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    cursor:default;
+}
+
+.product-characteristics {
+    font-family: "M PLUS 2", sans-serif;
+    color: black;
+    margin: 0;  
+    font-size: 16px;
+    padding-left: 10px;
+    margin-top: 10px;
+    cursor:default;
+}
+
+.product-price {
+    font-family: "Kiwi Maru", serif;
+    margin: 0;
+    font-size: 25px;
+    margin-top: 30px;
+    margin-right: 10px;
+    color: black;
+    text-align: right;
+    cursor:default;
+}
+
+.product-card-button {
+    border: none;
+    overflow: hidden;
+    width: 100%;
+    height: 35px;
+    line-height: 35px;
+    background-color: #BABA95;
+    font-family: "Noto Sans Lao", sans-serif;
+    margin: 0;
+    font-size: 25px;
+    padding-bottom: 5px;
+    text-align: center;
+    align-items: center;
+    transition: background-color 0.2s ease;
+    cursor: pointer;
+}
+
+
+.product-card-button:hover {
+    background-color: #A3A371;
+}

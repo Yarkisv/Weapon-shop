@@ -3,6 +3,12 @@ import "./ProfilePage.css";
 import Header from "../../components/Header/Header";
 import UserInformation from "../../components/UserInformation/UserInformation";
 import PageBasket from "../../components/PageBasket/PageBasket";
+import WishList from "../../components/WishList/WishList";
+import Viewed from "../../components/Viewed/Viewed";
+import OrderHistory from "../../components/OrderHistory/OrderHistory";
+import ChatBot from "../../components/ChatBot/ChatBot";
+import ReviewsUser from "../../components/ReviewsUser/ReviewsUser";
+
 import axios from "axios";
 import {
   BrowserRouter as Router,
@@ -70,32 +76,32 @@ export default function ProfilePage() {
           <div className="profile-page-aside">
             <ul className="profile-page-menu">
               <li>
-                <Link to={"/profile"}>Profile</Link>
                 <img src={profile} />
+                <Link to={"/profile"} style={{ textDecoration: "none", color: "inherit" }}>Profile</Link>
               </li>
               <li>
-                <Link to={"/profile/basket"}>Basket</Link>
                 <img src={basket} />
+                <Link to={"/profile/basket"}style={{ textDecoration: "none", color: "inherit" }}>Basket</Link>
               </li>
               <li>
-                <Link to={"/profile/wishlist"}>Wish list</Link>
                 <img src={liked} />
+                <Link to={"/profile/wishlist"}style={{ textDecoration: "none", color: "inherit" }}>Wish list</Link>
               </li>
               <li>
-                <Link to={"/profile/viewed"}>Viewed</Link>
                 <img src={visited} />
+                <Link to={"/profile/viewed"}style={{ textDecoration: "none", color: "inherit" }}>Viewed</Link>
               </li>
               <li>
-                <Link to={"/profile/orderhistory"}>Order history</Link>
                 <img src={history} />
+                <Link to={"/profile/orderhistory"}style={{ textDecoration: "none", color: "inherit" }}>Order history</Link>
               </li>
               <li>
-                <Link to={"/profile/chatbot"}>Chat-bot</Link>
                 <img src={chat} />
+                <Link to={"/profile/chatbot"}style={{ textDecoration: "none", color: "inherit" }}>Chat-bot</Link>
               </li>
               <li>
-                <Link to={"/profile/reviews"}>Reviews</Link>
                 <img src={reviews} />
+                <Link to={"/profile/reviews"}style={{ textDecoration: "none", color: "inherit" }}>Reviews</Link>
               </li>
               <li onClick={handleLogoutClick}>
                 <img src={logout} /> Logout
@@ -106,6 +112,11 @@ export default function ProfilePage() {
             <Routes>
               <Route path="/" element={<UserInformation user={user} />} />
               <Route path="basket" element={<PageBasket />} />
+              <Route path="wishlist" element={<WishList />} />
+              <Route path="viewed" element={<Viewed />} />
+              <Route path="orderhistory" element={<OrderHistory />} />
+              <Route path="chatbot" element={<ChatBot />} />
+              <Route path="reviews" element={<ReviewsUser />} />
             </Routes>
           </div>
         </div>
