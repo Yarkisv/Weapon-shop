@@ -1,72 +1,73 @@
 .header-wrapper {
-    display: flex;
-    margin: 0 auto;
-    width: 100%;
-    height: 100px;
-    background-color: #375C4D;
+  display: flex;
+  margin: 0 auto;
+  width: 100%;
+  height: 100px;
+  background-color: #375c4d;
 }
 
 .header {
-    width: 1440px;
-    height: 100px;
-    margin: 0 auto;
-    display: flex;
-    flex-direction: row;
-    place-items: center;
+  width: 1440px;
+  height: 100px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: row;
+  place-items: center;
 }
 
 .logo-img {
-    width: 252px;
-    height: 65px;
-    margin-right: auto;
-    margin-left: 10px;
+  width: 252px;
+  height: 65px;
+  margin-right: auto;
+  margin-left: 10px;
+  cursor: pointer;
 }
 
 .header-icons {
-    display: flex;
-    cursor: pointer;
+  display: flex;
+  cursor: pointer;
 }
 
 .header-icon-text {
-    font-family: Liberation Sans;
-    color: white;
-    margin: 0;
-    margin-top: 5px;
+  font-family: Liberation Sans;
+  color: white;
+  margin: 0;
+  margin-top: 5px;
 }
 
 .header-icon-item {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin-left: 40px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-left: 40px;
 }
 
 .header-img-like {
-    width: 35px;
-    height: 35px;
-    transition: transform 0.2s ease;
+  width: 35px;
+  height: 35px;
+  transition: transform 0.2s ease;
 }
 
-.header-img-like:hover{
-    transform: scale(1.1);
+.header-img-like:hover {
+  transform: scale(1.1);
 }
 
 .header-img-basket {
-    width: 35px;
-    height: 35px;
-    transition: transform 0.2s ease;
+  width: 35px;
+  height: 35px;
+  transition: transform 0.2s ease;
 }
 
-.header-img-basket:hover{
-    transform: scale(1.1);
+.header-img-basket:hover {
+  transform: scale(1.1);
 }
 
 .header-img-profile {
-    width: 35px;
-    height: 35px;
-    transition: transform 0.2s ease;
+  width: 35px;
+  height: 35px;
+  transition: transform 0.2s ease;
 }
 
-.header-img-profile:hover{
-    transform: scale(1.1);
+.header-img-profile:hover {
+  transform: scale(1.1);
 }
