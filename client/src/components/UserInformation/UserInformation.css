@@ -34,7 +34,8 @@
     border: 1px solid black;
 }
 
-p {
+
+.user-data-bd {
     margin: 0;
     white-space: nowrap;
     overflow: hidden;
@@ -43,15 +44,22 @@ p {
     width: 100%;
 }
 
-label{
+.label-data{
     margin: 0;
     font-family: "Khmer", sans-serif;
     font-size: 18px;
-    margin-top: 16px;
+    padding-top: 16px;
     max-height: 90px;
+    margin: 0;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: clip;
+    margin-left: 10px;
+    width: 100%;
 }
 
 .label-p-text {
     margin: 0;
     margin-bottom: 5px;
+    
 }

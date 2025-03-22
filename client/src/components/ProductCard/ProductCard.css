@@ -1,7 +1,7 @@
 .product-card-wrapper {
     width: 300px;
     height: auto;
-    background-color: #DFDFC0;
+    background-color: white;
     border: 1px solid black;
     box-sizing: border-box;
 }
@@ -22,21 +22,27 @@
 .product-name {
     font-family: "M PLUS 2", sans-serif;
     color: #9B181A;
+    max-width: 280px;
     font-size: 16px;
-    padding-left: 10px;
     margin: 0;
+    margin-left: 10px;
     display: -webkit-box;
     line-clamp: 2;
     -webkit-line-clamp: 2;
     -webkit-box-orient: vertical;
     overflow: hidden;
-    cursor:default;
+    word-wrap: break-word; 
+    line-height: 1.2em; 
+    height: 2.4em;
 }
+
+
 
 .product-characteristics {
     font-family: "M PLUS 2", sans-serif;
     color: black;
     margin: 0;  
+    max-width: 280px;
     font-size: 16px;
     padding-left: 10px;
     margin-top: 10px;
@@ -48,13 +54,15 @@
     margin: 0;
     font-size: 25px;
     margin-top: 30px;
-    margin-right: 10px;
+    max-width: 280px;
+    word-wrap: break-word;
+    overflow: hidden;
     color: black;
     text-align: right;
     cursor:default;
 }
 
-.product-card-button {
+.to-basket {
     border: none;
     overflow: hidden;
     width: 100%;
@@ -72,6 +80,6 @@
 }
 
 
-.product-card-button:hover {
+.to-basket:hover {
     background-color: #A3A371;
 }

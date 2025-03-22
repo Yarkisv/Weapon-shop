@@ -1,8 +1,11 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import "./Basket.css";
+import ModalWindowsContext from "../../contexts/modalContext";
+import cancel from "../../images/cancel.svg";
 
 export default function Basket() {
   const [orders, setOrders] = useState([]);
+  const {isBasketOpen,setBasketOpen } = useContext(ModalWindowsContext);
 
   useEffect(() => {
     const storedOrders = localStorage.getItem("products");
@@ -17,15 +20,37 @@ export default function Basket() {
     setOrders([]);
   };
 
+  const handleClosePanel = () => {
+    setBasketOpen(false);
+  };
+
   return (
     <div className="basket-container">
+      <img 
+        src={cancel} 
+        alt="Close basket" 
+        className="basket-close" 
+        onClick={handleClosePanel}
+      />
       {orders.length > 0 ? (
-        orders.map((order) => <div key={order.id}>{order.name}</div>)
+        <div className="basket-items">
+          {orders.map((order) => (
+            <div key={order.id} className="basket-item">
+              <img src={order.image} alt={order.name} className="basket-item-image" />
+              <div className="basket-item-details">
+                <h4 className="basket-order-name">{order.name}</h4>
+                <p className="basket-order-characteristics"><strong>Caliber:</strong> {order.caliber}</p>
+                <p className="basket-order-characteristics"><strong>Code:</strong> {order.code}</p>
+                <p className="basket-order-characteristics"><strong>Price:</strong> {order.price} $</p>
+              </div>
+            </div>
+          ))}
+        </div>
       ) : (
-        <p>Basket is empty</p>
+        <p className="basket-empty">Basket is empty</p>
       )}
       <button className="clear-basket" onClick={handleClearBasket}>
-        Clear basket
+        Empty the basket
       </button>
     </div>
   );

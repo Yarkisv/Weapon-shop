@@ -8,28 +8,28 @@ export default function UserInformation({ user }) {
     <div className="user-information-wrapper">
       <p className="user-main-text">Personal data</p>
       <div className="user-information">
-        <label>
+        <label className="label-data">
           <p className="label-p-text">Name: </p>
           <div className="user-information-text">
-            <p>{user.firstname}</p>
+            <p className="user-data-bd"> {user.firstname}</p>
           </div>
         </label>
-        <label>
+        <label className="label-data">
           <p className="label-p-text">Surname: </p>
           <div className="user-information-text">
-            <p> {user.lastname}</p>
+            <p className="user-data-bd">  {user.lastname}</p>
           </div>
         </label>
-        <label>
+        <label className="label-data">
           <p className="label-p-text">Email: </p>
           <div className="user-information-text">
-            <p> {user.email}</p>
+            <p className="user-data-bd">  {user.email}</p>
           </div>
         </label>
-        <label>
+        <label className="label-data">
           <p className="label-p-text">Phone number: </p>
           <div className="user-information-text">
-            <p> {user.phone}</p>
+            <p className="user-data-bd">  {user.phone}</p>
           </div>
         </label>
         

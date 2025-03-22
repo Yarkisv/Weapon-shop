@@ -2,6 +2,68 @@
   margin-left: 19px;
   margin-top: 19px;
   width: 1015px;
-  height: 468px;
+  height: auto;
   border: 1px solid #585858;
+}
+
+.basket-page-container {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  z-index: 9999;
+  right: 0;
+  top: 0;
+  background-color: #D3D3D3;
+  border-radius: 5px 0 0 5px;
+  width: 500px;
+}
+
+
+.basket-page-items {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.basket-page-item {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  border: 1px solid #ddd;
+  padding: 10px;
+  border-radius: 8px;
+}
+
+.basket-page-item-image {
+  width: 280px;
+  height: 200px;
+  border-radius: 5px;
+}
+
+.basket-page-item-details {
+  flex: 1;
+}
+
+.basket-page-order-name{
+  font-family: "M PLUS 2", sans-serif;
+  color: #9B181A;
+  margin: 0;
+  font-size: 20px;
+}
+
+.basket-page-empty {
+  font-family: "M PLUS 2", sans-serif;
+  color: #9B181A;
+  margin: 0;
+  margin-left: 15px;
+  font-size: 25px;
+}
+
+.basket-page-order-characteristics {
+  font-family: "M PLUS 2", sans-serif;
+  color: black;
+  margin: 0;
+  font-size: 18px;
+  padding-top: 5px;
 }

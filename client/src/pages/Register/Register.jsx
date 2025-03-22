@@ -115,9 +115,9 @@ export default function Register() {
               required
             />
             {password && !isPasswordValid ? (
-              <p>Password is too short</p>
+              <p className="password-recomendation">Password is too short</p>
             ) : (
-              <p>Password must be more than 8 and less than 30 symbols</p>
+              <p className="password-recomendation">Password must be more than 8 and less than 30 symbols</p>
             )}
 
             <input
@@ -128,9 +128,9 @@ export default function Register() {
               onChange={(e) => setConfirmPassword(e.target.value)}
             />
             {!isPasswordsSame ? (
-              <p>The passwords entered do not match</p>
+              <p className="password-recomendation">The passwords entered do not match</p>
             ) : (
-              <p>Please repeat your password to avoid any typos</p>
+              <p className="password-recomendation">Please repeat your password to avoid any typos</p>
             )}
           </div>
           <div className="form-end">

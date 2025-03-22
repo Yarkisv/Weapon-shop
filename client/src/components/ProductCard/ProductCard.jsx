@@ -14,7 +14,7 @@ export default function ProductCard({ weapon, addToCart }) {
         <p className="product-characteristics">Code: {weapon.code}</p>
         <p className="product-price">{weapon.price}$</p>
       </div>
-      <button className="product-card-button">Buy</button>
+      
       <button className="to-basket" onClick={() => addToCart(weapon)}>
         To basket
       </button>
