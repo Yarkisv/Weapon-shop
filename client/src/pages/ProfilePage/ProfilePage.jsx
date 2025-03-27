@@ -77,31 +77,66 @@ export default function ProfilePage() {
             <ul className="profile-page-menu">
               <li>
                 <img src={profile} />
-                <Link to={"/profile"} style={{ textDecoration: "none", color: "inherit" }}>Profile</Link>
+                <Link
+                  to={"/profile"}
+                  style={{ textDecoration: "none", color: "inherit" }}
+                >
+                  Profile
+                </Link>
               </li>
               <li>
                 <img src={basket} />
-                <Link to={"/profile/basket"}style={{ textDecoration: "none", color: "inherit" }}>Basket</Link>
+                <Link
+                  to={"/profile/basket"}
+                  style={{ textDecoration: "none", color: "inherit" }}
+                >
+                  Basket
+                </Link>
               </li>
               <li>
                 <img src={liked} />
-                <Link to={"/profile/wishlist"}style={{ textDecoration: "none", color: "inherit" }}>Wish list</Link>
+                <Link
+                  to={"/profile/wishlist"}
+                  style={{ textDecoration: "none", color: "inherit" }}
+                >
+                  Wish list
+                </Link>
               </li>
               <li>
                 <img src={visited} />
-                <Link to={"/profile/viewed"}style={{ textDecoration: "none", color: "inherit" }}>Viewed</Link>
+                <Link
+                  to={"/profile/viewed"}
+                  style={{ textDecoration: "none", color: "inherit" }}
+                >
+                  Viewed
+                </Link>
               </li>
               <li>
                 <img src={history} />
-                <Link to={"/profile/orderhistory"}style={{ textDecoration: "none", color: "inherit" }}>Order history</Link>
+                <Link
+                  to={"/profile/orderhistory"}
+                  style={{ textDecoration: "none", color: "inherit" }}
+                >
+                  Order history
+                </Link>
               </li>
               <li>
                 <img src={chat} />
-                <Link to={"/profile/chatbot"}style={{ textDecoration: "none", color: "inherit" }}>Chat-bot</Link>
+                <Link
+                  to={"/profile/chatbot"}
+                  style={{ textDecoration: "none", color: "inherit" }}
+                >
+                  Chat-bot
+                </Link>
               </li>
               <li>
                 <img src={reviews} />
-                <Link to={"/profile/reviews"}style={{ textDecoration: "none", color: "inherit" }}>Reviews</Link>
+                <Link
+                  to={"/profile/reviews"}
+                  style={{ textDecoration: "none", color: "inherit" }}
+                >
+                  Reviews
+                </Link>
               </li>
               <li onClick={handleLogoutClick}>
                 <img src={logout} /> Logout

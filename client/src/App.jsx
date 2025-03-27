@@ -11,6 +11,7 @@ import ProfilePage from "./pages/ProfilePage/ProfilePage";
 import ProtectedAuthRoute from "./Routes/ProtectedAuthRoute";
 import Basket from "./components/Basket/Basket";
 import BasketContext from "./contexts/basketContext";
+import ProductPage from "./pages/ProductPage/ProductPage";
 
 function App() {
   const [isUserPanelOpen, setUserPanelOpen] = useState(false);
@@ -39,6 +40,8 @@ function App() {
             <Route path="/register" element={<Register />} />
             <Route path="/login" element={<Login />} />
             <Route path="/catalog/:category" element={<CatalogPage />} />
+            <Route path="/product/:name" element={<ProductPage />} />
+            <Route path="/product/:name/*" element={<ProductPage />} />
             <Route
               path="/profile/*"
               element={

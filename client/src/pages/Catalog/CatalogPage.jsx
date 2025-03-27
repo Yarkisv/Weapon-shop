@@ -3,6 +3,7 @@ import Header from "../../components/Header/Header";
 import "./CatalogPage.css";
 import ProductCard from "../../components/ProductCard/ProductCard";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 export default function CatalogPage() {
   const [products, setProducts] = useState([]);
@@ -21,7 +22,7 @@ export default function CatalogPage() {
       }
     };
 
-    fetchProducts()
+    fetchProducts();
   }, []);
 
   const addToLocalStorage = (product) => {

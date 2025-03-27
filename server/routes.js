@@ -5,6 +5,7 @@ import { getUser } from "./controllers/userController.js";
 import { authMiddleware } from "./middlewares/authMiddleware.js";
 // import { getAllWeapons } from "./controllers/catalogConroller.js";
 import { getCatalog } from "./controllers/catalogConroller.js";
+import { getProductByName } from "./controllers/catalogConroller.js";
 
 const router = express.Router();
 
@@ -20,12 +21,12 @@ router.get("/profile", authMiddleware, (req, res) => {
   getUser(req, res);
 });
 
-// router.get("/catalog", (req, res) => {
-//   getAllWeapons(req, res);
-// });
-
 router.get("/catalog", (req, res) => {
   getCatalog(req, res);
+});
+
+router.get("/product/:name", (req, res) => {
+  getProductByName(req, res);
 });
 
 export default router;

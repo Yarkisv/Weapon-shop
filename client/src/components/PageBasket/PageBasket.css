@@ -14,11 +14,10 @@
   z-index: 9999;
   right: 0;
   top: 0;
-  background-color: #D3D3D3;
+  background-color: #d3d3d3;
   border-radius: 5px 0 0 5px;
   width: 500px;
 }
-
 
 .basket-page-items {
   display: flex;
@@ -45,16 +44,16 @@
   flex: 1;
 }
 
-.basket-page-order-name{
+.basket-page-order-name {
   font-family: "M PLUS 2", sans-serif;
-  color: #9B181A;
+  color: #9b181a;
   margin: 0;
   font-size: 20px;
 }
 
 .basket-page-empty {
   font-family: "M PLUS 2", sans-serif;
-  color: #9B181A;
+  color: #9b181a;
   margin: 0;
   margin-left: 15px;
   font-size: 25px;
