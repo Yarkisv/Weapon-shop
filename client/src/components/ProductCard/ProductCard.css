@@ -1,85 +1,77 @@
 .product-card-wrapper {
-    width: 300px;
-    height: auto;
-    background-color: white;
-    border: 1px solid black;
-    box-sizing: border-box;
+  width: 300px;
+  height: 450px;
+  background-color: white;
+  border: 1px solid black;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  overflow: hidden;
 }
 
 .product-card-img {
-    width: 280px;
-    height: 200px;
-    padding-left: 10px;
-    padding-top: 5px;
-    padding-right: 10px;
+  width: 100%;
+  height: 200px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
 }
 
-.product-img {
-    max-width: 280px;
-    max-height: 200px;
+.product-card-img img {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+}
+
+.product-card-text-wrapper {
+  flex-grow: 1;
+  width: 100%;
+  padding: 10px;
+  text-align: left;
 }
 
 .product-name {
-    font-family: "M PLUS 2", sans-serif;
-    color: #9B181A;
-    max-width: 280px;
-    font-size: 16px;
-    margin: 0;
-    margin-left: 10px;
-    display: -webkit-box;
-    line-clamp: 2;
-    -webkit-line-clamp: 2;
-    -webkit-box-orient: vertical;
-    overflow: hidden;
-    word-wrap: break-word; 
-    line-height: 1.2em; 
-    height: 2.4em;
+  font-family: "M PLUS 2", sans-serif;
+  color: #9b181a;
+  font-size: 16px;
+  margin: 0;
+  display: -webkit-box;
+
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  word-wrap: break-word;
+  line-height: 1.2em;
+  height: 2.4em;
 }
 
-
-
-.product-characteristics {
-    font-family: "M PLUS 2", sans-serif;
-    color: black;
-    margin: 0;  
-    max-width: 280px;
-    font-size: 16px;
-    padding-left: 10px;
-    margin-top: 10px;
-    cursor:default;
+.product-characteristics,
+.product-price {
+  font-family: "M PLUS 2", sans-serif;
+  color: black;
+  font-size: 16px;
+  margin: 5px 0;
 }
 
 .product-price {
-    font-family: "Kiwi Maru", serif;
-    margin: 0;
-    font-size: 25px;
-    margin-top: 30px;
-    max-width: 280px;
-    word-wrap: break-word;
-    overflow: hidden;
-    color: black;
-    text-align: right;
-    cursor:default;
+  font-family: "Kiwi Maru", serif;
+  font-size: 25px;
+  text-align: right;
 }
 
 .to-basket {
-    border: none;
-    overflow: hidden;
-    width: 100%;
-    height: 35px;
-    line-height: 35px;
-    background-color: #BABA95;
-    font-family: "Noto Sans Lao", sans-serif;
-    margin: 0;
-    font-size: 25px;
-    padding-bottom: 5px;
-    text-align: center;
-    align-items: center;
-    transition: background-color 0.2s ease;
-    cursor: pointer;
+  width: 100%;
+  height: 40px;
+  background-color: #baba95;
+  font-family: "Noto Sans Lao", sans-serif;
+  font-size: 20px;
+  text-align: center;
+  transition: background-color 0.2s ease;
+  cursor: pointer;
 }
 
-
 .to-basket:hover {
-    background-color: #A3A371;
+  background-color: #a3a371;
 }
