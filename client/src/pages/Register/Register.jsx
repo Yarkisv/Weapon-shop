@@ -2,6 +2,10 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import "./Register.css";
 import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+
+import back from "../../images/back.svg";
+import gunsWall from "../../images/gunsWall.svg";
 
 export default function Register() {
   const [firstname, setFirstname] = useState("");
@@ -14,6 +18,7 @@ export default function Register() {
   const [isPasswordValid, setPasswordValid] = useState(true);
   const [isPasswordsSame, setPasswordsSame] = useState(true);
 
+  const navigate = useNavigate();
   const validatePassword = () => {
     if (password === "") {
       setPasswordValid(false);
@@ -67,81 +72,95 @@ export default function Register() {
   };
 
   return (
-    <div className="register-page-wrapper">
-      <div className="register-page">
-        <form onSubmit={handleRegister}>
-          <div className="input-group">
-            <div className="name-surname-wrapper">
+    <div className="wrapper" style={{ backgroundImage: `url(${gunsWall})` }}>
+      <p className="reg-logo"> STEEL & GUNS</p>
+      <p className="reg-text-main">REGISTER</p>
+      <div className="register-page-wrapper">
+        <div className="go-back-wrapper" onClick={() => navigate("/")}>
+          <img className="go-back-img" src={back} alt="" />
+          <p className="go-back">Back</p>
+        </div>
+        <div className="register-page">
+          <form onSubmit={handleRegister}>
+            <div className="input-group">
+              <div className="name-surname-wrapper">
+                <input
+                  className="input-field-name-surname"
+                  type="text"
+                  placeholder="Name"
+                  value={firstname}
+                  onChange={(e) => setFirstname(e.target.value)}
+                  required
+                />
+                <input
+                  className="input-field-name-surname"
+                  type="text"
+                  placeholder="Surname"
+                  value={lastname}
+                  onChange={(e) => setLatsname(e.target.value)}
+                  required
+                />
+              </div>
+
               <input
-                className="input-field-name-surname"
-                type="text"
-                placeholder="Name"
-                value={firstname}
-                onChange={(e) => setFirstname(e.target.value)}
+                className="input-field"
+                type="email"
+                placeholder="Email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
                 required
               />
               <input
-                className="input-field-name-surname"
+                className="input-field"
                 type="text"
-                placeholder="Surname"
-                value={lastname}
-                onChange={(e) => setLatsname(e.target.value)}
+                placeholder="Phone"
+                value={phone}
+                onChange={(e) => setPhone(e.target.value)}
                 required
               />
+              <input
+                className="input-field-password"
+                type="password"
+                placeholder="Password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                required
+              />
+              {password && !isPasswordValid ? (
+                <p className="password-recomendation">Password is too short</p>
+              ) : (
+                <p className="password-recomendation">
+                  Password must be more than 8 and less than 30 symbols
+                </p>
+              )}
+
+              <input
+                className="input-field-password"
+                type="password"
+                placeholder="Submit password"
+                value={confirmPassword}
+                onChange={(e) => setConfirmPassword(e.target.value)}
+              />
+              {!isPasswordsSame ? (
+                <p className="password-recomendation">
+                  The passwords entered do not match
+                </p>
+              ) : (
+                <p className="password-recomendation">
+                  Please repeat your password to avoid any typos
+                </p>
+              )}
             </div>
-
-            <input
-              className="input-field"
-              type="email"
-              placeholder="Email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              required
-            />
-            <input
-              className="input-field"
-              type="text"
-              placeholder="Phone"
-              value={phone}
-              onChange={(e) => setPhone(e.target.value)}
-              required
-            />
-            <input
-              className="input-field-password"
-              type="password"
-              placeholder="Password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              required
-            />
-            {password && !isPasswordValid ? (
-              <p className="password-recomendation">Password is too short</p>
-            ) : (
-              <p className="password-recomendation">Password must be more than 8 and less than 30 symbols</p>
-            )}
-
-            <input
-              className="input-field-password"
-              type="password"
-              placeholder="Submit password"
-              value={confirmPassword}
-              onChange={(e) => setConfirmPassword(e.target.value)}
-            />
-            {!isPasswordsSame ? (
-              <p className="password-recomendation">The passwords entered do not match</p>
-            ) : (
-              <p className="password-recomendation">Please repeat your password to avoid any typos</p>
-            )}
-          </div>
-          <div className="form-end">
-            <button className="register-button" type="submit">
-              REGISTER
-            </button>
-            <Link className="have-account" to={"/login"}>
-              have an account?
-            </Link>
-          </div>
-        </form>
+            <div className="form-end">
+              <button className="register-button" type="submit">
+                REGISTER
+              </button>
+              <Link className="have-account" to={"/login"}>
+                have an account?
+              </Link>
+            </div>
+          </form>
+        </div>
       </div>
     </div>
   );

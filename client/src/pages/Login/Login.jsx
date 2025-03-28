@@ -6,6 +6,8 @@ import { useNavigate } from "react-router-dom";
 
 import gogle from "../../images/gogle.svg";
 import face from "../../images/face.svg";
+import back from "../../images/back.svg";
+import gunsWall from "../../images/gunsWall.svg";
 
 export default function Login() {
   const [email, setEmail] = useState("");
@@ -38,47 +40,55 @@ export default function Login() {
   };
 
   return (
-    <div className="login-page-wrapper">
-      <div className="login-page">
-        <form onSubmit={handleLogin}>
-          <div className="input-group">
-            <input
-              className="input-field"
-              type="email"
-              placeholder="Email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              required
-            />
-            <input
-              className="input-field"
-              type="password"
-              placeholder="Password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              required
-            />
-          </div>
-          <div className="form-end">
-            <button className="login-button" type="submit">
-              LOGIN
-            </button>
-            <Link className="dont-have-account" to={"/register"}>
-              don`t have an account?
-            </Link>
-            <span className="another-login">or log in with</span>
-            <div className="gogle-or-face">
-              <div className="gogle">
-                <img className="gogle-face-img" src={gogle} alt="" />
-                <span>Google</span>
-              </div>
-              <div className="face">
-                <img className="gogle-face-img" src={face} alt="" />
-                <span className="face-text">Facebook</span>
+    <div className="wrapper" style={{ backgroundImage: `url(${gunsWall})` }}>
+      <p className="reg-logo"> STEEL & GUNS</p>
+      <p className="reg-text-main">LOGIN</p>
+      <div className="login-page-wrapper">
+        <div className="go-back-wrapper" onClick={() => navigate("/")}>
+          <img className="go-back-img" src={back} alt="" />
+          <p className="go-back">Back</p>
+        </div>
+        <div className="login-page">
+          <form onSubmit={handleLogin}>
+            <div className="input-group">
+              <input
+                className="input-field"
+                type="email"
+                placeholder="Email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                required
+              />
+              <input
+                className="input-field"
+                type="password"
+                placeholder="Password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                required
+              />
+            </div>
+            <div className="form-end">
+              <button className="login-button" type="submit">
+                LOGIN
+              </button>
+              <Link className="dont-have-account" to={"/register"}>
+                don`t have an account?
+              </Link>
+              <span className="another-login">or log in with</span>
+              <div className="gogle-or-face">
+                <div className="gogle">
+                  <img className="gogle-face-img" src={gogle} alt="" />
+                  <span>Google</span>
+                </div>
+                <div className="face">
+                  <img className="gogle-face-img" src={face} alt="" />
+                  <span className="face-text">Facebook</span>
+                </div>
               </div>
             </div>
-          </div>
-        </form>
+          </form>
+        </div>
       </div>
     </div>
   );

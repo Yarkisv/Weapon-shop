@@ -46,11 +46,11 @@ export default function UserPanel() {
   };
 
   return (
-    <div className="user-panel">
+    <div className={`user-panel ${isUserPanelOpen ? "open" : ""}`}>
       <img
         className="close-window"
         src={cancel}
-        alt=""
+        alt="Закрыть"
         onClick={handleClosePanel}
       />
       {!isAuth ? (
@@ -65,32 +65,26 @@ export default function UserPanel() {
 
       <ul className="modal-list">
         <li className="modal-item">
-          {" "}
           <img src={basket} alt="" />
           Basket
         </li>
         <li className="modal-item">
-          {" "}
           <img src={history} alt="" />
           Order history
         </li>
         <li className="modal-item">
-          {" "}
           <img src={chat} alt="" />
           Chat-bot
         </li>
         <li className="modal-item">
-          {" "}
           <img src={partners} alt="" />
           Partnership
         </li>
         <li className="modal-item">
-          {" "}
           <img src={bonuses} alt="" />
           Bonuses
         </li>
         <li className="modal-item">
-          {" "}
           <img src={reviews} alt="" />
           Reviews
         </li>
