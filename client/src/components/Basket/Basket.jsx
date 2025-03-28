@@ -2,10 +2,13 @@ import React, { useContext, useEffect, useState } from "react";
 import "./Basket.css";
 import ModalWindowsContext from "../../contexts/modalContext";
 import cancel from "../../images/cancel.svg";
+import { useNavigate } from "react-router-dom";
 
 export default function Basket() {
   const [orders, setOrders] = useState([]);
-  const { isBasketOpen, setBasketOpen } = useContext(ModalWindowsContext);
+  const { setBasketOpen } = useContext(ModalWindowsContext);
+
+  const navigate = useNavigate();
 
   useEffect(() => {
     const storedOrders = localStorage.getItem("products");
@@ -16,7 +19,7 @@ export default function Basket() {
   }, []);
 
   const handleClearBasket = () => {
-    localStorage.removeItem("products");
+    localStorage.removeItem("products");  
     setOrders([]);
   };
 
@@ -32,6 +35,9 @@ export default function Basket() {
         className="basket-close"
         onClick={handleClosePanel}
       />
+      <button className="clear-basket" onClick={handleClearBasket}>
+        Clear basket
+      </button>
       {orders.length > 0 ? (
         <div className="basket-items">
           {orders.map((order) => (
@@ -59,8 +65,9 @@ export default function Basket() {
       ) : (
         <p className="basket-empty">Basket is empty</p>
       )}
-      <button className="clear-basket" onClick={handleClearBasket}>
-        Empty the basket
+
+      <button onClick={() => navigate("/checkout")}>
+        Перейти до оформлення
       </button>
     </div>
   );

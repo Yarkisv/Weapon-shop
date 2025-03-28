@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import Header from "../../components/Header/Header";
 import "./CatalogPage.css";
 import ProductCard from "../../components/ProductCard/ProductCard";

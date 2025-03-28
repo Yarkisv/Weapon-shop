@@ -10,14 +10,13 @@ import ModalWindowsContext from "./contexts/modalContext";
 import ProfilePage from "./pages/ProfilePage/ProfilePage";
 import ProtectedAuthRoute from "./Routes/ProtectedAuthRoute";
 import Basket from "./components/Basket/Basket";
-import BasketContext from "./contexts/basketContext";
 import ProductPage from "./pages/ProductPage/ProductPage";
+import CheckoutPage from "./pages/CheckoutPage/CheckoutPage";
+import CartContext from "./contexts/cartContext";
 
 function App() {
   const [isUserPanelOpen, setUserPanelOpen] = useState(false);
   const [isBasketOpen, setBasketOpen] = useState(false);
-
-  const [isBasketCleared, setBasketCleared] = useState(false);
 
   const modalWindowsValues = {
     isUserPanelOpen,
@@ -26,14 +25,14 @@ function App() {
     setBasketOpen,
   };
 
-  const basketValues = {
-    isBasketCleared,
-    setBasketCleared,
+  const cartValues = {
+    isBasketOpen,
+    setBasketOpen,
   };
 
   return (
     <ModalWindowsContext.Provider value={modalWindowsValues}>
-      <BasketContext.Provider value={basketValues}>
+      <CartContext value={cartValues}>
         <Router>
           <Routes>
             <Route path="/" element={<MainPage />} />
@@ -42,6 +41,7 @@ function App() {
             <Route path="/catalog/:category" element={<CatalogPage />} />
             <Route path="/product/:name" element={<ProductPage />} />
             <Route path="/product/:name/*" element={<ProductPage />} />
+            <Route path="/checkout" element={<CheckoutPage />} />
             <Route
               path="/profile/*"
               element={
@@ -54,7 +54,7 @@ function App() {
           {isUserPanelOpen && <UserPanel />}
           {isBasketOpen && <Basket />}
         </Router>
-      </BasketContext.Provider>
+      </CartContext>
     </ModalWindowsContext.Provider>
   );
 }
