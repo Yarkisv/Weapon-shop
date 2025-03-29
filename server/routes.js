@@ -6,6 +6,8 @@ import { authMiddleware } from "./middlewares/authMiddleware.js";
 // import { getAllWeapons } from "./controllers/catalogConroller.js";
 import { getCatalog } from "./controllers/catalogConroller.js";
 import { getProductByName } from "./controllers/catalogConroller.js";
+import { createOrder } from "./controllers/orderController.js";
+
 
 const router = express.Router();
 
@@ -27,6 +29,10 @@ router.get("/catalog", (req, res) => {
 
 router.get("/product/:name", (req, res) => {
   getProductByName(req, res);
+});
+
+router.post("/order", (req, res) => {
+  createOrder(req, res);
 });
 
 export default router;
