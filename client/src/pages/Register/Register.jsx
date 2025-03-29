@@ -19,6 +19,7 @@ export default function Register() {
   const [isPasswordsSame, setPasswordsSame] = useState(true);
 
   const navigate = useNavigate();
+
   const validatePassword = () => {
     if (password === "") {
       setPasswordValid(false);
@@ -64,7 +65,8 @@ export default function Register() {
         password,
       });
 
-      if (response.status === 200) {
+      if (response.status === 201) {
+        navigate("/login");
       }
     } catch (error) {
       console.log(error);

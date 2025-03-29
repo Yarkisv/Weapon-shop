@@ -1,17 +1,14 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import Header from "../../components/Header/Header";
 import "./CatalogPage.css";
 import ProductCard from "../../components/ProductCard/ProductCard";
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
+import { useCart } from "../../contexts/cartContext";
 
 export default function CatalogPage() {
   const [products, setProducts] = useState([]);
 
-  const [orders, setOrders] = useState(() => {
-    const savedProducts = localStorage.getItem("products");
-    return savedProducts ? JSON.parse(savedProducts) : [];
-  });
+  const { orders, addToCart } = useCart();
 
   useEffect(() => {
     const fetchProducts = async () => {
@@ -24,20 +21,6 @@ export default function CatalogPage() {
 
     fetchProducts();
   }, []);
-
-  const addToLocalStorage = (product) => {
-    const existingProducts = JSON.parse(localStorage.getItem("products")) || [];
-
-    const updatedProducts = [...existingProducts, product];
-
-    localStorage.setItem("products", JSON.stringify(updatedProducts));
-    console.log(updatedProducts);
-  };
-
-  const addToCart = (product) => {
-    addToLocalStorage(product);
-    setOrders((prevOrders) => [...prevOrders, product]);
-  };
 
   return (
     <div>
