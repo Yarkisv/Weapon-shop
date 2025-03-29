@@ -4,14 +4,14 @@ import logoFinal from "../../images/logoFinal.svg";
 import basket from "../../images/basket.svg";
 import liked from "../../images/liked.svg";
 import profile from "../../images/profile.svg";
-import ModalWindowsContext from "../../contexts/modalContext";
+import { useModal } from "../../contexts/modalContext";
 import home from "../../images/home.svg";
 import search from "../../images/search.svg";
 import { useNavigate } from "react-router-dom";
 
 export default function Header() {
   const { isUserPanelOpen, setUserPanelOpen, isBasketOpen, setBasketOpen } =
-    useContext(ModalWindowsContext);
+    useModal();
 
   const handleProfileClick = () => {
     console.log("Profile");

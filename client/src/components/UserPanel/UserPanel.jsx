@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useState } from "react";
 import "./UserPanel.css";
 import { useNavigate } from "react-router-dom";
-import ModalWindowsContext from "../../contexts/modalContext";
+import { useModal } from "../../contexts/modalContext";
 import basket from "../../images/basket.svg";
 import cancel from "../../images/cancel.svg";
 import bonuses from "../../images/bonuses.svg";
@@ -11,7 +11,7 @@ import partners from "../../images/partners.svg";
 import reviews from "../../images/reviews.svg";
 
 export default function UserPanel() {
-  const { isUserPanelOpen, setUserPanelOpen } = useContext(ModalWindowsContext);
+  const { isUserPanelOpen, setUserPanelOpen } = useModal();
   const [isAuth, setIsAuth] = useState(!!localStorage.getItem("isAuth"));
 
   const navigate = useNavigate();

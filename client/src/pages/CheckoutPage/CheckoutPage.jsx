@@ -1,12 +1,10 @@
 import React, { useEffect, useState } from "react";
 import Header from "../../components/Header/Header";
 import "./CheckoutPage.css";
+import { useCart } from "../../contexts/cartContext";
 
 export default function CheckoutPage() {
-    const [orders, setOrders] = useState(() => {
-      const savedProducts = localStorage.getItem("products");
-      return savedProducts ? JSON.parse(savedProducts) : [];
-    });
+  const { orders } = useCart();
 
   return (
     <div className="checkout-page">
@@ -14,7 +12,7 @@ export default function CheckoutPage() {
       {orders.length > 0 ? (
         <div className="orders">
           {orders.map((order) => (
-            <div className="orders-item" key={order.id}>
+            <div className="orders-item" key={order.name}>
               <img
                 className="order-image"
                 src={`data:image/jpg;base64,${order.image}`}
