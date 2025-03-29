@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import Header from "../../components/Header/Header";
+import "./ProductsPage.css";
 import AboutProductContainer from "../../components/AboutProductContainer/AboutProductContainer";
 import ProductCharacteristics from "../../components/ProductCharacteristics/ProductCharacteristics";
 import ReviewContainer from "../../components/ReviewsContainer/ReviewsContainer";
@@ -31,35 +32,33 @@ export default function ProductPage() {
   return (
     <div>
       <Header />
-      <div className="product-container">
-        <div className="navigation">
-          <Link to={`/product/${name}`} className="about-product">
-            Про товар
-          </Link>
-          <Link
-            to={`/product/${name}/characteristics`}
-            className="characteristics"
-          >
-            Характеристики
-          </Link>
-          <Link to={`/product/${name}/reviews`} className="reviews">
-            Відгуки
-          </Link>
+      <div className="product-container-wrapper">
+        <div className="product-container">
+          <div className="navigation">
+            <Link to={`/product/${name}`} className="navLink">
+              Про товар
+            </Link>
+            <Link to={`/product/${name}/characteristics`} className="navLink">
+              Характеристики
+            </Link>
+            <Link to={`/product/${name}/reviews`} className="navLink">
+              Відгуки
+            </Link>
+          </div>
         </div>
-        <div>{product.name}</div>
-      </div>
-      <div className="product-page-main">
-        <Routes>
-          <Route
-            path="/"
-            element={<AboutProductContainer product={product} />}
-          />
-          <Route
-            path="characteristics"
-            element={<ProductCharacteristics product={product} />}
-          />
-          <Route path="reviews" element={<ReviewContainer />} />
-        </Routes>
+        <div className="product-page-main">
+          <Routes>
+            <Route
+              path="/"
+              element={<AboutProductContainer product={product} />}
+            />
+            <Route
+              path="characteristics"
+              element={<ProductCharacteristics product={product} />}
+            />
+            <Route path="reviews" element={<ReviewContainer />} />
+          </Routes>
+        </div>
       </div>
     </div>
   );

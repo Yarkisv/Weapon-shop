@@ -1,0 +1,22 @@
+.product-container-wrapper {
+  width: 1440px;
+  display: flex;
+  flex-direction: column;
+  margin: 0 auto;
+}
+
+.navigation {
+  display: flex;
+  gap: 15px;
+  font-family: Liberation Sans;
+  font-size: 18px;
+  margin-right: 15px;
+  margin-top: 10px;
+  padding-bottom: 5px;
+}
+
+.navLink {
+  color: gray;
+  text-decoration: none;
+  transition: color 0.3s ease, border-bottom 0.3s ease;
+}
