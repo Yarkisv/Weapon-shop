@@ -8,7 +8,7 @@ import { useCart } from "../../contexts/cartContext";
 export default function CatalogPage() {
   const [products, setProducts] = useState([]);
 
-  const { orders, addToCart } = useCart();
+  const { addToCart } = useCart();
 
   useEffect(() => {
     const fetchProducts = async () => {

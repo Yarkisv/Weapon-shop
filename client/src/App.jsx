@@ -1,5 +1,5 @@
 import { CartProvider } from "./contexts/cartContext";
-import { ModalProvider, useModal } from "./contexts/modalContext";
+import { ModalProvider } from "./contexts/modalContext";
 import AppContent from "./AppContent";
 
 function App() {

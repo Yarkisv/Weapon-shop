@@ -1,35 +1,12 @@
-import React, { useContext, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import React from "react";
 import "./AboutProductContainer.css";
-import { useModal } from "../../contexts/modalContext";
 import shipment from "../../images/shipment.svg";
 import novaPost from "../../images/novaPost.svg";
 import buy from "../../images/buy.svg";
 import likeOrder from "../../images/likeOrder.svg";
+import { useCart } from "../../contexts/cartContext";
 export default function AboutProductContainer({ product }) {
-  const navigate = useNavigate();
-
-  const { setBasketOpen } = useModal();
-
-  const [orders, setOrders] = useState(() => {
-    const savedProducts = localStorage.getItem("products");
-    return savedProducts ? JSON.parse(savedProducts) : [];
-  });
-
-  const addToLocalStorage = (product) => {
-    const existingProducts = JSON.parse(localStorage.getItem("products")) || [];
-
-    const updatedProducts = [...existingProducts, product];
-
-    localStorage.setItem("products", JSON.stringify(updatedProducts));
-    console.log(updatedProducts);
-  };
-
-  const addToCart = (product) => {
-    addToLocalStorage(product);
-    setBasketOpen(true);
-    setOrders((prevOrders) => [...prevOrders, product]);
-  };
+  const { addToCart } = useCart();
 
   return (
     <div className="product-info-container">

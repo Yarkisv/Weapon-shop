@@ -6,18 +6,22 @@ import { useNavigate } from "react-router-dom";
 import { useCart } from "../../contexts/cartContext";
 
 export default function Basket() {
-  const { orders, setOrders, clearCart } = useCart();
+  const { orders, totalPrice, setOrders, clearCart } = useCart();
   const { setBasketOpen } = useModal();
 
   const navigate = useNavigate();
 
-  useEffect(() => {
-    const storedOrders = localStorage.getItem("products");
-    if (storedOrders) {
-      setOrders(JSON.parse(storedOrders));
-      console.log(storedOrders);
-    }
-  }, []);
+  // useEffect(() => {
+  //   const storedOrders = localStorage.getItem("products");
+  //   if (storedOrders) {
+  //     setOrders(JSON.parse(storedOrders));
+  //     console.log(storedOrders);
+  //   }
+  // }, []);
+
+  // useEffect(() => {
+  //   calculateTotalPrice(orders);
+  // }, [orders]);
 
   const handleClosePanel = () => {
     setBasketOpen(false);
@@ -55,12 +59,19 @@ export default function Basket() {
                   <strong>Price:</strong> {order.price} $
                 </p>
               </div>
+              <div className="quantity-changes">
+                <button>-</button>
+                <p>{order.quantity}</p>
+                <button>+</button>
+              </div>
             </div>
           ))}
         </div>
       ) : (
         <p className="basket-empty">Basket is empty</p>
       )}
+
+      <p className="total-price">{`Загальна сума: ${totalPrice}`}</p>
 
       <button className="order-placement" onClick={() => navigate("/checkout")}>
         Перейти до оформлення
