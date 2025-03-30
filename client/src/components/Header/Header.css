@@ -28,12 +28,10 @@
   width: 35px;
   height: 35px;
   cursor: pointer;
-  transition: transform 0.2s ease;
 }
 
 .header-icon-item-home-wrapper {
   display: flex;
-
   align-items: center;
   margin-right: auto;
 }
@@ -43,9 +41,10 @@
   flex-direction: column;
   align-items: center;
   margin-left: 20px;
+  transition: transform 0.2s ease;
 }
 
-.header-home:hover {
+.header-icon-item-home:hover {
   transform: scale(1.1);
 }
 
@@ -99,6 +98,11 @@
   flex-direction: column;
   align-items: center;
   margin-left: 40px;
+  transition: transform 0.2s ease;
+}
+
+.header-icon-item:hover {
+  transform: scale(1.1);
 }
 
 .header-img-like {

@@ -1,0 +1,29 @@
+.checkout-page {
+  display: flex;
+  flex-direction: column;
+}
+
+.orders {
+  width: 770px;
+  display: flex;
+  flex-direction: column;
+}
+.orders-item-checkout {
+  display: flex;
+  width: 1000px;
+  height: 200px;
+  border: 1px solid black;
+  margin-left: 20px;
+  margin-top: 30px;
+}
+
+.order-image-checkout {
+  border: 1px solid black;
+  width: 400px;
+  height: 200px;
+}
+
+.name-price-checkout {
+  display: flex;
+  flex-direction: column;
+}

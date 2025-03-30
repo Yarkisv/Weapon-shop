@@ -58,7 +58,7 @@ export default function AboutProductContainer({ product }) {
         </div>
         <div className="aside-information">
           <div className="name-article">
-            <p className="product-name">{product.name}</p>
+            <p className="product-name-about">{product.name}</p>
             <p className="product-article">Артикль:{product.manufacturer_id}</p>
           </div>
           <div className="product-buy">
@@ -84,7 +84,7 @@ export default function AboutProductContainer({ product }) {
                 <img src={buy} />В кошик
               </button>
               <div className="One-liked">
-                {/* <button className="one-Click">В 1 клік</button> */}
+                <button className="one-Click">В 1 клік</button>
                 <button className="liked-button">
                   <img src={likeOrder} alt="" />
                 </button>

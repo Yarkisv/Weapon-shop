@@ -62,7 +62,7 @@ export default function Basket() {
         <p className="basket-empty">Basket is empty</p>
       )}
 
-      <button onClick={() => navigate("/checkout")}>
+      <button className="order-placement" onClick={() => navigate("/checkout")}>
         Перейти до оформлення
       </button>
     </div>

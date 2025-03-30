@@ -1,15 +1,30 @@
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateX(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
 .user-panel {
-  position: relative;
-  display: flex;
-  flex-direction: column;
   position: absolute;
-  z-index: 9999;
   right: 0;
   top: 0;
   background-color: #d3d3d3;
   border-radius: 5px 0 0 5px;
   width: 500px;
   height: 100%;
+  display: flex;
+  flex-direction: column;
+  z-index: 9999;
+  transition: transform 0.3s ease-in-out;
+}
+
+.user-panel.open {
+  transform: translateX(0);
 }
 
 .modal-list {
@@ -18,18 +33,24 @@
   gap: 30px;
   list-style-type: none;
   padding-left: 0;
-  left: 0;
 }
 
 .modal-item {
   display: flex;
   font-family: "Khmer", sans-serif;
   font-size: 20px;
-  margin: 0;
-  color: black;
   margin-left: 16px;
   align-items: center;
   cursor: pointer;
+  color: black;
+  opacity: 0;
+  animation: fadeIn 0.5s forwards;
+}
+
+.modal-item:hover {
+  color: #ff6600;
+  transform: scale(1.05);
+  transition: all 0.3s ease;
 }
 
 .modal-item img {
@@ -39,45 +60,43 @@
   height: 35px;
 }
 
-.Profile {
+.Profile,
+.login-button-user {
   width: 470px;
   height: 60px;
   background-color: #121212;
-  font-family: Liberation Sans;
-  cursor: pointer;
+  font-family: "Liberation Sans", sans-serif;
   color: white;
   font-size: 20px;
   border-radius: 5px;
-  border: 1px solid black;
-  margin: 0;
-  margin-top: 10px;
-  transition: background-color 0.3s ease, transform 0.2s ease;
   margin-left: 15px;
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.2s;
 }
 
-.Profile:hover {
+.Profile:hover,
+.login-button-user:hover {
   background-color: #1a1a1a;
-  transform: scale(1.02);
+  transform: scale(1.05);
 }
 
-.Profile:active {
+.Profile:active,
+.login-button-user:active {
   background-color: #0d0d0d;
-  transform: scale(0.98);
+  transform: scale(0.95);
 }
 
 .logout-button {
   width: 150px;
   height: 40px;
   background-color: #121212;
-  font-family: Liberation Sans;
-  cursor: pointer;
+  font-family: "Liberation Sans", sans-serif;
   color: white;
   font-size: 16px;
   border-radius: 5px;
   border: 1px solid black;
-  margin: 0;
-  margin-top: 15px;
   margin-left: 15px;
+  cursor: pointer;
   transition: background-color 0.3s ease, transform 0.2s ease;
 }
 
@@ -91,21 +110,6 @@
   transform: scale(0.98);
 }
 
-.login-button-user {
-  width: 470px;
-  height: 60px;
-  background-color: #121212;
-  font-family: Liberation Sans;
-  cursor: pointer;
-  color: white;
-  font-size: 20px;
-  border-radius: 5px;
-  margin: 0;
-  margin-top: 15px;
-  transition: background-color 0.3s ease, transform 0.2s ease;
-  margin-left: 15px;
-}
-
 .close-window {
   filter: brightness(0) invert(0);
   cursor: pointer;
@@ -113,4 +117,5 @@
   height: 20px;
   margin-left: 15px;
   margin-top: 15px;
+  margin-bottom: 5px;
 }
