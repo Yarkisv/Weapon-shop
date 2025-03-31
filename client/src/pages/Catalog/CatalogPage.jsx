@@ -3,12 +3,9 @@ import Header from "../../components/Header/Header";
 import "./CatalogPage.css";
 import ProductCard from "../../components/ProductCard/ProductCard";
 import axios from "axios";
-import { useCart } from "../../contexts/cartContext";
 
 export default function CatalogPage() {
   const [products, setProducts] = useState([]);
-
-  const { addToCart } = useCart();
 
   useEffect(() => {
     const fetchProducts = async () => {
@@ -27,7 +24,7 @@ export default function CatalogPage() {
       <Header />
       <div className="products-container">
         {products.map((weapon) => (
-          <ProductCard key={weapon.id} weapon={weapon} addToCart={addToCart} />
+          <ProductCard key={weapon.product_id} weapon={weapon} />
         ))}
       </div>
     </div>

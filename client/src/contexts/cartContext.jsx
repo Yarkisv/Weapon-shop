@@ -19,6 +19,33 @@ export const CartProvider = ({ children }) => {
     setTotalPrice(sum);
   };
 
+  const increaceQuantity = (id) => {
+    setOrders(
+      orders.map((order) => {
+        if (order.product_id === id) {
+          order.quantity++;
+        }
+        calculateTotalPrice(orders);
+        return order;
+      })
+    );
+  };
+
+  const decreaceQuantity = (id) => {
+    setOrders((prevOrders) => {
+      const updatedOrders = prevOrders
+        .map((order) =>
+          order.product_id === id
+            ? { ...order, quantity: order.quantity - 1 }
+            : order
+        )
+        .filter((order) => order.quantity > 0);
+
+      calculateTotalPrice(updatedOrders);
+      return updatedOrders;
+    });
+  };
+
   const { setBasketOpen } = useModal();
 
   const updateLocalStorage = (updatedOrders) => {
@@ -27,10 +54,11 @@ export const CartProvider = ({ children }) => {
 
   const addToCart = (product) => {
     setBasketOpen(true);
+    console.log(product);
 
     setOrders((prevOrders) => {
       const existingProductIndex = prevOrders.findIndex(
-        (item) => item.id === product.id
+        (item) => item.product_id === product.product_id
       );
 
       let updatedOrders;
@@ -45,9 +73,14 @@ export const CartProvider = ({ children }) => {
       }
 
       updateLocalStorage(updatedOrders);
-      calculateTotalPrice(updatedOrders);  
+      calculateTotalPrice(updatedOrders);
       return updatedOrders;
     });
+  };
+
+  const removeItem = (id) => {
+    setOrders(orders.filter((order) => order.product_id !== id));
+    calculateTotalPrice(orders);
   };
 
   const clearCart = () => {
@@ -57,7 +90,17 @@ export const CartProvider = ({ children }) => {
   };
 
   return (
-    <CartContext.Provider value={{ orders, totalPrice, addToCart, clearCart }}>
+    <CartContext.Provider
+      value={{
+        orders,
+        totalPrice,
+        addToCart,
+        clearCart,
+        removeItem,
+        decreaceQuantity,
+        increaceQuantity,
+      }}
+    >
       {children}
     </CartContext.Provider>
   );

@@ -5,18 +5,7 @@ import fs from "fs";
 export function getCatalog(req, res) {
   console.log("Received request for catalog");
 
-  const query = `SELECT category_id,
-                          manufacturer_id,
-                          name_,
-                          caliber,
-                          weight,
-                          price,
-                          stock,
-                          length,
-                          color,
-                          stock_type,
-                          path_to
-                   FROM Weapons;`;
+  const query = "SELECT * FROM Weapons;";
 
   connection.query(query, async (err, result) => {
     if (err) {
@@ -35,7 +24,7 @@ export function getCatalog(req, res) {
           console.log(`Reading file: ${filePath}`);
           try {
             const fileBuffer = fs.readFileSync(filePath);
-            imageBlob = fileBuffer.toString("base64"); // Кодируем в base64 для передачи в JSON
+            imageBlob = fileBuffer.toString("base64");
           } catch (readErr) {
             console.error(`Error reading file: ${filePath}`, readErr);
           }
@@ -44,6 +33,7 @@ export function getCatalog(req, res) {
         }
 
         return {
+          product_id: weapon.weapon_id,
           category_id: weapon.category_id,
           manufacturer_id: weapon.manufacturer_id,
           name: weapon.name_,

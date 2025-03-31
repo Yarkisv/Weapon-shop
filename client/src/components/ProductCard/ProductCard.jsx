@@ -2,8 +2,11 @@ import React from "react";
 import "./ProductCard.css";
 import basketCard from "../../images/basketCard.svg";
 import { useNavigate } from "react-router-dom";
+import { useCart } from "../../contexts/cartContext";
 
-export default function ProductCard({ weapon, addToCart }) {
+export default function ProductCard({ weapon }) {
+  const { addToCart } = useCart();
+
   const navigate = useNavigate();
 
   const handleNavigateToProductPage = (name) => {
@@ -23,7 +26,7 @@ export default function ProductCard({ weapon, addToCart }) {
           className="product-name-card"
           onClick={() => handleNavigateToProductPage(weapon.name)}
         >
-          {weapon.name}{" "}
+          {weapon.name}
         </p>
         <p className="product-characteristics-card">Калібр: {weapon.caliber}</p>
         <p className="product-characteristics-card">Артикул: {weapon.code}</p>
@@ -31,14 +34,8 @@ export default function ProductCard({ weapon, addToCart }) {
         <p className="product-price-card">{weapon.price}$</p>
       </div>
 
-      <button
-        className="to-basket"
-        onClick={(event) => {
-          addToCart(weapon);
-          event.stopPropagation();
-        }}
-      >
-        <img className="to-basket-card" src={basketCard} alt="" />
+      <button className="to-basket" onClick={() => addToCart(weapon)}>
+        <img className="to-basket-card" src={basketCard} />
         До корзини
       </button>
     </div>

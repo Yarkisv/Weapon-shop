@@ -9,22 +9,17 @@ import { useNavigate } from "react-router-dom";
 import { useCart } from "../../contexts/cartContext";
 
 export default function Basket() {
-  const { orders, totalPrice, setOrders, clearCart } = useCart();
+  const {
+    orders,
+    totalPrice,
+    clearCart,
+    removeItem,
+    decreaceQuantity,
+    increaceQuantity,
+  } = useCart();
   const { setBasketOpen } = useModal();
 
   const navigate = useNavigate();
-
-  // useEffect(() => {
-  //   const storedOrders = localStorage.getItem("products");
-  //   if (storedOrders) {
-  //     setOrders(JSON.parse(storedOrders));
-  //     console.log(storedOrders);
-  //   }
-  // }, []);
-
-  // useEffect(() => {
-  //   calculateTotalPrice(orders);
-  // }, [orders]);
 
   const handleClosePanel = () => {
     setBasketOpen(false);
@@ -50,6 +45,12 @@ export default function Basket() {
                 alt={order.name}
                 className="basket-item-image"
               />
+              <button
+                className="remove-item-button"
+                onClick={() => removeItem(order.product_id)}
+              >
+                <img className="clear-basket-img" src={trash} />
+              </button>
               <div className="basket-item-details">
                 <h4 className="basket-order-name">{order.name}</h4>
                 <p className="basket-order-characteristics">
@@ -63,12 +64,18 @@ export default function Basket() {
                 </p>
               </div>
               <div className="quantity-changes">
-                <button className="quantity-button">
-                  <img className="quantity-button-img" src={minus} alt="" />
+                <button
+                  className="quantity-button"
+                  onClick={() => decreaceQuantity(order.product_id)}
+                >
+                  <img className="quantity-button-img" src={minus} />
                 </button>
                 <p className="quantity-button-number">{order.quantity}</p>
-                <button className="quantity-button">
-                  <img className="quantity-button-img" src={plus} alt="" />
+                <button
+                  className="quantity-button"
+                  onClick={() => increaceQuantity(order.product_id)}
+                >
+                  <img className="quantity-button-img" src={plus} />
                 </button>
               </div>
             </div>
