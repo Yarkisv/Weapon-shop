@@ -59,38 +59,38 @@ export default function UserPanel() {
         </button>
       ) : (
         <button className="Profile" onClick={handdleProfile}>
-          Profile
+          Профіль
         </button>
       )}
 
       <ul className="modal-list">
         <li className="modal-item">
           <img src={basket} alt="" />
-          Basket
+          Корзина
         </li>
         <li className="modal-item">
           <img src={history} alt="" />
-          Order history
+          Історія замовлень
         </li>
         <li className="modal-item">
           <img src={chat} alt="" />
-          Chat-bot
+          Чат-бот
         </li>
         <li className="modal-item">
           <img src={partners} alt="" />
-          Partnership
+          Співпраця
         </li>
         <li className="modal-item">
           <img src={bonuses} alt="" />
-          Bonuses
+          Бонусм
         </li>
         <li className="modal-item">
           <img src={reviews} alt="" />
-          Reviews
+          Відгуки
         </li>
       </ul>
       <button className="logout-button" onClick={handleLogoutClick}>
-        Logout
+        Вийти
       </button>
     </div>
   );

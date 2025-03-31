@@ -2,6 +2,9 @@ import React, { useContext, useEffect, useState } from "react";
 import "./Basket.css";
 import { useModal } from "../../contexts/modalContext";
 import cancel from "../../images/cancel.svg";
+import plus from "../../images/plus.svg";
+import minus from "../../images/minus.svg";
+import trash from "../../images/trash.svg";
 import { useNavigate } from "react-router-dom";
 import { useCart } from "../../contexts/cartContext";
 
@@ -36,7 +39,7 @@ export default function Basket() {
         onClick={handleClosePanel}
       />
       <button className="clear-basket" onClick={clearCart}>
-        Clear basket
+        <img className="clear-basket-img" src={trash} alt="" />
       </button>
       {orders.length > 0 ? (
         <div className="basket-items">
@@ -60,15 +63,19 @@ export default function Basket() {
                 </p>
               </div>
               <div className="quantity-changes">
-                <button>-</button>
-                <p>{order.quantity}</p>
-                <button>+</button>
+                <button className="quantity-button">
+                  <img className="quantity-button-img" src={minus} alt="" />
+                </button>
+                <p className="quantity-button-number">{order.quantity}</p>
+                <button className="quantity-button">
+                  <img className="quantity-button-img" src={plus} alt="" />
+                </button>
               </div>
             </div>
           ))}
         </div>
       ) : (
-        <p className="basket-empty">Basket is empty</p>
+        <p className="basket-empty">Коризна порожня</p>
       )}
 
       <p className="total-price">{`Загальна сума: ${totalPrice}`}</p>

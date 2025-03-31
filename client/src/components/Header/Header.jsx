@@ -37,7 +37,7 @@ export default function Header() {
               alt=""
               onClick={() => navigate("/")}
             />
-            <p className="header-icon-text">Home</p>
+            <p className="header-icon-text">Головна</p>
           </div>
         </div>
         <form className="search-box">
@@ -45,7 +45,7 @@ export default function Header() {
             type="text"
             className="search-input"
             name="q"
-            placeholder="search..."
+            placeholder="пошук..."
           />
           <button type="submit" className="search-button">
             <img src={search} alt="" />
@@ -54,15 +54,15 @@ export default function Header() {
         <div className="header-icons">
           <div className="header-icon-item">
             <img className="header-img-like" src={liked} />
-            <p className="header-icon-text">Liked</p>
+            <p className="header-icon-text">Обране</p>
           </div>
           <div className="header-icon-item" onClick={handleBasketClicked}>
             <img className="header-img-basket" src={basket} />
-            <p className="header-icon-text">Basket</p>
+            <p className="header-icon-text">Корзина</p>
           </div>
           <div className="header-icon-item" onClick={handleProfileClick}>
             <img className="header-img-profile" src={profile} />
-            <p className="header-icon-text">Profile</p>
+            <p className="header-icon-text">Профіль</p>
           </div>
         </div>
       </div>

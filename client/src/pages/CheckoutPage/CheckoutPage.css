@@ -1,6 +1,8 @@
 .checkout-page {
   display: flex;
   flex-direction: column;
+  width: 1440px;
+  margin: 0 auto;
 }
 
 .orders {
@@ -10,20 +12,29 @@
 }
 .orders-item-checkout {
   display: flex;
-  width: 1000px;
-  height: 200px;
-  border: 1px solid black;
   margin-left: 20px;
   margin-top: 30px;
 }
 
 .order-image-checkout {
   border: 1px solid black;
-  width: 400px;
+  width: 300px;
   height: 200px;
+}
+
+.checkout-order-main-text {
+  text-align: center;
+  font-family: Liberation Sans;
+  font-size: 40px;
+  margin: 0;
+  margin-top: 20px;
 }
 
 .name-price-checkout {
   display: flex;
   flex-direction: column;
+}
+
+.checkout-orders {
+  display: flex;
 }

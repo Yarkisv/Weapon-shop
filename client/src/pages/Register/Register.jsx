@@ -80,7 +80,7 @@ export default function Register() {
       <div className="register-page-wrapper">
         <div className="go-back-wrapper" onClick={() => navigate("/")}>
           <img className="go-back-img" src={back} alt="" />
-          <p className="go-back">Back</p>
+          <p className="go-back">На головну</p>
         </div>
         <div className="register-page">
           <form onSubmit={handleRegister}>
@@ -89,7 +89,7 @@ export default function Register() {
                 <input
                   className="input-field-name-surname"
                   type="text"
-                  placeholder="Name"
+                  placeholder="Введіть ім'я"
                   value={firstname}
                   onChange={(e) => setFirstname(e.target.value)}
                   required
@@ -97,7 +97,7 @@ export default function Register() {
                 <input
                   className="input-field-name-surname"
                   type="text"
-                  placeholder="Surname"
+                  placeholder="Введіть прізвище"
                   value={lastname}
                   onChange={(e) => setLatsname(e.target.value)}
                   required
@@ -107,7 +107,7 @@ export default function Register() {
               <input
                 className="input-field"
                 type="email"
-                placeholder="Email"
+                placeholder="Введіть пошту"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 required
@@ -115,7 +115,7 @@ export default function Register() {
               <input
                 className="input-field"
                 type="text"
-                placeholder="Phone"
+                placeholder="Введіть номер телефону"
                 value={phone}
                 onChange={(e) => setPhone(e.target.value)}
                 required
@@ -123,42 +123,44 @@ export default function Register() {
               <input
                 className="input-field-password"
                 type="password"
-                placeholder="Password"
+                placeholder="Введіть пароль"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
                 required
               />
               {password && !isPasswordValid ? (
-                <p className="password-recomendation">Password is too short</p>
+                <p className="password-recomendation">
+                  Пароль занадто короткий
+                </p>
               ) : (
                 <p className="password-recomendation">
-                  Password must be more than 8 and less than 30 symbols
+                  Пароль повинен містити більше 8 і менше 30 символів
                 </p>
               )}
 
               <input
                 className="input-field-password"
                 type="password"
-                placeholder="Submit password"
+                placeholder="Підтвердіть пароль"
                 value={confirmPassword}
                 onChange={(e) => setConfirmPassword(e.target.value)}
               />
               {!isPasswordsSame ? (
                 <p className="password-recomendation">
-                  The passwords entered do not match
+                  Введені паролі не збігаються
                 </p>
               ) : (
                 <p className="password-recomendation">
-                  Please repeat your password to avoid any typos
+                  Будь ласка, повторіть свій пароль, щоб уникнути помилок
                 </p>
               )}
             </div>
             <div className="form-end">
               <button className="register-button" type="submit">
-                REGISTER
+                РЕЄСТРАЦІЯ
               </button>
               <Link className="have-account" to={"/login"}>
-                have an account?
+                Маєте аккаунт?
               </Link>
             </div>
           </form>

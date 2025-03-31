@@ -46,7 +46,7 @@ export default function Login() {
       <div className="login-page-wrapper">
         <div className="go-back-wrapper" onClick={() => navigate("/")}>
           <img className="go-back-img" src={back} alt="" />
-          <p className="go-back">Back</p>
+          <p className="go-back">На головну</p>
         </div>
         <div className="login-page">
           <form onSubmit={handleLogin}>
@@ -54,7 +54,7 @@ export default function Login() {
               <input
                 className="input-field"
                 type="email"
-                placeholder="Email"
+                placeholder="Введіть пошту"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 required
@@ -62,7 +62,7 @@ export default function Login() {
               <input
                 className="input-field"
                 type="password"
-                placeholder="Password"
+                placeholder="Введіть пароль"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
                 required
@@ -70,12 +70,12 @@ export default function Login() {
             </div>
             <div className="form-end">
               <button className="login-button" type="submit">
-                LOGIN
+                ЛОГІН
               </button>
               <Link className="dont-have-account" to={"/register"}>
-                don`t have an account?
+                немає аккаунту?
               </Link>
-              <span className="another-login">or log in with</span>
+              <span className="another-login">або через</span>
               <div className="gogle-or-face">
                 <div className="gogle">
                   <img className="gogle-face-img" src={gogle} alt="" />

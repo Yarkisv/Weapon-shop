@@ -71,7 +71,7 @@ export default function ProfilePage() {
     <div className="profile-page-wrapper">
       <Header />
       <div className="profile-page">
-        <p className="profile-main-text">Welcome</p>
+        <p className="profile-main-text">Вітаємо</p>
         <div className="profile-page-container">
           <div className="profile-page-aside">
             <ul className="profile-page-menu">
@@ -81,7 +81,7 @@ export default function ProfilePage() {
                   to={"/profile"}
                   style={{ textDecoration: "none", color: "inherit" }}
                 >
-                  Profile
+                  Профіль
                 </Link>
               </li>
               <li>
@@ -90,7 +90,7 @@ export default function ProfilePage() {
                   to={"/profile/basket"}
                   style={{ textDecoration: "none", color: "inherit" }}
                 >
-                  Basket
+                  Корзина
                 </Link>
               </li>
               <li>
@@ -99,7 +99,7 @@ export default function ProfilePage() {
                   to={"/profile/wishlist"}
                   style={{ textDecoration: "none", color: "inherit" }}
                 >
-                  Wish list
+                  Обране
                 </Link>
               </li>
               <li>
@@ -108,7 +108,7 @@ export default function ProfilePage() {
                   to={"/profile/viewed"}
                   style={{ textDecoration: "none", color: "inherit" }}
                 >
-                  Viewed
+                  Переглянуте
                 </Link>
               </li>
               <li>
@@ -117,7 +117,7 @@ export default function ProfilePage() {
                   to={"/profile/orderhistory"}
                   style={{ textDecoration: "none", color: "inherit" }}
                 >
-                  Order history
+                  Історія замовлень
                 </Link>
               </li>
               <li>
@@ -126,7 +126,7 @@ export default function ProfilePage() {
                   to={"/profile/chatbot"}
                   style={{ textDecoration: "none", color: "inherit" }}
                 >
-                  Chat-bot
+                  Чат-бот
                 </Link>
               </li>
               <li>
@@ -135,11 +135,11 @@ export default function ProfilePage() {
                   to={"/profile/reviews"}
                   style={{ textDecoration: "none", color: "inherit" }}
                 >
-                  Reviews
+                  Відгуки
                 </Link>
               </li>
               <li onClick={handleLogoutClick}>
-                <img src={logout} /> Logout
+                <img src={logout} /> Вийти
               </li>
             </ul>
           </div>
