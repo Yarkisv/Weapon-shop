@@ -2,6 +2,7 @@
   position: fixed;
   display: flex;
   flex-direction: column;
+
   overflow: hidden;
   z-index: 9999;
   right: 0;
@@ -61,12 +62,27 @@
   font-size: 18px;
 }
 
+.basket-empty-wrapper {
+  display: flex;
+  margin: 0 auto;
+  margin-top: 300px;
+  align-items: center;
+  justify-content: center;
+}
+
 .basket-empty {
+  width: 400px;
+  height: 50px;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  margin: 0 auto;
   font-family: "M PLUS 2", sans-serif;
   color: #9b181a;
   margin: 0;
-  margin-left: 15px;
   font-size: 25px;
+  border: 1px solid #9b181a;
+  border-radius: 5px;
 }
 
 .basket-order-characteristics {
@@ -77,6 +93,13 @@
   padding-top: 5px;
 }
 
+.close-clear-basket {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 0 auto;
+}
+
 .clear-basket {
   all: unset;
   font-family: Liberation Sans;
@@ -85,8 +108,8 @@
   font-size: 20px;
   border-radius: 5px;
   margin: 0;
-  margin-right: 10px;
-  margin-bottom: 10px;
+  padding-right: 10px;
+  padding-top: 5px;
   transition: transform 0.2s ease;
   margin-left: auto;
 }
@@ -109,11 +132,11 @@
 .basket-close {
   filter: brightness(0) invert(0);
   cursor: pointer;
-  width: 20px;
-  height: 20px;
-  margin-left: 15px;
-  margin-top: 15px;
-  margin-bottom: 5px;
+  width: 25px;
+  height: 25px;
+  padding-left: 10px;
+  padding-top: 5px;
+
   transition: opacity 0.3s ease;
 }
 
@@ -123,6 +146,8 @@
 
 .order-placement {
   all: unset;
+  margin: 0;
+  padding: 0;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -133,7 +158,6 @@
   color: white;
   font-family: Liberation Sans;
   font-size: 20px;
-  margin: 0;
   margin-top: auto;
   cursor: pointer;
   transition: background-color 0.3s ease, transform 0.2s ease;
@@ -187,4 +211,9 @@
   margin: 0;
   margin-top: 5px;
   margin-left: 10px;
+}
+
+.remove-item-button {
+  background: none;
+  border: none;
 }

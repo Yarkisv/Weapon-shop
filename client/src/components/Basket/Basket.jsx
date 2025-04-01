@@ -27,15 +27,17 @@ export default function Basket() {
 
   return (
     <div className="basket-container">
-      <img
-        src={cancel}
-        alt="Close basket"
-        className="basket-close"
-        onClick={handleClosePanel}
-      />
-      <button className="clear-basket" onClick={clearCart}>
-        <img className="clear-basket-img" src={trash} alt="" />
-      </button>
+      <div className="close-clear-basket">
+        <img
+          src={cancel}
+          alt="Close basket"
+          className="basket-close"
+          onClick={handleClosePanel}
+        />
+        <button className="clear-basket" onClick={clearCart}>
+          <img className="clear-basket-img" src={trash} alt="" />
+        </button>
+      </div>
       {orders.length > 0 ? (
         <div className="basket-items">
           {orders.map((order) => (
@@ -82,11 +84,14 @@ export default function Basket() {
           ))}
         </div>
       ) : (
-        <p className="basket-empty">Коризна порожня</p>
+        <div className="basket-empty-wrapper">
+          <p className="basket-empty">Коризна порожня</p>
+        </div>
       )}
 
-      <p className="total-price">{`Загальна сума: ${totalPrice}`}</p>
-
+      {orders.length > 0 && (
+        <p className="total-price">{`Загальна сума: ${totalPrice}`}</p>
+      )}
       <button className="order-placement" onClick={() => navigate("/checkout")}>
         Перейти до оформлення
       </button>
