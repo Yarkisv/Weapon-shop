@@ -10,8 +10,14 @@ import search from "../../images/search.svg";
 import { useNavigate } from "react-router-dom";
 
 export default function Header() {
-  const { isUserPanelOpen, setUserPanelOpen, isBasketOpen, setBasketOpen } =
-    useModal();
+  const {
+    isUserPanelOpen,
+    setUserPanelOpen,
+    isBasketOpen,
+    setBasketOpen,
+    isSavedWindowOpen,
+    setSavedWindowOpen,
+  } = useModal();
 
   const handleProfileClick = () => {
     console.log("Profile");
@@ -21,6 +27,11 @@ export default function Header() {
   const handleBasketClicked = () => {
     console.log("Basket");
     setBasketOpen(!isBasketOpen);
+  };
+
+  const handleLikedWindow = () => {
+    console.log("Liked window");
+    setSavedWindowOpen(!isSavedWindowOpen);
   };
 
   const navigate = useNavigate();
@@ -52,7 +63,7 @@ export default function Header() {
           </button>
         </form>
         <div className="header-icons">
-          <div className="header-icon-item">
+          <div className="header-icon-item" onClick={handleLikedWindow}>
             <img className="header-img-like" src={liked} />
             <p className="header-icon-text">Обране</p>
           </div>

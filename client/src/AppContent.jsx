@@ -11,9 +11,10 @@ import Basket from "./components/Basket/Basket";
 import ProductPage from "./pages/ProductPage/ProductPage";
 import CheckoutPage from "./pages/CheckoutPage/CheckoutPage";
 import { useModal } from "./contexts/modalContext";
+import SavedWindow from "./components/SavedWindow/SavedWindow";
 
 function AppContent() {
-  const { isUserPanelOpen, isBasketOpen } = useModal();
+  const { isUserPanelOpen, isBasketOpen, isSavedWindowOpen } = useModal();
 
   return (
     <Router>
@@ -35,6 +36,7 @@ function AppContent() {
       </Routes>
       {isUserPanelOpen && <UserPanel />}
       {isBasketOpen && <Basket />}
+      {isSavedWindowOpen && <SavedWindow />}
     </Router>
   );
 }

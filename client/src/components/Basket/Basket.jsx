@@ -1,12 +1,13 @@
 import React, { useContext, useEffect, useState } from "react";
 import "./Basket.css";
 import { useModal } from "../../contexts/modalContext";
+import { useNavigate } from "react-router-dom";
+import { useCart } from "../../contexts/cartContext";
+
 import cancel from "../../images/cancel.svg";
 import plus from "../../images/plus.svg";
 import minus from "../../images/minus.svg";
 import trash from "../../images/trash.svg";
-import { useNavigate } from "react-router-dom";
-import { useCart } from "../../contexts/cartContext";
 
 export default function Basket() {
   const {
@@ -35,7 +36,7 @@ export default function Basket() {
           onClick={handleClosePanel}
         />
         <button className="clear-basket" onClick={clearCart}>
-          <img className="clear-basket-img" src={trash} alt="" />
+          <img className="clear-basket-img" src={trash} />
         </button>
       </div>
       {orders.length > 0 ? (

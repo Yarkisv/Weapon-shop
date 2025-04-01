@@ -62,8 +62,8 @@ export default function AboutProductContainer({ product }) {
               </button>
               <div className="One-liked">
                 <button className="one-Click">В 1 клік</button>
-                <button className="liked-button">
-                  <img src={likeOrder} alt="" />
+                <button className="like-button">
+                  <img src={likeOrder}/>
                 </button>
               </div>
             </div>

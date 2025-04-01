@@ -182,7 +182,7 @@
   background-color: white;
 }
 
-.liked-button {
+.like-button {
   all: unset;
   width: 48px;
   cursor: pointer;
