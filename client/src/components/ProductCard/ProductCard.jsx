@@ -3,8 +3,8 @@ import "./ProductCard.css";
 import { useNavigate } from "react-router-dom";
 import { useCart } from "../../contexts/cartContext";
 import { useSaved } from "../../contexts/savedContext";
-
 import likeOrder from "../../images/likeOrder.svg";
+import LikeOrderSaved from "../../images/LikeOrderSaved.svg";
 import basketCard from "../../images/basketCard.svg";
 
 export default function ProductCard({ weapon }) {
@@ -47,14 +47,17 @@ export default function ProductCard({ weapon }) {
         {isSaved ? (
           <div>
             <button
-              className="like-button"
+              className="like-button-card-saved"
               onClick={() => removeFromSaved(weapon.product_id)}
             >
-              <img src={likeOrder} />
+              <img src={LikeOrderSaved} alt="" />
             </button>
           </div>
         ) : (
-          <button className="like-button" onClick={() => addToSaved(weapon)}>
+          <button
+            className="like-button-card"
+            onClick={() => addToSaved(weapon)}
+          >
             <img src={likeOrder} />
           </button>
         )}
