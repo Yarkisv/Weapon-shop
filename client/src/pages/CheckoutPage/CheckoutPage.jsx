@@ -3,6 +3,8 @@ import Header from "../../components/Header/Header";
 import { useModal } from "../../contexts/modalContext";
 import "./CheckoutPage.css";
 import { useCart } from "../../contexts/cartContext";
+import editOrder from "../../images/editOrder.svg";
+import geo from "../../images/geo.svg";
 
 export default function CheckoutPage() {
   const { orders } = useCart();
@@ -19,25 +21,57 @@ export default function CheckoutPage() {
         <p className="checkout-order-main-text">ОФОРМЛЕННЯ ЗАМОВЛЕННЯ</p>
         <div className="checkout-orders">
           {orders.length > 0 ? (
-            <div className="orders">
-              {orders.map((order) => (
-                <div className="orders-item-checkout" key={order.name}>
-                  <div className="orders-item-info-wrapper">
-                    <img
-                      className="order-image-checkout"
-                      src={`data:image/jpg;base64,${order.image}`}
-                    />
-                    <div className="name-price-checkout">
-                      <p className="order-name-checkout">{order.name}</p>
-                      <p className="order-price-checkout">{order.price}</p>
+            <div className="orders-wrapper">
+              <div className="orders">
+                <div className="ordering-checkout-in-order-edit">
+                  <p className="ordering-checkout-in-order">
+                    Товари у замовленні{" "}
+                  </p>
+                  <p
+                    className="order-checkout-edit"
+                    onClick={handleBasketClicked}
+                  >
+                    Редагувати товари
+                    <img src={editOrder} alt="" />
+                  </p>
+                </div>
+
+                {orders.map((order) => (
+                  <div className="orders-item-checkout" key={order.name}>
+                    <div className="orders-item-info-wrapper">
+                      <img
+                        className="order-image-checkout"
+                        src={`data:image/jpg;base64,${order.image}`}
+                      />
+                      <div className="name-price-checkout">
+                        <p className="order-name-checkout">{order.name}</p>
+                        <p className="order-price-checkout">{order.price}$</p>
+                      </div>
                     </div>
                   </div>
+                ))}
+              </div>
+              <div className="order-delivery">
+                <p className="ordering-checkout-in-order">Доставка</p>
+                <div className="radio-delivery">
+                  <p className="self-delivery">Самовивіз</p>
+                  <p className="choose-store">Оберіть зручний магазин:</p>
 
-                  <div className="order-checkout-edit">
-                    <p onClick={handleBasketClicked}>Редагувати товари</p>
-                  </div>
+                  <label className="custom-radio">
+                    <input type="radio" name="store" value="option1" />
+                    <span className="radio-check"></span>
+                    Майдан Конституції 9
+                    <img src={geo} alt="geo icon" className="geo-icon" />
+                  </label>
+
+                  <label className="custom-radio">
+                    <input type="radio" name="store" value="option2" />
+                    <span className="radio-check"></span>
+                    Проспект Незалежності 5
+                    <img src={geo} alt="geo icon" className="geo-icon" />
+                  </label>
                 </div>
-              ))}
+              </div>
             </div>
           ) : (
             <div>

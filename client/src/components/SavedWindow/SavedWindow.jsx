@@ -65,8 +65,8 @@ export default function SavedWindow() {
           ))}
         </div>
       ) : (
-        <div>
-          <p>Ви не додали жодного товару</p>
+        <div className="basket-empty-wrapper">
+          <p className="basket-empty">Ви не додали жодного товару</p>
         </div>
       )}
     </div>
