@@ -40,7 +40,11 @@ export default function Header() {
     <div className="header-wrapper">
       <div className="header">
         <div className="header-icon-item-home-wrapper">
-          <img className="logo-img" src={logoFinal} />
+          <img
+            className="logo-img"
+            src={logoFinal}
+            onClick={() => navigate("/")}
+          />
           <div className="header-icon-item-home">
             <img
               className="header-home"
