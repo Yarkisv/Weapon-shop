@@ -15,5 +15,8 @@
 .saved-container {
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 15px;
+  max-height: 90vh;
+  overflow-y: auto;
+  padding-right: 10px;
 }
