@@ -3,16 +3,21 @@ import Header from "../../components/Header/Header";
 import "./CatalogPage.css";
 import ProductCard from "../../components/ProductCard/ProductCard";
 import axios from "axios";
+import { useParams } from "react-router-dom";
 
 export default function CatalogPage() {
   const [products, setProducts] = useState([]);
-
+  const { category } = useParams();
   useEffect(() => {
     const fetchProducts = async () => {
-      const response = await axios.get("http://localhost:3000/catalog");
+      console.log(category);
+
+      const response = await axios.get(
+        `http://localhost:3000/catalog/${category}`
+      );
 
       if (response.status === 200) {
-        setProducts(response.data.weaponsData);
+        setProducts(response.data.products);
       }
     };
 
@@ -23,8 +28,8 @@ export default function CatalogPage() {
     <div>
       <Header />
       <div className="products-container">
-        {products.map((weapon) => (
-          <ProductCard key={weapon.product_id} weapon={weapon} />
+        {products.map((product) => (
+          <ProductCard key={product.product_id} product={product} />
         ))}
       </div>
     </div>

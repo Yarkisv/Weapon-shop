@@ -7,7 +7,7 @@ import likeOrder from "../../images/likeOrder.svg";
 import LikeOrderSaved from "../../images/LikeOrderSaved.svg";
 import basketCard from "../../images/basketCard.svg";
 
-export default function ProductCard({ weapon }) {
+export default function ProductCard({ product }) {
   const { addToCart } = useCart();
   const { saved, addToSaved, removeFromSaved } = useSaved();
 
@@ -17,30 +17,32 @@ export default function ProductCard({ weapon }) {
     navigate(`/product/${name}`);
   };
 
-  const isSaved = saved.some((item) => item.product_id === weapon.product_id);
+  const isSaved = saved.some((item) => item.product_id === product.product_id);
+
+  console.log(product)
 
   return (
     <div className="product-card-wrapper">
       <div className="product-card-img">
         <img
-          src={`data:image/jpg;base64,${weapon.image}`}
-          onClick={() => handleNavigateToProductPage(weapon.name)}
+          src={`data:image/jpg;base64,${product.image}`}
+          onClick={() => handleNavigateToProductPage(product.name)}
         />
       </div>
       <div className="product-card-text-wrapper">
         <p
           className="product-name-card"
-          onClick={() => handleNavigateToProductPage(weapon.name)}
+          onClick={() => handleNavigateToProductPage(product.name)}
         >
-          {weapon.name}
+          {product.name}
         </p>
-        <p className="product-characteristics-card">Калібр: {weapon.caliber}</p>
-        <p className="product-characteristics-card">Артикул: {weapon.code}</p>
+        <p className="product-characteristics-card">Калібр: {product.caliber}</p>
+        <p className="product-characteristics-card">Артикул: {product.code}</p>
         <p className="product-characteristics-availability">в наявності</p>
-        <p className="product-price-card">{weapon.price}$</p>
+        <p className="product-price-card">{product.price} ₴</p>
       </div>
       <div className="footer-buttons">
-        <button className="to-basket" onClick={() => addToCart(weapon)}>
+        <button className="to-basket" onClick={() => addToCart(product)}>
           <img className="to-basket-card" src={basketCard} />
           До корзини
         </button>
@@ -48,15 +50,15 @@ export default function ProductCard({ weapon }) {
           <div>
             <button
               className="like-button-card-saved"
-              onClick={() => removeFromSaved(weapon.product_id)}
+              onClick={() => removeFromSaved(product.product_id)}
             >
-              <img src={LikeOrderSaved} alt="" />
+              <img src={LikeOrderSaved}/>
             </button>
           </div>
         ) : (
           <button
             className="like-button-card"
-            onClick={() => addToSaved(weapon)}
+            onClick={() => addToSaved(product)}
           >
             <img src={likeOrder} />
           </button>

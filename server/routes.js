@@ -3,9 +3,8 @@ import { regUser } from "./controllers/registerController.js";
 import { loginUser } from "./controllers/loginController.js";
 import { getUser } from "./controllers/userController.js";
 import { authMiddleware } from "./middlewares/authMiddleware.js";
-// import { getAllWeapons } from "./controllers/catalogConroller.js";
 import { getCatalog } from "./controllers/catalogConroller.js";
-import { getProductByName } from "./controllers/catalogConroller.js";
+// import { getProductByName } from "./controllers/catalogConroller.js";
 import { createOrder } from "./controllers/orderController.js";
 
 
@@ -24,7 +23,7 @@ router.get("/profile", authMiddleware, (req, res) => {
   getUser(req, res);
 });
 
-router.get("/catalog", (req, res) => {
+router.get("/catalog/:category", (req, res) => {
   getCatalog(req, res);
 });
 

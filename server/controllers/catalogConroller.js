@@ -3,22 +3,27 @@ import path from "path";
 import fs from "fs";
 
 export function getCatalog(req, res) {
-  console.log("Received request for full catalog");
+  console.log("Received request for catalog");
 
-  const queries = {
-    weapons: `
-      SELECT w.*, p.name_, p.price, p.path_to, p.manufacturer_id, p.category_id 
+  const productCategory = req.params.category;
+
+  let query = "";
+
+  if (productCategory === "guns") {
+    query = `SELECT w.*, p.name_, p.price, p.path_to, p.manufacturer_id, p.category_id 
       FROM Weapons w 
-      JOIN Products p ON w.product_id = p.product_id`,
-    tanks: `
-      SELECT t.*, p.name_, p.price, p.path_to, p.manufacturer_id, p.category_id 
+      JOIN Products p ON w.product_id = p.product_id`;
+  } else if (productCategory === "tanks") {
+    query = `SELECT t.*, p.name_, p.price, p.path_to, p.manufacturer_id, p.category_id 
       FROM Tanks t 
-      JOIN Products p ON t.product_id = p.product_id`,
-    aircrafts: `
-      SELECT a.*, p.name_, p.price, p.path_to, p.manufacturer_id, p.category_id 
+      JOIN Products p ON t.product_id = p.product_id`;
+  } else if (productCategory === "military-aircrafts") {
+    query = `SELECT a.*, p.name_, p.price, p.path_to, p.manufacturer_id, p.category_id 
       FROM Aircrafts a 
-      JOIN Products p ON a.product_id = p.product_id`
-  };
+      JOIN Products p ON a.product_id = p.product_id`;
+  } else {
+    console.log("Category is undefined");
+  }
 
   const readImage = (relativePath) => {
     const filePath = path.join(process.cwd(), relativePath);
@@ -34,42 +39,49 @@ export function getCatalog(req, res) {
     return "not found";
   };
 
-  const processItems = (rows, fields) => {
-    return rows.map(row => {
-      const image = readImage(row.path_to);
-      const result = {
-        product_id: row.product_id,
-        name: row.name_,
-        price: row.price,
-        manufacturer_id: row.manufacturer_id,
-        category_id: row.category_id,
-        image
-      };
+  connection.query(query, async (err, result) => {
+    if (err) {
+      return res
+        .status(500)
+        .json({ message: "Error during fetching products" });
+    }
 
-      fields.forEach(field => result[field] = row[field]);
-      return result;
-    });
-  };
+    // console.log(result);
 
-  connection.query(queries.weapons, (err, weaponsRows) => {
-    if (err) return res.status(500).json({ message: "Error fetching weapons", error: err });
+    const products = await Promise.all(
+      result.map(async (product) => {
+        const filePath = path.join(process.cwd(), "", product.path_to);
+        let imageBlob = "not found";
 
-    connection.query(queries.tanks, (err, tanksRows) => {
-      if (err) return res.status(500).json({ message: "Error fetching tanks", error: err });
+        if (fs.existsSync(filePath)) {
+          console.log(`Reading file: ${filePath}`);
+          try {
+            const fileBuffer = fs.readFileSync(filePath);
+            imageBlob = fileBuffer.toString("base64");
+          } catch (readErr) {
+            console.error(`Error reading file: ${filePath}`, readErr);
+          }
+        } else {
+          console.warn(`File not found: ${filePath}`);
+        }
 
-      connection.query(queries.aircrafts, (err, aircraftsRows) => {
-        if (err) return res.status(500).json({ message: "Error fetching aircrafts", error: err });
+        return {
+          product_id: result.product_id,
+          caliber: result.caliber,
+          weight: result.weight,
+          length: result.length,
+          color: result.color,
+          stock: result.stock,
+          stock_type: result.stock_type,
+          name: result.name_,
+          price: result.price,
+          image: imageBlob,
+        };
+      })
+    );
 
-        const weapons = processItems(weaponsRows, ["caliber", "weight", "length", "color", "stock", "stock_type"]);
-        const tanks = processItems(tanksRows, ["armor_thickness", "crew_size", "engine_power", "weight"]);
-        const aircrafts = processItems(aircraftsRows, ["max_speed", "wingspan", "engine_count", "flight_range", "crew_size"]);
+    console.log(products)
 
-        return res.status(200).json({
-          weapons,
-          tanks,
-          aircrafts
-        });
-      });
-    });
+    return res.status(200).json({ products });
   });
 }
