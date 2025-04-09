@@ -3,112 +3,73 @@ import path from "path";
 import fs from "fs";
 
 export function getCatalog(req, res) {
-  console.log("Received request for catalog");
+  console.log("Received request for full catalog");
 
-  const query = "SELECT * FROM Weapons;";
+  const queries = {
+    weapons: `
+      SELECT w.*, p.name_, p.price, p.path_to, p.manufacturer_id, p.category_id 
+      FROM Weapons w 
+      JOIN Products p ON w.product_id = p.product_id`,
+    tanks: `
+      SELECT t.*, p.name_, p.price, p.path_to, p.manufacturer_id, p.category_id 
+      FROM Tanks t 
+      JOIN Products p ON t.product_id = p.product_id`,
+    aircrafts: `
+      SELECT a.*, p.name_, p.price, p.path_to, p.manufacturer_id, p.category_id 
+      FROM Aircrafts a 
+      JOIN Products p ON a.product_id = p.product_id`
+  };
 
-  connection.query(query, async (err, result) => {
-    if (err) {
-      console.error("Query error:", err);
-      return res.status(500).json({ message: "Server error" });
+  const readImage = (relativePath) => {
+    const filePath = path.join(process.cwd(), relativePath);
+    if (fs.existsSync(filePath)) {
+      try {
+        return fs.readFileSync(filePath).toString("base64");
+      } catch (err) {
+        console.error("Error reading file:", filePath, err);
+      }
+    } else {
+      console.warn("File not found:", filePath);
     }
+    return "not found";
+  };
 
-    console.log(`Fetched ${result.length} records from database`);
+  const processItems = (rows, fields) => {
+    return rows.map(row => {
+      const image = readImage(row.path_to);
+      const result = {
+        product_id: row.product_id,
+        name: row.name_,
+        price: row.price,
+        manufacturer_id: row.manufacturer_id,
+        category_id: row.category_id,
+        image
+      };
 
-    const weaponsData = await Promise.all(
-      result.map(async (weapon) => {
-        const filePath = path.join(process.cwd(), "public", weapon.path_to);
-        let imageBlob = "not found";
-
-        if (fs.existsSync(filePath)) {
-          console.log(`Reading file: ${filePath}`);
-          try {
-            const fileBuffer = fs.readFileSync(filePath);
-            imageBlob = fileBuffer.toString("base64");
-          } catch (readErr) {
-            console.error(`Error reading file: ${filePath}`, readErr);
-          }
-        } else {
-          console.warn(`File not found: ${filePath}`);
-        }
-
-        return {
-          product_id: weapon.weapon_id,
-          category_id: weapon.category_id,
-          manufacturer_id: weapon.manufacturer_id,
-          name: weapon.name_,
-          caliber: weapon.caliber,
-          weight: weapon.weight,
-          price: weapon.price,
-          stock: weapon.stock,
-          length: weapon.length,
-          color: weapon.color,
-          stock_type: weapon.stock_type,
-          image: imageBlob,
-        };
-      })
-    );
-
-    console.log("Sending response to client");
-    res.status(200).json({ weaponsData: weaponsData });
-  });
-}
-
-export function getProductByName(req, res) {
-  const name = req.params.name;
-
-  const query = "select * from weapons where name_ = ?";
-
-  try {
-    connection.query(query, [name], async (err, result) => {
-      if (err) {
-        console.log("Server error while fetching");
-        return res.status(500).json({ message: "Server error" + err });
-      }
-
-      if (result.length === 0) {
-        console.log("Product not found");
-        return res.status(404).json({ message: "Product not found" });
-      }
-
-      console.log("Product found");
-
-      const weapon = await Promise.all(
-        result.map(async (weapon) => {
-          const filePath = path.join(process.cwd(), "public", weapon.path_to);
-          let imageBlob = "not found";
-
-          if (fs.existsSync(filePath)) {
-            console.log(`Reading file: ${filePath}`);
-            try {
-              const fileBuffer = fs.readFileSync(filePath);
-              imageBlob = fileBuffer.toString("base64");
-            } catch (readErr) {
-              console.error(`Error reading file: ${filePath}`, readErr);
-            }
-          } else {
-            console.warn(`File not found: ${filePath}`);
-          }
-
-          return {
-            category_id: weapon.category_id,
-            manufacturer_id: weapon.manufacturer_id,
-            name: weapon.name_,
-            caliber: weapon.caliber,
-            weight: weapon.weight,
-            price: weapon.price,
-            stock: weapon.stock,
-            length: weapon.length,
-            color: weapon.color,
-            stock_type: weapon.stock_type,
-            image: imageBlob,
-          };
-        })
-      );
-
-      return res
-        .status(200)
-        .json({ message: "Product found", product: weapon[0] });
+      fields.forEach(field => result[field] = row[field]);
+      return result;
     });
-  } catch (error) {}
+  };
+
+  connection.query(queries.weapons, (err, weaponsRows) => {
+    if (err) return res.status(500).json({ message: "Error fetching weapons", error: err });
+
+    connection.query(queries.tanks, (err, tanksRows) => {
+      if (err) return res.status(500).json({ message: "Error fetching tanks", error: err });
+
+      connection.query(queries.aircrafts, (err, aircraftsRows) => {
+        if (err) return res.status(500).json({ message: "Error fetching aircrafts", error: err });
+
+        const weapons = processItems(weaponsRows, ["caliber", "weight", "length", "color", "stock", "stock_type"]);
+        const tanks = processItems(tanksRows, ["armor_thickness", "crew_size", "engine_power", "weight"]);
+        const aircrafts = processItems(aircraftsRows, ["max_speed", "wingspan", "engine_count", "flight_range", "crew_size"]);
+
+        return res.status(200).json({
+          weapons,
+          tanks,
+          aircrafts
+        });
+      });
+    });
+  });
 }
