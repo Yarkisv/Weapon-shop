@@ -2,7 +2,7 @@
 <g opacity="0.7" filter="url(#filter0_f_1067_13)">
 <rect x="4" y="4" width="324" height="162" rx="20" fill="url(#pattern0_1067_13)"/>
 </g>
-<path opacity="0.7" d="M4 24C4 12.9543 12.9543 4 24 4H328V166H24C12.9543 166 4 157.046 4 146V24Z" fill="url(#pattern1_1067_13)"/>
+<rect opacity="0.7" x="4" y="4" width="324" height="162" rx="20" fill="url(#pattern1_1067_13)"/>
 <path d="M135.94 50.9717V112.812H124.61L97.7568 73.9233H97.2588V112.812H84.2266V50.9717H95.6816L122.369 89.8608H122.908V50.9717H135.94Z" fill="white"/>
 <path d="M209.952 112.812V50.9717H251.622V61.7627H222.984V76.2891H249.422V86.8726H222.984V102.021H251.705V112.812H209.952Z" fill="white"/>
 <rect width="296.988" height="69.3132" transform="matrix(-0.996672 -0.0815206 -0.0815206 0.996672 321.293 62.2104)" fill="url(#pattern2_1067_13)"/>

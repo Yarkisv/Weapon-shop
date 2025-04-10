@@ -2,7 +2,7 @@
   display: flex;
   margin: 0 auto;
   width: 100%;
-  height: 90px;
+  height: 75px;
   z-index: 9999;
   background-color: #375c4d;
 }
@@ -18,8 +18,8 @@
 
 .logo-img {
   margin: 0;
-  width: 252px;
-  height: 65px;
+  width: 242px;
+  height: 55px;
   margin-right: auto;
   margin-left: 10px;
   cursor: pointer;
@@ -58,8 +58,8 @@
   background-color: white;
   border-radius: 5px;
   padding-left: 5px;
-  width: 100%;
-  height: 58px;
+  width: 790px;
+  height: 48px;
   margin-left: 20px;
   overflow: hidden;
 }
@@ -68,7 +68,7 @@
   all: unset;
   flex: 1;
   font-family: "Khmer", sans-serif;
-  font-size: 20px;
+  font-size: 16px;
   margin: 0;
   height: 100%;
   border: none;
@@ -79,7 +79,13 @@
   background: none;
   border: none;
   cursor: pointer;
-  font-size: 18px;
+  font-size: 16px;
+  padding-right: 10px;
+}
+
+.search-button {
+  width: 36px;
+  height: 36px;
 }
 
 .header-icons {
@@ -92,7 +98,6 @@
   color: white;
   font-size: 15px;
   margin: 0;
-  margin-top: 5px;
 }
 
 .header-icon-item {
@@ -135,4 +140,60 @@
 
 .header-img-profile:hover {
   transform: scale(1.1);
+}
+/* Бургер */
+.burger-menu {
+  display: none;
+  flex-direction: column;
+  justify-content: space-around;
+  width: 30px;
+  height: 30px;
+  margin-left: 15px;
+  cursor: pointer;
+}
+
+.bar {
+  width: 100%;
+  height: 4px;
+  background-color: white;
+  border-radius: 2px;
+}
+
+/* Мобильное меню */
+.mobile-menu {
+  position: absolute;
+  top: 75px;
+  left: 0;
+  width: 220px;
+  background-color: #375c4d;
+  z-index: 10000;
+  padding: 15px;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  border-right: 2px solid #2c4d3e;
+}
+
+/* Адаптация */
+@media (max-width: 1280px) {
+  .logo-img,
+  .header-icons,
+  .header-icon-item-home-wrapper {
+    display: none;
+  }
+
+  .burger-menu {
+    display: flex;
+  }
+
+  .search-box {
+    margin: 0 auto;
+    width: 80%;
+  }
+
+  .header {
+    width: 100%;
+    justify-content: space-between;
+    padding: 0 15px;
+  }
 }

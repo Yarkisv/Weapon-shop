@@ -3,6 +3,7 @@ import "./ProductCard.css";
 import { useNavigate } from "react-router-dom";
 import { useCart } from "../../contexts/cartContext";
 import { useSaved } from "../../contexts/savedContext";
+import Rating from "../../components/Rating";
 import likeOrder from "../../images/likeOrder.svg";
 import LikeOrderSaved from "../../images/LikeOrderSaved.svg";
 import basketCard from "../../images/basketCard.svg";
@@ -19,7 +20,7 @@ export default function ProductCard({ product }) {
 
   const isSaved = saved.some((item) => item.product_id === product.product_id);
 
-  console.log(product)
+  console.log(product);
 
   return (
     <div className="product-card-wrapper">
@@ -36,9 +37,13 @@ export default function ProductCard({ product }) {
         >
           {product.name}
         </p>
-        <p className="product-characteristics-card">Калібр: {product.caliber}</p>
+        <p className="product-characteristics-card">
+          Калібр: {product.caliber}
+        </p>
         <p className="product-characteristics-card">Артикул: {product.code}</p>
         <p className="product-characteristics-availability">в наявності</p>
+        <Rating rating={3.5} reviews={1488} />
+
         <p className="product-price-card">{product.price} ₴</p>
       </div>
       <div className="footer-buttons">
@@ -52,7 +57,7 @@ export default function ProductCard({ product }) {
               className="like-button-card-saved"
               onClick={() => removeFromSaved(product.product_id)}
             >
-              <img src={LikeOrderSaved}/>
+              <img src={LikeOrderSaved} />
             </button>
           </div>
         ) : (

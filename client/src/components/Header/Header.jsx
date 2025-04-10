@@ -1,4 +1,5 @@
-import React, { useContext } from "react";
+import React, { useState, useEffect, useContext } from "react";
+
 import "./Header.css";
 import logoFinal from "../../images/logoFinal.svg";
 import basket from "../../images/basket.svg";
@@ -18,6 +19,24 @@ export default function Header() {
     isSavedWindowOpen,
     setSavedWindowOpen,
   } = useModal();
+
+  const [menuOpen, setMenuOpen] = useState(false);
+
+  const toggleMenu = () => {
+    setMenuOpen(!menuOpen);
+  };
+
+  useEffect(() => {
+    const handleResize = () => {
+      if (window.innerWidth > 1024 && menuOpen) {
+        setMenuOpen(false);
+      }
+    };
+
+    window.addEventListener("resize", handleResize);
+
+    return () => window.removeEventListener("resize", handleResize);
+  }, [menuOpen]);
 
   const handleProfileClick = () => {
     console.log("Profile");
@@ -55,6 +74,36 @@ export default function Header() {
             <p className="header-icon-text">Головна</p>
           </div>
         </div>
+        <div className="burger-menu" onClick={toggleMenu}>
+          <div className="bar"></div>
+          <div className="bar"></div>
+          <div className="bar"></div>
+        </div>
+
+        {menuOpen && (
+          <div className="mobile-menu">
+            <div
+              className="header-icon-item-home"
+              onClick={() => navigate("/")}
+            >
+              <img className="header-home" src={home} />
+              <p className="header-icon-text">Головна</p>
+            </div>
+            <div className="header-icon-item" onClick={handleLikedWindow}>
+              <img className="header-img-like" src={liked} />
+              <p className="header-icon-text">Обране</p>
+            </div>
+            <div className="header-icon-item" onClick={handleBasketClicked}>
+              <img className="header-img-basket" src={basket} />
+              <p className="header-icon-text">Корзина</p>
+            </div>
+            <div className="header-icon-item" onClick={handleProfileClick}>
+              <img className="header-img-profile" src={profile} />
+              <p className="header-icon-text">Профіль</p>
+            </div>
+          </div>
+        )}
+
         <form className="search-box">
           <input
             type="text"
@@ -63,7 +112,7 @@ export default function Header() {
             placeholder="пошук..."
           />
           <button type="submit" className="search-button">
-            <img src={search} alt="" />
+            <img src={search} />
           </button>
         </form>
         <div className="header-icons">
