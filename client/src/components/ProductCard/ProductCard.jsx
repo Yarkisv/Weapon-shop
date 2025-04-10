@@ -20,7 +20,19 @@ export default function ProductCard({ product }) {
 
   const isSaved = saved.some((item) => item.product_id === product.product_id);
 
-  console.log(product);
+  const isTank = product.product_type === "Танк" ? true : false;
+  const isAircraft = product.product_type === "Літак" ? true : false;
+  const isGun = product.product_type === "Зброя" ? true : false;
+
+  const getReviewText = (count) => {
+    const lastDigit = count % 10;
+    const lastTwoDigits = count % 100;
+
+    if (lastTwoDigits >= 11 && lastTwoDigits <= 14) return `${count} відгуків`;
+    if (lastDigit === 1) return `${count} відгук`;
+    if (lastDigit >= 2 && lastDigit <= 4) return `${count} відгуки`;
+    return `${count} відгуків`;
+  };
 
   return (
     <div className="product-card-wrapper">
@@ -38,11 +50,11 @@ export default function ProductCard({ product }) {
           {product.name}
         </p>
         <p className="product-characteristics-card">
-          Калібр: {product.caliber}
+          Артикул: {product.article}
         </p>
-        <p className="product-characteristics-card">Артикул: {product.code}</p>
         <p className="product-characteristics-availability">в наявності</p>
-        <Rating rating={3.5} reviews={1488} />
+
+        <Rating rating={product.rating} reviews={getReviewText(product.reviews_count)} />
 
         <p className="product-price-card">{product.price} ₴</p>
       </div>

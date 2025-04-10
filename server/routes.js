@@ -7,8 +7,6 @@ import { getCatalog } from "./controllers/catalogConroller.js";
 // import { getProductByName } from "./controllers/catalogConroller.js";
 import { createOrder } from "./controllers/orderController.js";
 
-
-
 const router = express.Router();
 
 router.post("/register", (req, res) => {

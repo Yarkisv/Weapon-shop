@@ -10,14 +10,12 @@ export default function CatalogPage() {
   const { category } = useParams();
   useEffect(() => {
     const fetchProducts = async () => {
-      console.log(category);
-
       const response = await axios.get(
         `http://localhost:3000/catalog/${category}`
       );
 
       if (response.status === 200) {
-        setProducts(response.data.products);
+        setProducts(response.data.weapons);
       }
     };
 

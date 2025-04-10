@@ -17,7 +17,7 @@ const Rating = ({ rating, reviews }) => {
   return (
     <div className="flex items-center space-x-1 text-sm mt-2 ml-2.5">
       <div className="flex">{stars}</div>
-      <span className="text-gray-600">({reviews} відгуків)</span>
+      <span className="text-gray-600">({reviews})</span>
     </div>
   );
 };
