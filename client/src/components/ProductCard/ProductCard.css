@@ -35,9 +35,12 @@
 }
 
 .product-card-text-wrapper {
+  display: flex;
+  flex-direction: column;
   flex-grow: 1;
   width: 100%;
   padding: 10px;
+  gap: 5px;
   text-align: left;
 }
 
@@ -62,7 +65,6 @@
   color: black;
   font-size: 16px;
   font-weight: 500;
-  margin: 5px 0;
   margin-left: 10px;
 }
 
@@ -73,7 +75,6 @@
   font-size: 16px;
   font-weight: 500;
   margin: 0;
-  margin: 5px 0;
   width: 150px;
   height: 25px;
   border-radius: 5px;
