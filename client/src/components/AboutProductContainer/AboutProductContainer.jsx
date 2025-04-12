@@ -11,11 +11,16 @@ export default function AboutProductContainer({ product }) {
   return (
     <div className="product-info-container">
       <div className="img-about-wrapper">
-        <img
-          className="about-img"
-          src={`data:image/jpg;base64,${product.image}`}
-        />
-        <div className="aside-img">
+        {product.image ? (
+          <img
+            className="about-img"
+            src={`data:image/jpg;base64,${product.image}`}
+            alt="product"
+          />
+        ) : (
+          <p>Зображення недоступне</p>
+        )}
+        {/* <div className="aside-img">
           <img
             className="about-img-aside"
             src={`data:image/jpg;base64,${product.image}`}
@@ -32,7 +37,7 @@ export default function AboutProductContainer({ product }) {
             className="about-img-aside"
             src={`data:image/jpg;base64,${product.image}`}
           />
-        </div>
+        </div> */}
         <div className="aside-information">
           <div className="name-article">
             <p className="product-name-about">{product.name}</p>
@@ -63,7 +68,7 @@ export default function AboutProductContainer({ product }) {
               <div className="One-liked">
                 <button className="one-Click">В 1 клік</button>
                 <button className="like-button">
-                  <img src={likeOrder}/>
+                  <img src={likeOrder} />
                 </button>
               </div>
             </div>

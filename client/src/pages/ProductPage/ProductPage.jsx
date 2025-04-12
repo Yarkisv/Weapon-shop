@@ -12,17 +12,24 @@ export default function ProductPage() {
   const [product, setProduct] = useState({});
   const [errorMessage, setErrorMessage] = useState("");
   const { name } = useParams();
+  const { category } = useParams();
 
   const navigate = useNavigate();
 
   useEffect(() => {
     const fetchProductByName = async () => {
-      const response = await axios.get(`http://localhost:3000/product/${name}`);
-      if (response.status === 200) {
-        setProduct(response.data.product);
-      }
-      if (response.status === 404) {
-        setErrorMessage("Product not found");
+      try {
+        const response = await axios.get(
+          `http://localhost:3000/catalog/${category}/${name}`
+        );
+        if (response.status === 200) {
+          setProduct(response.data.product[0]);
+        }
+        if (response.status === 404) {
+          setErrorMessage("Product not found");
+        }
+      } catch (error) {
+        console.log(error);
       }
     };
 
@@ -35,13 +42,19 @@ export default function ProductPage() {
       <div className="product-container-wrapper">
         <div className="product-container">
           <div className="navigation">
-            <Link to={`/product/${name}`} className="navLink">
+            <Link to={`/catalog/${category}/${name}`} className="navLink">
               Про товар
             </Link>
-            <Link to={`/product/${name}/characteristics`} className="navLink">
+            <Link
+              to={`/catalog/${category}/${name}/characteristics`}
+              className="navLink"
+            >
               Характеристики
             </Link>
-            <Link to={`/product/${name}/reviews`} className="navLink">
+            <Link
+              to={`/catalog/${category}/${name}/reviews`}
+              className="navLink"
+            >
               Відгуки
             </Link>
           </div>

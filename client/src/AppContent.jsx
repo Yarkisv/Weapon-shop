@@ -23,7 +23,7 @@ function AppContent() {
         <Route path="/register" element={<Register />} />
         <Route path="/login" element={<Login />} />
         <Route path="/catalog/:category" element={<CatalogPage />} />
-        <Route path="/product/:name/*" element={<ProductPage />} />
+        <Route path="/catalog/:category/:name/*" element={<ProductPage />} />
         <Route path="/checkout" element={<CheckoutPage />} />
         <Route
           path="/profile/*"

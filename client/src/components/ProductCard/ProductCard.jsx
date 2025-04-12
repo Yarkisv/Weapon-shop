@@ -1,6 +1,6 @@
 import React from "react";
 import "./ProductCard.css";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { useCart } from "../../contexts/cartContext";
 import { useSaved } from "../../contexts/savedContext";
 import Rating from "../../components/Rating";
@@ -12,17 +12,15 @@ export default function ProductCard({ product }) {
   const { addToCart } = useCart();
   const { saved, addToSaved, removeFromSaved } = useSaved();
 
+  const { category } = useParams();
+
   const navigate = useNavigate();
 
   const handleNavigateToProductPage = (name) => {
-    navigate(`/product/${name}`);
+    navigate(`/catalog/${category}/${name}`);
   };
 
   const isSaved = saved.some((item) => item.product_id === product.product_id);
-
-  const isTank = product.product_type === "Танк" ? true : false;
-  const isAircraft = product.product_type === "Літак" ? true : false;
-  const isGun = product.product_type === "Зброя" ? true : false;
 
   const getReviewText = (count) => {
     const lastDigit = count % 10;
@@ -54,7 +52,10 @@ export default function ProductCard({ product }) {
         </p>
         <p className="product-characteristics-availability">в наявності</p>
 
-        <Rating rating={product.rating} reviews={getReviewText(product.reviews_count)} />
+        <Rating
+          rating={product.rating}
+          reviews={getReviewText(product.reviews_count)}
+        />
 
         <p className="product-price-card">{product.price} ₴</p>
       </div>

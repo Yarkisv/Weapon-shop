@@ -26,12 +26,10 @@ export default function CatalogPage() {
       <Header />
 
       <div className="max-w-[1440px] mx-auto px-4 py-6 grid grid-cols-1 md:grid-cols-4 gap-6">
-        {/* Панель активного шляху */}
         <div className="md:col-span-4 w-full bg-violet-600 text-white py-2 px-4 rounded-md ">
           <p className="text-sm">Категорія: {category}</p>
         </div>
 
-        {/* Фільтри (ліва частина) */}
         <div className="md:col-span-1 bg-gray-100 rounded-md p-4 shadow-sm">
           <h2 className="text-xl font-semibold mb-4">Фільтри</h2>
           <div className="space-y-4">
@@ -118,9 +116,7 @@ export default function CatalogPage() {
           </div>
         </div>
 
-        {/* Права частина: сортування + карточки */}
         <div className="md:col-span-3 flex flex-col gap-6">
-          {/* Сортування */}
           <div className="flex justify-end mr-10">
             <label className="flex items-center gap-2 text-gray-700">
               <span className="text-sm font-medium">Сортування:</span>
@@ -131,7 +127,6 @@ export default function CatalogPage() {
             </label>
           </div>
 
-          {/* Карточки товарів */}
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
             {products.map((product) => (
               <ProductCard key={product.product_id} product={product} />

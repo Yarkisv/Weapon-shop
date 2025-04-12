@@ -4,7 +4,7 @@ import { loginUser } from "./controllers/loginController.js";
 import { getUser } from "./controllers/userController.js";
 import { authMiddleware } from "./middlewares/authMiddleware.js";
 import { getCatalog } from "./controllers/catalogConroller.js";
-// import { getProductByName } from "./controllers/catalogConroller.js";
+import { getProductByName } from "./controllers/catalogConroller.js";
 import { createOrder } from "./controllers/orderController.js";
 
 const router = express.Router();
@@ -25,7 +25,7 @@ router.get("/catalog/:category", (req, res) => {
   getCatalog(req, res);
 });
 
-router.get("/product/:name", (req, res) => {
+router.get("/catalog/:category/:name", (req, res) => {
   getProductByName(req, res);
 });
 
