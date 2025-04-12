@@ -1,5 +1,6 @@
 import React from "react";
 import Header from "../../components/Header/Header";
+import Footer from "../../components/Footer";
 import "./MainPage.css";
 import { useNavigate } from "react-router-dom";
 import mainPageBg from "../../images/mainPageBg.svg";
@@ -55,16 +56,14 @@ export default function MainPage() {
             src={planesCategory}
             onClick={() => navigate("/catalog/military-aircrafts")}
           />
-          <img
-            src={tanksCategory}
-            onClick={() => navigate("/catalog/tanks")}
-          />
+          <img src={tanksCategory} onClick={() => navigate("/catalog/tanks")} />
         </div>
         <div className="plane-main">
           <img src={planeMain} />
-          <h1>NEW “F-14B TOMCAT</h1>
+          <h1>NEW "F-14B TOMCAT"</h1>
         </div>
       </div>
+      <Footer />
     </div>
   );
 }

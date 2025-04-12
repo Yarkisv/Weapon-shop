@@ -41,7 +41,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-left: 20px;
+  /* margin-left: 20px; */
   transition: transform 0.2s ease;
 }
 
@@ -104,7 +104,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-left: 40px;
+  margin-left: 30px;
   transition: transform 0.2s ease;
 }
 
@@ -162,14 +162,21 @@
 /* Мобильное меню */
 .mobile-menu {
   position: absolute;
+  gap: 0px;
   top: 75px;
   left: 0;
   width: 220px;
   background-color: #375c4d;
   z-index: 10000;
+  margin-top: 5px;
+  border-top-right-radius: 5px;
+  border-bottom-right-radius: 5px;
+
   padding: 15px;
   display: flex;
   flex-direction: column;
+  align-items: center;
+  justify-content: center;
   gap: 15px;
   border-right: 2px solid #2c4d3e;
 }
@@ -186,6 +193,9 @@
     display: flex;
   }
 
+  .header-icon-item {
+    margin: 0;
+  }
   .search-box {
     margin: 0 auto;
     width: 80%;

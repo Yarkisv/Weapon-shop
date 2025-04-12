@@ -26,6 +26,11 @@ export default function CatalogPage() {
       <Header />
 
       <div className="max-w-[1440px] mx-auto px-4 py-6 grid grid-cols-1 md:grid-cols-4 gap-6">
+        {/* Панель активного шляху */}
+        <div className="md:col-span-4 w-full bg-violet-600 text-white py-2 px-4 rounded-md ">
+          <p className="text-sm">Категорія: {category}</p>
+        </div>
+
         {/* Фільтри (ліва частина) */}
         <div className="md:col-span-1 bg-gray-100 rounded-md p-4 shadow-sm">
           <h2 className="text-xl font-semibold mb-4">Фільтри</h2>
@@ -67,10 +72,10 @@ export default function CatalogPage() {
               </div>
 
               <div>
-                <p className="text-lg font-medium text-gray-800 mb-2 ">
+                <p className="text-lg font-medium text-gray-800 mb-2">
                   Наявність (stock)
                 </p>
-                <div className="space-y-1 ">
+                <div className="space-y-1">
                   {["stock1", "stock2"].map((val) => (
                     <label
                       key={val}
