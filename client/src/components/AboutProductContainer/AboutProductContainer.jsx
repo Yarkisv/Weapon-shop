@@ -8,6 +8,10 @@ import { useCart } from "../../contexts/cartContext";
 export default function AboutProductContainer({ product }) {
   const { addToCart } = useCart();
 
+  const isTank = product.product_type === "Танк";
+  const isAircraft = product.product_type === "Літак";
+  const isGun = product.product_type === "Зброя";
+
   return (
     <div className="relative w-full border-t border-black">
       <div className="flex w-[637px] pt-[15px] box-border">
@@ -27,7 +31,7 @@ export default function AboutProductContainer({ product }) {
               {product.name}
             </p>
             <p className="text-[20px] text-right pr-[19px] m-0 font-sans">
-              Артикль:{product.manufacturer_id}
+              Код: {product.article}
             </p>
           </div>
 
@@ -36,7 +40,7 @@ export default function AboutProductContainer({ product }) {
               <p className="w-[196px] h-[30px] bg-[#5ECB6B] text-white flex items-center justify-center text-[18px] mt-[5px] m-0 rounded font-sans">
                 В наявності
               </p>
-              <p className="text-[35px] mt-[17px] text-left font-serif m-0">
+              <p className="text-[35px] mt-[17px] text-left ordinal m-0">
                 {product.price}$
               </p>
             </div>
@@ -72,7 +76,6 @@ export default function AboutProductContainer({ product }) {
             </div>
           </div>
 
-          {/* Купують разом */}
           <div className="mt-[10px]">
             <h2 className="text-[22px] font-sans mb-[15px]">Купують разом</h2>
             <div className="flex gap-[20px]">
@@ -87,7 +90,7 @@ export default function AboutProductContainer({ product }) {
                       Назва товару
                     </p>
                     <div className="flex items-center justify-between">
-                      <p className="text-[18px] font-serif">100$</p>
+                      <p className="text-[18px] ordinal">100$</p>
                       <button className="bg-[#68e568] text-white text-[14px] px-[10px] py-[6px] rounded transition-transform duration-200 hover:scale-105 hover:shadow-lg active:scale-95 active:shadow-md">
                         Купити
                       </button>
@@ -100,29 +103,63 @@ export default function AboutProductContainer({ product }) {
         </div>
       </div>
 
-      {/* Опис і характеристики */}
       <div className="mt-[10px] w-full">
         <h2 className="text-[32px]  font-sans mb-[10px]">Опис товару</h2>
-        <p className="text-[16px] font-sans mb-[20px]">
-          Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ullam et
-          sunt mollitia debitis vero officia modi, maiores, minima unde
-          voluptate placeat voluptatum porro rem fugiat earum? Iure sequi nam
-          deleniti!
-        </p>
-
-        <h3 className="text-[32px] font-sans mb-[10px]">Характеристики</h3>
-        <ul className="list-disc list-inside text-[16px] font-sans space-y-[8px]">
-          <li className="py-2.5 list-none border-b border-gray-200">
-            <strong className="text-gray-800">Калібр:</strong> {product.caliber}
-          </li>
-          <li className="py-2.5 list-none border-b border-gray-200">
-            <strong className="text-gray-800">Вага:</strong> {product.weight} кг
-          </li>
-          <li className="py-2.5 list-none border-b border-gray-200">
-            <strong className="text-gray-800">Довжина:</strong> {product.length}{" "}
-            см
-          </li>
-        </ul>
+        <p className="text-[16px] font-sans mb-[20px]">{product.desc}</p>
+        <div>
+          <h3 className="text-[32px] font-sans mb-[10px]">Характеристики</h3>
+          <ul className="list-disc list-inside text-[16px] font-sans space-y-[8px]">
+            {isGun && (
+              <div>
+                <li className="py-2.5 list-none border-b border-gray-200">
+                  <p className="text-gray-800">Калібр: {product.caliber}</p>
+                </li>
+                <li className="py-2.5 list-none border-b border-gray-200">
+                  <p className="text-gray-800">Вага: {product.weight} кг</p>
+                </li>
+                <li className="py-2.5 list-none border-b border-gray-200">
+                  <p className="text-gray-800">Довжина: {product.length} см</p>
+                </li>
+              </div>
+            )}
+            {isAircraft && (
+              <div>
+                <div>
+                  <li className="py-2.5 list-none border-b border-gray-200">
+                    <p className="text-gray-800">
+                      Максимальна швидкість: {product.max_speed} км/год.
+                    </p>
+                  </li>
+                  <li className="py-2.5 list-none border-b border-gray-200">
+                    <p className="text-gray-800">Екіпаж: {product.crew_size}</p>
+                  </li>
+                  <li className="py-2.5 list-none border-b border-gray-200">
+                    <p className="text-gray-800">
+                      Дальність польоту: {product.length} км.
+                    </p>
+                  </li>
+                </div>
+              </div>
+            )}
+            {isTank && (
+              <div>
+                <li className="py-2.5 list-none border-b border-gray-200">
+                  <p className="text-gray-800">
+                    Максимальна швидкість: {product.max_speed} км/год.
+                  </p>
+                </li>
+                <li className="py-2.5 list-none border-b border-gray-200">
+                  <p className="text-gray-800">Екіпаж: {product.crew_size}</p>
+                </li>
+                <li className="py-2.5 list-none border-b border-gray-200">
+                  <p className="text-gray-800">
+                    Потужність двигуна: {product.engine_power} к/c.
+                  </p>
+                </li>
+              </div>
+            )}
+          </ul>
+        </div>
       </div>
     </div>
   );

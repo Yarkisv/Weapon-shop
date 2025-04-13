@@ -6,7 +6,11 @@ import { useParams } from "react-router-dom";
 
 export default function CatalogPage() {
   const [products, setProducts] = useState([]);
+  const [filteredProducts, setFilteredProducts] = useState([]);
+  const [sortOption, setSortOption] = useState("");
   const { category } = useParams();
+
+  const [armorType, setArmorType] = useState("");
 
   useEffect(() => {
     const fetchProducts = async () => {
@@ -15,11 +19,50 @@ export default function CatalogPage() {
       );
       if (response.status === 200) {
         setProducts(response.data.weapons);
+        setFilteredProducts(response.data.weapons);
       }
     };
 
     fetchProducts();
   }, [category]);
+
+  // const isTank = products[0].product_type === "Танк";
+  // const isAircraft = products[0].product_type === "Літак";
+  // const isGun = products[0].product_type === "Зброя";
+
+  // console.log(isTank);
+
+  const handleSortOptionChange = (event) => {
+    setSortOption(event.target.value);
+  };
+
+  const handleArmorTypeChange = (event) => {
+    setArmorType(event.target.value);
+  };
+
+  const sortProducts = () => {
+    let filteredProducts = [...products];
+
+    if (sortOption === "cheap") {
+      filteredProducts.sort((a, b) => (a.price - b.price ? 1 : -1));
+    }
+
+    if (sortOption === "expensive") {
+      filteredProducts.sort((a, b) => b.price - a.price);
+    }
+
+    if (armorType) {
+      filteredProducts = filteredProducts.filter(
+        (product) => product.armor_type === armorType
+      );
+    }
+
+    setFilteredProducts(filteredProducts);
+  };
+
+  useEffect(() => {
+    sortProducts();
+  }, [sortOption, armorType]);
 
   return (
     <div>
@@ -50,6 +93,28 @@ export default function CatalogPage() {
             </div>
 
             <aside className="space-y-6 mt-6">
+              <div>
+                <p className="text-lg font-medium text-gray-800 mb-2">
+                  Тип броні
+                </p>
+                <div className="space-y-1">
+                  {["композитна", "гомогенна", "реактивна"].map((val) => (
+                    <label
+                      key={val}
+                      className="flex items-center space-x-2 text-gray-700 cursor-pointer"
+                    >
+                      <input
+                        type="checkbox"
+                        value={val}
+                        className="accent-blue-600"
+                        onChange={handleArmorTypeChange}
+                      />
+                      <span>{val}</span>
+                    </label>
+                  ))}
+                </div>
+              </div>
+
               <div>
                 <p className="text-lg font-medium text-gray-800 mb-2">Калібр</p>
                 <div className="space-y-1">
@@ -120,7 +185,10 @@ export default function CatalogPage() {
           <div className="flex justify-end mr-10">
             <label className="flex items-center gap-2 text-gray-700">
               <span className="text-sm font-medium">Сортування:</span>
-              <select className="border rounded px-3 py-1 text-sm focus:outline-none focus:ring-2 focus:ring-blue-400 cursor-pointer">
+              <select
+                onChange={handleSortOptionChange}
+                className="border rounded px-3 py-1 text-sm focus:outline-none focus:ring-2 focus:ring-blue-400 cursor-pointer"
+              >
                 <option value="cheap">Від дешевих</option>
                 <option value="expensive">Від дорогих</option>
               </select>
@@ -128,7 +196,7 @@ export default function CatalogPage() {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-3.5">
-            {products.map((product) => (
+            {filteredProducts.map((product) => (
               <ProductCard key={product.product_id} product={product} />
             ))}
           </div>

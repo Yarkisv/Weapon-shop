@@ -10,8 +10,8 @@ export function getCatalog(req, res) {
   let query = "";
 
   if (productCategory === "guns") {
-    query = `select 
-	            p.product_id,
+    query = `select  
+              p.product_id,
               p.type,
               p.article,
 	            p.name_ AS product_name,
@@ -20,6 +20,9 @@ export function getCatalog(req, res) {
 	            p.category_id,
               p.number_of_reviews,
               p.rating,
+              p.description_,
+              m.manufacturer_name,
+              m.country,
               w.caliber,
               w.weight,
               w.length,
@@ -27,7 +30,10 @@ export function getCatalog(req, res) {
               w.stock,
               w.stock_type,
               w.path_to
-            from Products p join weapons w on p.product_id = w.product_id where p.type = "зброя";`;
+            from Products p 
+            join Weapons w on p.product_id = w.product_id
+            join Manufacturers m on p.manufacturer_id = m.manufacturer_id
+            where p.type = "Зброя";`;
   } else if (productCategory === "tanks") {
     query = `select 
               p.product_id,
@@ -39,30 +45,57 @@ export function getCatalog(req, res) {
               p.category_id,
               p.number_of_reviews,
               p.rating,
+              p.description_,
+              m.manufacturer_name,
+              m.country,
               t.armor_thickness,
               t.crew_size,
-              t.engine_power,
               t.weight,
+              t.engine_power,
+              t.max_speed,
+              t.gun_caliber,
+              t.hull_length,
+              t.turret_rotation_speed,
+              t.operational_range,
+              t.armor_type,
+              t.fuel_capacity,
+              t.transmission_type,
               t.path_to
-            from Products p join Tanks t on p.product_id = t.product_id where p.type = 'Танк';`;
+            from Products p 
+            join Tanks t on p.product_id = t.product_id
+            join Manufacturers m on p.manufacturer_id = m.manufacturer_id
+            where p.type = 'Танк';`;
   } else if (productCategory === "military-aircrafts") {
     query = `select 
 	            p.product_id,
               p.type,
               p.article,
 	            p.name_ AS product_name,
-		          p.price,
+	            p.price,
 	            p.manufacturer_id,
 	            p.category_id,
               p.number_of_reviews,
               p.rating,
+              p.description_,
+              m.manufacturer_name,
+              m.country,
               a.max_speed,
               a.wingspan,
               a.engine_count,
               a.flight_range,
               a.crew_size,
+              a.max_altitude,
+              a.empty_weight,
+              a.max_takeoff_weight,
+              a.engine_type,
+              a.fuel_capacity,
+              a.climb_rate,
+              a.radar_range,
               a.path_to
-            from Products p join Aircrafts a on p.product_id = a.product_id where p.type = "літак";`;
+            from Products p 
+            join Aircrafts a on p.product_id = a.product_id
+            join Manufacturers m on p.manufacturer_id = m.manufacturer_id
+            where p.type = "Літак";`;
   } else {
     console.log("Category is undefined");
   }
@@ -114,6 +147,9 @@ export function getCatalog(req, res) {
             article: product.article,
             reviews_count: product.number_of_reviews,
             rating: product.rating,
+            desc: product.description_,
+            manufacturer_name: product.manufacturer_name,
+            country: product.country,
             caliber: product.caliber,
             weight: product.weight,
             length: product.length,
@@ -131,12 +167,23 @@ export function getCatalog(req, res) {
             article: product.article,
             reviews_count: product.number_of_reviews,
             rating: product.rating,
+            desc: product.description_,
+            manufacturer_name: product.manufacturer_name,
+            country: product.country,
             name: product.product_name,
             price: product.price,
             armor_thickness: product.armor_thickness,
             crew_size: product.crew_size,
             engine_power: product.engine_power,
             weight: product.weight,
+            max_speed: product.max_speed,
+            gun_caliber: product.gun_caliber,
+            hull_length: product.hull_length,
+            turret_rotation_speed: product.turret_rotation_speed,
+            operational_range: product.operational_range,
+            armor_type: product.armor_type,
+            fuel_capacity: product.fuel_capacity,
+            transmission_type: product.transmission_type,
             image: imageBase64,
           };
         } else if (product.type === "Літак") {
@@ -146,6 +193,9 @@ export function getCatalog(req, res) {
             article: product.article,
             reviews_count: product.number_of_reviews,
             rating: product.rating,
+            desc: product.description_,
+            manufacturer_name: product.manufacturer_name,
+            country: product.country,
             name: product.product_name,
             price: product.price,
             max_speed: product.max_speed,
@@ -153,6 +203,13 @@ export function getCatalog(req, res) {
             engine_count: product.engine_count,
             flight_range: product.flight_range,
             crew_size: product.crew_size,
+            max_altitude: product.max_altitude,
+            empty_weight: product.empty_weight,
+            max_takeoff_weight: product.max_takeoff_weight,
+            engine_type: product.engine_type,
+            fuel_capacity: product.fuel_capacity,
+            climb_rate: product.climb_rate,
+            radar_range: product.radar_range,
             image: imageBase64,
           };
         }
@@ -183,6 +240,7 @@ export function getProductByName(req, res) {
 	            p.category_id,
               p.number_of_reviews,
               p.rating,
+              p.description_,
               m.manufacturer_name,
               m.country,
               a.max_speed,
@@ -213,6 +271,7 @@ export function getProductByName(req, res) {
 	            p.category_id,
               p.number_of_reviews,
               p.rating,
+              p.description_,
               m.manufacturer_name,
               m.country,
               t.armor_thickness,
@@ -243,6 +302,7 @@ export function getProductByName(req, res) {
 	            p.category_id,
               p.number_of_reviews,
               p.rating,
+              p.description_,
               m.manufacturer_name,
               m.country,
               w.caliber,
@@ -289,6 +349,7 @@ export function getProductByName(req, res) {
             article: product.article,
             reviews_count: product.number_of_reviews,
             rating: product.rating,
+            desc: product.description_,
             manufacturer_name: product.manufacturer_name,
             country: product.country,
             caliber: product.caliber,
@@ -308,6 +369,7 @@ export function getProductByName(req, res) {
             article: product.article,
             reviews_count: product.number_of_reviews,
             rating: product.rating,
+            desc: product.description_,
             manufacturer_name: product.manufacturer_name,
             country: product.country,
             name: product.product_name,
@@ -333,6 +395,7 @@ export function getProductByName(req, res) {
             article: product.article,
             reviews_count: product.number_of_reviews,
             rating: product.rating,
+            desc: product.description_,
             manufacturer_name: product.manufacturer_name,
             country: product.country,
             name: product.product_name,
