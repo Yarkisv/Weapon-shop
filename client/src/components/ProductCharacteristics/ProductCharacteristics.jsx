@@ -1,132 +1,163 @@
 import React from "react";
-import "./ProductCharacteristics.css";
 
 export default function ProductCharacteristics({ product }) {
-  const isTank = product.product_type === "Танк" ? true : false;
-  const isAircraft = product.product_type === "Літак" ? true : false;
-  const isGun = product.product_type === "Зброя" ? true : false;
+  const isTank = product.product_type === "Танк";
+  const isAircraft = product.product_type === "Літак";
+  const isGun = product.product_type === "Зброя";
 
   return (
-    <div className="product-characteristics-container">
-      <h2 className="product-title">Характеристики товару</h2>
-      <ul className="characteristics-list">
-        <li>
-          <strong>Назва:</strong> {product.name}
+    <div className="w-[1440px] mt-5 p-5 border border-gray-300 rounded bg-white font-sans">
+      <h2 className="text-2xl font-bold font-[Liberation_Sans] mb-5">
+        Характеристики товару
+      </h2>
+      <ul className="list-none font-[Liberation_Sans] text-[22px] mt-5 p-0">
+        <li className="py-2.5 border-b border-gray-200">
+          <strong className="text-gray-800">Назва:</strong> {product.name}
         </li>
 
         {isAircraft && (
           <>
-            <li>
-              <strong>Максимальна швидкість:</strong> {product.max_speed} км/год
+            <li className="py-2.5 border-b border-gray-200">
+              <strong className="text-gray-800">Максимальна швидкість:</strong>{" "}
+              {product.max_speed} км/год
             </li>
-            <li>
-              <strong>Розмах крил:</strong> {product.wingspan} м
+            <li className="py-2.5 border-b border-gray-200">
+              <strong className="text-gray-800">Розмах крил:</strong>{" "}
+              {product.wingspan} м
             </li>
-            <li>
-              <strong>Кількість двигунів:</strong> {product.engine_count}
+            <li className="py-2.5 border-b border-gray-200">
+              <strong className="text-gray-800">Кількість двигунів:</strong>{" "}
+              {product.engine_count}
             </li>
-            <li>
-              <strong>Дальність польоту:</strong> {product.flight_range} км
+            <li className="py-2.5 border-b border-gray-200">
+              <strong className="text-gray-800">Дальність польоту:</strong>{" "}
+              {product.flight_range} км
             </li>
-            <li>
-              <strong>Екіпаж:</strong> {product.crew_size}
+            <li className="py-2.5 border-b border-gray-200">
+              <strong className="text-gray-800">Екіпаж:</strong>{" "}
+              {product.crew_size}
             </li>
-            <li>
-              <strong>Макс. висота:</strong> {product.max_altitude} м
+            <li className="py-2.5 border-b border-gray-200">
+              <strong className="text-gray-800">Макс. висота:</strong>{" "}
+              {product.max_altitude} м
             </li>
-            <li>
-              <strong>Порожня вага:</strong> {product.empty_weight} кг
+            <li className="py-2.5 border-b border-gray-200">
+              <strong className="text-gray-800">Порожня вага:</strong>{" "}
+              {product.empty_weight} кг
             </li>
-            <li>
-              <strong>Макс. злітна вага:</strong> {product.max_takeoff_weight}{" "}
-              кг
+            <li className="py-2.5 border-b border-gray-200">
+              <strong className="text-gray-800">Макс. злітна вага:</strong>{" "}
+              {product.max_takeoff_weight} кг
             </li>
-            <li>
-              <strong>Тип двигуна:</strong> {product.engine_type}
+            <li className="py-2.5 border-b border-gray-200">
+              <strong className="text-gray-800">Тип двигуна:</strong>{" "}
+              {product.engine_type}
             </li>
-            <li>
-              <strong>Ємність пального:</strong> {product.fuel_capacity} л
+            <li className="py-2.5 border-b border-gray-200">
+              <strong className="text-gray-800">Ємність пального:</strong>{" "}
+              {product.fuel_capacity} л
             </li>
-            <li>
-              <strong>Швидкість набору висоти:</strong> {product.climb_rate} м/с
+            <li className="py-2.5 border-b border-gray-200">
+              <strong className="text-gray-800">
+                Швидкість набору висоти:
+              </strong>{" "}
+              {product.climb_rate} м/с
             </li>
-            <li>
-              <strong>Діапазон радару:</strong> {product.radar_range} км
+            <li className="py-2.5 border-b border-gray-200">
+              <strong className="text-gray-800">Діапазон радару:</strong>{" "}
+              {product.radar_range} км
             </li>
           </>
         )}
 
         {isTank && (
           <>
-            <li>
-              <strong>Товщина броні:</strong> {product.armor_thickness} мм
+            <li className="py-2.5 border-b border-gray-200">
+              <strong className="text-gray-800">Товщина броні:</strong>{" "}
+              {product.armor_thickness} мм
             </li>
-            <li>
-              <strong>Екіпаж:</strong> {product.crew_size}
+            <li className="py-2.5 border-b border-gray-200">
+              <strong className="text-gray-800">Екіпаж:</strong>{" "}
+              {product.crew_size}
             </li>
-            <li>
-              <strong>Потужність двигуна:</strong> {product.engine_power} к.с.
+            <li className="py-2.5 border-b border-gray-200">
+              <strong className="text-gray-800">Потужність двигуна:</strong>{" "}
+              {product.engine_power} к.с.
             </li>
-            <li>
-              <strong>Вага:</strong> {product.weight} т
+            <li className="py-2.5 border-b border-gray-200">
+              <strong className="text-gray-800">Вага:</strong> {product.weight}{" "}
+              т
             </li>
-            <li>
-              <strong>Калібр гармати:</strong> {product.gun_caliber} мм
+            <li className="py-2.5 border-b border-gray-200">
+              <strong className="text-gray-800">Калібр гармати:</strong>{" "}
+              {product.gun_caliber} мм
             </li>
-            <li>
-              <strong>Довжина корпусу:</strong> {product.hull_length} м
+            <li className="py-2.5 border-b border-gray-200">
+              <strong className="text-gray-800">Довжина корпусу:</strong>{" "}
+              {product.hull_length} м
             </li>
-            <li>
-              <strong>Швидкість обертання башти:</strong>{" "}
+            <li className="py-2.5 border-b border-gray-200">
+              <strong className="text-gray-800">
+                Швидкість обертання башти:
+              </strong>{" "}
               {product.turret_rotation_speed} град/с
             </li>
-            <li>
-              <strong>Експлуатаційний радіус:</strong>{" "}
+            <li className="py-2.5 border-b border-gray-200">
+              <strong className="text-gray-800">Експлуатаційний радіус:</strong>{" "}
               {product.operational_range} км
             </li>
-            <li>
-              <strong>Тип броні:</strong> {product.armor_type}
+            <li className="py-2.5 border-b border-gray-200">
+              <strong className="text-gray-800">Тип броні:</strong>{" "}
+              {product.armor_type}
             </li>
-            <li>
-              <strong>Ємність пального:</strong> {product.fuel_capacity} л
+            <li className="py-2.5 border-b border-gray-200">
+              <strong className="text-gray-800">Ємність пального:</strong>{" "}
+              {product.fuel_capacity} л
             </li>
-            <li>
-              <strong>Тип трансмісії:</strong> {product.transmission_type}
+            <li className="py-2.5 border-b border-gray-200">
+              <strong className="text-gray-800">Тип трансмісії:</strong>{" "}
+              {product.transmission_type}
             </li>
           </>
         )}
 
         {isGun && (
           <>
-            <li>
-              <strong>Калібр:</strong> {product.caliber}
+            <li className="py-2.5 border-b border-gray-200">
+              <strong className="text-gray-800">Калібр:</strong>{" "}
+              {product.caliber}
             </li>
-            <li>
-              <strong>Вага:</strong> {product.weight} кг
+            <li className="py-2.5 border-b border-gray-200">
+              <strong className="text-gray-800">Вага:</strong> {product.weight}{" "}
+              кг
             </li>
-            <li>
-              <strong>Довжина:</strong> {product.length} см
+            <li className="py-2.5 border-b border-gray-200">
+              <strong className="text-gray-800">Довжина:</strong>{" "}
+              {product.length} см
             </li>
-            <li>
-              <strong>Колір:</strong> {product.color}
+            <li className="py-2.5 border-b border-gray-200">
+              <strong className="text-gray-800">Колір:</strong> {product.color}
             </li>
-            <li>
-              <strong>Тип прикладу:</strong> {product.stock_type}
+            <li className="py-2.5 border-b border-gray-200">
+              <strong className="text-gray-800">Тип прикладу:</strong>{" "}
+              {product.stock_type}
             </li>
           </>
         )}
 
-        <li>
-          <strong>Виготовник:</strong> {product.manufacturer_name}
+        <li className="py-2.5 border-b border-gray-200">
+          <strong className="text-gray-800">Виготовник:</strong>{" "}
+          {product.manufacturer_name}
         </li>
-        <li>
-          <strong>Країна:</strong> {product.country}
+        <li className="py-2.5 border-b border-gray-200">
+          <strong className="text-gray-800">Країна:</strong> {product.country}
         </li>
-        <li>
-          <strong>У наявності:</strong> {product.stock} шт.
+        <li className="py-2.5 border-b border-gray-200">
+          <strong className="text-gray-800">У наявності:</strong>{" "}
+          {product.stock} шт.
         </li>
-        <li>
-          <strong>Ціна:</strong> {product.price} $
+        <li className="py-2.5 border-b border-gray-200">
+          <strong className="text-gray-800">Ціна:</strong> {product.price} $
         </li>
       </ul>
     </div>

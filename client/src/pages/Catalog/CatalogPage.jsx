@@ -26,7 +26,7 @@ export default function CatalogPage() {
       <Header />
 
       <div className="max-w-[1440px] mx-auto px-4 py-6 grid grid-cols-1 md:grid-cols-4 gap-6">
-        <div className="md:col-span-4 w-full bg-violet-600 text-white py-2 px-4 rounded-md ">
+        <div className="md:col-span-4 w-[1368px] pr-5 bg-gay-blue  text-white py-2 px-4 rounded-md ">
           <p className="text-sm">Категорія: {category}</p>
         </div>
 
@@ -127,7 +127,7 @@ export default function CatalogPage() {
             </label>
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-3.5">
             {products.map((product) => (
               <ProductCard key={product.product_id} product={product} />
             ))}

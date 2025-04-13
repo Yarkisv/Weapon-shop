@@ -1,18 +1,21 @@
 import React, { useEffect, useState } from "react";
-import { useNavigate, useParams } from "react-router-dom";
+import {
+  useNavigate,
+  useParams,
+  NavLink,
+  Routes,
+  Route,
+} from "react-router-dom";
 import Header from "../../components/Header/Header";
-import "./ProductsPage.css";
 import AboutProductContainer from "../../components/AboutProductContainer/AboutProductContainer";
 import ProductCharacteristics from "../../components/ProductCharacteristics/ProductCharacteristics";
 import ReviewContainer from "../../components/ReviewsContainer/ReviewsContainer";
 import axios from "axios";
-import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
 
 export default function ProductPage() {
   const [product, setProduct] = useState({});
   const [errorMessage, setErrorMessage] = useState("");
-  const { name } = useParams();
-  const { category } = useParams();
+  const { name, category } = useParams();
 
   const navigate = useNavigate();
 
@@ -39,27 +42,41 @@ export default function ProductPage() {
   return (
     <div>
       <Header />
-      <div className="product-container-wrapper">
-        <div className="product-container">
-          <div className="navigation">
-            <Link to={`/catalog/${category}/${name}`} className="navLink">
-              Про товар
-            </Link>
-            <Link
-              to={`/catalog/${category}/${name}/characteristics`}
-              className="navLink"
-            >
-              Характеристики
-            </Link>
-            <Link
-              to={`/catalog/${category}/${name}/reviews`}
-              className="navLink"
-            >
-              Відгуки
-            </Link>
-          </div>
+      <div className="w-[1440px] flex flex-col mx-auto">
+        <div className="flex gap-4 font-[Liberation_Sans] text-[18px] mt-2 pr-4 pb-1">
+          <NavLink
+            to={`/catalog/${category}/${name}`}
+            end
+            className={({ isActive }) =>
+              isActive
+                ? "text-black font-bold border-b-2 border-black cursor-default"
+                : "text-gray-500 hover:text-black"
+            }
+          >
+            Про товар
+          </NavLink>
+          <NavLink
+            to={`/catalog/${category}/${name}/characteristics`}
+            className={({ isActive }) =>
+              isActive
+                ? "text-black font-bold border-b-2 border-black cursor-default"
+                : "text-gray-500 hover:text-black"
+            }
+          >
+            Характеристики
+          </NavLink>
+          <NavLink
+            to={`/catalog/${category}/${name}/reviews`}
+            className={({ isActive }) =>
+              isActive
+                ? "text-black font-bold border-b-2 border-black cursor-default"
+                : "text-gray-500 hover:text-black"
+            }
+          >
+            Відгуки
+          </NavLink>
         </div>
-        <div className="product-page-main">
+        <div className="product-page-main transition-opacity">
           <Routes>
             <Route
               path="/"

@@ -1,1 +1,10 @@
 @import "tailwindcss";
+
+@theme {
+  --breakpoint-*: initial;
+  --breakpoint-sm: 640px;
+  --breakpoint-md: 790px;
+  --breakpoint-lg: 1024px;
+  --breakpoint-xl: 1280px;
+  --color-gay-blue: #6382a1;
+}
