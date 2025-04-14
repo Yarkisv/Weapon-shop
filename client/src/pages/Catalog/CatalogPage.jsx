@@ -3,6 +3,8 @@ import Header from "../../components/Header/Header";
 import ProductCard from "../../components/ProductCard/ProductCard";
 import axios from "axios";
 import { useParams } from "react-router-dom";
+import Breadcrumbs from "../../components/BreadCrumbs";
+import Footer from "../../components/Footer";
 
 export default function CatalogPage() {
   const [products, setProducts] = useState([]);
@@ -67,12 +69,8 @@ export default function CatalogPage() {
   return (
     <div>
       <Header />
-
+      <Breadcrumbs />
       <div className="max-w-[1440px] mx-auto px-4 py-6 grid grid-cols-1 md:grid-cols-4 gap-6">
-        <div className="md:col-span-4 w-[1368px] pr-5 bg-gay-blue  text-white py-2 px-4 rounded-md ">
-          <p className="text-sm">Категорія: {category}</p>
-        </div>
-
         <div className="md:col-span-1 bg-gray-100 rounded-md p-4 shadow-sm">
           <h2 className="text-xl font-semibold mb-4">Фільтри</h2>
           <div className="space-y-4">
@@ -202,6 +200,7 @@ export default function CatalogPage() {
           </div>
         </div>
       </div>
+      <Footer />
     </div>
   );
 }

@@ -63,7 +63,7 @@ export default function Basket() {
                   <strong>Code:</strong> {order.code}
                 </p>
                 <p className="basket-order-characteristics">
-                  <strong>Price:</strong> {order.price} $
+                  <strong>Price:</strong> {order.price} ₴
                 </p>
               </div>
               <div className="quantity-changes">
@@ -91,7 +91,7 @@ export default function Basket() {
       )}
 
       {orders.length > 0 && (
-        <p className="total-price">{`Загальна сума: ${totalPrice}`}</p>
+        <p className="total-price">{`Загальна сума: ${totalPrice}`} ₴</p>
       )}
       <button className="order-placement" onClick={() => navigate("/checkout")}>
         Перейти до оформлення

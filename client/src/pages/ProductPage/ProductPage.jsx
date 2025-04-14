@@ -11,6 +11,8 @@ import AboutProductContainer from "../../components/AboutProductContainer/AboutP
 import ProductCharacteristics from "../../components/ProductCharacteristics/ProductCharacteristics";
 import ReviewContainer from "../../components/ReviewsContainer/ReviewsContainer";
 import axios from "axios";
+import Breadcrumbs from "../../components/BreadCrumbs";
+import Footer from "../../components/Footer";
 
 export default function ProductPage() {
   const [product, setProduct] = useState({});
@@ -42,6 +44,7 @@ export default function ProductPage() {
   return (
     <div>
       <Header />
+      <Breadcrumbs />
       <div className="w-[1440px] flex flex-col mx-auto">
         <div className="flex gap-4 font-[Liberation_Sans] text-[18px] mt-2 pr-4 pb-1">
           <NavLink
@@ -76,6 +79,7 @@ export default function ProductPage() {
             Відгуки
           </NavLink>
         </div>
+
         <div className="product-page-main transition-opacity">
           <Routes>
             <Route
@@ -90,6 +94,7 @@ export default function ProductPage() {
           </Routes>
         </div>
       </div>
+      <Footer />
     </div>
   );
 }

@@ -79,8 +79,10 @@ export const CartProvider = ({ children }) => {
   };
 
   const removeItem = (id) => {
-    setOrders(orders.filter((order) => order.product_id !== id));
-    calculateTotalPrice(orders);
+    const updatedOrders = orders.filter((order) => order.product_id !== id);
+    setOrders(updatedOrders);
+    calculateTotalPrice(updatedOrders);
+    updateLocalStorage(updatedOrders);
   };
 
   const clearCart = () => {

@@ -7,7 +7,7 @@ import editOrder from "../../images/editOrder.svg";
 import geo from "../../images/geo.svg";
 
 export default function CheckoutPage() {
-  const { orders } = useCart();
+  const { orders, totalPrice } = useCart();
   const { isBasketOpen, setBasketOpen } = useModal();
 
   const handleBasketClicked = () => {
@@ -18,7 +18,7 @@ export default function CheckoutPage() {
     <div className="checkout-page-wrapper">
       <Header />
       <div className="checkout-page">
-        <p className="checkout-order-main-text">ОФОРМЛЕННЯ ЗАМОВЛЕННЯ</p>
+        <p className="checkout-order-main-text">Оформлення замовлення</p>
         <div className="checkout-orders">
           {orders.length > 0 ? (
             <div className="orders-wrapper">
@@ -32,7 +32,7 @@ export default function CheckoutPage() {
                     onClick={handleBasketClicked}
                   >
                     Редагувати товари
-                    <img src={editOrder} alt="" />
+                    <img src={editOrder} />
                   </p>
                 </div>
 
@@ -45,7 +45,7 @@ export default function CheckoutPage() {
                       />
                       <div className="name-price-checkout">
                         <p className="order-name-checkout">{order.name}</p>
-                        <p className="order-price-checkout">{order.price}$</p>
+                        <p className="order-price-checkout">{order.price}₴</p>
                       </div>
                     </div>
                   </div>
@@ -82,7 +82,7 @@ export default function CheckoutPage() {
             <div className="ordering-checkout">
               <p className="ordering-checkout-atOnce">Разом</p>
               <p className="ordering-checkout-price">
-                ? товарів на сумму: ????
+                товарів на суму: {totalPrice} ₴
               </p>
 
               <button className="ordering-checkout-order"> Замовити </button>
