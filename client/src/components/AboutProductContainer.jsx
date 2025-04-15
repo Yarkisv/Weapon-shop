@@ -1,9 +1,9 @@
 import React from "react";
-import shipment from "../../images/shipment.svg";
-import novaPost from "../../images/novaPost.svg";
-import buy from "../../images/buy.svg";
-import likeOrder from "../../images/likeOrder.svg";
-import { useCart } from "../../contexts/cartContext";
+import shipment from "../images/shipment.svg";
+import novaPost from "../images/novaPost.svg";
+import buy from "../images/buy.svg";
+import likeOrder from "../images/likeOrder.svg";
+import { useCart } from "../contexts/cartContext"
 
 export default function AboutProductContainer({ product }) {
   const { addToCart } = useCart();
@@ -41,7 +41,7 @@ export default function AboutProductContainer({ product }) {
                 В наявності
               </p>
               <p className="text-[35px] mt-[17px] text-left ordinal m-0">
-                {product.price}$
+                {product.price}₴
               </p>
             </div>
 
@@ -135,7 +135,7 @@ export default function AboutProductContainer({ product }) {
                   </li>
                   <li className="py-2.5 list-none border-b border-gray-200">
                     <p className="text-gray-800">
-                      Дальність польоту: {product.length} км.
+                      Дальність польоту: {product.max_speed} км.
                     </p>
                   </li>
                 </div>

@@ -47,9 +47,7 @@ export default function ProductCard({ product }) {
         >
           {product.name}
         </p>
-        <p className="product-characteristics-card">
-          Артикул: {product.article}
-        </p>
+        <p className="product-characteristics-card">Код: {product.article}</p>
         <p className="product-characteristics-availability">в наявності</p>
 
         <Rating

@@ -39,17 +39,14 @@ export default function Header() {
   }, [menuOpen]);
 
   const handleProfileClick = () => {
-    console.log("Profile");
     setUserPanelOpen(!isUserPanelOpen);
   };
 
   const handleBasketClicked = () => {
-    console.log("Basket");
     setBasketOpen(!isBasketOpen);
   };
 
   const handleLikedWindow = () => {
-    console.log("Liked window");
     setSavedWindowOpen(!isSavedWindowOpen);
   };
 

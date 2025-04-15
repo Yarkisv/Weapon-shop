@@ -7,9 +7,10 @@ import {
   Route,
 } from "react-router-dom";
 import Header from "../../components/Header/Header";
-import AboutProductContainer from "../../components/AboutProductContainer/AboutProductContainer";
-import ProductCharacteristics from "../../components/ProductCharacteristics/ProductCharacteristics";
-import ReviewContainer from "../../components/ReviewsContainer/ReviewsContainer";
+import AboutProductContainer from "../../components/AboutProductContainer";
+import ProductCharacteristics from "../../components/ProductCharacteristics";
+
+import ReviewContainer from "../../components/ReviewsContainer";
 import axios from "axios";
 import Breadcrumbs from "../../components/BreadCrumbs";
 import Footer from "../../components/Footer";
@@ -91,7 +92,10 @@ export default function ProductPage() {
               path="characteristics"
               element={<ProductCharacteristics product={product} />}
             />
-            <Route path="reviews" element={<ReviewContainer />} />
+            <Route
+              path="reviews"
+              element={<ReviewContainer product={product} />}
+            />
           </Routes>
         </div>
       </div>

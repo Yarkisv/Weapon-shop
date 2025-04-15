@@ -1,12 +1,12 @@
 import React from "react";
-import { useModal } from "../../contexts/modalContext";
+import { useModal } from "../contexts/modalContext";
 import { useNavigate } from "react-router-dom";
-import { useCart } from "../../contexts/cartContext";
+import { useCart } from "../contexts/cartContext";
 
-import cancel from "../../images/cancel.svg";
-import plus from "../../images/plus.svg";
-import minus from "../../images/minus.svg";
-import trash from "../../images/trash.svg";
+import cancel from "../images/cancel.svg";
+import plus from "../images/plus.svg";
+import minus from "../images/minus.svg";
+import trash from "../images/trash.svg";
 
 export default function Basket() {
   const {
