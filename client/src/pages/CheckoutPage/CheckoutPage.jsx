@@ -1,92 +1,126 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import Header from "../../components/Header/Header";
 import { useModal } from "../../contexts/modalContext";
-import "./CheckoutPage.css";
 import { useCart } from "../../contexts/cartContext";
+import { useNavigate } from "react-router-dom";
 import editOrder from "../../images/editOrder.svg";
 import geo from "../../images/geo.svg";
 
 export default function CheckoutPage() {
   const { orders, totalPrice } = useCart();
   const { isBasketOpen, setBasketOpen } = useModal();
+  const navigate = useNavigate();
+  const [selectedStore, setSelectedStore] = useState("");
 
   const handleBasketClicked = () => {
-    console.log("Basket");
     setBasketOpen(!isBasketOpen);
   };
+
   return (
-    <div className="checkout-page-wrapper">
+    <div className="min-h-screen bg-white">
       <Header />
-      <div className="checkout-page">
-        <p className="checkout-order-main-text">Оформлення замовлення</p>
-        <div className="checkout-orders">
+      <div className="max-w-[1440px] mx-auto px-4 py-6">
+        <p className="text-center text-3xl font-semibold mb-6">
+          Оформлення замовлення
+        </p>
+        <div className="flex flex-wrap gap-6">
           {orders.length > 0 ? (
-            <div className="orders-wrapper">
-              <div className="orders">
-                <div className="ordering-checkout-in-order-edit">
-                  <p className="ordering-checkout-in-order">
-                    Товари у замовленні{" "}
-                  </p>
+            <div className="flex flex-col gap-6 w-full lg:w-[1000px]">
+              <div>
+                <div className="flex justify-between items-center mb-2">
+                  <p className="text-2xl font-bold ml-2">Товари у замовленні</p>
                   <p
-                    className="order-checkout-edit"
+                    className="flex items-center text-blue-900 cursor-pointer gap-2 hover:underline mr-2"
                     onClick={handleBasketClicked}
                   >
                     Редагувати товари
-                    <img src={editOrder} />
+                    <img src={editOrder} alt="Edit" className="w-5 h-5" />
                   </p>
                 </div>
-
                 {orders.map((order) => (
-                  <div className="orders-item-checkout" key={order.name}>
-                    <div className="orders-item-info-wrapper">
-                      <img
-                        className="order-image-checkout"
-                        src={`data:image/jpg;base64,${order.image}`}
-                      />
-                      <div className="name-price-checkout">
-                        <p className="order-name-checkout">{order.name}</p>
-                        <p className="order-price-checkout">{order.price}₴</p>
-                      </div>
+                  <div
+                    key={order.name}
+                    className="flex items-center mb-[20px] bg-gray-100 border-2 border-green-900 rounded-md p-4 ml-2"
+                  >
+                    <img
+                      className="w-20 h-20 object-contain"
+                      src={`data:image/jpg;base64,${order.image}`}
+                      alt={order.name}
+                    />
+                    <div className="flex justify-between w-full">
+                      <p className="text-lg font-semibold ml-[10px]">
+                        {order.name}
+                      </p>
+                      <p className="text-lg font-semibold">{order.price} ₴</p>
                     </div>
                   </div>
                 ))}
               </div>
-              <div className="order-delivery">
-                <p className="ordering-checkout-in-order">Доставка</p>
-                <div className="radio-delivery">
-                  <p className="self-delivery">Самовивіз</p>
-                  <p className="choose-store">Оберіть зручний магазин:</p>
 
-                  <label className="custom-radio">
-                    <input type="radio" name="store" value="option1" />
-                    <span className="radio-check"></span>
-                    Майдан Конституції 9
-                    <img src={geo} alt="geo icon" className="geo-icon" />
-                  </label>
-
-                  <label className="custom-radio">
-                    <input type="radio" name="store" value="option2" />
-                    <span className="radio-check"></span>
-                    Проспект Незалежності 5
-                    <img src={geo} alt="geo icon" className="geo-icon" />
-                  </label>
+              <div className="bg-gray-100 border-2 border-green-900 rounded-md p-4 ml-2">
+                <p className="text-2xl font-bold mb-4">Доставка</p>
+                <p className="text-lg font-semibold mb-2">Самовивіз</p>
+                <p className="text-base text-gray-600 mb-4">
+                  Оберіть зручний магазин:
+                </p>
+                <div className="space-y-4">
+                  {[
+                    { label: "Майдан Конституції 9", value: "option1" },
+                    { label: "Проспект Незалежності 5", value: "option2" },
+                  ].map((store) => (
+                    <label
+                      key={store.value}
+                      className="flex items-center gap-4 cursor-pointer hover:bg-green-100 p-2 rounded-md transition"
+                    >
+                      <input
+                        type="radio"
+                        name="store"
+                        value={store.value}
+                        checked={selectedStore === store.value}
+                        onChange={() => setSelectedStore(store.value)}
+                        className="hidden"
+                      />
+                      <span className="w-5 h-5 border-2 border-green-500 rounded-full flex items-center justify-center">
+                        <span
+                          className={`w-3 h-3 bg-green-500 rounded-full transition-transform ${
+                            selectedStore === store.value
+                              ? "scale-100"
+                              : "scale-0"
+                          }`}
+                        ></span>
+                      </span>
+                      {store.label}
+                      <img src={geo} alt="geo" className="w-5 h-5 ml-auto" />
+                    </label>
+                  ))}
                 </div>
               </div>
             </div>
           ) : (
-            <div>
-              <p>Нема замовленнь</p>
+            <div className="text-center text-red-500 text-xl font-semibold w-full">
+              Нема замовленнь
+              <div className="mt-4">
+                <p
+                  onClick={() => navigate("/catalog/guns")}
+                  className="inline-block bg-green-500 text-white py-2 px-4 rounded-md text-lg font-semibold hover:bg-green-600 transition cursor-pointer"
+                >
+                  Перейти до каталогу
+                </p>
+              </div>
             </div>
           )}
-          <div className="ordering-checkout-wrapper">
-            <div className="ordering-checkout">
-              <p className="ordering-checkout-atOnce">Разом</p>
-              <p className="ordering-checkout-price">
-                товарів на суму: {totalPrice} ₴
-              </p>
 
-              <button className="ordering-checkout-order"> Замовити </button>
+          <div className="w-full lg:w-[300px] bg-gray-200 rounded-lg p-4 h-[350px] flex flex-col justify-between">
+            <div>
+              <p className="text-2xl font-bold">Разом</p>
+              <p className="text-base mt-2">товарів на суму: {totalPrice} ₴</p>
+              <p>Ім'я:</p>
+              <p>Адреса:</p>
+              <p>Телефон:</p>
             </div>
+            <button className="bg-green-500 text-white w-full py-2 rounded-md text-lg font-semibold hover:bg-green-600 transition">
+              Замовити
+            </button>
           </div>
         </div>
       </div>

@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from "react";
 import Header from "../components/Header/Header";
-
 import ProductCard from "../components/ProductCard/ProductCard";
 import axios from "axios";
 import { useParams } from "react-router-dom";
 import Breadcrumbs from "../components/BreadCrumbs";
 import Footer from "../components/Footer";
+import sponge from "../images/sponge.svg";
 
 export default function CatalogPage() {
   const [products, setProducts] = useState([]);
@@ -112,19 +112,18 @@ export default function CatalogPage() {
     priceConfirmation,
   ]);
 
-
   return (
     <div>
       <Header />
       <div className="max-w-[1440px] mx-auto px-4 py-[10px]">
         <Breadcrumbs />
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-6 min-h-[400px]">
           <div className="md:col-span-1 bg-gray-100 rounded-md p-4 shadow-sm">
             <h2 className="text-xl font-semibold mb-4">Фільтри</h2>
             <div className="space-y-4">
               <div>
                 <span className="text-gray-700 block mb-1">Ціна (₴):</span>
-                <div className="flex gap-2">
+                <div className="flex gap-2 items-center">
                   <input
                     type="text"
                     placeholder="від"
@@ -140,10 +139,10 @@ export default function CatalogPage() {
                     className="w-full border rounded p-2"
                   />
                   <button
-                    className="cursor-pointer"
+                    className="bg-[#7aae99] cursor-pointer text-black border-1 border-black px-3 py-2 rounded hover:bg-green-700 transition"
                     onClick={handlePriceConfirmationClicked}
                   >
-                    ок
+                    ОК
                   </button>
                 </div>
               </div>
@@ -199,6 +198,7 @@ export default function CatalogPage() {
                   </div>
                 </aside>
               )}
+
               {isGun && (
                 <aside className="space-y-6 mt-6">
                   <div>
@@ -290,14 +290,21 @@ export default function CatalogPage() {
                 ))}
               </div>
             ) : (
-              <div>
-                <p>Товарів не знайдено</p>
+              <div className="text-center  text-lg text-red-600 font-medium py-10 flex flex-col items-center">
+                <div className="border-2 border-gray-300 rounded-lg p-4">
+                  <img
+                    src={sponge}
+                    alt="Not found"
+                    className="mx-auto w-40 h-auto"
+                  />
+                  <p className="mt-4 font-sans">Товарів не знайдено</p>
+                </div>
               </div>
             )}
           </div>
         </div>
       </div>
-      <Footer />
+      <Footer className="mb-auto" />
     </div>
   );
 }

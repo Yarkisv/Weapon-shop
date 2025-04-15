@@ -69,43 +69,29 @@ export default function ReviewFormStatic({ product }) {
         </button>
       </div>
 
-      <div className="w-full md:w-1/2 bg-white p-6 rounded-2xl shadow flex flex-col justify-between">
-        <div>
-          <h3 className="text-xl font-semibold mb-4">Товар</h3>
-          <div className="flex flex-col md:flex-row items-center gap-4 mb-4">
-            {product.image ? (
-              <img
-                src={`data:image/jpg;base64,${product.image}`}
-                className="w-[200px] h-[200px] object-contain border border-gray-200 rounded"
-                alt="product"
-              />
-            ) : (
-              <div>
-                <p>Зобрежання не доступне</p>
-              </div>
-            )}
+      <div className="w-full lg:w-1/3 p-6 border border-gray-200 rounded-2xl bg-white font-sans shadow-md flex flex-col items-center space-y-4 transition-all duration-300 hover:shadow-xl">
+        <h3 className="text-2xl font-bold text-center text-gray-800">
+          {product.name}
+        </h3>
+        <img
+          src={`data:image/jpg;base64,${product.image}`}
+          alt={product.name}
+          className="w-full h-60 object-contain rounded-md shadow-sm"
+        />
 
-            <div className="flex flex-col justify-between h-full">
-              <p className="text-lg font-sans mb-2">{product.name}</p>
-              <p className="text-gray-500 mb-2">Код: {product.article}</p>
-              <p className="text-2xl ordinal text-green-600">
-                {product.price} ₴
-              </p>
-            </div>
-          </div>
-        </div>
+        <div className="text-sm text-gray-500">Артикул: {product.article}</div>
 
-        <div>
-          <p>{product.desc}</p>
-          <button className="bg-[#68e568] text-white text-[25px] font-sans w-full h-[44px] rounded flex items-center justify-center gap-[5px] cursor-pointer transition-transform duration-200 hover:scale-105 hover:shadow-lg active:scale-95 active:shadow-md">
+        <div className="flex flex-col items-center w-full mt-4 space-y-3">
+          <button className="cursor-pointer bg-green-500 text-white text-lg font-semibold w-full h-12 rounded-[5px] flex items-center justify-center gap-2 transition-transform duration-200 hover:scale-105 hover:shadow-lg active:scale-95">
             В кошик
           </button>
-          <div className="flex gap-[10px] mt-[10px]">
-            <button className="w-full h-[44px] border border-black rounded flex items-center justify-center text-[20px] font-sans bg-white cursor-pointer transition-transform duration-200 hover:scale-105 hover:shadow-lg active:scale-95 active:shadow-md">
+
+          <div className="flex gap-3 w-full">
+            <button className="cursor-pointer flex-1 h-12 border border-gray-300 rounded-[5px] flex items-center justify-center text-base font-medium bg-white hover:scale-105 hover:shadow-lg active:scale-95 transition-transform">
               В 1 клік
             </button>
-            <button className="w-[48px] h-[44px] border border-black rounded flex items-center justify-center bg-white cursor-pointer transition-transform duration-200 hover:scale-105 hover:shadow-lg active:scale-95 active:shadow-md">
-              <img src={likeOrder} alt="like" />
+            <button className="cursor-pointer w-12 h-12 border border-gray-300 rounded-[5px] flex items-center justify-center bg-white hover:scale-105 hover:shadow-lg active:scale-95 transition-transform">
+              <img src={likeOrder} />
             </button>
           </div>
         </div>

@@ -2,7 +2,7 @@ import React from "react";
 import { useModal } from "../contexts/modalContext";
 import { useNavigate } from "react-router-dom";
 import { useCart } from "../contexts/cartContext";
-
+import sponge from "../images/sponge.svg";
 import cancel from "../images/cancel.svg";
 import plus from "../images/plus.svg";
 import minus from "../images/minus.svg";
@@ -108,10 +108,13 @@ export default function Basket() {
           ))}
         </div>
       ) : (
-        <div className="flex justify-center items-center mt-[300px]">
-          <p className="w-[400px] h-[50px] text-center font-sans text-[#9b181a] text-xl border border-[#9b181a] rounded-md flex items-center justify-center">
-            Коризна порожня
-          </p>
+        <div className="flex flex-1 justify-center items-center">
+          <div className="flex flex-col items-center gap-4 border-2 border-[#9b181a] rounded-md p-4 shadow-md">
+            <img src={sponge} className="w-[200px] h-[300px]" alt="Порожньо" />
+            <p className="text-[#9b181a] text-xl font-sans text-center">
+              Коризна порожня
+            </p>
+          </div>
         </div>
       )}
 
