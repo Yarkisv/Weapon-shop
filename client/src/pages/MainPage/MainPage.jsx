@@ -35,7 +35,7 @@ export default function MainPage() {
     planeAudio,
     tankAudio,
   ].forEach((audio) => {
-    audio.volume = 0.1;
+    audio.volume = 0.2;
   });
 
   const playSound = (sound) => () => {

@@ -1,6 +1,7 @@
 import React from "react";
 import { Link, useLocation } from "react-router-dom";
 import { GrHomeRounded } from "react-icons/gr";
+import { HiChevronRight } from "react-icons/hi";
 
 const Breadcrumbs = () => {
   const location = useLocation();
@@ -17,22 +18,31 @@ const Breadcrumbs = () => {
   });
 
   return (
-    <div className="ml-63">
-      <nav>
-        <Link to="/">
-          <GrHomeRounded />
+    <div className="mt-[5px] mb-[5px]">
+      <nav
+        style={{ fontSize: "16px" }}
+        className="flex items-center text-gray-600 space-x-2"
+      >
+        <Link to="/" className="hover:text-blue-600 flex items-center">
+          <GrHomeRounded className="mr-1" />
+          Головна
         </Link>
         {crumbs.map((crumb, idx) => (
-          <span key={idx} className="">
-            <span className="">/</span>
+          <div key={idx} className="flex items-center space-x-2">
+            <HiChevronRight className="text-gray-400" />
             {idx === crumbs.length - 1 ? (
-              <span className="text-gray-800">{formatLabel(crumb.label)}</span>
+              <span className="font-semibold text-gray-800">
+                {formatLabel(crumb.label)}
+              </span>
             ) : (
-              <Link to={crumb.path} className="text-black hover:text-red-500">
+              <Link
+                to={crumb.path}
+                className="hover:text-blue-600 transition-colors"
+              >
                 {formatLabel(crumb.label)}
               </Link>
             )}
-          </span>
+          </div>
         ))}
       </nav>
     </div>

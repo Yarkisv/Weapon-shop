@@ -44,8 +44,9 @@ export default function ProductPage() {
   return (
     <div>
       <Header />
-      <Breadcrumbs />
+
       <div className="w-[1440px] flex flex-col mx-auto">
+        <Breadcrumbs />
         <div className="flex gap-4 font-[Liberation_Sans] text-[18px] mt-2 pr-4 pb-1">
           <NavLink
             to={`/catalog/${category}/${name}`}
