@@ -1,10 +1,10 @@
 import React, { useState } from "react";
-import Header from "../../components/Header/Header";
-import { useModal } from "../../contexts/modalContext";
-import { useCart } from "../../contexts/cartContext";
+import Header from "../components/Header/Header";
+import { useModal } from "../contexts/modalContext";
+import { useCart } from "../contexts/cartContext";
 import { useNavigate } from "react-router-dom";
-import editOrder from "../../images/editOrder.svg";
-import geo from "../../images/geo.svg";
+import editOrder from "../images/editOrder.svg";
+import geo from "../images/geo.svg";
 
 export default function CheckoutPage() {
   const { orders, totalPrice } = useCart();

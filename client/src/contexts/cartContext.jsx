@@ -42,6 +42,7 @@ export const CartProvider = ({ children }) => {
         .filter((order) => order.quantity > 0);
 
       calculateTotalPrice(updatedOrders);
+      updateLocalStorage(updatedOrders);
       return updatedOrders;
     });
   };

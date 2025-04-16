@@ -16,7 +16,9 @@ export const SavedProvider = ({ children }) => {
   };
 
   const removeFromSaved = (id) => {
-    setSaved(saved.filter((order) => order.product_id !== id));
+    const updatedSaved = saved.filter((order) => order.product_id !== id);
+    setSaved(updatedSaved);
+    updateLocalStorage(updatedSaved);
   };
 
   const clearSaved = () => {

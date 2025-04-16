@@ -1,13 +1,13 @@
 import React, { useEffect } from "react";
-import cancel from "../../images/cancel.svg";
-import trash from "../../images/trash.svg";
-import sponge from "../../images/sponge.svg";
-import { useModal } from "../../contexts/modalContext";
-import { useSaved } from "../../contexts/savedContext";
+import cancel from "../images/cancel.svg";
+import trash from "../images/trash.svg";
+import sponge from "../images/sponge.svg";
+import { useSaved } from "../contexts/savedContext";
+import {useModal} from "../contexts/modalContext"
 
 export default function SavedWindow() {
-  const { isSavedWindowOpen, setSavedWindowOpen, removeFromSaved } = useModal();
-  const { saved, clearSaved } = useSaved();
+  const { isSavedWindowOpen, setSavedWindowOpen } = useModal();
+  const { saved, clearSaved, removeFromSaved } = useSaved();
 
   const handleCloseWindow = () => {
     setSavedWindowOpen(false);

@@ -6,14 +6,14 @@ import {
   Routes,
   Route,
 } from "react-router-dom";
-import Header from "../../components/Header/Header";
-import AboutProductContainer from "../../components/AboutProductContainer";
-import ProductCharacteristics from "../../components/ProductCharacteristics";
+import Header from "../components/Header/Header";
+import AboutProductContainer from "../components/AboutProductContainer";
+import ProductCharacteristics from "../components/ProductCharacteristics";
 
-import ReviewContainer from "../../components/ReviewsContainer";
+import ReviewContainer from "../components/ReviewsContainer";
 import axios from "axios";
-import Breadcrumbs from "../../components/BreadCrumbs";
-import Footer from "../../components/Footer";
+import Breadcrumbs from "../components/BreadCrumbs";
+import Footer from "../components/Footer";
 
 export default function ProductPage() {
   const [product, setProduct] = useState({});

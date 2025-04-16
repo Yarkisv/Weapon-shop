@@ -1,17 +1,17 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Register from "./pages/Register/Register";
 import Login from "./pages/Login/Login";
-import MainPage from "./pages/MainPage/MainPage";
+import MainPage from "./pages/MainPage";
 import CatalogPage from "./pages/CatalogPage";
 import "./App.css";
 import UserPanel from "./components/UserPanel/UserPanel";
 import ProfilePage from "./pages/ProfilePage/ProfilePage";
 import ProtectedAuthRoute from "./Routes/ProtectedAuthRoute";
 import Basket from "./components/Basket";
-import ProductPage from "./pages/ProductPage/ProductPage";
-import CheckoutPage from "./pages/CheckoutPage/CheckoutPage";
+import ProductPage from "./pages/ProductPage";
+import CheckoutPage from "./pages/CheckoutPage";
 import { useModal } from "./contexts/modalContext";
-import SavedWindow from "./components/SavedWindow/SavedWindow";
+import SavedWindow from "./components/SavedWindow";
 
 function AppContent() {
   const { isUserPanelOpen, isBasketOpen, isSavedWindowOpen } = useModal();

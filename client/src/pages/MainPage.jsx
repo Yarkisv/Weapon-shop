@@ -1,21 +1,21 @@
 import React from "react";
-import Header from "../../components/Header/Header";
-import Footer from "../../components/Footer";
+import Header from "../components/Header/Header";
+import Footer from "../components/Footer";
 import { useNavigate } from "react-router-dom";
-import mainPageBg from "../../images/mainPageBg.svg";
-import knifesCategory from "../../images/knifesCategory.svg";
-import gunsCategory from "../../images/gunsCategory.svg";
-import bulletsCategory from "../../images/bulletsCategory.svg";
-import clothesCategory from "../../images/clothesCategory.svg";
-import planesCategory from "../../images/planesCategory.svg";
-import tanksCategory from "../../images/tanksCategory.svg";
-import bulletSound from "../../sounds/bulletSound.mp3";
-import gunSound from "../../sounds/gunSound.mp3";
-import clothSound from "../../sounds/clothSound.mp3";
-import knifeSound from "../../sounds/knifeSound.mp3";
-import planeSound from "../../sounds/planeSound.mp3";
-import tankSound from "../../sounds/tankSound.mp3";
-import planeMain from "../../images/planeMain.svg";
+import mainPageBg from "../images/mainPageBg.svg";
+import knifesCategory from "../images/knifesCategory.svg";
+import gunsCategory from "../images/gunsCategory.svg";
+import bulletsCategory from "../images/bulletsCategory.svg";
+import clothesCategory from "../images/clothesCategory.svg";
+import planesCategory from "../images/planesCategory.svg";
+import tanksCategory from "../images/tanksCategory.svg";
+import bulletSound from "../sounds/bulletSound.mp3";
+import gunSound from "../sounds/gunSound.mp3";
+import clothSound from "../sounds/clothSound.mp3";
+import knifeSound from "../sounds/knifeSound.mp3";
+import planeSound from "../sounds/planeSound.mp3";
+import tankSound from "../sounds/tankSound.mp3";
+import planeMain from "../images/planeMain.svg";
 
 export default function MainPage() {
   const navigate = useNavigate();
