@@ -1,10 +1,11 @@
 import React, { useState } from "react";
 import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
-import gogle from "../../images/gogle.svg";
-import face from "../../images/face.svg";
-import back from "../../images/back.svg";
-import gunsWall from "../../images/gunsWall.svg";
+
+import gogle from "../images/gogle.svg";
+import face from "../images/face.svg";
+import back from "../images/back.svg";
+import gunsWall from "../images/gunsWall.svg";
 
 export default function Login() {
   const [email, setEmail] = useState("");

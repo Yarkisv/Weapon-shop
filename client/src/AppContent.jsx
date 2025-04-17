@@ -1,11 +1,11 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import Register from "./pages/Register/Register";
-import Login from "./pages/Login/Login";
+import Register from "./pages/Register";
+import Login from "./pages/Login";
 import MainPage from "./pages/MainPage";
 import CatalogPage from "./pages/CatalogPage";
 import "./App.css";
-import UserPanel from "./components/UserPanel/UserPanel";
-import ProfilePage from "./pages/ProfilePage/ProfilePage";
+import UserPanel from "./components/UserPanel";
+import ProfilePage from "./pages/ProfilePage";
 import ProtectedAuthRoute from "./Routes/ProtectedAuthRoute";
 import Basket from "./components/Basket";
 import ProductPage from "./pages/ProductPage";

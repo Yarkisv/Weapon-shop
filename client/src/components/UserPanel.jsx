@@ -1,13 +1,14 @@
 import React, { useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { useModal } from "../../contexts/modalContext";
-import basket from "../../images/basket.svg";
-import cancel from "../../images/cancel.svg";
-import bonuses from "../../images/bonuses.svg";
-import chat from "../../images/chat.svg";
-import history from "../../images/history.svg";
-import partners from "../../images/partners.svg";
-import reviews from "../../images/reviews.svg";
+import { useModal } from "../contexts/modalContext";
+
+import basket from "../images/basket.svg";
+import cancel from "../images/cancel.svg";
+import bonuses from "../images/bonuses.svg";
+import chat from "../images/chat.svg";
+import history from "../images/history.svg";
+import partners from "../images/partners.svg";
+import reviews from "../images/reviews.svg";
 
 export default function UserPanel() {
   const { isUserPanelOpen, setUserPanelOpen } = useModal();

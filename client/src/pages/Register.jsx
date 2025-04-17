@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
-import back from "../../images/back.svg";
-import gunsWall from "../../images/gunsWall.svg";
+
+import back from "../images/back.svg";
+import gunsWall from "../images/gunsWall.svg";
 
 export default function Register() {
   const [firstname, setFirstname] = useState("");

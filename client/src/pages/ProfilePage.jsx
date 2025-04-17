@@ -1,24 +1,24 @@
 import React, { useEffect, useState } from "react";
-import Header from "../../components/Header/Header";
-import UserInformation from "../../components/UserInformation/UserInformation";
-import PageBasket from "../../components/PageBasket";
-import WishList from "../../components/WishList";
-import Viewed from "../../components/Viewed/Viewed";
-import OrderHistory from "../../components/OrderHistory/OrderHistory";
-import ChatBot from "../../components/ChatBot/ChatBot";
-import ReviewsUser from "../../components/ReviewsUser/ReviewsUser";
+import Header from "../components/Header/Header";
+import UserInformation from "../components/UserInformation";
+import PageBasket from "../components/PageBasket";
+import WishList from "../components/WishList";
+import Viewed from "../components/Viewed/Viewed";
+import OrderHistory from "../components/OrderHistory/OrderHistory";
+import ChatBot from "../components/ChatBot/ChatBot";
+import ReviewsUser from "../components/ReviewsUser/ReviewsUser";
 
 import axios from "axios";
 import { Routes, Route, Link, useNavigate } from "react-router-dom";
 
-import profile from "../../images/ProfilePageImg/profile.svg";
-import basket from "../../images/ProfilePageImg/basket.svg";
-import liked from "../../images/ProfilePageImg/liked.svg";
-import visited from "../../images/ProfilePageImg/visited.svg";
-import history from "../../images/ProfilePageImg/history.svg";
-import chat from "../../images/ProfilePageImg/chat.svg";
-import reviews from "../../images/ProfilePageImg/reviews.svg";
-import logout from "../../images/ProfilePageImg/logout.svg";
+import profile from "../images/ProfilePageImg/profile.svg";
+import basket from "../images/ProfilePageImg/basket.svg";
+import liked from "../images/ProfilePageImg/liked.svg";
+import visited from "../images/ProfilePageImg/visited.svg";
+import history from "../images/ProfilePageImg/history.svg";
+import chat from "../images/ProfilePageImg/chat.svg";
+import reviews from "../images/ProfilePageImg/reviews.svg";
+import logout from "../images/ProfilePageImg/logout.svg";
 
 export default function ProfilePage() {
   const [user, setUser] = useState([]);
