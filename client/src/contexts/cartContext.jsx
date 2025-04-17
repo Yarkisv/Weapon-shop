@@ -9,7 +9,10 @@ export const CartProvider = ({ children }) => {
     return savedProducts;
   });
 
-  const [totalPrice, setTotalPrice] = useState(0);
+  const [totalPrice, setTotalPrice] = useState(() => {
+    const savedTotalPrice = JSON.parse(localStorage.getItem("totalPrice")) || 0;
+    return savedTotalPrice;
+  });
 
   const calculateTotalPrice = (orders) => {
     let sum = 0;
@@ -17,6 +20,7 @@ export const CartProvider = ({ children }) => {
       sum += Number(order.price) * order.quantity;
     });
     setTotalPrice(sum);
+    localStorage.setItem("totalPrice", sum);
   };
 
   const increaceQuantity = (id) => {

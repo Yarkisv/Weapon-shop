@@ -3,10 +3,10 @@ import Header from "../components/Header/Header";
 import UserInformation from "../components/UserInformation";
 import PageBasket from "../components/PageBasket";
 import WishList from "../components/WishList";
-import Viewed from "../components/Viewed/Viewed";
-import OrderHistory from "../components/OrderHistory/OrderHistory";
-import ChatBot from "../components/ChatBot/ChatBot";
-import ReviewsUser from "../components/ReviewsUser/ReviewsUser";
+import Viewed from "../components/Viewed";
+import OrderHistory from "../components/OrderHistory";
+import ChatBot from "../components/ChatBot";
+import ReviewsUser from "../components/ReviewsUser";
 
 import axios from "axios";
 import { Routes, Route, Link, useNavigate } from "react-router-dom";
@@ -64,7 +64,7 @@ export default function ProfilePage() {
       <Header />
       <div className="flex flex-col mx-auto max-w-[1440px]">
         <p className="text-center mt-5 text-4xl font-[Konkhmer Sleokchher]">
-          Вітаємо
+          Вітаємо, {user.firstname}!
         </p>
         <div className="flex border-t border-gray-600 w-[1285px] mt-8 ml-6">
           <aside className="w-[250px] h-[600px] mt-5 border-r border-gray-600">

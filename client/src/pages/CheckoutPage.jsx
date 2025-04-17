@@ -1,19 +1,37 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Header from "../components/Header/Header";
 import { useModal } from "../contexts/modalContext";
 import { useCart } from "../contexts/cartContext";
 import { useNavigate } from "react-router-dom";
 import editOrder from "../images/editOrder.svg";
 import geo from "../images/geo.svg";
+import axios from "axios";
 
 export default function CheckoutPage() {
   const { orders, totalPrice } = useCart();
   const { isBasketOpen, setBasketOpen } = useModal();
-  const navigate = useNavigate();
+
   const [selectedStore, setSelectedStore] = useState("");
+
+  const navigate = useNavigate();
 
   const handleBasketClicked = () => {
     setBasketOpen(!isBasketOpen);
+  };
+
+  const [user, setUser] = useState({});
+
+  useEffect(() => {
+    setUser(JSON.parse(localStorage.getItem("user")));
+  }, []);
+
+  const goToPayment = async () => {
+    const response = await axios.post("http://localhost:3000/order", {
+      phome: user.phone,
+      orderDate: "",
+      totalPrice: totalPrice,
+      orderItems: orders,
+    });
   };
 
   return (
@@ -114,12 +132,15 @@ export default function CheckoutPage() {
             <div>
               <p className="text-2xl font-bold">Разом</p>
               <p className="text-base mt-2">товарів на суму: {totalPrice} ₴</p>
-              <p>Ім'я:</p>
-              <p>Адреса:</p>
-              <p>Телефон:</p>
+              <p>Ім'я: {user.firstname}</p>
+              <p>Прiзввище: {user.lastname}</p>
+              <p>Телефон: {user.phone}</p>
             </div>
-            <button className="bg-green-500 text-white w-full py-2 rounded-md text-lg font-semibold hover:bg-green-600 transition">
-              Замовити
+            <button
+              className="bg-green-500 text-white w-full py-2 rounded-md text-lg font-semibold hover:bg-green-600 transition"
+              onClick={goToPayment}
+            >
+              Перейти до оплати
             </button>
           </div>
         </div>

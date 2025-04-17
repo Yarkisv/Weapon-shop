@@ -23,12 +23,12 @@ export default function Login() {
 
       if (response.status === 200) {
         const token = response.data.token;
-        const IsAuth = response.status.IsAuth;
+        const IsAuth = response.data.IsAuth;
+        const user = response.data.user;
 
         localStorage.setItem("token", token);
         localStorage.setItem("isAuth", IsAuth);
-
-        console.log("Login successful, token: " + token);
+        localStorage.setItem("user", JSON.stringify(user));
 
         navigate("/");
       }

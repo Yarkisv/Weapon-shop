@@ -20,8 +20,33 @@ export default function UserPanel() {
     setIsAuth(!!localStorage.getItem("isAuth"));
   }, []);
 
+  const handdleProfile = () => {
+    navigate("/profile");
+    setUserPanelOpen(!isUserPanelOpen);
+  };
+
   const handleLoginClick = () => {
     navigate("/login");
+    setUserPanelOpen(!isUserPanelOpen);
+  };
+
+  const handleBasketClicked = () => {
+    navigate("/profile/basket");
+    setUserPanelOpen(!isUserPanelOpen);
+  };
+
+  const handleOrderHistoryClicked = () => {
+    navigate("/profile/orderhistory");
+    setUserPanelOpen(!isUserPanelOpen);
+  };
+
+  const handleChatBotClicked = () => {
+    navigate("/profile/chatbot");
+    setUserPanelOpen(!isUserPanelOpen);
+  };
+
+  const handleReviewsClicked = () => {
+    navigate("/profile/reviews");
     setUserPanelOpen(!isUserPanelOpen);
   };
 
@@ -33,11 +58,6 @@ export default function UserPanel() {
       `Logout successful, token - [${localStorage.getItem("token")}]`
     );
     setIsAuth(!!localStorage.getItem("isAuth"));
-  };
-
-  const handdleProfile = () => {
-    navigate("/profile");
-    setUserPanelOpen(!isUserPanelOpen);
   };
 
   const handleClosePanel = () => {
@@ -54,7 +74,6 @@ export default function UserPanel() {
         <img
           className="filter contrast-0 brightness-0 w-5 h-5 mt-4 ml-4 cursor-pointer"
           src={cancel}
-          alt="Закрыть"
           onClick={handleClosePanel}
         />
         {!isAuth ? (
@@ -73,50 +92,62 @@ export default function UserPanel() {
           </button>
         )}
         <ul className="grid text-left gap-8 list-none pl-0 mt-8">
-          <li className="flex items-center text-black text-[18px] font-sans ml-4 cursor-pointer opacity-0 animate-fadeIn hover:text-orange-600 hover:scale-105 transition-all">
+          <li
+            className="flex items-center text-black text-[18px] font-sans ml-4 cursor-pointer opacity-0 animate-fadeIn hover:text-orange-600 hover:scale-105 transition-all"
+            onClick={handleBasketClicked}
+          >
             <img
               src={basket}
-              alt=""
               className="filter contrast-0 brightness-0 mr-3 w-7 h-7"
             />
             Корзина
           </li>
-          <li className="flex items-center text-black text-[18px] font-sans ml-4 cursor-pointer opacity-0 animate-fadeIn hover:text-orange-600 hover:scale-105 transition-all">
+          <li
+            className="flex items-center text-black text-[18px] font-sans ml-4 cursor-pointer opacity-0 animate-fadeIn hover:text-orange-600 hover:scale-105 transition-all"
+            onClick={handleOrderHistoryClicked}
+          >
             <img
               src={history}
-              alt=""
               className="filter contrast-0 brightness-0 mr-3 w-7 h-7"
             />
             Історія замовлень
           </li>
-          <li className="flex items-center text-black text-[18px] font-sans ml-4 cursor-pointer opacity-0 animate-fadeIn hover:text-orange-600 hover:scale-105 transition-all">
+          <li
+            className="flex items-center text-black text-[18px] font-sans ml-4 cursor-pointer opacity-0 animate-fadeIn hover:text-orange-600 hover:scale-105 transition-all"
+            onClick={handleChatBotClicked}
+          >
             <img
               src={chat}
-              alt=""
               className="filter contrast-0 brightness-0 mr-3 w-7 h-7"
             />
             Чат-бот
           </li>
-          <li className="flex items-center text-black text-[18px] font-sans ml-4 cursor-pointer opacity-0 animate-fadeIn hover:text-orange-600 hover:scale-105 transition-all">
+          <li
+            className="flex items-center text-black text-[18px] font-sans ml-4 cursor-pointer opacity-0 animate-fadeIn hover:text-orange-600 hover:scale-105 transition-all"
+            onClick={handdleProfile}
+          >
             <img
               src={partners}
-              alt=""
               className="filter contrast-0 brightness-0 mr-3 w-7 h-7"
             />
             Співпраця
           </li>
-          <li className="flex items-center text-black text-[18px] font-sans ml-4 cursor-pointer opacity-0 animate-fadeIn hover:text-orange-600 hover:scale-105 transition-all">
+          <li
+            className="flex items-center text-black text-[18px] font-sans ml-4 cursor-pointer opacity-0 animate-fadeIn hover:text-orange-600 hover:scale-105 transition-all"
+            onClick={handdleProfile}
+          >
             <img
               src={bonuses}
-              alt=""
               className="filter contrast-0 brightness-0 mr-3 w-7 h-7"
             />
             Бонуси
           </li>
-          <li className="flex items-center text-black text-[18px] font-sans ml-4 cursor-pointer opacity-0 animate-fadeIn hover:text-orange-600 hover:scale-105 transition-all">
+          <li
+            className="flex items-center text-black text-[18px] font-sans ml-4 cursor-pointer opacity-0 animate-fadeIn hover:text-orange-600 hover:scale-105 transition-all"
+            onClick={handleReviewsClicked}
+          >
             <img
               src={reviews}
-              alt=""
               className="filter contrast-0 brightness-0 mr-3 w-7 h-7"
             />
             Відгуки

@@ -65,37 +65,33 @@ export default function MainPage() {
           <div className="flex items-center w-full ml-[88px] gap-5 mt-[35px]">
             <img
               onClick={() => navigate("/catalog/guns")}
-              onMouseEnter={playSound(gunAudio)}
-              onMouseLeave={stopSound(gunAudio)}
+              // onMouseEnter={playSound(gunAudio)}
+              // onMouseLeave={stopSound(gunAudio)}
               className="transition-transform duration-300 ease-in-out hover:scale-[1.08] cursor-pointer"
               src={gunsCategory}
-              alt="guns"
             />
             <img
               onClick={() => navigate("/catalog/bullets")}
-              onMouseEnter={playSound(bulletAudio)}
-              onMouseLeave={stopSound(bulletAudio)}
+              // onMouseEnter={playSound(bulletAudio)}
+              // onMouseLeave={stopSound(bulletAudio)}
               className="transition-transform duration-300 ease-in-out hover:scale-[1.08] cursor-pointer"
               src={bulletsCategory}
-              alt="bullets"
             />
           </div>
           <div className="flex items-center justify-end w-full mr-[88px] gap-5 mt-[35px]">
             <img
               onClick={() => navigate("/catalog/khifes")}
-              onMouseEnter={playSound(knifeAudio)}
-              onMouseLeave={stopSound(knifeAudio)}
+              // onMouseEnter={playSound(knifeAudio)}
+              // onMouseLeave={stopSound(knifeAudio)}
               className="transition-transform duration-300 ease-in-out hover:scale-[1.08] cursor-pointer mr-[-4px]"
               src={knifesCategory}
-              alt="knifes"
             />
             <img
               onClick={() => navigate("/catalog/ammunition")}
-              onMouseEnter={playSound(clothAudio)}
-              onMouseLeave={stopSound(clothAudio)}
+              // onMouseEnter={playSound(clothAudio)}
+              // onMouseLeave={stopSound(clothAudio)}
               className="transition-transform duration-300 ease-in-out hover:scale-[1.08] cursor-pointer"
               src={clothesCategory}
-              alt="clothes"
             />
           </div>
         </div>
@@ -104,25 +100,22 @@ export default function MainPage() {
           <img
             src={planesCategory}
             onClick={() => navigate("/catalog/military-aircrafts")}
-            onMouseEnter={playSound(planeAudio)}
-            onMouseLeave={stopSound(planeAudio)}
+            // onMouseEnter={playSound(planeAudio)}
+            // onMouseLeave={stopSound(planeAudio)}
             className="transition-transform duration-300 ease-in-out hover:scale-[1.08] cursor-pointer"
-            alt="planes"
           />
           <img
             src={tanksCategory}
             onClick={() => navigate("/catalog/tanks")}
-            onMouseEnter={playSound(tankAudio)}
-            onMouseLeave={stopSound(tankAudio)}
+            // onMouseEnter={playSound(tankAudio)}
+            // onMouseLeave={stopSound(tankAudio)}
             className="transition-transform duration-300 ease-in-out hover:scale-[1.08] cursor-pointer"
-            alt="tanks"
           />
         </div>
 
         <div className="absolute top-[20%] left-1/2 transform -translate-x-1/2 -translate-y-[20%] flex flex-col gap-[30px] items-center">
           <img
             src={planeMain}
-            alt="main plane"
             className="transition-transform duration-300 ease-in-out hover:scale-105 cursor-pointer"
           />
 
