@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import "./ProfilePage.css";
 import Header from "../../components/Header/Header";
 import UserInformation from "../../components/UserInformation/UserInformation";
 import PageBasket from "../../components/PageBasket";
@@ -10,13 +9,7 @@ import ChatBot from "../../components/ChatBot/ChatBot";
 import ReviewsUser from "../../components/ReviewsUser/ReviewsUser";
 
 import axios from "axios";
-import {
-  BrowserRouter as Router,
-  Routes,
-  Route,
-  Link,
-  useNavigate,
-} from "react-router-dom";
+import { Routes, Route, Link, useNavigate } from "react-router-dom";
 
 import profile from "../../images/ProfilePageImg/profile.svg";
 import basket from "../../images/ProfilePageImg/basket.svg";
@@ -29,7 +22,6 @@ import logout from "../../images/ProfilePageImg/logout.svg";
 
 export default function ProfilePage() {
   const [user, setUser] = useState([]);
-
   const navigate = useNavigate();
 
   const handleLogoutClick = () => {
@@ -37,7 +29,7 @@ export default function ProfilePage() {
     localStorage.removeItem("isAuth");
     navigate("/");
     console.log(
-      `Logout successful, token - [${localStorage.getItem("token")}]]`
+      `Logout successful, token - [${localStorage.getItem("token")}]`
     );
   };
 
@@ -68,82 +60,85 @@ export default function ProfilePage() {
   }, [user]);
 
   return (
-    <div className="profile-page-wrapper">
+    <div className="w-full">
       <Header />
-      <div className="profile-page">
-        <p className="profile-main-text">Вітаємо</p>
-        <div className="profile-page-container">
-          <div className="profile-page-aside">
-            <ul className="profile-page-menu">
-              <li>
-                <img src={profile} />
-                <Link
-                  to={"/profile"}
-                  style={{ textDecoration: "none", color: "inherit" }}
-                >
+      <div className="flex flex-col mx-auto max-w-[1440px]">
+        <p className="text-center mt-5 text-4xl font-[Konkhmer Sleokchher]">
+          Вітаємо
+        </p>
+        <div className="flex border-t border-gray-600 w-[1285px] mt-8 ml-6">
+          <aside className="w-[250px] h-[600px] mt-5 border-r border-gray-600">
+            <ul className="flex flex-col gap-5 list-none text-gray-600 p-0 m-0">
+              <li className="flex items-center gap-2 text-[22px] font-[Konkhmer Sleokchher] cursor-pointer">
+                <img src={profile} className="w-[25px] h-[25px]" />
+                <Link to="/profile" className="no-underline text-inherit">
                   Профіль
                 </Link>
               </li>
-              <li>
-                <img src={basket} />
+              <li className="flex items-center gap-2 text-[22px] font-[Konkhmer Sleokchher] cursor-pointer">
+                <img src={basket} className="w-[25px] h-[25px]" />
                 <Link
-                  to={"/profile/basket"}
-                  style={{ textDecoration: "none", color: "inherit" }}
+                  to="/profile/basket"
+                  className="no-underline text-inherit"
                 >
                   Корзина
                 </Link>
               </li>
-              <li>
-                <img src={liked} />
+              <li className="flex items-center gap-2 text-[22px] font-[Konkhmer Sleokchher] cursor-pointer">
+                <img src={liked} className="w-[25px] h-[25px]" />
                 <Link
-                  to={"/profile/wishlist"}
-                  style={{ textDecoration: "none", color: "inherit" }}
+                  to="/profile/wishlist"
+                  className="no-underline text-inherit"
                 >
                   Обране
                 </Link>
               </li>
-              <li>
-                <img src={visited} />
+              <li className="flex items-center gap-2 text-[22px] font-[Konkhmer Sleokchher] cursor-pointer">
+                <img src={visited} className="w-[25px] h-[25px]" />
                 <Link
-                  to={"/profile/viewed"}
-                  style={{ textDecoration: "none", color: "inherit" }}
+                  to="/profile/viewed"
+                  className="no-underline text-inherit"
                 >
                   Переглянуте
                 </Link>
               </li>
-              <li>
-                <img src={history} />
+              <li className="flex items-center gap-2 text-[22px] font-[Konkhmer Sleokchher] cursor-pointer">
+                <img src={history} className="w-[25px] h-[25px]" />
                 <Link
-                  to={"/profile/orderhistory"}
-                  style={{ textDecoration: "none", color: "inherit" }}
+                  to="/profile/orderhistory"
+                  className="no-underline text-inherit"
                 >
                   Історія замовлень
                 </Link>
               </li>
-              <li>
-                <img src={chat} />
+              <li className="flex items-center gap-2 text-[22px] font-[Konkhmer Sleokchher] cursor-pointer">
+                <img src={chat} className="w-[25px] h-[25px]" />
                 <Link
-                  to={"/profile/chatbot"}
-                  style={{ textDecoration: "none", color: "inherit" }}
+                  to="/profile/chatbot"
+                  className="no-underline text-inherit"
                 >
                   Чат-бот
                 </Link>
               </li>
-              <li>
-                <img src={reviews} />
+              <li className="flex items-center gap-2 text-[22px] font-[Konkhmer Sleokchher] cursor-pointer">
+                <img src={reviews} className="w-[25px] h-[25px]" />
                 <Link
-                  to={"/profile/reviews"}
-                  style={{ textDecoration: "none", color: "inherit" }}
+                  to="/profile/reviews"
+                  className="no-underline text-inherit"
                 >
                   Відгуки
                 </Link>
               </li>
-              <li onClick={handleLogoutClick}>
-                <img src={logout} /> Вийти
+              <li
+                onClick={handleLogoutClick}
+                className="flex items-center gap-2 text-[22px] font-[Konkhmer Sleokchher] cursor-pointer text-red-600"
+              >
+                <img src={logout} className="w-[25px] h-[25px]" />
+                Вийти
               </li>
             </ul>
-          </div>
-          <div className="profile-page-main">
+          </aside>
+          <div className="flex-grow p-4">
             <Routes>
               <Route path="/" element={<UserInformation user={user} />} />
               <Route path="basket" element={<PageBasket />} />

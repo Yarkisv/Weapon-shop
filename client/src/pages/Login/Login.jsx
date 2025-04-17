@@ -1,9 +1,6 @@
 import React, { useState } from "react";
 import axios from "axios";
-import "./Login.css";
-import { Link } from "react-router-dom";
-import { useNavigate } from "react-router-dom";
-
+import { Link, useNavigate } from "react-router-dom";
 import gogle from "../../images/gogle.svg";
 import face from "../../images/face.svg";
 import back from "../../images/back.svg";
@@ -40,55 +37,71 @@ export default function Login() {
   };
 
   return (
-    <div className="wrapper" style={{ backgroundImage: `url(${gunsWall})` }}>
-      <p className="reg-logo"> STEEL & GUNS</p>
-      <p className="reg-text-main">LOGIN</p>
-      <div className="login-page-wrapper">
-        <div className="go-back-wrapper" onClick={() => navigate("/")}>
-          <img className="go-back-img" src={back} alt="" />
-          <p className="go-back">На головну</p>
+    <div
+      className="min-h-screen bg-cover bg-center bg-no-repeat flex flex-col  bg-[#5f6a54] items-center justify-center"
+      style={{ backgroundImage: `url(${gunsWall})` }}
+    >
+      <p className="text-white font-bold text-5xl font-[Konkhmer Sleokchher] mt-10">
+        STEEL & GUNS
+      </p>
+      <p className="text-white text-3xl font-semibold font-[Konkhmer Sleokchher] mt-5">
+        LOGIN
+      </p>
+
+      <div className="w-[550px] mt-6 bg-white rounded shadow-lg border border-black p-6">
+        <div
+          className="flex items-center mb-4 cursor-pointer"
+          onClick={() => navigate("/")}
+        >
+          <img src={back} alt="Назад" className="w-5 h-5 mr-2" />
+          <p className="text-lg font-sans">На головну</p>
         </div>
-        <div className="login-page">
-          <form onSubmit={handleLogin}>
-            <div className="input-group">
-              <input
-                className="input-field"
-                type="email"
-                placeholder="Введіть пошту"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                required
-              />
-              <input
-                className="input-field"
-                type="password"
-                placeholder="Введіть пароль"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-                required
-              />
-            </div>
-            <div className="form-end">
-              <button className="login-button" type="submit">
-                ЛОГІН
-              </button>
-              <Link className="dont-have-account" to={"/register"}>
-                немає аккаунту?
-              </Link>
-              <span className="another-login">або через</span>
-              <div className="gogle-or-face">
-                <div className="gogle">
-                  <img className="gogle-face-img" src={gogle} alt="" />
-                  <span>Google</span>
-                </div>
-                <div className="face">
-                  <img className="gogle-face-img" src={face} alt="" />
-                  <span className="face-text">Facebook</span>
-                </div>
+        <form onSubmit={handleLogin} className="text-center">
+          <div className="flex flex-col gap-6">
+            <input
+              type="email"
+              placeholder="Введіть пошту"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              required
+              className="w-full h-12 border border-black rounded px-2 bg-gray-100 text-lg"
+            />
+            <input
+              type="password"
+              placeholder="Введіть пароль"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              required
+              className="w-full h-12 border border-black rounded px-2 bg-gray-100 text-lg"
+            />
+          </div>
+
+          <div className="flex flex-col items-center mt-6">
+            <button
+              type="submit"
+              className="w-full h-14 bg-black text-white text-lg rounded cursor-pointer hover:bg-neutral-900 active:bg-neutral-950"
+            >
+              ЛОГІН
+            </button>
+            <Link
+              to="/register"
+              className="text-xl mt-4 text-gray-600 hover:text-gray-800"
+            >
+              немає аккаунту?
+            </Link>
+            <span className="text-xl text-gray-700 mt-5">або через</span>
+            <div className="flex justify-between mt-5 w-full px-2">
+              <div className="flex items-center border border-black rounded w-[48%] h-12 pl-4 cursor-pointer">
+                <img src={gogle} alt="Google" className="w-6 h-6" />
+                <span className="ml-4">Google</span>
+              </div>
+              <div className="flex items-center border border-black rounded w-[48%] h-12 pl-4 cursor-pointer">
+                <img src={face} alt="Facebook" className="w-6 h-6" />
+                <span className="ml-4">Facebook</span>
               </div>
             </div>
-          </form>
-        </div>
+          </div>
+        </form>
       </div>
     </div>
   );
