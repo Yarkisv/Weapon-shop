@@ -5,9 +5,7 @@ export default function UserInformation({ user }) {
   return (
     <div className="w-full">
       <div className="flex items-center justify-between mt-[10px] ml-[20px] mr-[20px]">
-        <p className="text-[25px] font-[Konkhmer Sleokchher]">
-          Персональні дані
-        </p>
+        <h1 className="text-2xl font-bold text-gray-800">Персональні дані</h1>
 
         <button className="flex items-center gap-2 text-blue-500 hover:text-blue-600 cursor-pointer transition">
           <FaEdit className="text-[18px]" />

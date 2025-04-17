@@ -9,17 +9,20 @@ export default function WishList() {
 
   return (
     <div className="ml-5 mt-5 w-[1015px] border border-[#585858] p-4 relative">
-      {/* Кнопка очистки */}
-      <button
-        className="ml-auto block w-fit mb-2 pr-2 pt-1"
-        onClick={clearSaved}
-      >
-        <img
-          className="w-[24px] h-[24px] hover:scale-110 active:scale-95 transition-transform"
-          src={trash}
-          alt="Clear wishlist"
-        />
-      </button>
+      <div className="flex">
+        <h1 className="text-2xl font-bold text-gray-800">Обране</h1>
+        {/* Кнопка очистки */}
+        <button
+          className="ml-auto block w-fit mb-2 pr-2 pt-1"
+          onClick={clearSaved}
+        >
+          <img
+            className="w-[24px] h-[24px] hover:scale-110 active:scale-95 transition-transform"
+            src={trash}
+            alt="Clear wishlist"
+          />
+        </button>
+      </div>
 
       {saved.length > 0 ? (
         <div className="flex flex-col gap-3 max-h-[500px] overflow-y-auto pr-2">

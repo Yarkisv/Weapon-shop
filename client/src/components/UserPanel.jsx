@@ -9,6 +9,8 @@ import chat from "../images/chat.svg";
 import history from "../images/history.svg";
 import partners from "../images/partners.svg";
 import reviews from "../images/reviews.svg";
+import visited from "../images/ProfilePageImg/visited.svg";
+import liked from "../images/ProfilePageImg/liked.svg";
 
 export default function UserPanel() {
   const { isUserPanelOpen, setUserPanelOpen } = useModal();
@@ -78,7 +80,7 @@ export default function UserPanel() {
         />
         {!isAuth ? (
           <button
-            className="w-[310px] h-[50px] bg-black text-white text-[20px] rounded ml-4 mt-4 transition-transform hover:bg-neutral-900 hover:scale-105 active:bg-neutral-950 active:scale-95"
+            className="w-[410px] h-[50px] bg-black text-white text-[20px] rounded ml-4 mt-4 transition-transform hover:bg-neutral-900 hover:scale-105 active:bg-neutral-950 active:scale-95"
             onClick={handleLoginClick}
           >
             Увійти
@@ -102,6 +104,21 @@ export default function UserPanel() {
             />
             Корзина
           </li>
+          <li className="flex items-center text-black text-[18px] font-sans ml-4 cursor-pointer opacity-0 animate-fadeIn hover:text-orange-600 hover:scale-105 transition-all">
+            <img
+              src={liked}
+              className="filter contrast-0 brightness-0 mr-3 w-7 h-7"
+            />
+            Обране
+          </li>
+          <li className="flex items-center text-black text-[18px] font-sans ml-4 cursor-pointer opacity-0 animate-fadeIn hover:text-orange-600 hover:scale-105 transition-all">
+            <img
+              src={visited}
+              className="filter contrast-0 brightness-0 mr-3 w-7 h-7"
+            />
+            Переглянуте
+          </li>
+
           <li
             className="flex items-center text-black text-[18px] font-sans ml-4 cursor-pointer opacity-0 animate-fadeIn hover:text-orange-600 hover:scale-105 transition-all"
             onClick={handleOrderHistoryClicked}
@@ -111,6 +128,16 @@ export default function UserPanel() {
               className="filter contrast-0 brightness-0 mr-3 w-7 h-7"
             />
             Історія замовлень
+          </li>
+          <li
+            className="flex items-center text-black text-[18px] font-sans ml-4 cursor-pointer opacity-0 animate-fadeIn hover:text-orange-600 hover:scale-105 transition-all"
+            onClick={handdleProfile}
+          >
+            <img
+              src={bonuses}
+              className="filter contrast-0 brightness-0 mr-3 w-7 h-7"
+            />
+            Бонуси
           </li>
           <li
             className="flex items-center text-black text-[18px] font-sans ml-4 cursor-pointer opacity-0 animate-fadeIn hover:text-orange-600 hover:scale-105 transition-all"
@@ -132,16 +159,7 @@ export default function UserPanel() {
             />
             Співпраця
           </li>
-          <li
-            className="flex items-center text-black text-[18px] font-sans ml-4 cursor-pointer opacity-0 animate-fadeIn hover:text-orange-600 hover:scale-105 transition-all"
-            onClick={handdleProfile}
-          >
-            <img
-              src={bonuses}
-              className="filter contrast-0 brightness-0 mr-3 w-7 h-7"
-            />
-            Бонуси
-          </li>
+
           <li
             className="flex items-center text-black text-[18px] font-sans ml-4 cursor-pointer opacity-0 animate-fadeIn hover:text-orange-600 hover:scale-105 transition-all"
             onClick={handleReviewsClicked}

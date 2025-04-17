@@ -12,6 +12,7 @@ import ProductPage from "./pages/ProductPage";
 import CheckoutPage from "./pages/CheckoutPage";
 import { useModal } from "./contexts/modalContext";
 import SavedWindow from "./components/SavedWindow";
+import PaymentPage from "./pages/PaymentPage";
 
 function AppContent() {
   const { isUserPanelOpen, isBasketOpen, isSavedWindowOpen } = useModal();
@@ -25,6 +26,7 @@ function AppContent() {
         <Route path="/catalog/:category" element={<CatalogPage />} />
         <Route path="/catalog/:category/:name/*" element={<ProductPage />} />
         <Route path="/checkout" element={<CheckoutPage />} />
+        <Route path="/payment" element={<PaymentPage />} />
         <Route
           path="/profile/*"
           element={

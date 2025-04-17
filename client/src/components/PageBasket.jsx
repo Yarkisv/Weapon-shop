@@ -18,17 +18,20 @@ export default function PageBasket() {
 
   return (
     <div className="ml-5 mt-5 w-[1015px] border border-[#585858] p-4 relative">
-      {/* Очистить корзину */}
-      <button
-        className="ml-auto block w-fit mb-2 pr-2 pt-1"
-        onClick={clearCart}
-      >
-        <img
-          className="w-[24px] h-[24px] hover:scale-110 active:scale-95 transition-transform"
-          src={trash}
-          alt="Clear basket"
-        />
-      </button>
+      <div className="flex">
+        <h1 className="text-2xl font-bold text-gray-800">Корзина</h1>
+        {/* Очистить корзину */}
+        <button
+          className="ml-auto block w-fit mb-2 pr-2 pt-1"
+          onClick={clearCart}
+        >
+          <img
+            className="w-[24px] h-[24px] hover:scale-110 active:scale-95 transition-transform"
+            src={trash}
+            alt="Clear basket"
+          />
+        </button>
+      </div>
 
       {orders.length > 0 ? (
         <>

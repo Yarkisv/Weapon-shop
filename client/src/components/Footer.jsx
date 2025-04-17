@@ -2,7 +2,7 @@ export default function Footer() {
   return (
     <footer
       style={{ backgroundColor: "#375C4D" }}
-      className="bg-375C4D text-white py-10 px-4 mt-5 "
+      className="bg-375C4D text-white py-10 px-4 mt-5 mb-auto "
     >
       <div className="max-w-[1440px] mx-auto grid grid-cols-1 md:grid-cols-4 gap-8">
         {/* Название и слоган */}

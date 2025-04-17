@@ -12,13 +12,15 @@ import axios from "axios";
 import { Routes, Route, Link, useNavigate } from "react-router-dom";
 
 import profile from "../images/ProfilePageImg/profile.svg";
-import basket from "../images/ProfilePageImg/basket.svg";
+import basket from "../images/basket.svg";
 import liked from "../images/ProfilePageImg/liked.svg";
 import visited from "../images/ProfilePageImg/visited.svg";
-import history from "../images/ProfilePageImg/history.svg";
-import chat from "../images/ProfilePageImg/chat.svg";
-import reviews from "../images/ProfilePageImg/reviews.svg";
+import history from "../images/history.svg";
+import chat from "../images/chat.svg";
+import reviews from "../images/reviews.svg";
 import logout from "../images/ProfilePageImg/logout.svg";
+import bonuses from "../images/bonuses.svg";
+import partners from "../images/partners.svg";
 
 export default function ProfilePage() {
   const [user, setUser] = useState([]);
@@ -70,13 +72,19 @@ export default function ProfilePage() {
           <aside className="w-[250px] h-[600px] mt-5 border-r border-gray-600">
             <ul className="flex flex-col gap-5 list-none text-gray-600 p-0 m-0">
               <li className="flex items-center gap-2 text-[22px] font-[Konkhmer Sleokchher] cursor-pointer">
-                <img src={profile} className="w-[25px] h-[25px]" />
+                <img
+                  src={profile}
+                  className="w-[25px] h-[25px] filter contrast-0 brightness-0"
+                />
                 <Link to="/profile" className="no-underline text-inherit">
                   Профіль
                 </Link>
               </li>
               <li className="flex items-center gap-2 text-[22px] font-[Konkhmer Sleokchher] cursor-pointer">
-                <img src={basket} className="w-[25px] h-[25px]" />
+                <img
+                  src={basket}
+                  className="w-[25px] h-[25px] filter contrast-0 brightness-0"
+                />
                 <Link
                   to="/profile/basket"
                   className="no-underline text-inherit"
@@ -85,7 +93,10 @@ export default function ProfilePage() {
                 </Link>
               </li>
               <li className="flex items-center gap-2 text-[22px] font-[Konkhmer Sleokchher] cursor-pointer">
-                <img src={liked} className="w-[25px] h-[25px]" />
+                <img
+                  src={liked}
+                  className="w-[25px] h-[25px] filter contrast-0 brightness-0"
+                />
                 <Link
                   to="/profile/wishlist"
                   className="no-underline text-inherit"
@@ -94,7 +105,10 @@ export default function ProfilePage() {
                 </Link>
               </li>
               <li className="flex items-center gap-2 text-[22px] font-[Konkhmer Sleokchher] cursor-pointer">
-                <img src={visited} className="w-[25px] h-[25px]" />
+                <img
+                  src={visited}
+                  className="w-[25px] h-[25px] filter contrast-0 brightness-0"
+                />
                 <Link
                   to="/profile/viewed"
                   className="no-underline text-inherit"
@@ -103,7 +117,10 @@ export default function ProfilePage() {
                 </Link>
               </li>
               <li className="flex items-center gap-2 text-[22px] font-[Konkhmer Sleokchher] cursor-pointer">
-                <img src={history} className="w-[25px] h-[25px]" />
+                <img
+                  src={history}
+                  className="w-[25px] h-[25px] filter contrast-0 brightness-0"
+                />
                 <Link
                   to="/profile/orderhistory"
                   className="no-underline text-inherit"
@@ -112,7 +129,22 @@ export default function ProfilePage() {
                 </Link>
               </li>
               <li className="flex items-center gap-2 text-[22px] font-[Konkhmer Sleokchher] cursor-pointer">
-                <img src={chat} className="w-[25px] h-[25px]" />
+                <img
+                  src={bonuses}
+                  className="w-[25px] h-[25px] filter contrast-0 brightness-0"
+                />
+                <Link
+                  to="/profile/bonuses"
+                  className="no-underline text-inherit"
+                >
+                  Бонуси
+                </Link>
+              </li>
+              <li className="flex items-center gap-2 text-[22px] font-[Konkhmer Sleokchher] cursor-pointer">
+                <img
+                  src={chat}
+                  className="w-[25px] h-[25px] filter contrast-0 brightness-0"
+                />
                 <Link
                   to="/profile/chatbot"
                   className="no-underline text-inherit"
@@ -121,7 +153,22 @@ export default function ProfilePage() {
                 </Link>
               </li>
               <li className="flex items-center gap-2 text-[22px] font-[Konkhmer Sleokchher] cursor-pointer">
-                <img src={reviews} className="w-[25px] h-[25px]" />
+                <img
+                  src={partners}
+                  className="w-[25px] h-[25px] filter contrast-0 brightness-0"
+                />
+                <Link
+                  to="/profile/partners"
+                  className="no-underline text-inherit"
+                >
+                  Співпраця
+                </Link>
+              </li>
+              <li className="flex items-center gap-2 text-[22px] font-[Konkhmer Sleokchher] cursor-pointer">
+                <img
+                  src={reviews}
+                  className="w-[25px] h-[25px] filter contrast-0 brightness-0"
+                />
                 <Link
                   to="/profile/reviews"
                   className="no-underline text-inherit"
@@ -133,7 +180,10 @@ export default function ProfilePage() {
                 onClick={handleLogoutClick}
                 className="flex items-center gap-2 text-[22px] font-[Konkhmer Sleokchher] cursor-pointer text-red-600"
               >
-                <img src={logout} className="w-[25px] h-[25px]" />
+                <img
+                  src={logout}
+                  className="w-[25px] h-[25px] filter contrast-0 brightness-0"
+                />
                 Вийти
               </li>
             </ul>
