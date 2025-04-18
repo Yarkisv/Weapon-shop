@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from "react";
-import logoFinal from "../../images/logoFinal.svg";
-import basket from "../../images/basket.svg";
-import liked from "../../images/liked.svg";
-import profile from "../../images/profile.svg";
-import { useModal } from "../../contexts/modalContext";
-import home from "../../images/home.svg";
-import search from "../../images/search.svg";
+import logoFinal from "../images/logoFinal.svg";
+import basket from "../images/basket.svg";
+import liked from "../images/liked.svg";
+import profile from "../images/profile.svg";
+import { useModal } from "../contexts/modalContext";
+import home from "../images/home.svg";
+import search from "../images/search.svg";
 import { useNavigate } from "react-router-dom";
 
 export default function Header() {

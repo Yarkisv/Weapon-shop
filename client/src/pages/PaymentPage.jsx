@@ -1,10 +1,8 @@
-import Header from "../components/Header/Header";
 import Footer from "../components/Footer";
 
 export default function PaymentPage() {
   return (
     <div className="min-h-screen flex flex-col bg-gray-100">
-      <Header />
       <main className="flex-1 max-w-4xl mx-auto px-4 py-10">
         <h1 className="text-4xl font-bold text-center text-green-900 mb-6">
           Оплата замовлення
@@ -52,7 +50,7 @@ export default function PaymentPage() {
               </label>
               <input
                 type="text"
-                placeholder="піпа"
+                placeholder="Ім'я"
                 className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green-600"
               />
             </div>

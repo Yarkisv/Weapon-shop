@@ -82,15 +82,15 @@ export default function Login() {
               type="submit"
               className="w-full h-14 bg-black text-white text-lg rounded cursor-pointer hover:bg-neutral-900 active:bg-neutral-950"
             >
-              ЛОГІН
+              Увійти
             </button>
             <Link
               to="/register"
               className="text-xl mt-4 text-gray-600 hover:text-gray-800"
             >
-              немає аккаунту?
+              Немає аккаунту?
             </Link>
-            <span className="text-xl text-gray-700 mt-5">або через</span>
+            <span className="text-xl text-gray-700 mt-5">А бо через</span>
             <div className="flex justify-between mt-5 w-full px-2">
               <div className="flex items-center border border-black rounded w-[48%] h-12 pl-4 cursor-pointer">
                 <img src={gogle} alt="Google" className="w-6 h-6" />

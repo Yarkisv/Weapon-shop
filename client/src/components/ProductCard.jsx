@@ -1,11 +1,11 @@
 import React from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import { useCart } from "../../contexts/cartContext";
-import { useSaved } from "../../contexts/savedContext";
-import Rating from "../../components/Rating";
-import likeOrder from "../../images/likeOrder.svg";
-import LikeOrderSaved from "../../images/LikeOrderSaved.svg";
-import basketCard from "../../images/basketCard.svg";
+import { useCart } from "../contexts/cartContext";
+import { useSaved } from "../contexts/savedContext";
+import Rating from "./Rating";
+import likeOrder from "../images/likeOrder.svg";
+import LikeOrderSaved from "../images/LikeOrderSaved.svg";
+import basketCard from "../images/basketCard.svg";
 
 export default function ProductCard({ product }) {
   const { addToCart } = useCart();

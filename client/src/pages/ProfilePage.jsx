@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import Header from "../components/Header/Header";
+import Header from "../components/Header";
 import UserInformation from "../components/UserInformation";
 import PageBasket from "../components/PageBasket";
 import WishList from "../components/WishList";

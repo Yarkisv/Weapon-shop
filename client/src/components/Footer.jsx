@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 export default function Footer() {
   return (
     <footer
@@ -5,7 +7,6 @@ export default function Footer() {
       className="bg-375C4D text-white py-10 px-4 mt-5 mb-auto "
     >
       <div className="max-w-[1440px] mx-auto grid grid-cols-1 md:grid-cols-4 gap-8">
-        {/* Название и слоган */}
         <div>
           <h2 className="text-2xl font-bold mb-2">Steel&Guns</h2>
           <p className="text-gray-400">
@@ -14,34 +15,26 @@ export default function Footer() {
           </p>
         </div>
 
-        {/* Навігація */}
         <div>
           <h3 className="font-semibold text-lg mb-3">Навігація</h3>
           <ul className="space-y-2 text-gray-300">
             <li>
-              <a href="" className="hover:underline">
-                Каталог
-              </a>
+              <a className="hover:underline">Каталог</a>
             </li>
             <li>
-              <a href="" className="hover:underline">
-                Про нас
-              </a>
+              <a className="hover:underline">Про нас</a>
             </li>
             <li>
-              <a href="" className="hover:underline">
-                Контакти
-              </a>
+              <a className="hover:underline">Контакти</a>
             </li>
             <li>
-              <a href="" className="hover:underline">
-                Юридична інформація
-              </a>
+              <Link className="hover:underline" to={"/"}>
+                На головну
+              </Link>
             </li>
           </ul>
         </div>
 
-        {/* Контакти */}
         <div>
           <h3 className="font-semibold text-lg mb-3">Контакти</h3>
           <ul className="space-y-2 text-gray-300">
@@ -51,19 +44,12 @@ export default function Footer() {
           </ul>
         </div>
 
-        {/* Соцмережі */}
         <div>
           <h3 className="font-semibold text-lg mb-3">Ми в соцмережах</h3>
           <div className="flex flex-col gap-2 text-gray-300">
-            <a href="#" className="hover:text-white">
-              Facebook
-            </a>
-            <a href="#" className="hover:text-white">
-              Instagram
-            </a>
-            <a href="#" className="hover:text-white">
-              YouTube
-            </a>
+            <a className="hover:text-white">Facebook</a>
+            <a className="hover:text-white">Instagram</a>
+            <a className="hover:text-white">YouTube</a>
           </div>
         </div>
       </div>
