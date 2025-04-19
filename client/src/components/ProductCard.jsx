@@ -32,7 +32,7 @@ export default function ProductCard({ product }) {
   };
 
   return (
-    <div className="w-[300px] h-[450px] bg-white border border-black rounded-md flex flex-col items-center justify-between overflow-hidden transition duration-300 ease-in-out transform hover:scale-[1.01] hover:-translate-y-1 hover:shadow-lg">
+    <div className="w-[300px] h-[450px] bg-white border border-black/30 rounded-md flex flex-col items-center justify-between overflow-hidden transition duration-300 ease-in-out transform hover:scale-[1.01] hover:-translate-y-1 hover:shadow-lg">
       <div className="w-full h-[200px] flex justify-center items-center overflow-hidden cursor-pointer">
         <img
           src={`data:image/jpg;base64,${product.image}`}
@@ -63,7 +63,7 @@ export default function ProductCard({ product }) {
       </div>
       <div className="flex gap-4 justify-between px-2 pb-2">
         <button
-          className="flex items-center justify-center gap-1 h-10 w-[220px] bg-[#6382a1] text-white text-[20px] font-sans rounded-md transition hover:bg-[#4f6881]"
+          className="flex items-center justify-center cursor-pointer gap-1 h-10 w-[220px] bg-[#6382a1] text-white text-[20px] font-sans rounded-md transition hover:bg-[#4f6881]"
           onClick={() => addToCart(product)}
         >
           <img className="w-5 h-5" src={basketCard} alt="До корзини" />
@@ -78,7 +78,7 @@ export default function ProductCard({ product }) {
           </button>
         ) : (
           <button
-            className="w-10 h-10 border border-black flex items-center justify-center rounded-md bg-white hover:bg-gray-300"
+            className="w-10 h-10 border cursor-pointer border-black flex items-center justify-center rounded-md bg-white hover:bg-gray-300"
             onClick={() => addToSaved(product)}
           >
             <img src={likeOrder} alt="Зберегти" />

@@ -3,7 +3,7 @@ import { useModal } from "../contexts/modalContext";
 import { useCart } from "../contexts/cartContext";
 import { useNavigate } from "react-router-dom";
 import editOrder from "../images/editOrder.svg";
-import sponge from "../images/sponge.svg";
+import logoBlack from "../images/logoBlack.svg";
 import geo from "../images/geo.svg";
 import Footer from "../components/Footer";
 import axios from "axios";
@@ -15,9 +15,17 @@ export default function CheckoutPage() {
   const [recipientName, setRecipientName] = useState("");
   const [recipienSurname, setRecipienSurname] = useState("");
   const [recipienPhone, setRecipienPhone] = useState("");
-
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+
+  const [deliveryType, setDeliveryType] = useState("pickup");
+  const [selectedStore, setSelectedStore] = useState("");
+  const [selectedCity, setSelectedCity] = useState("");
+  const [deliveryAddress, setDeliveryAddress] = useState("");
+
+  const { orders, totalPrice } = useCart();
+  const { isBasketOpen, setBasketOpen } = useModal();
+  const navigate = useNavigate();
 
   useEffect(() => {
     const storedUser = JSON.parse(localStorage.getItem("user"));
@@ -26,6 +34,7 @@ export default function CheckoutPage() {
       setRecipientName(storedUser.firstname);
       setRecipienSurname(storedUser.lastname);
       setRecipienPhone(storedUser.phone);
+      setEmail(storedUser.email || "");
     }
   }, []);
 
@@ -54,88 +63,106 @@ export default function CheckoutPage() {
     }
   };
 
-  const { orders, totalPrice } = useCart();
-  const { isBasketOpen, setBasketOpen } = useModal();
-
-  const [selectedStore, setSelectedStore] = useState("");
-
-  const navigate = useNavigate();
-
   const handleBasketClicked = () => {
     setBasketOpen(!isBasketOpen);
   };
 
   const goToPayment = async () => {
     navigate("/payment");
-    const response = await axios.post("http://localhost:3000/order", {
-      phome: user.phone,
-      orderDate: "",
+    await axios.post("http://localhost:3000/order", {
+      phone: user.phone,
+      orderDate: new Date().toISOString(),
       totalPrice: totalPrice,
       orderItems: orders,
+      store: deliveryType === "pickup" ? selectedStore : null,
+      deliveryType,
+      deliveryCity: deliveryType === "courier" ? selectedCity : null,
+      deliveryAddress: deliveryType === "courier" ? deliveryAddress : null,
+      customer: {
+        firstname: recipientName,
+        lastname: recipienSurname,
+        phone: recipienPhone,
+        email: email,
+      },
     });
   };
 
   return (
-    <div className="min-h-screen bg-white">
-      <div className="max-w-[1440px] mx-auto px-4 py-6">
+    <div className="min-h-screen mx-auto bg-white">
+      <div className="w-[1440px] mx-auto">
+        <img className="mt-[10px]" src={logoBlack} alt="" />
+      </div>
+
+      <div className="max-w-[1440px] mx-auto px-4 py-6 border-t">
         <p className="text-center text-3xl font-semibold mb-6">
           Оформлення замовлення
         </p>
+
         {isAuth ? (
-          <div className="border rounded-xl p-6 bg-white max-w-md mx-auto">
+          <div className="border border-black/30 rounded-xl p-6 bg-white w-[700px] mb-[10px] mx-auto">
             <p className="text-2xl font-bold mb-6 text-gray-800">
               Особисті дані
             </p>
 
-            <div className="mb-4">
-              <label className="block text-gray-700 mb-1">Прізвище</label>
-              <input
-                type="text"
-                value={recipienSurname}
-                onChange={(e) => setRecipienSurname(e.target.value)}
-                className="w-full border border-gray-300 rounded-lg px-4 py-3 text-gray-900 focus:outline-none focus:ring-2 focus:ring-green-500"
-                placeholder="Введіть прізвище"
-              />
+            <div className="flex gap-4 mb-4">
+              <div className="w-1/2">
+                <label className="block text-gray-700 mb-1">Прізвище</label>
+                <input
+                  type="text"
+                  value={recipienSurname}
+                  onChange={(e) => setRecipienSurname(e.target.value)}
+                  className="w-full border border-gray-300 rounded-lg px-4 py-3"
+                  placeholder="Введіть прізвище"
+                />
+              </div>
+              <div className="w-1/2">
+                <label className="block text-gray-700 mb-1">Ім’я</label>
+                <input
+                  type="text"
+                  value={recipientName}
+                  onChange={(e) => setRecipientName(e.target.value)}
+                  className="w-full border border-gray-300 rounded-lg px-4 py-3"
+                  placeholder="Введіть ім’я"
+                />
+              </div>
             </div>
 
-            <div className="mb-4">
-              <label className="block text-gray-700 mb-1">Ім’я</label>
-              <input
-                type="text"
-                value={recipientName}
-                onChange={(e) => setRecipientName(e.target.value)}
-                className="w-full border border-gray-300 rounded-lg px-4 py-3 text-gray-900 focus:outline-none focus:ring-2 focus:ring-green-500"
-                placeholder="Введіть ім’я"
-              />
+            <div className="flex gap-4 mb-6">
+              <div className="w-1/2">
+                <label className="block text-gray-700 mb-1">Телефон</label>
+                <input
+                  type="text"
+                  value={recipienPhone}
+                  onChange={(e) => setRecipienPhone(e.target.value)}
+                  className="w-full border border-gray-300 rounded-lg px-4 py-3"
+                  placeholder="+380..."
+                />
+              </div>
+              <div className="w-1/2">
+                <label className="block text-gray-700 mb-1">Пошта</label>
+                <input
+                  type="email"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  className="w-full border border-gray-300 rounded-lg px-4 py-3"
+                  placeholder="email@example.com"
+                />
+              </div>
             </div>
 
-            <div className="mb-6">
-              <label className="block text-gray-700 mb-1">Телефон</label>
-              <input
-                type="text"
-                value={recipienPhone}
-                onChange={(e) => setRecipienPhone(e.target.value)}
-                className="w-full border border-gray-300 rounded-lg px-4 py-3 text-gray-900 focus:outline-none focus:ring-2 focus:ring-green-500"
-                placeholder="+380..."
-              />
-            </div>
-
-            <button className="bg-green-600 text-white w-full py-3 rounded-lg text-lg font-semibold hover:bg-green-700 transition">
+            <button className="bg-green-600 text-white w-full py-3 rounded-lg font-semibold hover:bg-green-700 transition">
               Підтвердити дані
             </button>
 
-            <p className="text-sm text-gray-500 mt-4 leading-snug text-center">
-              Продовжуючи, ви підтверджуєте, що згодні увійти до
-              <a className="text-green-700 underline mx-1">облікового запису</a>
-              та надаєте згоду на
-              <a className="text-green-700 underline ml-1">
-                обробку персональних даних
-              </a>
+            <p className="text-sm text-gray-500 mt-4 text-center">
+              Продовжуючи, ви підтверджуєте згоду з{" "}
+              <a className="text-green-700 underline">умовами обробки</a>{" "}
+              персональних даних.
             </p>
           </div>
         ) : (
           <div className="border rounded-xl p-6 bg-white max-w-md mx-auto">
-            <p className="text-2xl font-bold mb-6 text-gray-800 text-center">
+            <p className="text-2xl font-bold mb-6 text-center text-gray-800">
               Вхід в акаунт
             </p>
             <form onSubmit={handleLogin}>
@@ -145,38 +172,31 @@ export default function CheckoutPage() {
                   type="email"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
-                  className="w-full border border-gray-300 rounded-lg px-4 py-3 text-gray-900 focus:outline-none focus:ring-2 focus:ring-green-500"
-                  placeholder="Пошта"
+                  className="w-full border border-gray-300 rounded-lg px-4 py-3"
+                  placeholder="email@example.com"
                 />
               </div>
-
               <div className="mb-6">
                 <label className="block text-gray-700 mb-1">Пароль</label>
                 <input
                   type="password"
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
-                  className="w-full border border-gray-300 rounded-lg px-4 py-3 text-gray-900 focus:outline-none focus:ring-2 focus:ring-green-500"
-                  placeholder="Введіть пароль"
+                  className="w-full border border-gray-300 rounded-lg px-4 py-3"
+                  placeholder="••••••••"
                 />
               </div>
-
               <button
-                className="bg-green-600 text-white w-full py-3 rounded-lg text-lg font-semibold hover:bg-green-700 transition"
                 type="submit"
+                className="bg-green-600 text-white w-full py-3 rounded-lg font-semibold hover:bg-green-700 transition"
               >
                 Увійти
               </button>
             </form>
-
-            <p className="text-sm text-gray-500 mt-4 leading-snug text-center">
-              Натискаючи “Увійти”, ви погоджуєтеся з умовами обробки
-              персональних даних.
-            </p>
           </div>
         )}
 
-        <div className="flex flex-wrap gap-6">
+        <div className="flex flex-wrap gap-6 mt-8">
           {orders.length > 0 ? (
             <>
               <div className="flex flex-col gap-6 w-full lg:w-[1000px]">
@@ -194,7 +214,7 @@ export default function CheckoutPage() {
                   {orders.map((order) => (
                     <div
                       key={order.name}
-                      className="flex items-center mb-[20px] bg-gray-100 border-1 border-green-900 rounded-md p-4 ml-2"
+                      className="flex items-center mb-[20px] bg-gray-100 border border-green-900/30 rounded-md p-4 ml-2"
                     >
                       <img
                         className="w-20 h-20 object-contain"
@@ -203,7 +223,7 @@ export default function CheckoutPage() {
                       />
                       <div className="flex justify-between w-full">
                         <p className="text-lg font-semibold ml-[10px]">
-                          {order.name} x {order.quantity} {" од."}
+                          {order.name} x {order.quantity} од.
                         </p>
                         <p className="text-lg font-semibold">{order.price} ₴</p>
                       </div>
@@ -211,72 +231,143 @@ export default function CheckoutPage() {
                   ))}
                 </div>
 
-                <div className="bg-gray-100 border-1 border-green-900 rounded-md p-4 ml-2">
+                {/* Доставка */}
+                <div className="bg-gray-100 border border-green-900/30 rounded-md p-4 ml-2">
                   <p className="text-2xl font-bold mb-4">Доставка</p>
-                  <p className="text-lg font-semibold mb-2">Самовивіз</p>
-                  <p className="text-base text-gray-600 mb-4">
-                    Оберіть зручний магазин:
-                  </p>
-                  <div className="space-y-4">
+
+                  {/* Тип доставки */}
+                  <div className="space-y-4 mb-6">
                     {[
-                      { label: "Майдан Конституції 9", value: "option1" },
-                      { label: "Проспект Незалежності 5", value: "option2" },
-                    ].map((store) => (
+                      { label: "Самовивіз", value: "pickup" },
+                      { label: "Кур’єром", value: "courier" },
+                    ].map((option) => (
                       <label
-                        key={store.value}
+                        key={option.value}
                         className="flex items-center gap-4 cursor-pointer hover:bg-green-100 p-2 rounded-md transition"
                       >
                         <input
                           type="radio"
-                          name="store"
-                          value={store.value}
-                          checked={selectedStore === store.value}
-                          onChange={() => setSelectedStore(store.value)}
+                          name="deliveryType"
+                          value={option.value}
+                          checked={deliveryType === option.value}
+                          onChange={() => setDeliveryType(option.value)}
                           className="hidden"
                         />
                         <span className="w-5 h-5 border-2 border-green-500 rounded-full flex items-center justify-center">
                           <span
                             className={`w-3 h-3 bg-green-500 rounded-full transition-transform ${
-                              selectedStore === store.value
+                              deliveryType === option.value
                                 ? "scale-100"
                                 : "scale-0"
                             }`}
                           ></span>
                         </span>
-                        {store.label}
-                        <img src={geo} alt="geo" className="w-5 h-5 ml-auto" />
+                        {option.label}
                       </label>
                     ))}
                   </div>
+
+                  {/* Самовивіз */}
+                  {deliveryType === "pickup" && (
+                    <>
+                      <p className="text-lg font-semibold mb-2">
+                        Оберіть магазин
+                      </p>
+                      <div className="space-y-4">
+                        {[
+                          { label: "Майдан Конституції 9", value: "store1" },
+                          { label: "Проспект Незалежності 5", value: "store2" },
+                        ].map((store) => (
+                          <label
+                            key={store.value}
+                            className="flex items-center gap-4 cursor-pointer hover:bg-green-100 p-2 rounded-md transition"
+                          >
+                            <input
+                              type="radio"
+                              name="store"
+                              value={store.value}
+                              checked={selectedStore === store.value}
+                              onChange={() => setSelectedStore(store.value)}
+                              className="hidden"
+                            />
+                            <span className="w-5 h-5 border-2 border-green-500 rounded-full flex items-center justify-center">
+                              <span
+                                className={`w-3 h-3 bg-green-500 rounded-full transition-transform ${
+                                  selectedStore === store.value
+                                    ? "scale-100"
+                                    : "scale-0"
+                                }`}
+                              ></span>
+                            </span>
+                            {store.label}
+                            <img
+                              src={geo}
+                              alt="geo"
+                              className="w-5 h-5 ml-auto"
+                            />
+                          </label>
+                        ))}
+                      </div>
+                    </>
+                  )}
+
+                  {/* Кур'єром */}
+                  {deliveryType === "courier" && (
+                    <>
+                      <p className="text-lg font-semibold mt-4 mb-2">
+                        Обрати місто
+                      </p>
+                      <select
+                        className="w-full border border-gray-300 rounded-lg px-4 py-3 mb-4"
+                        value={selectedCity}
+                        onChange={(e) => setSelectedCity(e.target.value)}
+                      >
+                        <option value="">Оберіть місто</option>
+                        <option value="kyiv">Київ</option>
+                        <option value="lviv">Львів</option>
+                        <option value="kharkiv">Харків</option>
+                        <option value="dnipro">Дніпро</option>
+                        <option value="odesa">Одеса</option>
+                        <option value="zaporizhzhia">Запоріжжя</option>
+                        <option value="vinnitsa">Вінниця</option>
+                        <option value="chernivtsi">Чернівці</option>
+                        <option value="rivne">Рівне</option>
+                        <option value="poltava">Полтава</option>
+                      </select>
+
+                      <p className="text-lg font-semibold mb-2">
+                        Адреса доставки
+                      </p>
+                      <input
+                        type="text"
+                        value={deliveryAddress}
+                        onChange={(e) => setDeliveryAddress(e.target.value)}
+                        placeholder="Введіть адресу доставки"
+                        className="w-full border border-gray-300 rounded-lg px-4 py-3"
+                      />
+                    </>
+                  )}
                 </div>
               </div>
 
-              <div className="w-full lg:w-[300px] bg-gray-200 rounded-xl p-5 h-[500px] flex flex-col justify-between shadow-xl border border-gray-300">
+              <div className="w-full lg:w-[300px] bg-gray-200 rounded-xl p-5 sticky top-4 h-fit flex flex-col justify-between shadow-xl border border-gray-300">
                 <div>
                   <p className="text-2xl font-extrabold mb-2 text-gray-800">
                     Разом
                   </p>
                   <p className="text-base text-gray-700 mb-1">
-                    товарів на суму:{" "}
+                    Товарів на суму:{" "}
                     <span className="font-semibold">{totalPrice} ₴</span>
                   </p>
                   <p className="text-sm text-gray-600">
-                    Ім'я:{" "}
-                    <span className="font-medium text-gray-800">
-                      {user.firstname}
-                    </span>
+                    Ім’я: <span className="font-medium">{user.firstname}</span>
                   </p>
                   <p className="text-sm text-gray-600">
-                    Прiзвище:{" "}
-                    <span className="font-medium text-gray-800">
-                      {user.lastname}
-                    </span>
+                    Прізвище:{" "}
+                    <span className="font-medium">{user.lastname}</span>
                   </p>
                   <p className="text-sm text-gray-600">
-                    Телефон:{" "}
-                    <span className="font-medium text-gray-800">
-                      {user.phone}
-                    </span>
+                    Телефон: <span className="font-medium">{user.phone}</span>
                   </p>
                 </div>
 
@@ -288,7 +379,7 @@ export default function CheckoutPage() {
                 </div>
 
                 <button
-                  className="bg-green-600 text-white cursor-pointer w-full py-3 rounded-lg text-lg font-semibold hover:bg-green-700 transition shadow-md mt-4"
+                  className="bg-green-600 text-white w-full py-3 rounded-lg text-lg font-semibold hover:bg-green-700 transition shadow-md mt-4"
                   onClick={goToPayment}
                 >
                   💳 Перейти до оплати
@@ -296,24 +387,16 @@ export default function CheckoutPage() {
 
                 <p className="text-[12px] text-gray-500 mt-2 leading-snug">
                   Отримання замовлення від <strong>5 000 ₴</strong> до{" "}
-                  <strong>30 000 ₴</strong> — за наявності документів. При
-                  оплаті готівкою понад <strong>30 000 ₴</strong> необхідно
-                  надати документи для верифікації згідно з вимогами Закону
-                  України від 06.12.2019 №361-IX.
+                  <strong>30 000 ₴</strong> — за наявності документів...
                 </p>
               </div>
             </>
           ) : (
-            <div className="text-center text-red-500 text-xl font-semibold w-full">
-              <div className="flex flex-1 justify-center items-center">
-                <div className="flex flex-col items-center gap-4 border-2 border-[#9b181a] rounded-md p-4 shadow-md">
-                  <img
-                    src={sponge}
-                    className="w-[200px] h-[300px]"
-                    alt="Порожньо"
-                  />
-                  <p className="text-[#9b181a] text-xl font-sans text-center">
-                    Нема замовленнь
+            <div className="text-center text-black text-xl font-semibold w-full">
+              <div className="flex flex-1 mt-[20px] justify-center items-center">
+                <div className="flex flex-col items-center gap-4 border-2 border-black rounded-md p-4 shadow-md">
+                  <p className="text-black text-xl font-sans text-center">
+                    Немає замовлень
                   </p>
                 </div>
               </div>
@@ -329,6 +412,7 @@ export default function CheckoutPage() {
           )}
         </div>
       </div>
+
       <Footer />
     </div>
   );

@@ -68,7 +68,7 @@ export default function Header() {
         </div>
 
         <div
-          className="xl:hidden flex flex-col justify-around w-[30px] h-[30px] ml-4 cursor-pointer"
+          className="xl:hidden flex flex-col justify-around w-[30px] h-[30px] ml-4  cursor-pointer"
           onClick={toggleMenu}
         >
           <div className="w-full h-1 bg-white rounded-sm"></div>
@@ -77,34 +77,46 @@ export default function Header() {
         </div>
 
         {menuOpen && (
-          <div className="absolute top-[75px] left-0 w-[220px] bg-[#375c4d] z-[10000] mt-1 border-r-2 border-[#2c4d3e] rounded-tr-md rounded-br-md p-4 flex flex-col items-center gap-4">
+          <div className="absolute top-[75px] left-0 w-[220px] bg-gray-300 z-[10000] mt-1 border-r-2 border-gray-300 rounded-tr-md rounded-br-md p-4 flex flex-col items-center gap-4">
             <div
               className="flex flex-col items-center cursor-pointer"
               onClick={() => navigate("/")}
             >
-              <img className="w-[30px] h-[30px]" src={home} />
-              <p className="text-white text-[15px]">Головна</p>
+              <img
+                className="w-[30px] h-[30px] filter contrast-0 brightness-0"
+                src={home}
+              />
+              <p className="text-black text-[15px]">Головна</p>
             </div>
             <div
               className="flex flex-col items-center cursor-pointer"
               onClick={handleLikedWindow}
             >
-              <img className="w-[30px] h-[30px]" src={liked} />
-              <p className="text-white text-[15px]">Обране</p>
+              <img
+                className="w-[30px] h-[30px] filter contrast-0 brightness-0"
+                src={liked}
+              />
+              <p className="text-black text-[15px]">Обране</p>
             </div>
             <div
               className="flex flex-col items-center cursor-pointer"
               onClick={handleBasketClicked}
             >
-              <img className="w-[30px] h-[30px]" src={basket} />
-              <p className="text-white text-[15px]">Корзина</p>
+              <img
+                className="w-[30px] h-[30px] filter contrast-0 brightness-0"
+                src={basket}
+              />
+              <p className="text-black text-[15px]">Корзина</p>
             </div>
             <div
               className="flex flex-col items-center cursor-pointer"
               onClick={handleProfileClick}
             >
-              <img className="w-[30px] h-[30px]" src={profile} />
-              <p className="text-white text-[15px]">Профіль</p>
+              <img
+                className="w-[30px] h-[30px] filter contrast-0 brightness-0"
+                src={profile}
+              />
+              <p className="text-black text-[15px]">Профіль</p>
             </div>
           </div>
         )}
@@ -117,11 +129,11 @@ export default function Header() {
             placeholder="пошук..."
           />
           <button type="submit" className="pr-2">
-            <img src={search} alt="search" className="w-[36px] h-[36px]" />
+            <img src={search} alt="search" className="w-[20px] h-[20px]" />
           </button>
         </form>
 
-        <div className="hidden xl:flex items-center gap-8">
+        <div className="hidden xl:flex items-center  gap-8">
           <div
             className="flex flex-col items-center cursor-pointer transition-transform hover:scale-110"
             onClick={handleLikedWindow}

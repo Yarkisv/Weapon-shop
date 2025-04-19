@@ -178,7 +178,7 @@ export default function ProfilePage() {
               </li>
               <li
                 onClick={handleLogoutClick}
-                className="flex items-center gap-2 text-[22px] font-[Konkhmer Sleokchher] cursor-pointer text-red-600"
+                className="flex items-center gap-2 text-[22px] font-[Konkhmer Sleokchher] cursor-pointer "
               >
                 <img
                   src={logout}

@@ -291,14 +291,11 @@ export default function CatalogPage() {
                   ))}
                 </div>
               ) : (
-                <div className="text-center text-lg text-red-600 font-medium py-10 flex flex-col items-center">
-                  <div className="border-2 border-gray-300 rounded-lg p-4">
-                    <img
-                      src={sponge}
-                      alt="Not found"
-                      className="mx-auto w-40 h-auto"
-                    />
-                    <p className="mt-4 font-sans">Товарів не знайдено</p>
+                <div className="flex justify-center items-center h-[400px]">
+                  <div className="w-[400px] flex flex-col items-center gap-4 border border-black rounded-md p-4 shadow-md">
+                    <p className="text-black text-xl font-sans text-center">
+                      Товарів не знайдено
+                    </p>
                   </div>
                 </div>
               )}

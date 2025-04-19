@@ -1,13 +1,18 @@
 import Footer from "../components/Footer";
+import logoBlack from "../images/logoBlack.svg";
 
 export default function PaymentPage() {
   return (
-    <div className="min-h-screen flex flex-col bg-gray-100">
-      <main className="flex-1 max-w-4xl mx-auto px-4 py-10">
+    <div className="mx-auto min-h-screen flex flex-col bg-gray-100">
+      <div className="w-[1440px] mx-auto">
+        <img className="w-[274px] h-[65px]" src={logoBlack} alt="" />
+      </div>
+
+      <main className="flex-1 w-[1440px] mx-auto px-4 py-10 border-t">
         <h1 className="text-4xl font-bold text-center text-green-900 mb-6">
           Оплата замовлення
         </h1>
-        <div className="bg-white shadow-lg rounded-lg p-6 border border-green-800">
+        <div className="bg-white w-[550px] mx-auto shadow-lg rounded-lg p-6 border border-green-800">
           <p className="text-lg text-gray-800 mb-6">
             Введіть дані своєї картки для завершення оплати:
           </p>

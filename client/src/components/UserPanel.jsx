@@ -11,6 +11,7 @@ import partners from "../images/partners.svg";
 import reviews from "../images/reviews.svg";
 import visited from "../images/ProfilePageImg/visited.svg";
 import liked from "../images/ProfilePageImg/liked.svg";
+import logout from "../images/ProfilePageImg/logout.svg";
 
 export default function UserPanel() {
   const { isUserPanelOpen, setUserPanelOpen } = useModal();
@@ -68,14 +69,15 @@ export default function UserPanel() {
 
   return (
     <div
-      className={`fixed right-0 top-0 bg-gray-300 rounded-l-md w-[440px] h-full flex flex-col justify-between z-[9999] transition-transform duration-300 ${
+      className={`fixed right-0 top-0 bg-gray-200 rounded-l-md w-[440px] h-full flex flex-col justify-between z-[9999] transition-transform duration-300 ${
         isUserPanelOpen ? "translate-x-0" : "translate-x-full"
       }`}
     >
       <div>
         <img
-          className="filter contrast-0 brightness-0 w-5 h-5 mt-4 ml-4 cursor-pointer"
           src={cancel}
+          alt="Close saved"
+          className="w-[30px] h-[30px] ml-3 pt-2 cursor-pointer hover:opacity-70 invert"
           onClick={handleClosePanel}
         />
         {!isAuth ? (
@@ -87,7 +89,7 @@ export default function UserPanel() {
           </button>
         ) : (
           <button
-            className="w-[410px] h-[50px] bg-black text-white text-[20px] rounded ml-4 mt-4 transition-transform hover:bg-neutral-900 hover:scale-105 active:bg-neutral-950 active:scale-95"
+            className="w-[410px] h-[50px] cursor-pointer bg-black text-white text-[20px] rounded ml-4 mt-3 transition-transform hover:bg-neutral-900 hover:scale-105 active:bg-neutral-950 active:scale-95"
             onClick={handdleProfile}
           >
             Профіль
@@ -173,12 +175,17 @@ export default function UserPanel() {
         </ul>
       </div>
       {isAuth && (
-        <button
-          className="w-full h-[50px] bg-red-700 text-white cursor-pointer text-[18px] font-medium rounded-none transition-transform hover:bg-red-700 active:bg-red-800"
+        <p
+          className=" flex gap-0.5 cursor-pointer text-black ml-[12px] mb-2.5 text-[18px] font-sans transition-all duration-300 "
           onClick={handleLogoutClick}
         >
-          Вийти з профілю
-        </button>
+          <img
+            className=" filter contrast-0 brightness-0 w-7 h-7"
+            src={logout}
+            alt=""
+          />
+          Вийти
+        </p>
       )}
     </div>
   );
