@@ -7,7 +7,7 @@ import gunsWall from "../images/gunsWall.svg";
 
 export default function Register() {
   const [firstname, setFirstname] = useState("");
-  const [lastname, setLatsname] = useState("");
+  const [lastname, setLastname] = useState("");
   const [email, setEmail] = useState("");
   const [phone, setPhone] = useState("");
   const [password, setPassword] = useState("");
@@ -19,10 +19,7 @@ export default function Register() {
   const navigate = useNavigate();
 
   const validatePassword = () => {
-    if (password === "") {
-      setPasswordValid(false);
-    }
-    if (password.length < 8 || password.length > 30) {
+    if (password === "" || password.length < 8 || password.length > 30) {
       setPasswordValid(false);
     } else {
       setPasswordValid(true);
@@ -33,12 +30,7 @@ export default function Register() {
     if (password === "") {
       setPasswordValid(true);
     }
-
-    if (password !== confirmPassword) {
-      setPasswordsSame(false);
-    } else {
-      setPasswordsSame(true);
-    }
+    setPasswordsSame(password === confirmPassword);
   };
 
   useEffect(() => {
@@ -51,9 +43,8 @@ export default function Register() {
 
   const handleRegister = async (event) => {
     event.preventDefault();
-    if (!isPasswordValid || !isPasswordsSame) {
-      return;
-    }
+    if (!isPasswordValid || !isPasswordsSame) return;
+
     try {
       const response = await axios.post("http://localhost:3000/register", {
         firstname,
@@ -67,7 +58,7 @@ export default function Register() {
         navigate("/login");
       }
     } catch (error) {
-      console.log(error);
+      console.error(error);
     }
   };
 
@@ -91,66 +82,74 @@ export default function Register() {
           <img src={back} alt="Назад" className="w-5 h-5 mr-2" />
           <p className="text-lg font-sans">На головну</p>
         </div>
+
         <form onSubmit={handleRegister} className="text-center">
-          <div className="flex justify-between mb-6 px-2">
+          <div className="flex justify-between mb-6 px-0 gap-4">
             <input
               type="text"
               placeholder="Введіть ім'я"
               value={firstname}
               onChange={(e) => setFirstname(e.target.value)}
               required
-              className="w-[48%] h-12 border border-black rounded px-2 bg-gray-100 text-lg"
+              className="w-1/2 h-12 border border-black rounded pl-3 bg-gray-100 text-lg"
             />
             <input
               type="text"
               placeholder="Введіть прізвище"
               value={lastname}
-              onChange={(e) => setLatsname(e.target.value)}
+              onChange={(e) => setLastname(e.target.value)}
               required
-              className="w-[48%] h-12 border border-black rounded px-2 bg-gray-100 text-lg"
+              className="w-1/2 h-12 border border-black rounded pl-3 bg-gray-100 text-lg"
             />
           </div>
+
           <input
             type="email"
             placeholder="Введіть пошту"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             required
-            className="w-full h-12 mb-6 border border-black rounded px-2 bg-gray-100 text-lg"
+            className="w-full h-12 mb-6 border border-black rounded px-3 bg-gray-100 text-lg"
           />
+
           <input
             type="text"
             placeholder="Введіть номер телефону"
             value={phone}
             onChange={(e) => setPhone(e.target.value)}
             required
-            className="w-full h-12 mb-6 border border-black rounded px-2 bg-gray-100 text-lg"
+            className="w-full h-12 mb-6 border border-black rounded px-3 bg-gray-100 text-lg"
           />
+
           <input
             type="password"
             placeholder="Введіть пароль"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
             required
-            className="w-full h-12 mb-2 border border-black rounded px-2 bg-gray-100 text-lg"
+            className="w-full h-12 mb-2 border border-black rounded px-3 bg-gray-100 text-lg"
           />
+
           <p className="text-left text-sm px-2 text-gray-700">
             {password && !isPasswordValid
               ? "Пароль занадто короткий"
               : "Пароль повинен містити більше 8 і менше 30 символів"}
           </p>
+
           <input
             type="password"
             placeholder="Підтвердіть пароль"
             value={confirmPassword}
             onChange={(e) => setConfirmPassword(e.target.value)}
-            className="w-full h-12 mt-4 mb-2 border border-black rounded px-2 bg-gray-100 text-lg"
+            className="w-full h-12 mt-4 mb-2 border border-black rounded px-3 bg-gray-100 text-lg"
           />
+
           <p className="text-left text-sm px-2 text-gray-700">
             {!isPasswordsSame
               ? "Введені паролі не збігаються"
               : "Будь ласка, повторіть свій пароль, щоб уникнути помилок"}
           </p>
+
           <div className="flex flex-col items-center mt-6">
             <button
               type="submit"
@@ -158,6 +157,7 @@ export default function Register() {
             >
               РЕЄСТРАЦІЯ
             </button>
+
             <Link
               to="/login"
               className="text-xl mt-4 text-gray-600 hover:text-gray-800"

@@ -99,107 +99,183 @@ export default function CheckoutPage() {
         </p>
 
         {isAuth ? (
-          <div className="border border-black/30 rounded-xl p-6 bg-white w-[700px] mb-[10px] mx-auto">
-            <p className="text-2xl font-bold mb-6 text-gray-800">
-              Особисті дані
-            </p>
+          <div className="flex   gap-6 mb-[10px]">
+            <div className="border border-black/30 rounded-xl p-6 bg-gray-200 w-[1000px] ml-[8px] shadow-xl">
+              <p className="text-2xl font-bold mb-6 text-gray-800">
+                Особисті дані
+              </p>
+              <div className="flex gap-4 mb-4">
+                <div className="w-1/2">
+                  <label className="block text-gray-700 mb-1">Прізвище</label>
+                  <input
+                    type="text"
+                    value={recipienSurname}
+                    onChange={(e) => setRecipienSurname(e.target.value)}
+                    className="w-full border border-gray-300 bg-white rounded-lg px-4 py-3"
+                    placeholder="Введіть прізвище"
+                  />
+                </div>
+                <div className="w-1/2">
+                  <label className="block text-gray-700 mb-1">Ім’я</label>
+                  <input
+                    type="text"
+                    value={recipientName}
+                    onChange={(e) => setRecipientName(e.target.value)}
+                    className="w-full border border-gray-300 bg-white  rounded-lg px-4 py-3"
+                    placeholder="Введіть ім’я"
+                  />
+                </div>
+              </div>
 
-            <div className="flex gap-4 mb-4">
-              <div className="w-1/2">
-                <label className="block text-gray-700 mb-1">Прізвище</label>
-                <input
-                  type="text"
-                  value={recipienSurname}
-                  onChange={(e) => setRecipienSurname(e.target.value)}
-                  className="w-full border border-gray-300 rounded-lg px-4 py-3"
-                  placeholder="Введіть прізвище"
-                />
+              <div className="flex gap-4 mb-6">
+                <div className="w-1/2">
+                  <label className="block text-gray-700  mb-1">Телефон</label>
+                  <input
+                    type="text"
+                    value={recipienPhone}
+                    onChange={(e) => setRecipienPhone(e.target.value)}
+                    className="w-full border border-gray-300  bg-white rounded-lg px-4 py-3"
+                    placeholder="+380..."
+                  />
+                </div>
+                <div className="w-1/2">
+                  <label className="block text-gray-700 mb-1">Пошта</label>
+                  <input
+                    type="email"
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                    className="w-full border border-gray-300  bg-white rounded-lg px-4 py-3"
+                    placeholder="email@example.com"
+                  />
+                </div>
               </div>
-              <div className="w-1/2">
-                <label className="block text-gray-700 mb-1">Ім’я</label>
-                <input
-                  type="text"
-                  value={recipientName}
-                  onChange={(e) => setRecipientName(e.target.value)}
-                  className="w-full border border-gray-300 rounded-lg px-4 py-3"
-                  placeholder="Введіть ім’я"
-                />
-              </div>
+
+              <button className="bg-green-600 text-white w-full py-3 rounded-lg font-semibold hover:bg-green-700 transition">
+                Підтвердити дані
+              </button>
+
+              <p className="text-sm text-gray-500 mt-4 text-center">
+                Продовжуючи, ви підтверджуєте згоду з{" "}
+                <a className="text-green-700 underline">умовами обробки</a>{" "}
+                персональних даних.
+              </p>
             </div>
 
-            <div className="flex gap-4 mb-6">
-              <div className="w-1/2">
-                <label className="block text-gray-700 mb-1">Телефон</label>
-                <input
-                  type="text"
-                  value={recipienPhone}
-                  onChange={(e) => setRecipienPhone(e.target.value)}
-                  className="w-full border border-gray-300 rounded-lg px-4 py-3"
-                  placeholder="+380..."
-                />
+            <div className="w-full  lg:w-[300px] bg-gray-200 rounded-xl p-5 sticky top-4 flex ml-auto flex-col  shadow-xl border border-black/30">
+              <div>
+                <p className="text-2xl font-bold mb-2 text-gray-800">Разом</p>
+                <p className="text-base text-gray-700 mb-1">
+                  Товарів на суму:{" "}
+                  <span className="font-semibold">{totalPrice} ₴</span>
+                </p>
+                <p className="text-sm text-gray-600">
+                  Ім’я: <span className="font-medium">{user.firstname}</span>
+                </p>
+                <p className="text-sm text-gray-600">
+                  Прізвище: <span className="font-medium">{user.lastname}</span>
+                </p>
+                <p className="text-sm text-gray-600">
+                  Телефон: <span className="font-medium">{user.phone}</span>
+                </p>
               </div>
-              <div className="w-1/2">
-                <label className="block text-gray-700 mb-1">Пошта</label>
-                <input
-                  type="email"
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                  className="w-full border border-gray-300 rounded-lg px-4 py-3"
-                  placeholder="email@example.com"
-                />
+
+              <div className="bg-white p-4 rounded-xl flex justify-between items-center shadow-md mt-4">
+                <p className="text-gray-500 text-sm">До сплати</p>
+                <p className="text-black text-2xl font-bold">{totalPrice} ₴</p>
               </div>
+
+              <button
+                className="bg-green-600 text-white w-full py-3 rounded-lg text-lg font-semibold hover:bg-green-700 transition shadow-md mt-4"
+                onClick={goToPayment}
+              >
+                💳 Перейти до оплати
+              </button>
+
+              <p className="text-[12px] text-gray-500 mt-2 leading-snug">
+                Отримання замовлення від <strong>5 000 ₴</strong> до{" "}
+                <strong>30 000 ₴</strong> — за наявності документів...
+              </p>
             </div>
-
-            <button className="bg-green-600 text-white w-full py-3 rounded-lg font-semibold hover:bg-green-700 transition">
-              Підтвердити дані
-            </button>
-
-            <p className="text-sm text-gray-500 mt-4 text-center">
-              Продовжуючи, ви підтверджуєте згоду з{" "}
-              <a className="text-green-700 underline">умовами обробки</a>{" "}
-              персональних даних.
-            </p>
           </div>
         ) : (
-          <div className="border rounded-xl p-6 bg-white max-w-md mx-auto">
-            <p className="text-2xl font-bold mb-6 text-center text-gray-800">
-              Вхід в акаунт
-            </p>
-            <form onSubmit={handleLogin}>
-              <div className="mb-4">
-                <label className="block text-gray-700 mb-1">Пошта</label>
-                <input
-                  type="email"
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                  className="w-full border border-gray-300 rounded-lg px-4 py-3"
-                  placeholder="email@example.com"
-                />
+          <div className="flex">
+            <div className="border border-black/30 rounded-xl p-6 bg-gray-200 w-[1000px] ml-[8px] shadow-xl">
+              <p className="text-2xl font-bold mb-6 text-center text-gray-800">
+                Вхід в акаунт
+              </p>
+              <form onSubmit={handleLogin}>
+                <div className="mb-4">
+                  <label className="block text-gray-700 mb-1">Пошта</label>
+                  <input
+                    type="email"
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                    className="w-full border border-gray-300 bg-white rounded-lg px-4 py-3"
+                    placeholder="email@example.com"
+                  />
+                </div>
+                <div className="mb-6">
+                  <label className="block text-gray-700 mb-1">Пароль</label>
+                  <input
+                    type="password"
+                    value={password}
+                    onChange={(e) => setPassword(e.target.value)}
+                    className="w-full border border-gray-300 bg-white rounded-lg px-4 py-3"
+                    placeholder="Пароль"
+                  />
+                </div>
+                <button
+                  type="submit"
+                  className="bg-green-600 text-white w-full py-3 rounded-lg font-semibold hover:bg-green-700 transition"
+                >
+                  Увійти
+                </button>
+              </form>
+            </div>
+            <div className="w-full  lg:w-[300px] bg-gray-200 rounded-xl p-5 sticky top-4  flex ml-auto flex-col  shadow-xl border border-black/30">
+              <div>
+                <p className="text-2xl font-extrabold mb-2 text-gray-800">
+                  Разом
+                </p>
+                <p className="text-base text-gray-700 mb-1">
+                  Товарів на суму:{" "}
+                  <span className="font-semibold">{totalPrice} ₴</span>
+                </p>
+                <p className="text-sm text-gray-600">
+                  Ім’я: <span className="font-medium">{user.firstname}</span>
+                </p>
+                <p className="text-sm text-gray-600">
+                  Прізвище: <span className="font-medium">{user.lastname}</span>
+                </p>
+                <p className="text-sm text-gray-600">
+                  Телефон: <span className="font-medium">{user.phone}</span>
+                </p>
               </div>
-              <div className="mb-6">
-                <label className="block text-gray-700 mb-1">Пароль</label>
-                <input
-                  type="password"
-                  value={password}
-                  onChange={(e) => setPassword(e.target.value)}
-                  className="w-full border border-gray-300 rounded-lg px-4 py-3"
-                  placeholder="••••••••"
-                />
+
+              <div className="bg-white p-4 rounded-xl flex justify-between items-center shadow-md mt-4">
+                <p className="text-gray-500 text-sm">До сплати</p>
+                <p className="text-black text-2xl font-bold">{totalPrice} ₴</p>
               </div>
+
               <button
-                type="submit"
-                className="bg-green-600 text-white w-full py-3 rounded-lg font-semibold hover:bg-green-700 transition"
+                className="bg-green-600 text-white w-full py-3 rounded-lg text-lg font-semibold hover:bg-green-700 transition shadow-md mt-4"
+                onClick={goToPayment}
               >
-                Увійти
+                💳 Перейти до оплати
               </button>
-            </form>
+
+              <p className="text-[12px] text-gray-500 mt-2 leading-snug">
+                Отримання замовлення від <strong>5 000 ₴</strong> до{" "}
+                <strong>30 000 ₴</strong> — за наявності документів...
+              </p>
+            </div>
           </div>
         )}
 
         <div className="flex flex-wrap gap-6 mt-8">
           {orders.length > 0 ? (
             <>
-              <div className="flex flex-col gap-6 w-full lg:w-[1000px]">
+              <div className="flex flex-col gap-6 w-full ">
                 <div>
                   <div className="flex justify-between items-center mb-2">
                     <p className="text-2xl font-bold ml-2">Замовлення</p>
@@ -348,47 +424,6 @@ export default function CheckoutPage() {
                     </>
                   )}
                 </div>
-              </div>
-
-              <div className="w-full lg:w-[300px] bg-gray-200 rounded-xl p-5 sticky top-4 h-fit flex flex-col justify-between shadow-xl border border-gray-300">
-                <div>
-                  <p className="text-2xl font-extrabold mb-2 text-gray-800">
-                    Разом
-                  </p>
-                  <p className="text-base text-gray-700 mb-1">
-                    Товарів на суму:{" "}
-                    <span className="font-semibold">{totalPrice} ₴</span>
-                  </p>
-                  <p className="text-sm text-gray-600">
-                    Ім’я: <span className="font-medium">{user.firstname}</span>
-                  </p>
-                  <p className="text-sm text-gray-600">
-                    Прізвище:{" "}
-                    <span className="font-medium">{user.lastname}</span>
-                  </p>
-                  <p className="text-sm text-gray-600">
-                    Телефон: <span className="font-medium">{user.phone}</span>
-                  </p>
-                </div>
-
-                <div className="bg-white p-4 rounded-xl flex justify-between items-center shadow-md mt-4">
-                  <p className="text-gray-500 text-sm">До сплати</p>
-                  <p className="text-black text-2xl font-bold">
-                    {totalPrice} ₴
-                  </p>
-                </div>
-
-                <button
-                  className="bg-green-600 text-white w-full py-3 rounded-lg text-lg font-semibold hover:bg-green-700 transition shadow-md mt-4"
-                  onClick={goToPayment}
-                >
-                  💳 Перейти до оплати
-                </button>
-
-                <p className="text-[12px] text-gray-500 mt-2 leading-snug">
-                  Отримання замовлення від <strong>5 000 ₴</strong> до{" "}
-                  <strong>30 000 ₴</strong> — за наявності документів...
-                </p>
               </div>
             </>
           ) : (

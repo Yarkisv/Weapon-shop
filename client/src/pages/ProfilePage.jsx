@@ -69,8 +69,8 @@ export default function ProfilePage() {
           Вітаємо, {user.firstname}!
         </p>
         <div className="flex border-t border-gray-600 w-[1285px] mt-8 ml-6">
-          <aside className="w-[250px] h-[600px] mt-5 border-r border-gray-600">
-            <ul className="flex flex-col gap-5 list-none text-gray-600 p-0 m-0">
+          <aside className="w-[250px] h-[600px]  border-r border-gray-600">
+            <ul className="flex flex-col mt-5 gap-5 list-none text-gray-600 p-0 m-0">
               <li className="flex items-center gap-2 text-[22px] font-[Konkhmer Sleokchher] cursor-pointer">
                 <img
                   src={profile}
