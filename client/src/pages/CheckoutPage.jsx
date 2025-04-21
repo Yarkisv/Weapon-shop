@@ -15,14 +15,15 @@ export default function CheckoutPage() {
   const [recipientName, setRecipientName] = useState("");
   const [recipienSurname, setRecipienSurname] = useState("");
   const [recipienPhone, setRecipienPhone] = useState("");
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
 
   const [deliveryType, setDeliveryType] = useState("pickup");
   const [selectedStore, setSelectedStore] = useState("");
   const [selectedCity, setSelectedCity] = useState("");
-  const [deliveryAddress, setDeliveryAddress] = useState("");
-  const [paymentMethod, setPaymentMethod] = useState("cash");
+  const [deliveryLocation, setDeliveryLocation] = useState("  ");
+  const [paymentMethod, setPaymentMethod] = useState("Карткою");
+
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
 
   const { orders, totalPrice } = useCart();
   const { isBasketOpen, setBasketOpen } = useModal();
@@ -69,23 +70,24 @@ export default function CheckoutPage() {
   };
 
   const goToPayment = async () => {
-    navigate("/payment");
+    console.log(orders);
+
+    const minimalOrderItems = orders.map((item) => ({
+      product_id: item.product_id,
+      quantity: item.quantity,
+      price: item.price,
+    }));
+
     await axios.post("http://localhost:3000/order", {
-      phone: user.phone,
-      orderDate: new Date().toISOString(),
-      totalPrice: totalPrice,
-      orderItems: orders,
-      store: deliveryType === "pickup" ? selectedStore : null,
-      deliveryType,
-      deliveryCity: deliveryType === "courier" ? selectedCity : null,
-      deliveryAddress: deliveryType === "courier" ? deliveryAddress : null,
-      customer: {
-        firstname: recipientName,
-        lastname: recipienSurname,
-        phone: recipienPhone,
-        email: email,
-      },
+      phone: recipienPhone,
+      orderDate: new Date().toISOString().slice(0, 19).replace("T", " "),
+      totalPrice,
+      deliveryLocation,
+      city: selectedCity,
+      paymentMethod,
+      orderItems: minimalOrderItems,
     });
+    navigate("/payment");
   };
 
   return (
@@ -95,7 +97,6 @@ export default function CheckoutPage() {
           className="mt-[10px] cursor-pointer"
           onClick={() => navigate("/")}
           src={logoBlack}
-          alt=""
         />
       </div>
 
@@ -108,7 +109,7 @@ export default function CheckoutPage() {
           <div className="flex   gap-6 mb-[10px]">
             <div className="border border-black/30 rounded-xl p-6 bg-gray-200 w-[1000px] ml-[8px] shadow-xl">
               <p className="text-2xl font-bold mb-6 text-gray-800">
-                Особисті дані
+                Дані отрумувача
               </p>
               <div className="flex gap-4 mb-4">
                 <div className="w-1/2">
@@ -247,15 +248,7 @@ export default function CheckoutPage() {
                   Товарів на суму:{" "}
                   <span className="font-semibold">{totalPrice} ₴</span>
                 </p>
-                <p className="text-sm text-gray-600">
-                  Ім’я: <span className="font-medium">{user.firstname}</span>
-                </p>
-                <p className="text-sm text-gray-600">
-                  Прізвище: <span className="font-medium">{user.lastname}</span>
-                </p>
-                <p className="text-sm text-gray-600">
-                  Телефон: <span className="font-medium">{user.phone}</span>
-                </p>
+                <p>Ви не увійшли у свій обліковий запис</p>
               </div>
 
               <div className="bg-white p-4 rounded-xl flex justify-between items-center shadow-md mt-4">
@@ -301,7 +294,6 @@ export default function CheckoutPage() {
                       <img
                         className="w-20 h-20 object-contain"
                         src={`data:image/jpg;base64,${order.image}`}
-                        alt={order.name}
                       />
                       <div className="flex justify-between w-full">
                         <p className="text-lg font-semibold ml-[10px]">
@@ -313,11 +305,9 @@ export default function CheckoutPage() {
                   ))}
                 </div>
 
-                {/* Доставка */}
                 <div className="bg-gray-100 border border-green-900/30 rounded-md p-4 ml-2">
                   <p className="text-2xl font-bold mb-4">Доставка</p>
 
-                  {/* Тип доставки */}
                   <div className="space-y-4 mb-6">
                     {[
                       { label: "Самовивіз", value: "pickup" },
@@ -326,7 +316,7 @@ export default function CheckoutPage() {
                     ].map((option) => (
                       <label
                         key={option.value}
-                        className="flex items-center gap-4 cursor-pointer hover:bg-green-100 p-2 rounded-md transition"
+                        className="flex items-center gap-4 cursor-pointer p-2 rounded-md transition"
                       >
                         <input
                           type="radio"
@@ -336,9 +326,9 @@ export default function CheckoutPage() {
                           onChange={() => setDeliveryType(option.value)}
                           className="hidden"
                         />
-                        <span className="w-5 h-5 border-2 border-green-500 rounded-full flex items-center justify-center">
+                        <span className="w-5 h-5 border-2 border-slate-950 rounded-full flex items-center justify-center">
                           <span
-                            className={`w-3 h-3 bg-green-500 rounded-full transition-transform ${
+                            className={`w-3 h-3 bg-slate-950 rounded-full transition-transform ${
                               deliveryType === option.value
                                 ? "scale-100"
                                 : "scale-0"
@@ -350,7 +340,6 @@ export default function CheckoutPage() {
                     ))}
                   </div>
 
-                  {/* Самовивіз */}
                   {deliveryType === "pickup" && (
                     <>
                       <p className="text-lg font-semibold mb-2">
@@ -363,7 +352,7 @@ export default function CheckoutPage() {
                         ].map((store) => (
                           <label
                             key={store.value}
-                            className="flex items-center gap-4 cursor-pointer hover:bg-green-100 p-2 rounded-md transition"
+                            className="flex items-center gap-4 cursor-pointer p-2 rounded-md transition"
                           >
                             <input
                               type="radio"
@@ -373,9 +362,9 @@ export default function CheckoutPage() {
                               onChange={() => setSelectedStore(store.value)}
                               className="hidden"
                             />
-                            <span className="w-5 h-5 border-2 border-green-500 rounded-full flex items-center justify-center">
+                            <span className="w-5 h-5 border-2 border-slate-950 rounded-full flex items-center justify-center">
                               <span
-                                className={`w-3 h-3 bg-green-500 rounded-full transition-transform ${
+                                className={`w-3 h-3 bg-slate-950 rounded-full transition-transform ${
                                   selectedStore === store.value
                                     ? "scale-100"
                                     : "scale-0"
@@ -393,15 +382,13 @@ export default function CheckoutPage() {
                       </div>
                     </>
                   )}
-
-                  {/* Кур'єром */}
                   {deliveryType === "courier" && (
                     <>
                       <p className="text-lg font-semibold mt-4 mb-2">
                         Обрати місто
                       </p>
                       <select
-                        className="w-full border border-gray-300 rounded-lg px-4 py-3 mb-4"
+                        className="w-full border border-slate-950 rounded-lg px-4 py-3 mb-4"
                         value={selectedCity}
                         onChange={(e) => setSelectedCity(e.target.value)}
                       >
@@ -423,21 +410,20 @@ export default function CheckoutPage() {
                       </p>
                       <input
                         type="text"
-                        value={deliveryAddress}
-                        onChange={(e) => setDeliveryAddress(e.target.value)}
+                        value={deliveryLocation}
+                        onChange={(e) => setDeliveryLocation(e.target.value)}
                         placeholder="Введіть адресу доставки"
-                        className="w-full border border-gray-300 rounded-lg px-4 py-3"
+                        className="w-full border border-slate-950 rounded-lg px-4 py-3"
                       />
                     </>
                   )}
-                  {/* Пошта */}
                   {deliveryType === "postal" && (
                     <>
                       <p className="text-lg font-semibold mt-4 mb-2">
                         Оберіть місто
                       </p>
                       <select
-                        className="w-full border border-gray-300 rounded-lg px-4 py-3 mb-4"
+                        className="w-full border border-slate-950 rounded-lg px-4 py-3 mb-4"
                         value={selectedCity}
                         onChange={(e) => setSelectedCity(e.target.value)}
                       >
@@ -453,7 +439,7 @@ export default function CheckoutPage() {
                         Відділення Нової Пошти
                       </p>
                       <select
-                        className="w-full border border-gray-300 rounded-lg px-4 py-3"
+                        className="w-full border border-slate-950 rounded-lg px-4 py-3"
                         value={deliveryAddress}
                         onChange={(e) => setDeliveryAddress(e.target.value)}
                       >
@@ -466,23 +452,21 @@ export default function CheckoutPage() {
                     </>
                   )}
                 </div>
-                {/* Оплата */}
                 <div className="bg-gray-100 border border-green-900/30 rounded-md p-4 ml-2">
                   <p className="text-2xl font-bold mb-4">Оплата</p>
 
-                  {/* Готівка */}
-                  <label className="flex items-center gap-4 cursor-pointer hover:bg-green-100 p-2 rounded-md transition">
+                  <label className="flex items-center gap-4 cursor-pointer p-2 rounded-md transition">
                     <input
                       type="radio"
                       name="paymentMethod"
                       value="cash"
                       checked={paymentMethod === "cash"}
-                      onChange={() => setPaymentMethod("cash")}
+                      onChange={() => setPaymentMethod("Готівкою")}
                       className="hidden"
                     />
-                    <span className="w-5 h-5 border-2 border-green-500 rounded-full flex items-center justify-center">
+                    <span className="w-5 h-5 border-2 border-slate-950 rounded-full flex items-center justify-center">
                       <span
-                        className={`w-3 h-3 bg-green-500 rounded-full transition-transform ${
+                        className={`w-3 h-3 bg-slate-950 rounded-full transition-transform ${
                           paymentMethod === "cash" ? "scale-100" : "scale-0"
                         }`}
                       ></span>
@@ -490,19 +474,18 @@ export default function CheckoutPage() {
                     Готівка
                   </label>
 
-                  {/* Картка */}
-                  <label className="flex items-center gap-4 cursor-pointer hover:bg-green-100 p-2 rounded-md transition">
+                  <label className="flex items-center gap-4 cursor-pointer p-2 rounded-md transition">
                     <input
                       type="radio"
                       name="paymentMethod"
                       value="card"
                       checked={paymentMethod === "card"}
-                      onChange={() => setPaymentMethod("card")}
+                      onChange={() => setPaymentMethod("Карткою")}
                       className="hidden"
                     />
-                    <span className="w-5 h-5 border-2 border-green-500 rounded-full flex items-center justify-center">
+                    <span className="w-5 h-5 border-2 border-slate-950 rounded-full flex items-center justify-center">
                       <span
-                        className={`w-3 h-3 bg-green-500 rounded-full transition-transform ${
+                        className={`w-3 h-3 bg-slate-950 rounded-full transition-transform ${
                           paymentMethod === "card" ? "scale-100" : "scale-0"
                         }`}
                       ></span>
@@ -533,7 +516,6 @@ export default function CheckoutPage() {
           )}
         </div>
       </div>
-
       <Footer />
     </div>
   );

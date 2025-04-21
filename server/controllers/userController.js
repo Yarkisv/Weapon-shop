@@ -16,9 +16,16 @@ export const getUser = (req, res) => {
         return res.status(404).json({ message: "User not found" });
       }
 
-      const userData = JSON.stringify(result[0]);
+      const user = result[0];
 
-      console.log("User found: \n" + userData);
+      const userData = {
+        user_id: user.user_id,
+        firstname: user.firstname,
+        lastname: user.lastname,
+        email: user.email,
+        phone: user.phone,
+      };
+      
       return res.status(200).json({ user: result[0], message: "User found" });
     });
   } catch (error) {

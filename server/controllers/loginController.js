@@ -19,13 +19,6 @@ export const loginUser = async (req, res) => {
     return res.status(401).json({ message: "Email is incorrect" });
   }
 
-  // if (!UserModel.validatePassword(password)) {
-  //   console.error("Password must be more than 8 and less than 30 symbols");
-  //   return res.status(401).json({
-  //     message: "Password must be more than 8 and less than 30 symbols",
-  //   });
-  // }
-
   try {
     const query = "select * from users where email = ?";
 
@@ -49,8 +42,16 @@ export const loginUser = async (req, res) => {
         return res.status(401).json({ message: "Wrong password" });
       }
 
-      const token = jwt.sign(user, process.env.JWT_SECRET, {
-        expiresIn: "1h",
+      const payload = {
+        user_id: user.user_id,
+        firstname: user.firstname,
+        lastname: user.lastname,
+        email: user.email,
+        phone: user.phone,
+      };
+
+      const token = jwt.sign(payload, process.env.JWT_SECRET, {
+        expiresIn: "24h",
       });
 
       console.log("User found, login successful");
@@ -58,7 +59,7 @@ export const loginUser = async (req, res) => {
       return res.status(200).json({
         message: "Login successful",
         token,
-        user: user,
+        user: payload,
         isAuth: true,
       });
     });
