@@ -10,7 +10,6 @@ import gunsWall from "../images/gunsWall.svg";
 export default function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-
   const navigate = useNavigate();
 
   const handleLogin = async (event) => {
@@ -22,9 +21,7 @@ export default function Login() {
       });
 
       if (response.status === 200) {
-        const token = response.data.token;
-        const IsAuth = response.data.IsAuth;
-        const user = response.data.user;
+        const { token, IsAuth, user } = response.data;
 
         localStorage.setItem("token", token);
         localStorage.setItem("isAuth", IsAuth);
@@ -39,70 +36,71 @@ export default function Login() {
 
   return (
     <div
-      className="min-h-screen bg-cover bg-center bg-no-repeat flex flex-col  bg-[#5f6a54] items-center justify-center"
+      className="min-h-screen flex items-center justify-center bg-[#1f1f1f] bg-cover bg-no-repeat px-4"
       style={{ backgroundImage: `url(${gunsWall})` }}
     >
-      <p className="text-white font-bold text-5xl font-[Konkhmer Sleokchher] mt-10">
-        STEEL & GUNS
-      </p>
-      <p className="text-white text-3xl font-semibold font-[Konkhmer Sleokchher] mt-5">
-        LOGIN
-      </p>
-
-      <div className="w-[550px] mt-6 bg-white rounded shadow-lg border border-black p-6">
+      <div className="w-full max-w-md bg-white bg-opacity-90 rounded-2xl p-8 shadow-2xl border border-gray-300">
         <div
-          className="flex items-center mb-4 cursor-pointer"
+          className="flex items-center mb-6 cursor-pointer"
           onClick={() => navigate("/")}
         >
           <img src={back} alt="Назад" className="w-5 h-5 mr-2" />
-          <p className="text-lg font-sans">На головну</p>
+          <span className="text-sm text-gray-700 hover:underline">
+            На головну
+          </span>
         </div>
-        <form onSubmit={handleLogin} className="text-center">
-          <div className="flex flex-col gap-6">
-            <input
-              type="email"
-              placeholder="Введіть пошту"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              required
-              className="w-full h-12 border border-black rounded px-2 bg-gray-100 text-lg"
-            />
-            <input
-              type="password"
-              placeholder="Введіть пароль"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              required
-              className="w-full h-12 border border-black rounded px-2 bg-gray-100 text-lg"
-            />
-          </div>
 
-          <div className="flex flex-col items-center mt-6">
-            <button
-              type="submit"
-              className="w-full h-14 bg-black text-white text-lg rounded cursor-pointer hover:bg-neutral-900 active:bg-neutral-950"
-            >
-              Увійти
-            </button>
-            <Link
-              to="/register"
-              className="text-xl mt-4 text-gray-600 hover:text-gray-800"
-            >
-              Немає аккаунту?
-            </Link>
-            <span className="text-xl text-gray-700 mt-5">А бо через</span>
-            <div className="flex justify-between mt-5 w-full px-2">
-              <div className="flex items-center border border-black rounded w-[48%] h-12 pl-4 cursor-pointer">
-                <img src={gogle} alt="Google" className="w-6 h-6" />
-                <span className="ml-4">Google</span>
-              </div>
-              <div className="flex items-center border border-black rounded w-[48%] h-12 pl-4 cursor-pointer">
-                <img src={face} alt="Facebook" className="w-6 h-6" />
-                <span className="ml-4">Facebook</span>
-              </div>
-            </div>
-          </div>
+        <h2 className="text-center text-3xl font-bold text-gray-900 mb-2">
+          STEEL & GUNS
+        </h2>
+        <p className="text-center text-lg text-gray-600 mb-6">Авторизація</p>
+
+        <form onSubmit={handleLogin} className="space-y-5">
+          <input
+            type="email"
+            placeholder="Email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            required
+            className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-black"
+          />
+          <input
+            type="password"
+            placeholder="Пароль"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            required
+            className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-black"
+          />
+          <button
+            type="submit"
+            className="w-full py-3 bg-black text-white font-semibold rounded-lg hover:bg-neutral-800 transition"
+          >
+            Увійти
+          </button>
         </form>
+
+        <div className="text-center mt-4">
+          <Link
+            to="/register"
+            className="text-sm text-gray-600 hover:underline"
+          >
+            Немає аккаунту? Зареєструватись
+          </Link>
+        </div>
+
+        <div className="my-6 text-center text-gray-500">Або увійти через</div>
+
+        <div className="flex justify-between space-x-4">
+          <button className="flex items-center justify-center w-1/2 py-3 border border-gray-300 rounded-lg hover:bg-gray-100 transition">
+            <img src={gogle} alt="Google" className="w-5 h-5 mr-2" />
+            Google
+          </button>
+          <button className="flex items-center justify-center w-1/2 py-3 border border-gray-300 rounded-lg hover:bg-gray-100 transition">
+            <img src={face} alt="Facebook" className="w-5 h-5 mr-2" />
+            Facebook
+          </button>
+        </div>
       </div>
     </div>
   );

@@ -1,11 +1,19 @@
 import Footer from "../components/Footer";
 import logoBlack from "../images/logoBlack.svg";
+import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 
 export default function PaymentPage() {
+  const navigate = useNavigate();
   return (
     <div className="mx-auto min-h-screen flex flex-col bg-gray-100">
       <div className="w-[1440px] mx-auto">
-        <img className="w-[274px] h-[65px]" src={logoBlack} alt="" />
+        <img
+          className="w-[274px] h-[65px] cursor-pointer "
+          onClick={() => navigate("/")}
+          src={logoBlack}
+          alt=""
+        />
       </div>
 
       <main className="flex-1 w-[1440px] mx-auto px-4 py-10 border-t">

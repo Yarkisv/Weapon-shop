@@ -9,7 +9,11 @@ export default function ProtectedAuthRoute({ children }) {
   ) : (
     <div>
       <Header />
-      <h1>Log in firstly</h1>
+      <div className="flex items-center justify-center h-screen">
+        <div className="text-black text-xl font-sans text-center border border-black rounded-md p-4 shadow-md">
+          Спершу увійдіть
+        </div>
+      </div>
     </div>
   );
 }

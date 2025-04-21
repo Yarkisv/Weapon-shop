@@ -10,7 +10,7 @@ import { useModal } from "../contexts/modalContext";
 import home from "../images/home.svg";
 import search from "../images/search.svg";
 import { useNavigate } from "react-router-dom";
-import { FiX } from "react-icons/fi"; // добавлена иконка закрытия
+import { FiX } from "react-icons/fi";
 
 export default function Header() {
   const {
@@ -54,7 +54,7 @@ export default function Header() {
   const navigate = useNavigate();
 
   return (
-    <div className="w-full h-[75px] z-[9999] bg-[#375c4d] flex items-center fixed top-0 left-0">
+    <div className="w-full h-[75px] z-[9999] bg-[#375c4d] flex items-center  top-0 left-0">
       <div className="max-w-[1440px] w-full mx-auto flex items-center justify-between px-4 lg:px-0">
         <div className="hidden xl:flex items-center gap-4">
           <img

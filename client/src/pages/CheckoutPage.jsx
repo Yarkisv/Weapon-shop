@@ -22,6 +22,7 @@ export default function CheckoutPage() {
   const [selectedStore, setSelectedStore] = useState("");
   const [selectedCity, setSelectedCity] = useState("");
   const [deliveryAddress, setDeliveryAddress] = useState("");
+  const [paymentMethod, setPaymentMethod] = useState("cash");
 
   const { orders, totalPrice } = useCart();
   const { isBasketOpen, setBasketOpen } = useModal();
@@ -90,7 +91,12 @@ export default function CheckoutPage() {
   return (
     <div className="min-h-screen mx-auto bg-white">
       <div className="w-[1440px] mx-auto">
-        <img className="mt-[10px]" src={logoBlack} alt="" />
+        <img
+          className="mt-[10px] cursor-pointer"
+          onClick={() => navigate("/")}
+          src={logoBlack}
+          alt=""
+        />
       </div>
 
       <div className="max-w-[1440px] mx-auto px-4 py-6 border-t">
@@ -150,7 +156,7 @@ export default function CheckoutPage() {
                 </div>
               </div>
 
-              <button className="bg-green-600 text-white w-full py-3 rounded-lg font-semibold hover:bg-green-700 transition">
+              <button className="bg-green-600 cursor-pointer text-white w-full py-3 rounded-lg font-semibold hover:bg-green-700 transition">
                 Підтвердити дані
               </button>
 
@@ -185,7 +191,7 @@ export default function CheckoutPage() {
               </div>
 
               <button
-                className="bg-green-600 text-white w-full py-3 rounded-lg text-lg font-semibold hover:bg-green-700 transition shadow-md mt-4"
+                className="bg-green-600 text-white w-full cursor-pointer py-3 rounded-lg text-lg font-semibold hover:bg-green-700 transition shadow-md mt-4"
                 onClick={goToPayment}
               >
                 💳 Перейти до оплати
@@ -316,6 +322,7 @@ export default function CheckoutPage() {
                     {[
                       { label: "Самовивіз", value: "pickup" },
                       { label: "Кур’єром", value: "courier" },
+                      { label: "Поштою", value: "postal" },
                     ].map((option) => (
                       <label
                         key={option.value}
@@ -423,6 +430,85 @@ export default function CheckoutPage() {
                       />
                     </>
                   )}
+                  {/* Пошта */}
+                  {deliveryType === "postal" && (
+                    <>
+                      <p className="text-lg font-semibold mt-4 mb-2">
+                        Оберіть місто
+                      </p>
+                      <select
+                        className="w-full border border-gray-300 rounded-lg px-4 py-3 mb-4"
+                        value={selectedCity}
+                        onChange={(e) => setSelectedCity(e.target.value)}
+                      >
+                        <option value="">Оберіть місто</option>
+                        <option value="kyiv">Київ</option>
+                        <option value="lviv">Львів</option>
+                        <option value="kharkiv">Харків</option>
+                        <option value="dnipro">Дніпро</option>
+                        <option value="odesa">Одеса</option>
+                      </select>
+
+                      <p className="text-lg font-semibold mb-2">
+                        Відділення Нової Пошти
+                      </p>
+                      <select
+                        className="w-full border border-gray-300 rounded-lg px-4 py-3"
+                        value={deliveryAddress}
+                        onChange={(e) => setDeliveryAddress(e.target.value)}
+                      >
+                        <option value="">Оберіть відділення</option>
+                        <option value="np1">Відділення №1</option>
+                        <option value="np2">Відділення №2</option>
+                        <option value="np3">Відділення №3</option>
+                        <option value="np4">Відділення №4</option>
+                      </select>
+                    </>
+                  )}
+                </div>
+                {/* Оплата */}
+                <div className="bg-gray-100 border border-green-900/30 rounded-md p-4 ml-2">
+                  <p className="text-2xl font-bold mb-4">Оплата</p>
+
+                  {/* Готівка */}
+                  <label className="flex items-center gap-4 cursor-pointer hover:bg-green-100 p-2 rounded-md transition">
+                    <input
+                      type="radio"
+                      name="paymentMethod"
+                      value="cash"
+                      checked={paymentMethod === "cash"}
+                      onChange={() => setPaymentMethod("cash")}
+                      className="hidden"
+                    />
+                    <span className="w-5 h-5 border-2 border-green-500 rounded-full flex items-center justify-center">
+                      <span
+                        className={`w-3 h-3 bg-green-500 rounded-full transition-transform ${
+                          paymentMethod === "cash" ? "scale-100" : "scale-0"
+                        }`}
+                      ></span>
+                    </span>
+                    Готівка
+                  </label>
+
+                  {/* Картка */}
+                  <label className="flex items-center gap-4 cursor-pointer hover:bg-green-100 p-2 rounded-md transition">
+                    <input
+                      type="radio"
+                      name="paymentMethod"
+                      value="card"
+                      checked={paymentMethod === "card"}
+                      onChange={() => setPaymentMethod("card")}
+                      className="hidden"
+                    />
+                    <span className="w-5 h-5 border-2 border-green-500 rounded-full flex items-center justify-center">
+                      <span
+                        className={`w-3 h-3 bg-green-500 rounded-full transition-transform ${
+                          paymentMethod === "card" ? "scale-100" : "scale-0"
+                        }`}
+                      ></span>
+                    </span>
+                    Картка
+                  </label>
                 </div>
               </div>
             </>

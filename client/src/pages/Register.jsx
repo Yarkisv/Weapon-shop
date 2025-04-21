@@ -18,28 +18,13 @@ export default function Register() {
 
   const navigate = useNavigate();
 
-  const validatePassword = () => {
-    if (password === "" || password.length < 8 || password.length > 30) {
-      setPasswordValid(false);
-    } else {
-      setPasswordValid(true);
-    }
-  };
-
-  const comparePasswords = () => {
-    if (password === "") {
-      setPasswordValid(true);
-    }
-    setPasswordsSame(password === confirmPassword);
-  };
-
   useEffect(() => {
-    validatePassword();
+    setPasswordValid(password.length >= 8 && password.length <= 30);
   }, [password]);
 
   useEffect(() => {
-    comparePasswords();
-  }, [confirmPassword]);
+    setPasswordsSame(password === confirmPassword);
+  }, [confirmPassword, password]);
 
   const handleRegister = async (event) => {
     event.preventDefault();
@@ -64,76 +49,77 @@ export default function Register() {
 
   return (
     <div
-      className="min-h-screen bg-cover bg-center bg-no-repeat flex flex-col items-center bg-[#5f6a54] justify-center"
+      className="min-h-screen flex items-center justify-center bg-[#1f1f1f] bg-cover bg-no-repeat px-4"
       style={{ backgroundImage: `url(${gunsWall})` }}
     >
-      <p className="text-white font-bold text-5xl font-[Konkhmer Sleokchher] mt-10">
-        STEEL & GUNS
-      </p>
-      <p className="text-white text-3xl font-semibold font-[Konkhmer Sleokchher] mt-5">
-        REGISTER
-      </p>
-
-      <div className="w-[550px] mt-6 bg-white rounded shadow-lg border border-black p-6">
+      <div className="w-full max-w-xl bg-white bg-opacity-90 rounded-2xl p-8 shadow-2xl border border-gray-300">
         <div
-          className="flex items-center mb-4 cursor-pointer"
+          className="flex items-center mb-6 cursor-pointer"
           onClick={() => navigate("/")}
         >
           <img src={back} alt="Назад" className="w-5 h-5 mr-2" />
-          <p className="text-lg font-sans">На головну</p>
+          <span className="text-sm text-gray-700 hover:underline">
+            На головну
+          </span>
         </div>
 
-        <form onSubmit={handleRegister} className="text-center">
-          <div className="flex justify-between mb-6 px-0 gap-4">
+        <h2 className="text-center text-3xl font-bold text-gray-900 mb-2">
+          STEEL & GUNS
+        </h2>
+        <p className="text-center text-lg text-gray-600 mb-6">Реєстрація</p>
+
+        <form onSubmit={handleRegister} className="space-y-5">
+          <div className="flex gap-4">
             <input
               type="text"
-              placeholder="Введіть ім'я"
+              placeholder="Ім’я"
               value={firstname}
               onChange={(e) => setFirstname(e.target.value)}
               required
-              className="w-1/2 h-12 border border-black rounded pl-3 bg-gray-100 text-lg"
+              className="w-1/2 px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-black"
             />
             <input
               type="text"
-              placeholder="Введіть прізвище"
+              placeholder="Прізвище"
               value={lastname}
               onChange={(e) => setLastname(e.target.value)}
               required
-              className="w-1/2 h-12 border border-black rounded pl-3 bg-gray-100 text-lg"
+              className="w-1/2 px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-black"
             />
           </div>
 
           <input
             type="email"
-            placeholder="Введіть пошту"
+            placeholder="Email"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             required
-            className="w-full h-12 mb-6 border border-black rounded px-3 bg-gray-100 text-lg"
+            className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-black"
           />
 
           <input
             type="text"
-            placeholder="Введіть номер телефону"
+            placeholder="Телефон"
             value={phone}
             onChange={(e) => setPhone(e.target.value)}
             required
-            className="w-full h-12 mb-6 border border-black rounded px-3 bg-gray-100 text-lg"
+            className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-black"
           />
 
           <input
             type="password"
-            placeholder="Введіть пароль"
+            placeholder="Пароль"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
             required
-            className="w-full h-12 mb-2 border border-black rounded px-3 bg-gray-100 text-lg"
+            className={`w-full px-4 py-3 border ${
+              isPasswordValid ? "border-gray-300" : "border-red-500"
+            } rounded-lg focus:outline-none focus:ring-2 focus:ring-black`}
           />
-
-          <p className="text-left text-sm px-2 text-gray-700">
+          <p className="text-sm text-gray-600">
             {password && !isPasswordValid
-              ? "Пароль занадто короткий"
-              : "Пароль повинен містити більше 8 і менше 30 символів"}
+              ? "Пароль має бути від 8 до 30 символів"
+              : " "}
           </p>
 
           <input
@@ -141,28 +127,27 @@ export default function Register() {
             placeholder="Підтвердіть пароль"
             value={confirmPassword}
             onChange={(e) => setConfirmPassword(e.target.value)}
-            className="w-full h-12 mt-4 mb-2 border border-black rounded px-3 bg-gray-100 text-lg"
+            required
+            className={`w-full px-4 py-3 border ${
+              isPasswordsSame ? "border-gray-300" : "border-red-500"
+            } rounded-lg focus:outline-none focus:ring-2 focus:ring-black`}
           />
-
-          <p className="text-left text-sm px-2 text-gray-700">
+          <p className="text-sm text-gray-600">
             {!isPasswordsSame
-              ? "Введені паролі не збігаються"
-              : "Будь ласка, повторіть свій пароль, щоб уникнути помилок"}
+              ? "Паролі не збігаються"
+              : "Повторіть пароль для підтвердження"}
           </p>
 
-          <div className="flex flex-col items-center mt-6">
-            <button
-              type="submit"
-              className="w-full h-14 bg-black text-white text-lg rounded hover:bg-neutral-900 cursor-pointer active:bg-neutral-950"
-            >
-              РЕЄСТРАЦІЯ
-            </button>
+          <button
+            type="submit"
+            className="w-full py-3 bg-black text-white font-semibold rounded-lg hover:bg-neutral-800 transition"
+          >
+            Зареєструватися
+          </button>
 
-            <Link
-              to="/login"
-              className="text-xl mt-4 text-gray-600 hover:text-gray-800"
-            >
-              Маєте аккаунт?
+          <div className="text-center mt-4">
+            <Link to="/login" className="text-sm text-gray-600 hover:underline">
+              Вже є акаунт? Увійти
             </Link>
           </div>
         </form>
