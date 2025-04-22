@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import logoFinal from "../images/logoFinal.svg";
+import logoBlack from "../images/logoBlack.svg";
 import basket from "../images/basket.svg";
 import liked from "../images/liked.svg";
 import visited from "../images/ProfilePageImg/visited.svg";
@@ -87,8 +88,16 @@ export default function Header() {
               onClick={toggleMenu}
             ></div>
 
-            <div className="absolute top-[-2px] left-0 w-[240px] h-[calc(100vh-2px)] bg-white z-[10000] mt-1 border-r-2 border-gray-300 rounded-tr-md rounded-br-md p-4 flex flex-col gap-4 overflow-y-auto">
-              <div className="flex justify-end">
+            <div className="fixed top-0 left-0 w-[280px] h-screen bg-white z-[10000] shadow-lg transition-transform duration-300 ease-in-out rounded-tr-xl rounded-br-xl overflow-y-auto">
+              <div className="flex items-center justify-between px-4 py-3 border-b border-gray-200">
+                <img
+                  src={logoBlack}
+                  className="w-[140px] cursor-pointer"
+                  onClick={() => {
+                    navigate("/");
+                    toggleMenu();
+                  }}
+                />
                 <FiX
                   size={24}
                   className="cursor-pointer text-gray-700"
@@ -97,78 +106,102 @@ export default function Header() {
               </div>
 
               <div
-                className="flex items-center gap-3 cursor-pointer"
-                onClick={() => navigate("/")}
-              >
-                <img
-                  className="w-[30px] h-[30px] filter contrast-0 brightness-0"
-                  src={home}
-                  alt="Головна"
-                />
-                <p className="text-black text-[15px]">Головна</p>
-              </div>
-
-              <div
-                className="flex items-center gap-3 cursor-pointer"
-                onClick={handleLikedWindow}
-              >
-                <img
-                  className="w-[30px] h-[30px] filter contrast-0 brightness-0"
-                  src={liked}
-                  alt="Обране"
-                />
-                <p className="text-black text-[15px]">Обране</p>
-              </div>
-
-              <div
-                className="flex items-center gap-3 cursor-pointer"
-                onClick={handleBasketClicked}
-              >
-                <img
-                  className="w-[30px] h-[30px] filter contrast-0 brightness-0"
-                  src={basket}
-                  alt="Корзина"
-                />
-                <p className="text-black text-[15px]">Корзина</p>
-              </div>
-
-              <div
-                className="flex items-center gap-3 cursor-pointer"
+                className="px-4 py-3 flex items-center gap-3 border-b border-gray-200 cursor-pointer"
                 onClick={handleProfileClick}
               >
                 <img
-                  className="w-[30px] h-[30px] filter contrast-0 brightness-0"
                   src={profile}
                   alt="Профіль"
+                  className="w-[30px] h-[30px] filter contrast-0 brightness-0 transition-transform hover:scale-110 "
                 />
-                <p className="text-black text-[15px]">Профіль</p>
+                <div>
+                  <p className="font-semibold text-[15px]">Ваш профіль</p>
+                  <p className="text-sm text-gray-500">Особистий кабінет</p>
+                </div>
               </div>
 
-              <div className="flex items-center gap-3 cursor-pointer">
-                <img
-                  className="w-[30px] h-[30px] filter contrast-0 brightness-0"
-                  src={visited}
-                  alt="Переглянуте"
-                />
-                <p className="text-black text-[15px]">Переглянуте</p>
+              <div className="px-4 py-2">
+                <p className="text-xs text-gray-600 uppercase mb-2">
+                  Навігація
+                </p>
+
+                <div
+                  className="flex items-center gap-3 py-2 cursor-pointer"
+                  onClick={() => {
+                    navigate("/");
+                    toggleMenu();
+                  }}
+                >
+                  <img
+                    src={home}
+                    alt="Головна"
+                    className="w-[24px] h-[24px] filter contrast-0 brightness-0 transition-transform hover:scale-110"
+                  />
+                  <p className="text-[15px]">Головна</p>
+                </div>
+
+                <div
+                  className="flex items-center gap-3 py-2 cursor-pointer"
+                  onClick={() => {
+                    handleLikedWindow();
+                    toggleMenu();
+                  }}
+                >
+                  <img
+                    src={liked}
+                    alt="Обране"
+                    className="w-[24px] h-[24px] filter contrast-0 brightness-0 transition-transform hover:scale-110"
+                  />
+                  <p className="text-[15px]">Обране</p>
+                </div>
+
+                <div
+                  className="flex items-center gap-3 py-2 cursor-pointer"
+                  onClick={() => {
+                    handleBasketClicked();
+                    toggleMenu();
+                  }}
+                >
+                  <img
+                    src={basket}
+                    alt="Корзина"
+                    className="w-[24px] h-[24px] filter contrast-0 brightness-0 transition-transform hover:scale-110"
+                  />
+                  <p className="text-[15px]">Корзина</p>
+                </div>
               </div>
 
-              <div className="flex items-center gap-3 cursor-pointer">
-                <img
-                  className="w-[30px] h-[30px] filter contrast-0 brightness-0"
-                  src={history}
-                  alt="Історія замовлень"
-                />
-                <p className="text-black text-[15px]">Історія замовлень</p>
-              </div>
+              <hr className="my-2" />
 
-              <div className="flex items-center gap-3 cursor-pointer">
-                <img
-                  className="w-[30px] h-[30px] filter contrast-0 brightness-0"
-                  src={chat}
-                  alt="Чат-бот"
-                />
-                <p className="text-black text-[15px]">Чат-бот</p>
+              <div className="px-4 py-2">
+                <p className="text-xs text-gray-400 uppercase mb-2">Інше</p>
+
+                <div className="flex items-center gap-3 py-2 cursor-pointer">
+                  <img
+                    src={visited}
+                    alt="Переглянуте"
+                    className="w-[24px] h-[24px] filter contrast-0 brightness-0 transition-transform hover:scale-110"
+                  />
+                  <p className="text-[15px]">Переглянуте</p>
+                </div>
+
+                <div className="flex items-center gap-3 py-2 cursor-pointer">
+                  <img
+                    src={history}
+                    alt="Історія"
+                    className="w-[24px] h-[24px] filter contrast-0 brightness-0 transition-transform hover:scale-110"
+                  />
+                  <p className="text-[15px]">Історія замовлень</p>
+                </div>
+
+                <div className="flex items-center gap-3 py-2 cursor-pointer">
+                  <img
+                    src={chat}
+                    alt="Чат-бот"
+                    className="w-[24px] h-[24px] filter contrast-0 brightness-0 transition-transform hover:scale-110"
+                  />
+                  <p className="text-[15px]">Чат-бот</p>
+                </div>
               </div>
             </div>
           </>

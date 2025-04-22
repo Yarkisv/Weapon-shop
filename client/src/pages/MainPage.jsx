@@ -2,24 +2,25 @@ import React from "react";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 import { useNavigate } from "react-router-dom";
-import mainPageBg from "../images/mainPageBg.svg";
 import knifesCategory from "../images/knifesCategory.svg";
 import gunsCategory from "../images/gunsCategory.svg";
 import bulletsCategory from "../images/bulletsCategory.svg";
 import clothesCategory from "../images/clothesCategory.svg";
 import planesCategory from "../images/planesCategory.svg";
 import tanksCategory from "../images/tanksCategory.svg";
+import bgPlanesTanks from "../images/bgPlanesTanks.svg";
+import backgroundCategory from "../images/backgroundCategory.svg";
 import bulletSound from "../sounds/bulletSound.mp3";
 import gunSound from "../sounds/gunSound.mp3";
 import clothSound from "../sounds/clothSound.mp3";
 import knifeSound from "../sounds/knifeSound.mp3";
 import planeSound from "../sounds/planeSound.mp3";
 import tankSound from "../sounds/tankSound.mp3";
-import planeMain from "../images/planeMain.svg";
 
 export default function MainPage() {
   const navigate = useNavigate();
 
+  // Звуки
   const bulletAudio = new Audio(bulletSound);
   const gunAudio = new Audio(gunSound);
   const clothAudio = new Audio(clothSound);
@@ -49,79 +50,134 @@ export default function MainPage() {
   };
 
   return (
-    <div>
+    <div className="bg-[#50593F]">
       <Header />
       <div
-        className="flex flex-col relative overflow-x-hidden mx-auto gap-5 max-w-[1440px]"
+        className="flex flex-col relative overflow-x-hidden mx-auto gap-[20px] max-w-[1440px] py-8"
         style={{
-          backgroundImage: `url(${mainPageBg})`,
           backgroundPosition: "center",
           backgroundRepeat: "no-repeat",
-          height: "778px",
-          width: "1440px",
+          backgroundSize: "cover",
         }}
       >
-        <div className="flex">
-          <div className="flex items-center w-full ml-[88px] gap-5 mt-[35px]">
+        {/* Верхний блок с категориями */}
+        <div className="flex justify-center gap-4 flex-wrap px-8">
+          {/* Категория: оружие */}
+          <div
+            className="relative cursor-pointer "
+            onClick={() => navigate("/catalog/guns")}
+            // onMouseEnter={playSound(gunAudio)}
+            // onMouseLeave={stopSound(gunAudio)}
+          >
             <img
-              onClick={() => navigate("/catalog/guns")}
-              // onMouseEnter={playSound(gunAudio)}
-              // onMouseLeave={stopSound(gunAudio)}
-              className="transition-transform duration-300 ease-in-out hover:scale-[1.08] cursor-pointer"
-              src={gunsCategory}
+              src={backgroundCategory}
+              className="w-full h-full object-cover"
             />
-            <img
-              onClick={() => navigate("/catalog/bullets")}
-              // onMouseEnter={playSound(bulletAudio)}
-              // onMouseLeave={stopSound(bulletAudio)}
-              className="transition-transform duration-300 ease-in-out hover:scale-[1.08] cursor-pointer"
-              src={bulletsCategory}
-            />
+            <div className="absolute inset-0 m-auto flex justify-center items-center transition-transform duration-300 ease-in-out hover:scale-[1.08]">
+              <img
+                src={gunsCategory}
+                alt="guns"
+                className="w-[90%] h-[90%] object-contain pointer-events-none"
+              />
+            </div>
           </div>
-          <div className="flex items-center justify-end w-full mr-[88px] gap-5 mt-[35px]">
+
+          {/* Категория: пули */}
+          <div
+            className="relative cursor-pointer "
+            onClick={() => navigate("/catalog/bullets")}
+            // onMouseEnter={playSound(bulletAudio)}
+            // onMouseLeave={stopSound(bulletAudio)}
+          >
             <img
-              onClick={() => navigate("/catalog/khifes")}
-              // onMouseEnter={playSound(knifeAudio)}
-              // onMouseLeave={stopSound(knifeAudio)}
-              className="transition-transform duration-300 ease-in-out hover:scale-[1.08] cursor-pointer mr-[-4px]"
-              src={knifesCategory}
+              src={backgroundCategory}
+              className="w-full h-full object-cover"
             />
+            <div className="absolute inset-0 m-auto flex justify-center items-center transition-transform duration-300 ease-in-out hover:scale-[1.08]">
+              <img
+                src={bulletsCategory}
+                alt="bullets"
+                className="w-[90%] h-[90%] object-contain pointer-events-none"
+              />
+            </div>
+          </div>
+
+          {/* Категория: ножи */}
+          <div
+            className="relative cursor-pointer "
+            onClick={() => navigate("/catalog/khifes")}
+            // onMouseEnter={playSound(knifeAudio)}
+            // onMouseLeave={stopSound(knifeAudio)}
+          >
             <img
-              onClick={() => navigate("/catalog/ammunition")}
-              // onMouseEnter={playSound(clothAudio)}
-              // onMouseLeave={stopSound(clothAudio)}
-              className="transition-transform duration-300 ease-in-out hover:scale-[1.08] cursor-pointer"
-              src={clothesCategory}
+              src={backgroundCategory}
+              className="w-full h-full object-cover"
             />
+            <div className="absolute inset-0 m-auto flex justify-center items-center transition-transform duration-300 ease-in-out hover:scale-[1.08]">
+              <img
+                src={knifesCategory}
+                alt="knifes"
+                className="w-[90%] h-[90%] object-contain pointer-events-none"
+              />
+            </div>
+          </div>
+
+          {/* Категория: экипировка */}
+          <div
+            className="relative cursor-pointer "
+            onClick={() => navigate("/catalog/ammunition")}
+            // onMouseEnter={playSound(clothAudio)}
+            // onMouseLeave={stopSound(clothAudio)}
+          >
+            <img
+              src={backgroundCategory}
+              className="w-full h-full object-cover"
+            />
+            <div className="absolute inset-0 m-auto flex justify-center items-center transition-transform duration-300 ease-in-out hover:scale-[1.08]">
+              <img
+                src={clothesCategory}
+                alt="clothes"
+                className="w-[90%] h-[90%] object-contain pointer-events-none"
+              />
+            </div>
           </div>
         </div>
 
-        <div className="flex justify-center items-center gap-[44px] w-full">
-          <img
-            src={planesCategory}
+        {/* Блок с техникой */}
+        <div className="flex justify-center items-center gap-[20px] px-8 flex-wrap">
+          {/* Категория: самолёты */}
+          <div
+            className="relative cursor-pointer "
             onClick={() => navigate("/catalog/military-aircrafts")}
             // onMouseEnter={playSound(planeAudio)}
             // onMouseLeave={stopSound(planeAudio)}
-            className="transition-transform duration-300 ease-in-out hover:scale-[1.08] cursor-pointer"
-          />
-          <img
-            src={tanksCategory}
+          >
+            <img src={bgPlanesTanks} className="w-full h-full object-cover" />
+            <div className="absolute inset-0 m-auto flex justify-center items-center transition-transform duration-300 ease-in-out hover:scale-[1.08]">
+              <img
+                src={planesCategory}
+                alt="planes"
+                className="w-[90%] h-[90%] object-contain pointer-events-none"
+              />
+            </div>
+          </div>
+
+          {/* Категория: танки */}
+          <div
+            className="relative cursor-pointer "
             onClick={() => navigate("/catalog/tanks")}
             // onMouseEnter={playSound(tankAudio)}
             // onMouseLeave={stopSound(tankAudio)}
-            className="transition-transform duration-300 ease-in-out hover:scale-[1.08] cursor-pointer"
-          />
-        </div>
-
-        <div className="absolute top-[20%] left-1/2 transform -translate-x-1/2 -translate-y-[20%] flex flex-col gap-[30px] items-center">
-          <img
-            src={planeMain}
-            className="transition-transform duration-300 ease-in-out hover:scale-105 cursor-pointer"
-          />
-
-          <h1 className="not-italic text-white text-[40px] whitespace-nowrap m-0">
-            NEW "F-14B TOMCAT"
-          </h1>
+          >
+            <img src={bgPlanesTanks} className="w-full h-full object-cover" />
+            <div className="absolute inset-0 m-auto flex justify-center items-center transition-transform duration-300 ease-in-out hover:scale-[1.08]">
+              <img
+                src={tanksCategory}
+                alt="tanks"
+                className="w-[90%] h-[90%] object-contain pointer-events-none"
+              />
+            </div>
+          </div>
         </div>
       </div>
       <Footer />

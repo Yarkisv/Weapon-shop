@@ -285,7 +285,7 @@ export default function CatalogPage() {
                 </label>
               </div>
               {filteredProducts.length > 0 ? (
-                <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-3.5">
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
                   {filteredProducts.map((product) => (
                     <ProductCard key={product.product_id} product={product} />
                   ))}

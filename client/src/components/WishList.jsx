@@ -22,7 +22,7 @@ export default function WishList() {
         </div>
 
         {saved.length > 0 ? (
-          <div className="flex flex-col gap-3 max-h-[500px] overflow-y-auto pr-2">
+          <div className="flex flex-col gap-3 max-h-[660px] overflow-y-auto pr-2">
             {saved.map((savedProduct) => (
               <div
                 key={savedProduct.product_id}

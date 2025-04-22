@@ -33,7 +33,7 @@ export default function PageBasket() {
         {orders.length > 0 ? (
           <>
             {/* Список заказов */}
-            <div className="flex flex-col gap-3 max-h-[460px] overflow-y-auto pr-2">
+            <div className="flex flex-col gap-3 max-h-[660px] overflow-y-auto pr-2">
               {orders.map((order) => (
                 <div
                   key={order.product_id}

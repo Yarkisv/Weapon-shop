@@ -233,7 +233,7 @@ export default function CheckoutPage() {
                 </div>
                 <button
                   type="submit"
-                  className="bg-green-600 text-white w-full py-3 rounded-lg font-semibold hover:bg-green-700 transition"
+                  className="bg-green-600 text-white w-full py-3 rounded-lg cursor-pointer  font-semibold hover:bg-green-700 transition"
                 >
                   Увійти
                 </button>
@@ -248,7 +248,9 @@ export default function CheckoutPage() {
                   Товарів на суму:{" "}
                   <span className="font-semibold">{totalPrice} ₴</span>
                 </p>
-                <p>Ви не увійшли у свій обліковий запис</p>
+                <p className="text-base text-red-500 mb-1">
+                  Ви не увійшли у свій обліковий запис
+                </p>
               </div>
 
               <div className="bg-white p-4 rounded-xl flex justify-between items-center shadow-md mt-4">
@@ -257,7 +259,7 @@ export default function CheckoutPage() {
               </div>
 
               <button
-                className="bg-green-600 text-white w-full py-3 rounded-lg text-lg font-semibold hover:bg-green-700 transition shadow-md mt-4"
+                className="bg-green-600 text-white w-full py-3 cursor-pointer rounded-lg text-lg font-semibold hover:bg-green-700 transition shadow-md mt-4"
                 onClick={goToPayment}
               >
                 💳 Перейти до оплати
@@ -440,8 +442,8 @@ export default function CheckoutPage() {
                       </p>
                       <select
                         className="w-full border border-slate-950 rounded-lg px-4 py-3"
-                        value={deliveryAddress}
-                        onChange={(e) => setDeliveryAddress(e.target.value)}
+                        value={deliveryLocation}
+                        onChange={(e) => setDeliveryLocation(e.target.value)}
                       >
                         <option value="">Оберіть відділення</option>
                         <option value="np1">Відділення №1</option>
@@ -461,7 +463,7 @@ export default function CheckoutPage() {
                       name="paymentMethod"
                       value="cash"
                       checked={paymentMethod === "cash"}
-                      onChange={() => setPaymentMethod("Готівкою")}
+                      onChange={() => setPaymentMethod("cash")}
                       className="hidden"
                     />
                     <span className="w-5 h-5 border-2 border-slate-950 rounded-full flex items-center justify-center">
@@ -480,7 +482,7 @@ export default function CheckoutPage() {
                       name="paymentMethod"
                       value="card"
                       checked={paymentMethod === "card"}
-                      onChange={() => setPaymentMethod("Карткою")}
+                      onChange={() => setPaymentMethod("card")}
                       className="hidden"
                     />
                     <span className="w-5 h-5 border-2 border-slate-950 rounded-full flex items-center justify-center">
@@ -496,21 +498,23 @@ export default function CheckoutPage() {
               </div>
             </>
           ) : (
-            <div className="text-center text-black text-xl font-semibold w-full">
-              <div className="flex flex-1 mt-[20px] justify-center items-center">
-                <div className="flex flex-col items-center gap-4 border-2 border-black rounded-md p-4 shadow-md">
-                  <p className="text-black text-xl font-sans text-center">
-                    Немає замовлень
-                  </p>
+            <div className="bg-gray-100 border border-green-900/30 rounded-md p-4 ml-2">
+              <p className="text-2xl font-bold mb-4">Оплата</p>
+
+              <div className="flex gap-4">
+                <div className="flex items-center gap-4 p-3 border border-slate-950 rounded-lg bg-white cursor-pointer hover:bg-green-100 transition">
+                  <span className="w-5 h-5 border-2 border-slate-950 rounded-full flex items-center justify-center">
+                    <span className="w-3 h-3 bg-slate-950 rounded-full"></span>
+                  </span>
+                  Готівка
                 </div>
-              </div>
-              <div className="mt-4">
-                <p
-                  onClick={() => navigate("/catalog/guns")}
-                  className="inline-block bg-green-500 text-white py-2 px-4 rounded-md text-lg font-semibold hover:bg-green-600 transition cursor-pointer"
-                >
-                  Перейти до каталогу
-                </p>
+
+                <div className="flex items-center gap-4 p-3 border border-slate-950 rounded-lg bg-white cursor-pointer hover:bg-green-100 transition">
+                  <span className="w-5 h-5 border-2 border-slate-950 rounded-full flex items-center justify-center">
+                    <span className="w-3 h-3 bg-slate-950 rounded-full"></span>
+                  </span>
+                  Картка
+                </div>
               </div>
             </div>
           )}
