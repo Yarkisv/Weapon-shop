@@ -3,58 +3,52 @@ import { FaEdit } from "react-icons/fa";
 
 export default function UserInformation({ user }) {
   return (
-    <div className="w-full">
-      <div className="flex items-center justify-between mt-[10px] ml-[20px] mr-[20px]">
-        <h1 className="text-2xl font-bold text-gray-800">Персональні дані</h1>
+    <div className="w-full max-w-[1080px] mx-auto bg-white p-6 rounded-xl shadow-lg">
+      <div className="flex items-center justify-between mb-6 border-b pb-4">
+        <h1 className="text-3xl font-semibold text-gray-800">
+          Персональні дані
+        </h1>
 
-        <button className="flex items-center gap-2 text-blue-500 hover:text-blue-600 cursor-pointer transition">
-          <FaEdit className="text-[18px]" />
-          <span className="text-[16px] font-[Konkhmer Sleokchher]">
+        <button className="flex items-center gap-2 text-blue-600 hover:text-blue-700 transition">
+          <FaEdit className="text-lg" />
+          <span className="text-base font-medium cursor-pointer ">
             Редагувати
           </span>
         </button>
       </div>
 
-      <div className="grid grid-cols-[repeat(auto-fill,minmax(200px,1fr))] gap-[30px] w-[1015px] mt-6 ml-5 border border-gray-300 rounded-lg p-6 shadow-sm">
-        <label className="text-[18px] font-[Konkhmer Sleokchher] pt-2  max-h-[100px] w-full">
-          <p className="mb-1 ">Ім'я:</p>
-          <div className="flex items-center max-w-[200px] h-10 border border-gray-400 rounded-lg px-3 bg-white shadow-inner">
-            <p className="m-0 text-[16px] text-gray-800 cursor-pointer truncate w-full">
-              {user.firstname}
-            </p>
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+        <div>
+          <p className="text-sm text-gray-500 mb-1">Ім'я</p>
+          <div className="px-4 py-2 bg-gray-100 rounded-lg border border-gray-300 text-gray-800">
+            {user.firstname || "-"}
           </div>
-        </label>
+        </div>
 
-        <label className="text-[18px] font-[Konkhmer Sleokchher] pt-2  max-h-[100px] w-full">
-          <p className="mb-1 ">Прізвище:</p>
-          <div className="flex items-center max-w-[200px] h-10 border border-gray-400 rounded-lg px-3 bg-white shadow-inner">
-            <p className="m-0 text-[16px] text-gray-800 cursor-pointer truncate w-full">
-              {user.lastname}
-            </p>
+        <div>
+          <p className="text-sm text-gray-500 mb-1">Прізвище</p>
+          <div className="px-4 py-2 bg-gray-100 rounded-lg border border-gray-300 text-gray-800">
+            {user.lastname || "-"}
           </div>
-        </label>
+        </div>
 
-        <label className="text-[18px] font-[Konkhmer Sleokchher] pt-2  max-h-[100px] w-full">
-          <p className="mb-1 ">Пошта:</p>
-          <div className="flex items-center max-w-[200px] h-10 border border-gray-400 rounded-lg px-3 bg-white shadow-inner">
-            <p className="m-0 text-[16px] text-gray-800 cursor-pointer truncate w-full">
-              {user.email}
-            </p>
+        <div>
+          <p className="text-sm text-gray-500 mb-1">Пошта</p>
+          <div className="px-4 py-2 bg-gray-100 rounded-lg border border-gray-300 text-gray-800">
+            {user.email || "-"}
           </div>
-        </label>
+        </div>
 
-        <label className="text-[18px] font-[Konkhmer Sleokchher] pt-2  max-h-[100px] w-full">
-          <p className="mb-1 ">Номер телефону:</p>
-          <div className="flex items-center max-w-[200px] h-10 border border-gray-400 rounded-lg px-3 bg-white shadow-inner">
-            <p className="m-0 text-[16px] text-gray-800 cursor-pointer truncate w-full">
-              {user.phone}
-            </p>
+        <div>
+          <p className="text-sm text-gray-500 mb-1">Номер телефону</p>
+          <div className="px-4 py-2 bg-gray-100 rounded-lg border border-gray-300 text-gray-800">
+            {user.phone || "-"}
           </div>
-        </label>
+        </div>
       </div>
 
-      <div className="mt-5 ml-5">
-        <button className="text-white bg-green-600 hover:bg-green-700 cursor-pointer rounded px-6 py-2 text-[16px] font-[Konkhmer Sleokchher]">
+      <div className="mt-8 text-right">
+        <button className="bg-green-600 hover:bg-green-700 cursor-pointer text-white px-6 py-2 rounded-lg text-base font-semibold transition">
           Зберегти
         </button>
       </div>

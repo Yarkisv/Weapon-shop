@@ -86,11 +86,9 @@ export default function SavedWindow() {
             ))}
           </div>
         ) : (
-          <div className="flex flex-1 justify-center items-center">
-            <div className="flex flex-col items-center gap-4 border-2 border-black rounded-md p-4 shadow-md">
-              <p className="text-black text-xl font-sans text-center">
-                Ви не додали жодного товару
-              </p>
+          <div className="flex justify-center items-center h-full">
+            <div className="text-center text-gray-500 text-lg">
+              Ви не додали жодного товару
             </div>
           </div>
         )}

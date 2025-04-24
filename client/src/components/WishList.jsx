@@ -7,66 +7,60 @@ export default function WishList() {
   const { saved, removeFromSaved, clearSaved } = useSaved();
 
   return (
-    <div className="ml-5 mt-5 w-[1015px] relative">
-      <h1 className="text-2xl mb-[15px] font-bold text-gray-800">Обране</h1>
+    <div className="max-w-5xl mx-auto mt-10 px-4">
+      <h1 className="text-3xl font-bold text-gray-800 mb-6">Обране</h1>
 
-      <div className="border border-[#1c1c1c] rounded p-4 pt-6 bg-white">
-        <div className="flex justify-end mb-4">
-          <button onClick={clearSaved}>
-            <img
-              src={trash}
-              alt="Clear wishlist"
-              className="w-[25px] h-[25px] curor-pointer hover:scale-110 transition-transform"
-            />
+      <div className="bg-white border border-gray-300 rounded-xl p-6 shadow-md relative">
+        <div className="flex justify-between items-center mb-4">
+          <p className="text-lg text-gray-600">Ваш список вподобаного</p>
+          <button
+            onClick={clearSaved}
+            className="text-red-600 hover:text-red-700 cursor-pointer transition"
+            title="Очистити список"
+          >
+            <img src={trash} alt="Clear wishlist" className="w-5 h-5" />
           </button>
         </div>
 
         {saved.length > 0 ? (
-          <div className="flex flex-col gap-3 max-h-[660px] overflow-y-auto pr-2">
-            {saved.map((savedProduct) => (
+          <div className="relative max-h-[500px] overflow-y-auto pr-2 space-y-4">
+            {saved.map((product) => (
               <div
-                key={savedProduct.product_id}
-                className="flex items-center gap-3 border bg-gray-100 p-2 rounded-md"
+                key={product.product_id}
+                className="flex items-center gap-4 border border-gray-200 rounded-lg p-4 bg-gray-50"
               >
                 <img
-                  src={`data:image/jpg;base64,${savedProduct.image}`}
-                  alt={savedProduct.name}
-                  className="w-[120px] h-[90px] rounded object-contain"
+                  src={`data:image/jpg;base64,${product.image}`}
+                  alt={product.name}
+                  className="w-[100px] h-[80px] rounded object-contain"
                 />
 
-                <button
-                  className="bg-transparent border-none"
-                  onClick={() => removeFromSaved(savedProduct.product_id)}
-                >
-                  <img
-                    className="w-[20px] h-[20px] hover:scale-110 active:scale-95 transition-transform"
-                    src={trash}
-                    alt="Remove item"
-                  />
-                </button>
-
                 <div className="flex-1">
-                  <h4 className="text-[14px] font-['M_PLUS_2'] text-[#9b181a] m-0">
-                    {savedProduct.name}
+                  <h4 className="text-base font-semibold text-gray-800">
+                    {product.name}
                   </h4>
-                  <p className="text-[13px] font-['M_PLUS_2'] text-black m-0 pt-1">
-                    <span className="font-semibold">Code:</span>{" "}
-                    {savedProduct.article}
+                  <p className="text-sm text-gray-600">
+                    <span className="font-medium">Код:</span> {product.article}
                   </p>
-                  <p className="text-[13px] font-['M_PLUS_2'] text-black m-0 pt-1">
-                    <span className="font-semibold">Price:</span>{" "}
-                    {savedProduct.price} $
+                  <p className="text-sm text-gray-600">
+                    <span className="font-medium">Ціна:</span> {product.price} $
                   </p>
                 </div>
+
+                <button
+                  onClick={() => removeFromSaved(product.product_id)}
+                  className="text-red-500 hover:text-red-700 cursor-pointer transition"
+                  title="Видалити товар"
+                >
+                  <img src={trash} alt="Remove item" className="w-4 h-4" />
+                </button>
               </div>
             ))}
           </div>
         ) : (
-          <div className="flex justify-center items-center h-[400px]">
-            <div className="w-[400px] flex flex-col items-center gap-4 border border-black rounded-md p-4 shadow-md">
-              <p className="text-black text-xl font-sans text-center">
-                Ви не додали жодного товару
-              </p>
+          <div className="flex justify-center items-center h-[300px]">
+            <div className="text-center text-gray-500 text-lg">
+              Ви не додали жодного товару
             </div>
           </div>
         )}

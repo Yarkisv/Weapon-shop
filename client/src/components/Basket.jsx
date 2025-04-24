@@ -119,9 +119,9 @@ export default function Basket() {
               ))}
             </div>
           ) : (
-            <div className="flex items-center justify-center h-full">
-              <div className="text-black text-xl font-sans text-center border border-black rounded-md p-4 shadow-md">
-                Корзина порожня
+            <div className="flex justify-center items-center h-full">
+              <div className="text-center text-gray-500 text-lg">
+                Ви не додали жодного товару
               </div>
             </div>
           )}
