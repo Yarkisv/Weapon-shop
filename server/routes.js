@@ -6,6 +6,7 @@ import { authMiddleware } from "./middlewares/authMiddleware.js";
 import { getCatalog } from "./controllers/catalogConroller.js";
 import { getProductByName } from "./controllers/catalogConroller.js";
 import { createOrder } from "./controllers/orderController.js";
+import { getOrders } from "./controllers/getOrdersContorller.js";
 
 const router = express.Router();
 
@@ -31,6 +32,10 @@ router.get("/catalog/:category/:name", (req, res) => {
 
 router.post("/order", (req, res) => {
   createOrder(req, res);
+});
+
+router.get("/orders", authMiddleware, (req, res) => {
+  getOrders(req, res);
 });
 
 export default router;

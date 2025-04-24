@@ -1,11 +1,13 @@
 import connection from "../db_config.js";
 import path from "path";
 import fs from "fs";
+import { error } from "console";
 
 export function getCatalog(req, res) {
   console.log("Received request for catalog");
 
   const productCategory = req.params.category;
+  console.log(productCategory);
 
   let query = "";
 
@@ -21,6 +23,7 @@ export function getCatalog(req, res) {
               p.number_of_reviews,
               p.rating,
               p.description_,
+              p.path_to,
               m.manufacturer_name,
               m.country,
               w.caliber,
@@ -28,8 +31,7 @@ export function getCatalog(req, res) {
               w.length,
               w.color,
               w.stock,
-              w.stock_type,
-              w.path_to
+              w.stock_type
             from Products p 
             join Weapons w on p.product_id = w.product_id
             join Manufacturers m on p.manufacturer_id = m.manufacturer_id
@@ -46,6 +48,7 @@ export function getCatalog(req, res) {
               p.number_of_reviews,
               p.rating,
               p.description_,
+              p.path_to,
               m.manufacturer_name,
               m.country,
               t.armor_thickness,
@@ -59,8 +62,7 @@ export function getCatalog(req, res) {
               t.operational_range,
               t.armor_type,
               t.fuel_capacity,
-              t.transmission_type,
-              t.path_to
+              t.transmission_type
             from Products p 
             join Tanks t on p.product_id = t.product_id
             join Manufacturers m on p.manufacturer_id = m.manufacturer_id
@@ -77,6 +79,7 @@ export function getCatalog(req, res) {
               p.number_of_reviews,
               p.rating,
               p.description_,
+              p.path_to,
               m.manufacturer_name,
               m.country,
               a.max_speed,
@@ -90,8 +93,7 @@ export function getCatalog(req, res) {
               a.engine_type,
               a.fuel_capacity,
               a.climb_rate,
-              a.radar_range,
-              a.path_to
+              a.radar_range
             from Products p 
             join Aircrafts a on p.product_id = a.product_id
             join Manufacturers m on p.manufacturer_id = m.manufacturer_id
@@ -100,22 +102,11 @@ export function getCatalog(req, res) {
     console.log("Category is undefined");
   }
 
-  const readImage = (relativePath) => {
-    const filePath = path.join(process.cwd(), relativePath);
-    if (fs.existsSync(filePath)) {
-      try {
-        return fs.readFileSync(filePath).toString("base64");
-      } catch (err) {
-        console.error("Error reading file:", filePath, err);
-      }
-    } else {
-      console.warn("File not found:", filePath);
-    }
-    return "not found";
-  };
+  console.log("category fetched");
 
   connection.query(query, async (err, result) => {
     if (err) {
+      console.log("Error " + err);
       return res
         .status(500)
         .json({ message: "Error during fetching products" });

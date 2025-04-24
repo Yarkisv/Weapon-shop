@@ -1,84 +1,56 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import axios from "axios";
 
 export default function OrderHistory() {
-  const orders = [
-    {
-      id: 1,
-      item: "Пистолет Glock 17",
-      quantity: 1,
-      price: 500,
-      status: "Доставлено",
-      date: "2025-04-18",
-      image: "kartinka",
-    },
-    {
-      id: 7,
-      item: "Пистолет Glock 17",
-      quantity: 1,
-      price: 500,
-      status: "Доставлено",
-      date: "2025-04-18",
-      image: "kartinka",
-    },
-    {
-      id: 2,
-      item: "Автомат АК-47",
-      quantity: 2,
-      price: 1500,
-      status: "В обробці",
-      date: "2025-04-15",
-      image: "kartinka",
-    },
-    {
-      id: 3,
-      item: "Снайперская винтовка Barrett M82",
-      quantity: 1,
-      price: 3000,
-      status: "Доставлено",
-      date: "2025-04-10",
-      image: "kartinka",
-    },
-    {
-      id: 8,
-      item: "Снайперская винтовка Barrett M82",
-      quantity: 1,
-      price: 3000,
-      status: "Доставлено",
-      date: "2025-04-10",
-      image: "kartinka",
-    },
-  ];
+  const [orders, setOrders] = useState([]);
 
+  useEffect(() => {
+    const fetchOrders = async () => {
+      const token = localStorage.getItem("token");
+      try {
+        const response = await axios.get("http://localhost:3000/orders", {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        });
+        setOrders(response.data.orders);
+      } catch (error) {
+        console.log("Error: " + error);
+      }
+    };
+
+    fetchOrders();
+  }, []);
   return (
     <div>
       <h2 className="text-xl ml-[19px] font-semibold mb-4">
         Історія замовлень
       </h2>
       <div className="ml-[19px] mt-[19px] w-full max-w-[1015px] max-h-[660px] border border-[#585858] bg-white rounded-lg p-4">
-        {/* Контейнер с прокруткой */}
         <div className="space-y-4 overflow-y-auto max-h-[540px] pr-2 scrollbar-thin scrollbar-thumb-gray-500">
-          {orders.map((order, index) => (
+          {orders.map((order) => (
             <div
-              key={`${order.id}-${index}`}
+              key={order.order_item_id}
               className="flex justify-between items-center border-b border-[#e0e0e0] py-3"
             >
               <div className="flex items-center space-x-4">
                 <img
-                  src={order.image}
-                  alt={order.item}
+                  src={`data:image/jpg;base64,${order.product_image}`}
                   className="w-[100px] h-[100px] rounded object-contain bg-gray-200"
                 />
                 <div className="flex flex-col">
-                  <p className="text-lg font-semibold">{order.item}</p>
+                  <p className="text-lg font-semibold">{order.product_name}</p>
                   <p className="text-sm text-gray-500">
-                    Кількість: {order.quantity}
+                    Кількість: {order.product_quantity}
                   </p>
-                  <p className="text-sm text-gray-500">Дата: {order.date}</p>
+                  <p className="text-sm text-gray-500">
+                    Дата: {order.order_date}
+                  </p>
                 </div>
               </div>
 
               <div className="text-right">
-                <p className="text-lg font-semibold">{order.price} ₴</p>
+                <p className="text-lg font-semibold">{order.product_price} ₴</p>
                 <p
                   className={`text-sm ${
                     order.status === "Доставлено"
@@ -87,9 +59,7 @@ export default function OrderHistory() {
                       ? "text-orange-500"
                       : "text-red-500"
                   }`}
-                >
-                  {order.status}
-                </p>
+                ></p>
               </div>
             </div>
           ))}

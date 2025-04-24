@@ -55,12 +55,6 @@ export default function ProfilePage() {
     fethcUser();
   }, []);
 
-  useEffect(() => {
-    if (user) {
-      console.log("User data:", user);
-    }
-  }, [user]);
-
   return (
     <div className="w-full">
       <Header />

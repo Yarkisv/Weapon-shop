@@ -461,15 +461,13 @@ export default function CheckoutPage() {
                     <input
                       type="radio"
                       name="paymentMethod"
-                      value="cash"
-                      checked={paymentMethod === "cash"}
-                      onChange={() => setPaymentMethod("cash")}
+                      onChange={() => setPaymentMethod("Готівкою")}
                       className="hidden"
                     />
                     <span className="w-5 h-5 border-2 border-slate-950 rounded-full flex items-center justify-center">
                       <span
                         className={`w-3 h-3 bg-slate-950 rounded-full transition-transform ${
-                          paymentMethod === "cash" ? "scale-100" : "scale-0"
+                          paymentMethod === "Готівкою" ? "scale-100" : "scale-0"
                         }`}
                       ></span>
                     </span>
@@ -480,15 +478,13 @@ export default function CheckoutPage() {
                     <input
                       type="radio"
                       name="paymentMethod"
-                      value="card"
-                      checked={paymentMethod === "card"}
-                      onChange={() => setPaymentMethod("card")}
+                      onChange={() => setPaymentMethod("Карткою")}
                       className="hidden"
                     />
                     <span className="w-5 h-5 border-2 border-slate-950 rounded-full flex items-center justify-center">
                       <span
                         className={`w-3 h-3 bg-slate-950 rounded-full transition-transform ${
-                          paymentMethod === "card" ? "scale-100" : "scale-0"
+                          paymentMethod === "Карткою" ? "scale-100" : "scale-0"
                         }`}
                       ></span>
                     </span>
