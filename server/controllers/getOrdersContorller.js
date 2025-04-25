@@ -7,6 +7,7 @@ export function getOrders(req, res) {
   console.log("Get orders func");
 
   const query = `select
+                  o.order_id,
 	                o.order_date,
                   o.payment_method,
                   o.total_price,
@@ -28,36 +29,45 @@ export function getOrders(req, res) {
         return res.status(500).json({ message: "SQL error" });
       }
 
-      const orders = await Promise.all(
-        result.map(async (product) => {
-          const filePath = path.join(process.cwd(), "", product.path_to);
-          let imageBase64 = null;
+      const ordersMap = {};
 
-          if (fs.existsSync(filePath)) {
-            console.log(`Reading file: ${filePath}`);
-            try {
-              const fileBuffer = fs.readFileSync(filePath);
-              imageBase64 = fileBuffer.toString("base64");
-            } catch (readErr) {
-              console.error(`Error reading file: ${filePath}`, readErr);
-            }
-          } else {
-            console.warn(`File not found: ${filePath}`);
+      for (const row of result) {
+        const filePath = path.join(process.cwd(), row.path_to || "");
+        let imageBase64 = null;
+
+        if (fs.existsSync(filePath)) {
+          try {
+            const fileBuffer = fs.readFileSync(filePath);
+            imageBase64 = fileBuffer.toString("base64");
+          } catch (readErr) {
+            console.error(`Error reading file: ${filePath}`, readErr);
           }
+        } else {
+          console.warn(`File not found: ${filePath}`);
+        }
 
-          return {
-            order_date: product.order_date,
-            payment_method: product.payment_method,
-            total_price: product.total_price,
-            product_quantity: product.quantity,
-            product_price: product.price,
-            product_name: product.name_,
-            product_image: imageBase64,
-            order_item_id: product.order_item_id,
+        if (!ordersMap[row.order_id]) {
+          ordersMap[row.order_id] = {
+            order_id: row.order_id,
+            order_date: row.order_date,
+            payment_method: row.payment_method,
+            total_price: row.total_price,
+            items: [],
           };
-        })
-      );
-      return res.status(200).json({ orders: orders });
+        }
+
+        ordersMap[row.order_id].items.push({
+          order_item_id: row.order_item_id,
+          product_id: row.product_id,
+          product_name: row.name_,
+          product_quantity: row.quantity,
+          product_price: row.price,
+          product_image: imageBase64,
+        });
+      }
+
+      const orders = Object.values(ordersMap);
+      return res.status(200).json({ orders });
     });
   } catch (error) {}
 }

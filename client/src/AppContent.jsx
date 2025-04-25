@@ -13,6 +13,7 @@ import CheckoutPage from "./pages/CheckoutPage";
 import { useModal } from "./contexts/modalContext";
 import SavedWindow from "./components/SavedWindow";
 import PaymentPage from "./pages/PaymentPage";
+import NotFoundPage from "./pages/NotFoundPage";
 
 function AppContent() {
   const { isUserPanelOpen, isBasketOpen, isSavedWindowOpen } = useModal();
@@ -35,6 +36,7 @@ function AppContent() {
             </ProtectedAuthRoute>
           }
         />
+        <Route path="*" element={<NotFoundPage />} />
       </Routes>
       {isUserPanelOpen && <UserPanel />}
       {isBasketOpen && <Basket />}

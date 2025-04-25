@@ -5,7 +5,6 @@ import axios from "axios";
 import { useParams } from "react-router-dom";
 import Breadcrumbs from "../components/BreadCrumbs";
 import Footer from "../components/Footer";
-import sponge from "../images/sponge.svg";
 
 export default function CatalogPage() {
   const [products, setProducts] = useState([]);
@@ -197,6 +196,129 @@ export default function CatalogPage() {
                         ))}
                       </div>
                     </div>
+
+                    <div>
+                      <p className="text-lg font-medium text-gray-800 mb-2">
+                        Екіпаж (осіб)
+                      </p>
+                      <div className="space-y-1">
+                        {[2, 3, 4].map((val) => (
+                          <label
+                            key={val}
+                            className="flex items-center space-x-2 text-gray-700 cursor-pointer"
+                          >
+                            <input
+                              type="checkbox"
+                              className="accent-blue-600"
+                            />
+                            <span>{val}</span>
+                          </label>
+                        ))}
+                      </div>
+                    </div>
+
+                    <div>
+                      <p className="text-lg font-medium text-gray-800 mb-2">
+                        Потужність двигуна (к.с.)
+                      </p>
+                      <div className="space-y-1">
+                        {["до 700", "701-1000", "понад 1000"].map(
+                          (label, i) => (
+                            <label
+                              key={i}
+                              className="flex items-center space-x-2 text-gray-700 cursor-pointer"
+                            >
+                              <input
+                                type="checkbox"
+                                className="accent-blue-600"
+                              />
+                              <span>{label}</span>
+                            </label>
+                          )
+                        )}
+                      </div>
+                    </div>
+
+                    <div>
+                      <p className="text-lg font-medium text-gray-800 mb-2">
+                        Вага (тонн)
+                      </p>
+                      <div className="space-y-1">
+                        {["до 40", "41-60", "більше 60"].map((label, i) => (
+                          <label
+                            key={i}
+                            className="flex items-center space-x-2 text-gray-700 cursor-pointer"
+                          >
+                            <input
+                              type="checkbox"
+                              className="accent-blue-600"
+                            />
+                            <span>{label}</span>
+                          </label>
+                        ))}
+                      </div>
+                    </div>
+
+                    <div>
+                      <p className="text-lg font-medium text-gray-800 mb-2">
+                        Калібр гармати (мм)
+                      </p>
+                      <div className="space-y-1">
+                        {["до 100", "101-120", "більше 120"].map((label, i) => (
+                          <label
+                            key={i}
+                            className="flex items-center space-x-2 text-gray-700 cursor-pointer"
+                          >
+                            <input
+                              type="checkbox"
+                              className="accent-blue-600"
+                            />
+                            <span>{label}</span>
+                          </label>
+                        ))}
+                      </div>
+                    </div>
+
+                    <div>
+                      <p className="text-lg font-medium text-gray-800 mb-2">
+                        Обертання башти (град/сек)
+                      </p>
+                      <div className="space-y-1">
+                        {["до 20", "21-25", "більше 25"].map((label, i) => (
+                          <label
+                            key={i}
+                            className="flex items-center space-x-2 text-gray-700 cursor-pointer"
+                          >
+                            <input
+                              type="checkbox"
+                              className="accent-blue-600"
+                            />
+                            <span>{label}</span>
+                          </label>
+                        ))}
+                      </div>
+                    </div>
+
+                    <div>
+                      <p className="text-lg font-medium text-gray-800 mb-2">
+                        Тип трансмісії
+                      </p>
+                      <div className="space-y-1">
+                        {["механічна", "автоматична"].map((val) => (
+                          <label
+                            key={val}
+                            className="flex items-center space-x-2 text-gray-700 cursor-pointer"
+                          >
+                            <input
+                              type="checkbox"
+                              value={val}
+                              className="accent-blue-600"
+                            />
+                            <span>{val}</span>
+                          </label>
+                        ))}
+                      </div>
+                    </div>
                   </aside>
                 )}
 
@@ -262,6 +384,275 @@ export default function CatalogPage() {
                               className="accent-blue-600"
                             />
                             <span>{val}</span>
+                          </label>
+                        ))}
+                      </div>
+                    </div>
+
+                    <div>
+                      <p className="text-lg font-medium text-gray-800 mb-2">
+                        Вага (кг)
+                      </p>
+                      <div className="space-y-1">
+                        {["до 1 кг", "1-3 кг", "більше 3 кг"].map(
+                          (label, i) => (
+                            <label
+                              key={i}
+                              className="flex items-center space-x-2 text-gray-700 cursor-pointer"
+                            >
+                              <input
+                                type="checkbox"
+                                className="accent-blue-600"
+                              />
+                              <span>{label}</span>
+                            </label>
+                          )
+                        )}
+                      </div>
+                    </div>
+
+                    <div>
+                      <p className="text-lg font-medium text-gray-800 mb-2">
+                        Довжина (см)
+                      </p>
+                      <div className="space-y-1">
+                        {["до 30 см", "31-40 см", "більше 40 см"].map(
+                          (label, i) => (
+                            <label
+                              key={i}
+                              className="flex items-center space-x-2 text-gray-700 cursor-pointer"
+                            >
+                              <input
+                                type="checkbox"
+                                className="accent-blue-600"
+                              />
+                              <span>{label}</span>
+                            </label>
+                          )
+                        )}
+                      </div>
+                    </div>
+
+                    <div>
+                      <p className="text-lg font-medium text-gray-800 mb-2">
+                        Колір
+                      </p>
+                      <div className="space-y-1">
+                        {["Black", "FDE", "Coyote", "Wood"].map((color) => (
+                          <label
+                            key={color}
+                            className="flex items-center space-x-2 text-gray-700 cursor-pointer"
+                          >
+                            <input
+                              type="checkbox"
+                              className="accent-blue-600"
+                            />
+                            <span>{color}</span>
+                          </label>
+                        ))}
+                      </div>
+                    </div>
+
+                    <div>
+                      <p className="text-lg font-medium text-gray-800 mb-2">
+                        Тип магазину
+                      </p>
+                      <div className="space-y-1">
+                        {[
+                          "Вбудований",
+                          "Знімний магазин",
+                          "Коробчатий магазин",
+                          "Барабанний магазин",
+                          "Однорядний магазин",
+                          "Дворядний магазин",
+                          "Касетний магазин",
+                        ].map((type) => (
+                          <label
+                            key={type}
+                            className="flex items-center space-x-2 text-gray-700 cursor-pointer"
+                          >
+                            <input
+                              type="checkbox"
+                              className="accent-blue-600"
+                            />
+                            <span>{type}</span>
+                          </label>
+                        ))}
+                      </div>
+                    </div>
+                  </aside>
+                )}
+
+                {isAircraft && (
+                  <aside className="space-y-6 mt-6">
+                    <div>
+                      <p className="text-lg font-medium text-gray-800 mb-2">
+                        Тип двигуна
+                      </p>
+                      <div className="space-y-1">
+                        {[
+                          "поршневий",
+                          "реактивний",
+                          "турбореактивний",
+                          "турбовентиляторний",
+                        ].map((type) => (
+                          <label
+                            key={type}
+                            className="flex items-center space-x-2 text-gray-700 cursor-pointer"
+                          >
+                            <input
+                              type="checkbox"
+                              className="accent-blue-600"
+                            />
+                            <span>{type}</span>
+                          </label>
+                        ))}
+                      </div>
+                    </div>
+
+                    <div>
+                      <p className="text-lg font-medium text-gray-800 mb-2">
+                        Кількість двигунів
+                      </p>
+                      <div className="space-y-1">
+                        {[1, 2, 3, 4].map((val) => (
+                          <label
+                            key={val}
+                            className="flex items-center space-x-2 text-gray-700 cursor-pointer"
+                          >
+                            <input
+                              type="checkbox"
+                              className="accent-blue-600"
+                            />
+                            <span>{val}</span>
+                          </label>
+                        ))}
+                      </div>
+                    </div>
+
+                    <div>
+                      <p className="text-lg font-medium text-gray-800 mb-2">
+                        Максимальна швидкість (км/год)
+                      </p>
+                      <div className="space-y-1">
+                        {["до 800", "801-1500", "понад 1500"].map(
+                          (label, idx) => (
+                            <label
+                              key={idx}
+                              className="flex items-center space-x-2 text-gray-700 cursor-pointer"
+                            >
+                              <input
+                                type="checkbox"
+                                className="accent-blue-600"
+                              />
+                              <span>{label}</span>
+                            </label>
+                          )
+                        )}
+                      </div>
+                    </div>
+
+                    <div>
+                      <p className="text-lg font-medium text-gray-800 mb-2">
+                        Дальність польоту (км)
+                      </p>
+                      <div className="space-y-1">
+                        {["до 1000", "1001-2000", "понад 2000"].map(
+                          (label, idx) => (
+                            <label
+                              key={idx}
+                              className="flex items-center space-x-2 text-gray-700 cursor-pointer"
+                            >
+                              <input
+                                type="checkbox"
+                                className="accent-blue-600"
+                              />
+                              <span>{label}</span>
+                            </label>
+                          )
+                        )}
+                      </div>
+                    </div>
+
+                    <div>
+                      <p className="text-lg font-medium text-gray-800 mb-2">
+                        Максимальна висота (м)
+                      </p>
+                      <div className="space-y-1">
+                        {["до 12000", "12001-16000", "понад 16000"].map(
+                          (label, idx) => (
+                            <label
+                              key={idx}
+                              className="flex items-center space-x-2 text-gray-700 cursor-pointer"
+                            >
+                              <input
+                                type="checkbox"
+                                className="accent-blue-600"
+                              />
+                              <span>{label}</span>
+                            </label>
+                          )
+                        )}
+                      </div>
+                    </div>
+
+                    <div>
+                      <p className="text-lg font-medium text-gray-800 mb-2">
+                        Швидкість набору висоти (м/сек)
+                      </p>
+                      <div className="space-y-1">
+                        {["до 50", "51-100", "понад 100"].map((label, idx) => (
+                          <label
+                            key={idx}
+                            className="flex items-center space-x-2 text-gray-700 cursor-pointer"
+                          >
+                            <input
+                              type="checkbox"
+                              className="accent-blue-600"
+                            />
+                            <span>{label}</span>
+                          </label>
+                        ))}
+                      </div>
+                    </div>
+
+                    <div>
+                      <p className="text-lg font-medium text-gray-800 mb-2">
+                        Радіус дії радара (км)
+                      </p>
+                      <div className="space-y-1">
+                        {["до 100", "101-150", "понад 150"].map(
+                          (label, idx) => (
+                            <label
+                              key={idx}
+                              className="flex items-center space-x-2 text-gray-700 cursor-pointer"
+                            >
+                              <input
+                                type="checkbox"
+                                className="accent-blue-600"
+                              />
+                              <span>{label}</span>
+                            </label>
+                          )
+                        )}
+                      </div>
+                    </div>
+
+                    <div>
+                      <p className="text-lg font-medium text-gray-800 mb-2">
+                        Розмах крил (м)
+                      </p>
+                      <div className="space-y-1">
+                        {["до 10", "10-15", "понад 15"].map((label, idx) => (
+                          <label
+                            key={idx}
+                            className="flex items-center space-x-2 text-gray-700 cursor-pointer"
+                          >
+                            <input
+                              type="checkbox"
+                              className="accent-blue-600"
+                            />
+                            <span>{label}</span>
                           </label>
                         ))}
                       </div>

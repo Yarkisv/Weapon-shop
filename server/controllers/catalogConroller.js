@@ -120,7 +120,6 @@ export function getCatalog(req, res) {
         let imageBase64 = null;
 
         if (fs.existsSync(filePath)) {
-          console.log(`Reading file: ${filePath}`);
           try {
             const fileBuffer = fs.readFileSync(filePath);
             imageBase64 = fileBuffer.toString("base64");
@@ -214,10 +213,7 @@ export function getCatalog(req, res) {
 export function getProductByName(req, res) {
   const name = req.params.name;
   const category = req.params.category;
-
-  console.log(name);
-  console.log(category);
-
+  
   let query = "";
 
   if (category === "military-aircrafts") {
@@ -232,6 +228,7 @@ export function getProductByName(req, res) {
               p.number_of_reviews,
               p.rating,
               p.description_,
+              p.path_to,
               m.manufacturer_name,
               m.country,
               a.max_speed,
@@ -245,8 +242,7 @@ export function getProductByName(req, res) {
               a.engine_type,
               a.fuel_capacity,
               a.climb_rate,
-              a.radar_range,
-              a.path_to
+              a.radar_range
             from Products p 
             join Aircrafts a on p.product_id = a.product_id
             join Manufacturers m on p.manufacturer_id = m.manufacturer_id
@@ -263,6 +259,7 @@ export function getProductByName(req, res) {
               p.number_of_reviews,
               p.rating,
               p.description_,
+              p.path_to,
               m.manufacturer_name,
               m.country,
               t.armor_thickness,
@@ -276,8 +273,7 @@ export function getProductByName(req, res) {
               t.operational_range,
               t.armor_type,
               t.fuel_capacity,
-              t.transmission_type,
-              t.path_to
+              t.transmission_type
             from Products p 
             join Tanks t on p.product_id = t.product_id
             join Manufacturers m on p.manufacturer_id = m.manufacturer_id
@@ -294,6 +290,7 @@ export function getProductByName(req, res) {
               p.number_of_reviews,
               p.rating,
               p.description_,
+              p.path_to,
               m.manufacturer_name,
               m.country,
               w.caliber,
@@ -301,8 +298,7 @@ export function getProductByName(req, res) {
               w.length,
               w.color,
               w.stock,
-              w.stock_type,
-              w.path_to
+              w.stock_type
             from Products p 
             join Weapons w on p.product_id = w.product_id
             join Manufacturers m on p.manufacturer_id = m.manufacturer_id
@@ -322,7 +318,6 @@ export function getProductByName(req, res) {
         let imageBase64 = null;
 
         if (fs.existsSync(filePath)) {
-          console.log(`Reading file: ${filePath}`);
           try {
             const fileBuffer = fs.readFileSync(filePath);
             imageBase64 = fileBuffer.toString("base64");
@@ -408,7 +403,6 @@ export function getProductByName(req, res) {
         }
       })
     );
-    console.log("Fetching successful", product);
     return res.status(200).json({ product });
   });
 }

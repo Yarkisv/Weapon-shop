@@ -23,7 +23,7 @@ export default function WishList() {
         </div>
 
         {saved.length > 0 ? (
-          <div className="relative max-h-[500px] overflow-y-auto pr-2 space-y-4">
+          <div className="relative h-auto overflow-y-auto pr-2 space-y-4">
             {saved.map((product) => (
               <div
                 key={product.product_id}
