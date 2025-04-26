@@ -3,8 +3,8 @@ import { Link } from "react-router-dom";
 export default function Footer() {
   return (
     <footer
-      style={{ backgroundColor: "#375C4D" }}
-      className="bg-375C4D text-white py-10 px-4 mt-5 mb-auto "
+      style={{ backgroundColor: "#303030" }}
+      className="bg-303030 text-white py-10 px-4 mt-5 mb-auto "
     >
       <div className="max-w-[1440px] mx-auto grid grid-cols-1 md:grid-cols-4 gap-8">
         <div>
@@ -54,7 +54,7 @@ export default function Footer() {
         </div>
       </div>
 
-      <div className="mt-8 border-t border-gray-700 pt-4 text-center text-white text-sm">
+      <div className="mt-8 border-t border-white pt-4 text-center text-white text-sm">
         © 2025 Steel&Guns. Всі права захищені.
       </div>
     </footer>

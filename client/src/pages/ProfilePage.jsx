@@ -63,21 +63,21 @@ export default function ProfilePage() {
           Вітаємо, {user.firstname}!
         </p>
         <div className="flex border-t border-gray-600 w-[1285px] mt-8 ml-6">
-          <aside className="w-[250px] h-[600px]  border-r border-gray-600">
-            <ul className="flex flex-col mt-5 gap-5 list-none text-gray-600 p-0 m-0">
-              <li className="flex items-center gap-2 text-[22px] font-[Konkhmer Sleokchher] cursor-pointer">
+          <aside className="w-[270px] sticky top-8 self-start  border-r border-gray-300 bg-white shadow-md rounded-xl p-4">
+            <ul className="flex flex-col mt-5 gap-5 list-none text-gray-700 p-0 m-0">
+              <li className="flex items-center gap-3 text-[18px] font-medium cursor-pointer hover:text-black transition  whitespace-nowrap">
                 <img
                   src={profile}
-                  className="w-[25px] h-[25px] filter contrast-0 brightness-0"
+                  className="w-6 h-6 filter contrast-0 brightness-0"
                 />
                 <Link to="/profile" className="no-underline text-inherit">
                   Профіль
                 </Link>
               </li>
-              <li className="flex items-center gap-2 text-[22px] font-[Konkhmer Sleokchher] cursor-pointer">
+              <li className="flex items-center gap-3 text-[18px] font-medium cursor-pointer hover:text-black transition  whitespace-nowrap">
                 <img
                   src={basket}
-                  className="w-[25px] h-[25px] filter contrast-0 brightness-0"
+                  className="w-6 h-6 filter contrast-0 brightness-0"
                 />
                 <Link
                   to="/profile/basket"
@@ -86,10 +86,10 @@ export default function ProfilePage() {
                   Корзина
                 </Link>
               </li>
-              <li className="flex items-center gap-2 text-[22px] font-[Konkhmer Sleokchher] cursor-pointer">
+              <li className="flex items-center gap-3 text-[18px] font-medium cursor-pointer hover:text-black transition  whitespace-nowrap">
                 <img
                   src={liked}
-                  className="w-[25px] h-[25px] filter contrast-0 brightness-0"
+                  className="w-6 h-6 filter contrast-0 brightness-0"
                 />
                 <Link
                   to="/profile/wishlist"
@@ -98,10 +98,10 @@ export default function ProfilePage() {
                   Обране
                 </Link>
               </li>
-              <li className="flex items-center gap-2 text-[22px] font-[Konkhmer Sleokchher] cursor-pointer">
+              <li className="flex items-center gap-3 text-[18px] font-medium cursor-pointer hover:text-black transition  whitespace-nowrap">
                 <img
                   src={visited}
-                  className="w-[25px] h-[25px] filter contrast-0 brightness-0"
+                  className="w-6 h-6 filter contrast-0 brightness-0"
                 />
                 <Link
                   to="/profile/viewed"
@@ -110,10 +110,10 @@ export default function ProfilePage() {
                   Переглянуте
                 </Link>
               </li>
-              <li className="flex items-center gap-2 text-[22px] font-[Konkhmer Sleokchher] cursor-pointer">
+              <li className="flex items-center gap-3 text-[18px] font-medium cursor-pointer hover:text-black transition  whitespace-nowrap">
                 <img
                   src={history}
-                  className="w-[25px] h-[25px] filter contrast-0 brightness-0"
+                  className="w-6 h-6 filter contrast-0 brightness-0"
                 />
                 <Link
                   to="/profile/orderhistory"
@@ -122,10 +122,10 @@ export default function ProfilePage() {
                   Історія замовлень
                 </Link>
               </li>
-              <li className="flex items-center gap-2 text-[22px] font-[Konkhmer Sleokchher] cursor-pointer">
+              <li className="flex items-center gap-3 text-[18px] font-medium cursor-pointer hover:text-black transition  whitespace-nowrap">
                 <img
                   src={bonuses}
-                  className="w-[25px] h-[25px] filter contrast-0 brightness-0"
+                  className="w-6 h-6 filter contrast-0 brightness-0"
                 />
                 <Link
                   to="/profile/bonuses"
@@ -134,10 +134,10 @@ export default function ProfilePage() {
                   Бонуси
                 </Link>
               </li>
-              <li className="flex items-center gap-2 text-[22px] font-[Konkhmer Sleokchher] cursor-pointer">
+              <li className="flex items-center gap-3 text-[18px] font-medium cursor-pointer hover:text-black transition  whitespace-nowrap">
                 <img
                   src={chat}
-                  className="w-[25px] h-[25px] filter contrast-0 brightness-0"
+                  className="w-6 h-6 filter contrast-0 brightness-0"
                 />
                 <Link
                   to="/profile/chatbot"
@@ -146,10 +146,10 @@ export default function ProfilePage() {
                   Чат-бот
                 </Link>
               </li>
-              <li className="flex items-center gap-2 text-[22px] font-[Konkhmer Sleokchher] cursor-pointer">
+              <li className="flex items-center gap-3 text-[18px] font-medium cursor-pointer hover:text-black transition  whitespace-nowrap">
                 <img
                   src={partners}
-                  className="w-[25px] h-[25px] filter contrast-0 brightness-0"
+                  className="w-6 h-6 filter contrast-0 brightness-0"
                 />
                 <Link
                   to="/profile/partners"
@@ -158,10 +158,10 @@ export default function ProfilePage() {
                   Співпраця
                 </Link>
               </li>
-              <li className="flex items-center gap-2 text-[22px] font-[Konkhmer Sleokchher] cursor-pointer">
+              <li className="flex items-center gap-3 text-[18px] font-medium cursor-pointer hover:text-black transition  whitespace-nowrap">
                 <img
                   src={reviews}
-                  className="w-[25px] h-[25px] filter contrast-0 brightness-0"
+                  className="w-6 h-6 filter contrast-0 brightness-0"
                 />
                 <Link
                   to="/profile/reviews"
@@ -172,16 +172,17 @@ export default function ProfilePage() {
               </li>
               <li
                 onClick={handleLogoutClick}
-                className="flex items-center gap-2 text-[22px] font-[Konkhmer Sleokchher] cursor-pointer "
+                className="flex items-center gap-3 text-[18px] font-medium text-red-600 cursor-pointer hover:text-red-800 transition"
               >
                 <img
                   src={logout}
-                  className="w-[25px] h-[25px] filter contrast-0 brightness-0"
+                  className="w-6 h-6 filter contrast-0 brightness-0"
                 />
                 Вийти
               </li>
             </ul>
           </aside>
+
           <div className="flex-grow p-4">
             <Routes>
               <Route path="/" element={<UserInformation user={user} />} />

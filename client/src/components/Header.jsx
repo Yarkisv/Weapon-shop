@@ -55,7 +55,7 @@ export default function Header() {
   const navigate = useNavigate();
 
   return (
-    <div className="w-full h-[75px] z-[9999] bg-[#375c4d] flex items-center  top-0 left-0">
+    <div className="w-full h-[75px] z-[9999] bg-[#303030] flex items-center  top-0 left-0">
       <div className="max-w-[1440px] w-full mx-auto flex items-center justify-between px-4 lg:px-0">
         <div className="hidden xl:flex items-center gap-4">
           <img

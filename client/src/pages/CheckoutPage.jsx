@@ -104,11 +104,11 @@ export default function CheckoutPage() {
         <p className="text-center text-3xl font-semibold mb-6">
           Оформлення замовлення
         </p>
-        <div className="flex gap-6">
+        <div className="flex ">
           <div className="flex flex-col">
             {isAuth ? (
-              <div className="flex   gap-6 mb-[10px]">
-                <div className="border border-black/30 rounded-xl p-6 bg-gray-200 w-[1000px] ml-[8px] shadow-xl">
+              <div className="flex gap-6 mb-[10px]">
+                <div className="border border-black/30 rounded-xl p-6 bg-gray-200 w-[1050px] ml-[8px] shadow-xl">
                   <p className="text-2xl font-bold mb-6 text-gray-800">
                     Дані отрумувача
                   </p>
@@ -214,7 +214,7 @@ export default function CheckoutPage() {
             <div className="flex flex-wrap gap-6 mt-8">
               {orders.length > 0 ? (
                 <>
-                  <div className="flex flex-col gap-6 w-[1100px] ">
+                  <div className="flex flex-col gap-6 w-full ">
                     <div>
                       <div className="flex justify-between items-center mb-2">
                         <p className="text-2xl font-bold ml-2">Замовлення</p>
@@ -229,7 +229,7 @@ export default function CheckoutPage() {
                       {orders.map((order) => (
                         <div
                           key={order.name}
-                          className="flex items-center mb-[20px] bg-gray-100 border border-green-900/30 rounded-md p-4 ml-2"
+                          className="flex items-center mb-[20px] bg-gray-100 border border-green-900/30 rounded-md p-4 ml-[8px]"
                         >
                           <img
                             className="w-20 h-20 object-contain"
@@ -470,13 +470,10 @@ export default function CheckoutPage() {
               )}
             </div>
           </div>
-          <div className="flex-1">
-            {/* Весь контент форм здесь — оставь как есть */}
-          </div>
 
           {/* Правая часть — блок "Разом" */}
-          <div className="w-[300px]">
-            <div className="bg-gray-200 rounded-xl p-5 sticky top-4 flex flex-col shadow-xl border border-black/30 h-fit">
+          <div className="w-[350px] ml-[40px]">
+            <div className="bg-gray-200 w-[312px] rounded-xl p-5 sticky top-4 flex flex-col shadow-xl border border-black/30 h-fit">
               {!isAuth ? (
                 <>
                   <div>
