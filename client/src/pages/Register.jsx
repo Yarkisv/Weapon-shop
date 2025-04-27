@@ -140,7 +140,7 @@ export default function Register() {
 
           <button
             type="submit"
-            className="w-full py-3 bg-black text-white font-semibold rounded-lg hover:bg-neutral-800 transition"
+            className="w-full py-3 cursor-pointer bg-black text-white font-semibold rounded-lg hover:bg-neutral-800 transition"
           >
             Зареєструватися
           </button>

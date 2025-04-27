@@ -74,7 +74,7 @@ export default function Login() {
           />
           <button
             type="submit"
-            className="w-full py-3 bg-black text-white font-semibold rounded-lg hover:bg-neutral-800 transition"
+            className="w-full py-3 bg-black text-white font-semibold cursor-pointer rounded-lg hover:bg-neutral-800 transition"
           >
             Увійти
           </button>

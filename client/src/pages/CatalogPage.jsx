@@ -120,7 +120,7 @@ export default function CatalogPage() {
           <div className="grid grid-cols-1 md:grid-cols-4 gap-6 min-h-[400px]">
             <div className="md:col-span-1 bg-gray-100 rounded-md p-4 shadow-sm">
               <h2 className="text-xl font-semibold mb-4">Фільтри</h2>
-              <div className="space-y-4 sticky top-4">
+              <div className="space-y-4 ">
                 <div>
                   <span className="text-gray-700 block mb-1">Ціна (₴):</span>
                   <div className="flex gap-2 items-center">
