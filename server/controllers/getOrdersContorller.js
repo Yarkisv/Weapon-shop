@@ -4,11 +4,10 @@ import path from "path";
 
 export function getOrders(req, res) {
   const id = req.user_id;
-  console.log("Get orders func");
 
   const query = `select
                   o.order_id,
-	                o.order_date,
+                  o.order_date,
                   o.payment_method,
                   o.total_price,
                   oi.product_id,
@@ -17,13 +16,13 @@ export function getOrders(req, res) {
                   oi.order_item_id,
                   p.name_,
                   p.path_to
-                  from orders o
-                  join products p
-                  join order_items oi
-                where o.user_id = ? and p.product_id = oi.product_id;`;
+                from orders o
+                join order_items oi on o.order_id = oi.order_id
+                join products p on oi.product_id = p.product_id
+                where o.user_id = ?;`;
 
   try {
-    connection.query(query, id, async (err, result) => {
+    connection.query(query, [id], async (err, result) => {
       if (err) {
         console.log("SQL error: " + err);
         return res.status(500).json({ message: "SQL error" });
@@ -69,5 +68,7 @@ export function getOrders(req, res) {
       const orders = Object.values(ordersMap);
       return res.status(200).json({ orders });
     });
-  } catch (error) {}
+  } catch (error) {
+    console.log("Error: " + error);
+  }
 }

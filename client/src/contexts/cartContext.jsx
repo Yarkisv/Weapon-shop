@@ -59,7 +59,6 @@ export const CartProvider = ({ children }) => {
 
   const addToCart = (product) => {
     setBasketOpen(true);
-    console.log(product);
 
     setOrders((prevOrders) => {
       const existingProductIndex = prevOrders.findIndex(

@@ -25,7 +25,7 @@ export default function CheckoutPage() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  const { orders, totalPrice } = useCart();
+  const { orders, totalPrice, clearCart } = useCart();
   const { isBasketOpen, setBasketOpen } = useModal();
   const navigate = useNavigate();
 
@@ -88,6 +88,7 @@ export default function CheckoutPage() {
       orderItems: minimalOrderItems,
     });
     navigate("/payment");
+    clearCart();
   };
 
   return (
