@@ -55,11 +55,11 @@ export default function Header() {
   const navigate = useNavigate();
 
   return (
-    <div className="w-full h-[75px] z-[9999] bg-[#303030] flex items-center  top-0 left-0">
-      <div className="max-w-[1440px] w-full mx-auto flex items-center justify-between px-4 lg:px-0">
-        <div className="hidden xl:flex items-center gap-4">
+    <div className="w-full h-[60px] z-[9999] bg-[#303030] flex items-center top-0 left-0">
+      <div className="max-w-[1440px] w-full mx-auto flex items-center justify-between px-3 lg:px-0">
+        <div className="hidden xl:flex items-center gap-3">
           <img
-            className="w-[242px] h-[55px] cursor-pointer"
+            className="w-[190px] h-[45px] cursor-pointer"
             src={logoFinal}
             onClick={() => navigate("/")}
           />
@@ -67,18 +67,18 @@ export default function Header() {
             className="flex flex-col items-center transition-transform hover:scale-110 cursor-pointer"
             onClick={() => navigate("/")}
           >
-            <img className="w-[30px] h-[30px]" src={home} alt="home" />
-            <p className="text-white text-[15px]">Головна</p>
+            <img className="w-[24px] h-[24px]" src={home} alt="home" />
+            <p className="text-white text-[13px]">Головна</p>
           </div>
         </div>
 
         <div
-          className="xl:hidden flex flex-col justify-around w-[30px] h-[30px] ml-4  cursor-pointer"
+          className="xl:hidden flex flex-col justify-around w-[24px] h-[24px] ml-3 cursor-pointer"
           onClick={toggleMenu}
         >
-          <div className="w-full h-1 bg-white rounded-sm"></div>
-          <div className="w-full h-1 bg-white rounded-sm"></div>
-          <div className="w-full h-1 bg-white rounded-sm"></div>
+          <div className="w-full h-[2px] bg-white rounded-sm"></div>
+          <div className="w-full h-[2px] bg-white rounded-sm"></div>
+          <div className="w-full h-[2px] bg-white rounded-sm"></div>
         </div>
 
         {menuOpen && (
@@ -112,7 +112,7 @@ export default function Header() {
                 <img
                   src={profile}
                   alt="Профіль"
-                  className="w-[30px] h-[30px] filter contrast-0 brightness-0 transition-transform hover:scale-110 "
+                  className="w-[30px] h-[30px] filter contrast-0 brightness-0 transition-transform hover:scale-110"
                 />
                 <div>
                   <p className="font-semibold text-[15px]">Ваш профіль</p>
@@ -207,39 +207,39 @@ export default function Header() {
           </>
         )}
 
-        <form className="flex items-center border-2 border-gray-300 bg-white rounded-md pl-2 w-[80%] xl:w-[790px] h-[48px] overflow-hidden">
+        <form className="flex  border-2 border-gray-300 bg-white rounded-md pl-2 w-[65%]  h-[40px] overflow-hidden">
           <input
             type="text"
-            className="flex-1 h-full text-[16px] font-sans outline-none border-none"
+            className="flex-1 h-full text-[14px] font-sans outline-none border-none"
             name="q"
             placeholder="пошук..."
           />
           <button type="submit" className="pr-2">
-            <img src={search} alt="search" className="w-[20px] h-[20px]" />
+            <img src={search} alt="search" className="w-[18px] h-[18px]" />
           </button>
         </form>
 
-        <div className="hidden xl:flex items-center gap-8">
+        <div className="hidden xl:flex items-center gap-6">
           <div
             className="flex flex-col items-center cursor-pointer transition-transform hover:scale-110"
             onClick={handleLikedWindow}
           >
-            <img className="w-[30px] h-[30px]" src={liked} />
-            <p className="text-white text-[15px]">Обране</p>
+            <img className="w-[24px] h-[24px]" src={liked} />
+            <p className="text-white text-[13px]">Обране</p>
           </div>
           <div
             className="flex flex-col items-center cursor-pointer transition-transform hover:scale-110"
             onClick={handleBasketClicked}
           >
-            <img className="w-[30px] h-[30px]" src={basket} />
-            <p className="text-white text-[15px]">Корзина</p>
+            <img className="w-[24px] h-[24px]" src={basket} />
+            <p className="text-white text-[13px]">Корзина</p>
           </div>
           <div
             className="flex flex-col items-center cursor-pointer transition-transform hover:scale-110"
             onClick={handleProfileClick}
           >
-            <img className="w-[30px] h-[30px]" src={profile} />
-            <p className="text-white text-[15px]">Профіль</p>
+            <img className="w-[24px] h-[24px]" src={profile} />
+            <p className="text-white text-[13px]">Профіль</p>
           </div>
         </div>
       </div>

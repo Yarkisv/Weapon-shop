@@ -18,7 +18,7 @@ const Breadcrumbs = () => {
   });
 
   return (
-    <div className="mt-[5px] mb-[5px]">
+    <div className="mt-[5px] mb-[5px] ">
       <nav
         style={{ fontSize: "16px" }}
         className="flex items-center text-gray-600 space-x-2"
