@@ -72,11 +72,24 @@ export default function ProductCard({ product }) {
       <div className="flex gap-2 justify-between px-2 pb-2">
         {isInCart ? (
           <button
-            className="flex items-center justify-center gap-1 h-9 w-[160px] bg-gray-400 text-white text-[16px] font-sans rounded-md cursor-pointer"
+            className="flex items-center justify-center gap-1 h-9 w-[160px] bg-green-600 text-white text-[16px] font-sans rounded-md cursor-pointer hover:bg-green-700"
             onClick={openCart}
           >
-            <img className="w-4 h-4" src={basketCard} />
-            До корзини
+            <svg
+              className="w-4 h-4"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2"
+              viewBox="0 0 24 24"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                d="M5 13l4 4L19 7"
+              ></path>
+            </svg>
+            В корзині
           </button>
         ) : (
           <button

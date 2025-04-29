@@ -63,7 +63,7 @@ export default function ProfilePage() {
           Вітаємо, {user.firstname}!
         </p>
         <div className="flex border-t border-gray-600 w-[1285px] mt-8 ml-6">
-          <aside className="w-[270px] sticky top-8 self-start  border-r border-gray-300 bg-white shadow-md rounded-xl p-4">
+          <aside className="w-[270px] sticky top-8 self-start  border-r mt-[5px] border-gray-300 bg-white shadow-md rounded-xl p-4">
             <ul className="flex flex-col mt-5 gap-5 list-none text-gray-700 p-0 m-0">
               <li className="flex items-center gap-3 text-[18px] font-medium cursor-pointer hover:text-black transition  whitespace-nowrap">
                 <img
