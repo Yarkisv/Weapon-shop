@@ -2,18 +2,28 @@ import React from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { useCart } from "../contexts/cartContext";
 import { useSaved } from "../contexts/savedContext";
+import { useModal } from "../contexts/modalContext";
 import Rating from "./Rating";
 import likeOrder from "../images/likeOrder.svg";
 import LikeOrderSaved from "../images/LikeOrderSaved.svg";
 import basketCard from "../images/basketCard.svg";
 
 export default function ProductCard({ product }) {
-  const { addToCart } = useCart();
+  const { orders, addToCart } = useCart();
   const { saved, addToSaved, removeFromSaved } = useSaved();
+  const { setBasketOpen } = useModal();
 
   const { category } = useParams();
 
+  const isInCart = orders.some(
+    (item) => item.product_id === product.product_id
+  );
+
   const navigate = useNavigate();
+
+  const openCart = () => {
+    setBasketOpen(true);
+  };
 
   const handleNavigateToProductPage = (name) => {
     navigate(`/catalog/${category}/${name}`);
@@ -60,13 +70,24 @@ export default function ProductCard({ product }) {
         <p className="text-xl font-medium pl-2">{product.price} ₴</p>
       </div>
       <div className="flex gap-2 justify-between px-2 pb-2">
-        <button
-          className="flex items-center justify-center cursor-pointer gap-1 h-9 w-[160px] bg-[#6382a1] text-white text-[16px] font-sans rounded-md transition hover:bg-[#4f6881]"
-          onClick={() => addToCart(product)}
-        >
-          <img className="w-4 h-4" src={basketCard} alt="До корзини" />
-          До корзини
-        </button>
+        {isInCart ? (
+          <button
+            className="flex items-center justify-center gap-1 h-9 w-[160px] bg-gray-400 text-white text-[16px] font-sans rounded-md cursor-pointer"
+            onClick={openCart}
+          >
+            <img className="w-4 h-4" src={basketCard} />
+            До корзини
+          </button>
+        ) : (
+          <button
+            className="flex items-center justify-center cursor-pointer gap-1 h-9 w-[160px] bg-[#6382a1] text-white text-[16px] font-sans rounded-md transition hover:bg-[#4f6881]"
+            onClick={() => addToCart(product)}
+          >
+            <img className="w-4 h-4" src={basketCard} />
+            Купити
+          </button>
+        )}
+
         {isSaved ? (
           <button
             className="w-9 h-9 border border-black flex items-center justify-center rounded-md bg-[#940c0e] hover:bg-[#760a0b]"
