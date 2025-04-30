@@ -60,7 +60,6 @@ export const loginUser = async (req, res) => {
         message: "Login successful",
         token,
         user: payload,
-        isAuth: true,
       });
     });
   } catch (error) {

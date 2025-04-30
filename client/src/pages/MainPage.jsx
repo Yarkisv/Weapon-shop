@@ -10,44 +10,9 @@ import planesCategory from "../images/planesCategory.svg";
 import tanksCategory from "../images/tanksCategory.svg";
 import bgPlanesTanks from "../images/bgPlanesTanks.svg";
 import backgroundCategory from "../images/backgroundCategory.svg";
-import bulletSound from "../sounds/bulletSound.mp3";
-import gunSound from "../sounds/gunSound.mp3";
-import clothSound from "../sounds/clothSound.mp3";
-import knifeSound from "../sounds/knifeSound.mp3";
-import planeSound from "../sounds/planeSound.mp3";
-import tankSound from "../sounds/tankSound.mp3";
 
 export default function MainPage() {
   const navigate = useNavigate();
-
-  // Звуки
-  const bulletAudio = new Audio(bulletSound);
-  const gunAudio = new Audio(gunSound);
-  const clothAudio = new Audio(clothSound);
-  const planeAudio = new Audio(planeSound);
-  const tankAudio = new Audio(tankSound);
-  const knifeAudio = new Audio(knifeSound);
-
-  [
-    bulletAudio,
-    knifeAudio,
-    gunAudio,
-    clothAudio,
-    planeAudio,
-    tankAudio,
-  ].forEach((audio) => {
-    audio.volume = 0.2;
-  });
-
-  const playSound = (sound) => () => {
-    sound.currentTime = 0;
-    sound.play();
-  };
-
-  const stopSound = (sound) => () => {
-    sound.pause();
-    sound.currentTime = 0;
-  };
 
   return (
     <div className="bg-[#50593F]">
@@ -66,8 +31,6 @@ export default function MainPage() {
           <div
             className="relative cursor-pointer "
             onClick={() => navigate("/catalog/guns")}
-            // onMouseEnter={playSound(gunAudio)}
-            // onMouseLeave={stopSound(gunAudio)}
           >
             <img
               src={backgroundCategory}
@@ -86,8 +49,6 @@ export default function MainPage() {
           <div
             className="relative cursor-pointer "
             onClick={() => navigate("/catalog/bullets")}
-            // onMouseEnter={playSound(bulletAudio)}
-            // onMouseLeave={stopSound(bulletAudio)}
           >
             <img
               src={backgroundCategory}
@@ -106,8 +67,6 @@ export default function MainPage() {
           <div
             className="relative cursor-pointer "
             onClick={() => navigate("/catalog/khifes")}
-            // onMouseEnter={playSound(knifeAudio)}
-            // onMouseLeave={stopSound(knifeAudio)}
           >
             <img
               src={backgroundCategory}
@@ -126,8 +85,6 @@ export default function MainPage() {
           <div
             className="relative cursor-pointer "
             onClick={() => navigate("/catalog/ammunition")}
-            // onMouseEnter={playSound(clothAudio)}
-            // onMouseLeave={stopSound(clothAudio)}
           >
             <img
               src={backgroundCategory}
@@ -149,8 +106,6 @@ export default function MainPage() {
           <div
             className="relative cursor-pointer "
             onClick={() => navigate("/catalog/military-aircrafts")}
-            // onMouseEnter={playSound(planeAudio)}
-            // onMouseLeave={stopSound(planeAudio)}
           >
             <img src={bgPlanesTanks} className="w-full h-full object-cover" />
             <div className="absolute inset-0 m-auto flex justify-center items-center transition-transform duration-300 ease-in-out hover:scale-[1.08]">
@@ -166,8 +121,6 @@ export default function MainPage() {
           <div
             className="relative cursor-pointer "
             onClick={() => navigate("/catalog/tanks")}
-            // onMouseEnter={playSound(tankAudio)}
-            // onMouseLeave={stopSound(tankAudio)}
           >
             <img src={bgPlanesTanks} className="w-full h-full object-cover" />
             <div className="absolute inset-0 m-auto flex justify-center items-center transition-transform duration-300 ease-in-out hover:scale-[1.08]">

@@ -118,7 +118,7 @@ export default function Basket() {
             Загальна сума: {totalPrice} ₴
           </p>
           <button
-            className="bg-[#2c4a3e] text-white text-base w-full rounded-md h-11 flex items-center justify-center hover:bg-[#233b32] active:bg-[#1a2c25] hover:scale-[1.01] active:scale-[0.98] transition"
+            className="cursor-pointer bg-[#2c4a3e] text-white text-base w-full rounded-md h-11 flex items-center justify-center hover:bg-[#233b32] active:bg-[#1a2c25] hover:scale-[1.01] active:scale-[0.98] transition"
             onClick={() => navigate("/checkout")}
             disabled={orders.length === 0}
           >

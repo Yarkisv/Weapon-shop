@@ -48,7 +48,6 @@ export default function SavedWindow() {
               >
                 <img
                   src={`data:image/jpg;base64,${savedProduct.image}`}
-                  alt={savedProduct.name}
                   className="w-[75px] h-[75px] rounded object-contain border border-gray-300"
                 />
                 <div className="flex-1">
@@ -63,15 +62,11 @@ export default function SavedWindow() {
                       <img
                         className="w-5 h-5 hover:scale-110 cursor-pointer"
                         src={trash}
-                        alt="Remove saved"
                       />
                     </button>
                   </div>
-                  <p className="text-sm mt-1 text-gray-700">
-                    <strong>Калібр:</strong> {savedProduct.caliber}
-                  </p>
                   <p className="text-sm text-gray-700">
-                    <strong>Код:</strong> {savedProduct.code}
+                    <strong>Код:</strong> {savedProduct.article}
                   </p>
                   <p className="text-sm text-gray-800 font-semibold">
                     <strong>Ціна:</strong> {savedProduct.price} ₴

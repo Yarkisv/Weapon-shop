@@ -10,7 +10,7 @@ import axios from "axios";
 
 export default function CheckoutPage() {
   const [user, setUser] = useState({});
-  const [isAuth, setIsAuth] = useState(!!localStorage.getItem("isAuth"));
+  const [isValid, setIsValid] = useState(false);
 
   const [recipientName, setRecipientName] = useState("");
   const [recipienSurname, setRecipienSurname] = useState("");
@@ -30,14 +30,40 @@ export default function CheckoutPage() {
   const navigate = useNavigate();
 
   useEffect(() => {
-    const storedUser = JSON.parse(localStorage.getItem("user"));
-    if (storedUser) {
-      setUser(storedUser);
-      setRecipientName(storedUser.firstname);
-      setRecipienSurname(storedUser.lastname);
-      setRecipienPhone(storedUser.phone);
-      setEmail(storedUser.email || "");
-    }
+    const checkToken = async () => {
+      const token = localStorage.getItem("token");
+
+      if (!token) {
+        return;
+      }
+
+      try {
+        const response = await axios.get(
+          "http://localhost:3000/auth/validate",
+          {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          }
+        );
+        if (response.status === 200) {
+          setIsValid(true);
+          const storedUser = JSON.parse(localStorage.getItem("user"));
+          setUser(storedUser);
+          setRecipientName(storedUser.firstname);
+          setRecipienSurname(storedUser.lastname);
+          setRecipienPhone(storedUser.phone);
+          setEmail(storedUser.email || "");
+        } else {
+          localStorage.removeItem("token");
+          localStorage.removeItem("isAuth");
+        }
+      } catch (error) {
+        console.log("Error: " + error);
+      }
+    };
+
+    checkToken();
   }, []);
 
   const handleLogin = async (event) => {
@@ -58,7 +84,6 @@ export default function CheckoutPage() {
         localStorage.setItem("user", JSON.stringify(user));
 
         setUser(user);
-        setIsAuth(true);
       }
     } catch (error) {
       console.log(error);
@@ -107,7 +132,7 @@ export default function CheckoutPage() {
         </p>
         <div className="flex ">
           <div className="flex flex-col">
-            {isAuth ? (
+            {isValid ? (
               <div className="flex gap-6 mb-[10px]">
                 <div className="border border-black/30 rounded-xl p-6 bg-gray-200 w-[1050px] ml-[8px] shadow-xl">
                   <p className="text-2xl font-bold mb-6 text-gray-800">
@@ -475,7 +500,7 @@ export default function CheckoutPage() {
           {/* Правая часть — блок "Разом" */}
           <div className="w-[350px] ml-[40px]">
             <div className="bg-gray-200 w-[312px] rounded-xl p-5 sticky top-4 flex flex-col shadow-xl border border-black/30 h-fit">
-              {!isAuth ? (
+              {!isValid ? (
                 <>
                   <div>
                     <p className="text-2xl font-bold mb-2 text-gray-800">
@@ -484,17 +509,6 @@ export default function CheckoutPage() {
                     <p className="text-base text-gray-700 mb-1">
                       Товарів на суму:{" "}
                       <span className="font-semibold">{totalPrice} ₴</span>
-                    </p>
-                    <p className="text-sm text-gray-600">
-                      Ім’я:{" "}
-                      <span className="font-medium">{user.firstname}</span>
-                    </p>
-                    <p className="text-sm text-gray-600">
-                      Прізвище:{" "}
-                      <span className="font-medium">{user.lastname}</span>
-                    </p>
-                    <p className="text-sm text-gray-600">
-                      Телефон: <span className="font-medium">{user.phone}</span>
                     </p>
                   </div>
                   <p className="text-base text-red-500 mb-1">

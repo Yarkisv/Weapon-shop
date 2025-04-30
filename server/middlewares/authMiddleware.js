@@ -8,7 +8,7 @@ export const authMiddleware = (req, res, next) => {
   const token = req.headers.authorization?.split(" ")[1];
 
   if (!token) {
-    console.log("No token found in headers");
+    console.log("No token provided");
     return res.status(401).json({ message: "Token not found" });
   }
 

@@ -1,6 +1,7 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useModal } from "../contexts/modalContext";
+import axios from "axios";
 
 import basket from "../images/basket.svg";
 import cancel from "../images/cancel.svg";
@@ -15,12 +16,38 @@ import logout from "../images/ProfilePageImg/logout.svg";
 
 export default function UserPanel() {
   const { isUserPanelOpen, setUserPanelOpen } = useModal();
-  const [isAuth, setIsAuth] = useState(!!localStorage.getItem("isAuth"));
+
+  const [isValid, setIsValid] = useState(false);
 
   const navigate = useNavigate();
 
   useEffect(() => {
-    setIsAuth(!!localStorage.getItem("isAuth"));
+    const checkToken = async () => {
+      const token = localStorage.getItem("token");
+      if (!token) {
+        return;
+      }
+
+      try {
+        const response = await axios.get(
+          "http://localhost:3000/auth/validate",
+          {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          }
+        );
+        if (response.status === 200) {
+          setIsValid(true);
+        } else {
+          localStorage.removeItem("token");
+        }
+      } catch (error) {
+        console.log("Error: " + error);
+      }
+    };
+
+    checkToken();
   }, []);
 
   const handdleProfile = () => {
@@ -56,7 +83,7 @@ export default function UserPanel() {
   const handleLogoutClick = () => {
     localStorage.removeItem("token");
     localStorage.removeItem("isAuth");
-    localStorage.removeItem("user")
+    localStorage.removeItem("user");
     navigate("/");
     console.log(
       `Logout successful, token - [${localStorage.getItem("token")}]`
@@ -89,7 +116,7 @@ export default function UserPanel() {
             className="w-[30px] h-[30px] ml-3 pt-2 cursor-pointer filter contrast-0 brightness-0 hover:opacity-70"
             onClick={handleClosePanel}
           />
-          {!isAuth ? (
+          {!isValid ? (
             <button
               className="w-[410px] h-[50px] bg-black text-white text-[20px] rounded ml-4 mt-4 transition-transform hover:bg-neutral-900 hover:scale-105 active:bg-neutral-950 active:scale-95"
               onClick={handleLoginClick}
@@ -183,7 +210,7 @@ export default function UserPanel() {
             </li>
           </ul>
         </div>
-        {isAuth && (
+        {isValid && (
           <p
             className="flex gap-0.5 cursor-pointer text-black ml-[12px] mb-2.5 text-[18px] font-sans transition-all duration-300 hover:text-red-600"
             onClick={handleLogoutClick}
@@ -191,7 +218,6 @@ export default function UserPanel() {
             <img
               className="filter contrast-0 brightness-0 w-7 h-7"
               src={logout}
-              alt=""
             />
             Вийти
           </p>

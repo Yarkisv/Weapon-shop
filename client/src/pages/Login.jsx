@@ -21,10 +21,9 @@ export default function Login() {
       });
 
       if (response.status === 200) {
-        const { token, IsAuth, user } = response.data;
+        const { token, user } = response.data;
 
         localStorage.setItem("token", token);
-        localStorage.setItem("isAuth", IsAuth);
         localStorage.setItem("user", JSON.stringify(user));
 
         navigate("/");
