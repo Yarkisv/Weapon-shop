@@ -1,4 +1,8 @@
 import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+import { useModal } from "../contexts/modalContext";
+import SearchBar from "./SearchBar";
+
 import logoFinal from "../images/logoFinal.svg";
 import logoBlack from "../images/logoBlack.svg";
 import basket from "../images/basket.svg";
@@ -7,10 +11,8 @@ import visited from "../images/ProfilePageImg/visited.svg";
 import history from "../images/history.svg";
 import chat from "../images/chat.svg";
 import profile from "../images/profile.svg";
-import { useModal } from "../contexts/modalContext";
 import home from "../images/home.svg";
 import search from "../images/search.svg";
-import { useNavigate } from "react-router-dom";
 import { FiX } from "react-icons/fi";
 
 export default function Header() {
@@ -21,9 +23,17 @@ export default function Header() {
     setBasketOpen,
     isSavedWindowOpen,
     setSavedWindowOpen,
+    isSearchBarOpen,
+    setSearcBarOpen,
   } = useModal();
 
   const [menuOpen, setMenuOpen] = useState(false);
+
+  const [query, setQuery] = useState("");
+
+  const onSearchSubmit = () => {
+    navigate(`/search}`);
+  };
 
   const toggleMenu = () => {
     setMenuOpen(!menuOpen);
@@ -50,6 +60,10 @@ export default function Header() {
 
   const handleLikedWindow = () => {
     setSavedWindowOpen(!isSavedWindowOpen);
+  };
+
+  const handleSearchBarClicked = () => {
+    setSearcBarOpen(!isSearchBarOpen);
   };
 
   const navigate = useNavigate();
@@ -207,12 +221,17 @@ export default function Header() {
           </>
         )}
 
-        <form className="flex  border-2 border-gray-300 bg-white rounded-md pl-2 w-[65%]  h-[40px] overflow-hidden">
+        <form
+          className="flex  border-2 border-gray-300 bg-white rounded-md pl-2 w-[65%]  h-[40px] overflow-hidden"
+          onSubmit={onSearchSubmit}
+        >
           <input
             type="text"
             className="flex-1 h-full text-[14px] font-sans outline-none border-none"
-            name="q"
+            name="text"
             placeholder="пошук..."
+            onClick={handleSearchBarClicked}
+            onChange={(e) => setQuery(e.target.value)}
           />
           <button type="submit" className="pr-2">
             <img src={search} alt="search" className="w-[18px] h-[18px]" />
@@ -243,6 +262,7 @@ export default function Header() {
           </div>
         </div>
       </div>
+      {isSearchBarOpen && <SearchBar query={query} />}
     </div>
   );
 }

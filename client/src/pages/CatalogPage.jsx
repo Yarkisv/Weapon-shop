@@ -127,14 +127,14 @@ export default function CatalogPage() {
                   </span>
                   <div className="flex gap-2 items-center mb-2">
                     <input
-                      type="number"
+                      type="text"
                       placeholder="від"
                       value={firstSortPrice}
                       onChange={(e) => setFirstSortPrice(e.target.value)}
                       className="w-[90px] border border-gray-300 rounded px-2 py-1 text-sm focus:outline-none focus:ring-1 focus:ring-blue-500"
                     />
                     <input
-                      type="number"
+                      type="text"
                       placeholder="до"
                       value={secondSortPrice}
                       onChange={(e) => setSecondSortPrice(e.target.value)}
@@ -146,65 +146,6 @@ export default function CatalogPage() {
                     >
                       OK
                     </button>
-                  </div>
-
-                  <div className="relative h-5 mt-1 w-[260px]">
-                    <div className="relative h-2 bg-gray-200 rounded-full">
-                      <div
-                        className="absolute h-2 bg-blue-500 rounded-full"
-                        style={{
-                          left: `${(firstSortPrice / 50000000) * 100}%`,
-                          width: `${
-                            ((secondSortPrice - firstSortPrice) / 50000000) *
-                            100
-                          }%`,
-                        }}
-                      />
-                    </div>
-
-                    {/* Левый ползунок */}
-                    <input
-                      type="range"
-                      min="0"
-                      max="50000000"
-                      step="1000"
-                      value={firstSortPrice}
-                      onChange={(e) =>
-                        setFirstSortPrice(Number(e.target.value))
-                      }
-                      className="range-thumb absolute w-full appearance-none bg-transparent pointer-events-none
-      [&::-webkit-slider-thumb]:appearance-none
-      [&::-webkit-slider-thumb]:pointer-events-auto
-      [&::-webkit-slider-thumb]:w-4
-      [&::-webkit-slider-thumb]:h-4
-      [&::-webkit-slider-thumb]:bg-blue-600
-      [&::-webkit-slider-thumb]:rounded-full
-      [&::-webkit-slider-thumb]:border-2
-      [&::-webkit-slider-thumb]:border-white
-      [&::-webkit-slider-thumb]:mt-[-6px]"
-                    />
-
-                    {/* Правый ползунок */}
-                    <input
-                      type="range"
-                      min="0"
-                      max="50000000"
-                      step="1000"
-                      value={secondSortPrice}
-                      onChange={(e) =>
-                        setSecondSortPrice(Number(e.target.value))
-                      }
-                      className="range-thumb absolute w-full appearance-none bg-transparent pointer-events-none
-      [&::-webkit-slider-thumb]:appearance-none
-      [&::-webkit-slider-thumb]:pointer-events-auto
-      [&::-webkit-slider-thumb]:w-4
-      [&::-webkit-slider-thumb]:h-4
-      [&::-webkit-slider-thumb]:bg-blue-600
-      [&::-webkit-slider-thumb]:rounded-full
-      [&::-webkit-slider-thumb]:border-2
-      [&::-webkit-slider-thumb]:border-white
-      [&::-webkit-slider-thumb]:mt-[-6px]"
-                    />
                   </div>
                 </div>
 

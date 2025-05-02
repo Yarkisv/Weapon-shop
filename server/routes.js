@@ -8,6 +8,7 @@ import { getProductByName } from "./controllers/catalogConroller.js";
 import { createOrder } from "./controllers/orderController.js";
 import { getOrders } from "./controllers/getOrdersContorller.js";
 import { validateToken } from "./controllers/validateTokenController.js";
+import { searchProducts } from "./controllers/searchController.js";
 
 const router = express.Router();
 
@@ -41,6 +42,10 @@ router.get("/orders", authMiddleware, (req, res) => {
 
 router.get("/auth/validate", authMiddleware, (req, res) => {
   validateToken(req, res);
+});
+
+router.get("/search/:query", (req, res) => {
+  searchProducts(req, res);
 });
 
 export default router;

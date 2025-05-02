@@ -1,22 +1,27 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+
 import Register from "./pages/Register";
 import Login from "./pages/Login";
 import MainPage from "./pages/MainPage";
 import CatalogPage from "./pages/CatalogPage";
-import "./App.css";
-import UserPanel from "./components/UserPanel";
 import ProfilePage from "./pages/ProfilePage";
-import ProtectedAuthRoute from "./Routes/ProtectedAuthRoute";
-import Basket from "./components/Basket";
-import ProductPage from "./pages/ProductPage";
-import CheckoutPage from "./pages/CheckoutPage";
-import { useModal } from "./contexts/modalContext";
-import SavedWindow from "./components/SavedWindow";
 import PaymentPage from "./pages/PaymentPage";
 import NotFoundPage from "./pages/NotFoundPage";
+import ProductPage from "./pages/ProductPage";
+import CheckoutPage from "./pages/CheckoutPage";
+import SearchPage from "./pages/SearchPage";
+
+import UserPanel from "./components/UserPanel";
+import SavedWindow from "./components/SavedWindow";
+import Basket from "./components/Basket";
+
+import ProtectedAuthRoute from "./Routes/ProtectedAuthRoute";
+import { useModal } from "./contexts/modalContext";
+import "./App.css";
 
 function AppContent() {
-  const { isUserPanelOpen, isBasketOpen, isSavedWindowOpen } = useModal();
+  const { isUserPanelOpen, isBasketOpen, isSavedWindowOpen, isSearchBarOpen } =
+    useModal();
 
   return (
     <Router>
@@ -28,6 +33,7 @@ function AppContent() {
         <Route path="/catalog/:category/:name/*" element={<ProductPage />} />
         <Route path="/checkout" element={<CheckoutPage />} />
         <Route path="/payment" element={<PaymentPage />} />
+        <Route path="/search/*" element={<SearchPage />} />
         <Route
           path="/profile/*"
           element={
