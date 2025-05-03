@@ -30,21 +30,22 @@ export default function SearchBar({ query }) {
   }, [query]);
 
   return (
-    <div className="absolute top-[45px] w-[65%] bg-white border border-gray-300 rounded-md shadow-lg z-10 max-h-[300px] overflow-y-auto p-2">
+    <div className="absolute left-1/2 transform -translate-x-1/2 top-[60px] w-full max-w-[65%] bg-white border border-gray-300 rounded-lg shadow-xl z-50 max-h-[300px] overflow-y-auto p-4 transition-all duration-200">
       <div>
-        <p className="text-sm text-gray-500">Результати пошуку для:</p>
+        <p className="text-sm text-gray-600 mb-2">Результати пошуку для:</p>
         {fetchedResults.length > 0 ? (
-          <div>
+          <ul className="space-y-2">
             {fetchedResults.map((result) => (
-              <div key={result.product_id}>
-                <p>{result.name_}</p>
-              </div>
+              <li
+                key={result.product_id}
+                className="px-3 py-2 hover:bg-gray-100 rounded-md cursor-pointer"
+              >
+                {result.name_}
+              </li>
             ))}
-          </div>
+          </ul>
         ) : (
-          <div>
-            <p>Товарів не знайдено</p>
-          </div>
+          <p className="text-gray-500">Товарів не знайдено</p>
         )}
       </div>
     </div>

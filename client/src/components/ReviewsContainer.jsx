@@ -30,7 +30,7 @@ export default function ReviewFormStatic({ product }) {
 
         <div className="flex flex-col">
           <label className="text-gray-700 mb-2">Оцінка</label>
-          <div className="flex gap-2">
+          <div className="flex gap-2 ">
             {[...Array(5)].map((_, index) => {
               const currentRating = index + 1;
               return (
@@ -40,7 +40,7 @@ export default function ReviewFormStatic({ product }) {
                   onClick={() => setRating(currentRating)}
                   onMouseEnter={() => setHover(currentRating)}
                   onMouseLeave={() => setHover(null)}
-                  className="focus:outline-none"
+                  className="focus:outline-none cursor-pointer"
                 >
                   <FaStar
                     size={30}
@@ -64,7 +64,7 @@ export default function ReviewFormStatic({ product }) {
           ></textarea>
         </div>
 
-        <button className="w-full bg-green-500 hover:bg-green-600 text-white text-lg py-2 rounded-md">
+        <button className="w-full bg-green-500 cursor-pointer hover:bg-green-600 text-white text-lg py-2 rounded-md">
           Надіслати
         </button>
       </div>

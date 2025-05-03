@@ -19,16 +19,16 @@ export default function Footer() {
           <h3 className="font-semibold text-lg mb-3">Навігація</h3>
           <ul className="space-y-2 text-gray-300">
             <li>
-              <a className="hover:underline">Каталог</a>
+              <a className="hover:underline cursor-pointer">Каталог</a>
             </li>
             <li>
-              <a className="hover:underline">Про нас</a>
+              <a className="hover:underline cursor-pointer">Про нас</a>
             </li>
             <li>
-              <a className="hover:underline">Контакти</a>
+              <a className="hover:underline cursor-pointer">Контакти</a>
             </li>
             <li>
-              <Link className="hover:underline" to={"/"}>
+              <Link className="hover:underline cursor-pointer" to={"/"}>
                 На головну
               </Link>
             </li>
@@ -47,9 +47,9 @@ export default function Footer() {
         <div>
           <h3 className="font-semibold text-lg mb-3">Ми в соцмережах</h3>
           <div className="flex flex-col gap-2 text-gray-300">
-            <a className="hover:text-white">Facebook</a>
-            <a className="hover:text-white">Instagram</a>
-            <a className="hover:text-white">YouTube</a>
+            <a className="hover:text-white cursor-pointer">Facebook</a>
+            <a className="hover:text-white cursor-pointer">Instagram</a>
+            <a className="hover:text-white cursor-pointer">YouTube</a>
           </div>
         </div>
       </div>

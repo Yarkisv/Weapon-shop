@@ -234,7 +234,11 @@ export default function Header() {
             onChange={(e) => setQuery(e.target.value)}
           />
           <button type="submit" className="pr-2">
-            <img src={search} alt="search" className="w-[18px] h-[18px]" />
+            <img
+              src={search}
+              alt="search"
+              className="w-[18px] h-[18px] cursor-pointer"
+            />
           </button>
         </form>
 

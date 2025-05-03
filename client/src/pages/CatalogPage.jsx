@@ -141,7 +141,7 @@ export default function CatalogPage() {
                       className="w-[90px] border border-gray-300 rounded px-2 py-1 text-sm focus:outline-none focus:ring-1 focus:ring-blue-500"
                     />
                     <button
-                      className="bg-[#3b5b88] text-white text-sm px-3 py-1 rounded hover:bg-[#2e486c] transition"
+                      className="bg-[#3b5b88] text-white cursor-pointer text-sm px-3 py-1 rounded hover:bg-[#2e486c] transition"
                       onClick={handlePriceConfirmationClicked}
                     >
                       OK

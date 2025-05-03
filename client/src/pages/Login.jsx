@@ -91,11 +91,11 @@ export default function Login() {
         <div className="my-6 text-center text-gray-500">Або увійти через</div>
 
         <div className="flex justify-between space-x-4">
-          <button className="flex items-center justify-center w-1/2 py-3 border border-gray-300 rounded-lg hover:bg-gray-100 transition">
+          <button className="flex items-center justify-center cursor-pointer w-1/2 py-3 border border-gray-300 rounded-lg hover:bg-gray-100 transition">
             <img src={gogle} alt="Google" className="w-5 h-5 mr-2" />
             Google
           </button>
-          <button className="flex items-center justify-center w-1/2 py-3 border border-gray-300 rounded-lg hover:bg-gray-100 transition">
+          <button className="flex items-center justify-center cursor-pointer w-1/2 py-3 border border-gray-300 rounded-lg hover:bg-gray-100 transition">
             <img src={face} alt="Facebook" className="w-5 h-5 mr-2" />
             Facebook
           </button>
