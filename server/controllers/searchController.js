@@ -4,10 +4,10 @@ export function searchProducts(req, res) {
   const query = req.params.query;
 
   const dbQuery = `select
-	                p.product_id, 
+	                  p.product_id, 
                     p.name_
                     from products p 
-                where name_ like ?;`;
+                  where name_ like ?;`;
 
   connection.query(dbQuery, `${query}%`, (err, result) => {
     if (err) {

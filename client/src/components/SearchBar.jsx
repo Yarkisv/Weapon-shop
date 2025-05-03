@@ -11,7 +11,7 @@ export default function SearchBar({ query }) {
     const fetchProducts = async () => {
       try {
         const response = await axios.get(
-          `http://localhost:3000/search/${query}`
+          `http://localhost:3000/search-name/${query}`
         );
 
         if (response.status === 200) {

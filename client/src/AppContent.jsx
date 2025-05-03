@@ -20,7 +20,7 @@ import { useModal } from "./contexts/modalContext";
 import "./App.css";
 
 function AppContent() {
-  const { isUserPanelOpen, isBasketOpen, isSavedWindowOpen, isSearchBarOpen } =
+  const { isUserPanelOpen, isBasketOpen, isSavedWindowOpen } =
     useModal();
 
   return (
@@ -33,7 +33,7 @@ function AppContent() {
         <Route path="/catalog/:category/:name/*" element={<ProductPage />} />
         <Route path="/checkout" element={<CheckoutPage />} />
         <Route path="/payment" element={<PaymentPage />} />
-        <Route path="/search/*" element={<SearchPage />} />
+        <Route path="/search/:query" element={<SearchPage />} />
         <Route
           path="/profile/*"
           element={

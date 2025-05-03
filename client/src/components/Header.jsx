@@ -32,7 +32,10 @@ export default function Header() {
   const [query, setQuery] = useState("");
 
   const onSearchSubmit = () => {
-    navigate(`/search}`);
+    const cleanedText = encodeURIComponent(query.trim());
+    if (cleanedText) {
+      navigate(`/search/${cleanedText}`);
+    }
   };
 
   const toggleMenu = () => {
@@ -51,19 +54,39 @@ export default function Header() {
   }, [menuOpen]);
 
   const handleProfileClick = () => {
-    setUserPanelOpen(!isUserPanelOpen);
+    navigate("/profile");
   };
 
   const handleBasketClicked = () => {
+    navigate("/profile/basket");
+  };
+
+  const handleBasketClickedOpen = () => {
     setBasketOpen(!isBasketOpen);
   };
 
   const handleLikedWindow = () => {
+    navigate("/profile/wishlist");
+  };
+
+  const handleLikedWindowOpen = () => {
     setSavedWindowOpen(!isSavedWindowOpen);
   };
 
   const handleSearchBarClicked = () => {
     setSearcBarOpen(!isSearchBarOpen);
+  };
+
+  const handleChatBotClick = () => {
+    navigate("/profile/chatbot");
+  };
+
+  const handleOrderHistoryClick = () => {
+    navigate("/profile/orderhistory");
+  };
+
+  const handleViewedClick = () => {
+    navigate("/profile/viewed");
   };
 
   const navigate = useNavigate();
@@ -190,7 +213,10 @@ export default function Header() {
               <div className="px-4 py-2">
                 <p className="text-xs text-gray-400 uppercase mb-2">Інше</p>
 
-                <div className="flex items-center gap-3 py-2 cursor-pointer">
+                <div
+                  className="flex items-center gap-3 py-2 cursor-pointer"
+                  onClick={handleViewedClick}
+                >
                   <img
                     src={visited}
                     alt="Переглянуте"
@@ -199,7 +225,10 @@ export default function Header() {
                   <p className="text-[15px]">Переглянуте</p>
                 </div>
 
-                <div className="flex items-center gap-3 py-2 cursor-pointer">
+                <div
+                  className="flex items-center gap-3 py-2 cursor-pointer"
+                  onClick={handleOrderHistoryClick}
+                >
                   <img
                     src={history}
                     alt="Історія"
@@ -208,7 +237,10 @@ export default function Header() {
                   <p className="text-[15px]">Історія замовлень</p>
                 </div>
 
-                <div className="flex items-center gap-3 py-2 cursor-pointer">
+                <div
+                  className="flex items-center gap-3 py-2 cursor-pointer"
+                  onClick={handleChatBotClick}
+                >
                   <img
                     src={chat}
                     alt="Чат-бот"
@@ -234,25 +266,21 @@ export default function Header() {
             onChange={(e) => setQuery(e.target.value)}
           />
           <button type="submit" className="pr-2">
-            <img
-              src={search}
-              alt="search"
-              className="w-[18px] h-[18px] cursor-pointer"
-            />
+            <img src={search} className="w-[18px] h-[18px] cursor-pointer" />
           </button>
         </form>
 
         <div className="hidden xl:flex items-center gap-6">
           <div
             className="flex flex-col items-center cursor-pointer transition-transform hover:scale-110"
-            onClick={handleLikedWindow}
+            onClick={handleLikedWindowOpen}
           >
             <img className="w-[24px] h-[24px]" src={liked} />
             <p className="text-white text-[13px]">Обране</p>
           </div>
           <div
             className="flex flex-col items-center cursor-pointer transition-transform hover:scale-110"
-            onClick={handleBasketClicked}
+            onClick={handleBasketClickedOpen}
           >
             <img className="w-[24px] h-[24px]" src={basket} />
             <p className="text-white text-[13px]">Корзина</p>

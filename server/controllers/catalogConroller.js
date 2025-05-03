@@ -1,7 +1,6 @@
 import connection from "../db_config.js";
 import path from "path";
 import fs from "fs";
-import { error } from "console";
 
 export function getCatalog(req, res) {
   console.log("Received request for catalog");
