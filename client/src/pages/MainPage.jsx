@@ -179,12 +179,10 @@ export default function MainPage() {
             <img
               src={backgroundCategory}
               className="w-full h-full object-cover"
-              alt="Фон категории пули"
             />
             <div className="absolute inset-0 m-auto flex justify-center items-center transition-transform duration-300 ease-in-out hover:scale-[1.08]">
               <img
                 src={bulletsCategory}
-                alt="bullets"
                 className="w-[90%] h-[90%] object-contain pointer-events-none"
               />
             </div>
@@ -197,12 +195,10 @@ export default function MainPage() {
             <img
               src={backgroundCategory}
               className="w-full h-full object-cover"
-              alt="Фон категории ножи"
             />
             <div className="absolute inset-0 m-auto flex justify-center items-center transition-transform duration-300 ease-in-out hover:scale-[1.08]">
               <img
                 src={knifesCategory}
-                alt="knifes"
                 className="w-[90%] h-[90%] object-contain pointer-events-none"
               />
             </div>
@@ -215,7 +211,6 @@ export default function MainPage() {
             <img
               src={backgroundCategory}
               className="w-full h-full object-cover"
-              alt="Фон категории экипировка"
             />
             <div className="absolute inset-0 m-auto flex justify-center items-center transition-transform duration-300 ease-in-out hover:scale-[1.08]">
               <img

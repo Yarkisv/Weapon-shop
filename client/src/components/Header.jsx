@@ -261,6 +261,7 @@ export default function Header() {
             type="text"
             className="flex-1 h-full text-[14px] font-sans outline-none border-none"
             name="text"
+            autoComplete="off"
             placeholder="пошук..."
             onClick={handleSearchBarClicked}
             onChange={(e) => setQuery(e.target.value)}

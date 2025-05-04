@@ -19,6 +19,7 @@ export default function ProductPage() {
   const [product, setProduct] = useState({});
   const [errorMessage, setErrorMessage] = useState("");
   const { name, category } = useParams();
+  const decodedName = decodeURIComponent(name);
 
   const navigate = useNavigate();
 
@@ -26,7 +27,7 @@ export default function ProductPage() {
     const fetchProductByName = async () => {
       try {
         const response = await axios.get(
-          `http://localhost:3000/catalog/${category}/${name}`
+          `http://localhost:3000/catalog/${category}/${decodedName}`
         );
         if (response.status === 200) {
           setProduct(response.data.product[0]);
@@ -40,7 +41,7 @@ export default function ProductPage() {
     };
 
     fetchProductByName();
-  }, []);
+  }, [category, name]);
 
   return (
     <div>

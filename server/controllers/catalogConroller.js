@@ -98,10 +98,8 @@ export function getCatalog(req, res) {
             join Manufacturers m on p.manufacturer_id = m.manufacturer_id
             where p.type = "Літак";`;
   } else {
-    console.log("Category is undefined");
+    console.log("Unknown category")
   }
-
-  console.log("category fetched");
 
   connection.query(query, async (err, result) => {
     if (err) {
@@ -212,7 +210,7 @@ export function getCatalog(req, res) {
 export function getProductByName(req, res) {
   const name = req.params.name;
   const category = req.params.category;
-  
+
   let query = "";
 
   if (category === "military-aircrafts") {
