@@ -68,7 +68,7 @@ export default function CheckoutPage() {
   const handleLogin = async (event) => {
     event.preventDefault();
     try {
-      const response = await axios.post("http://localhost:3000/login", {
+      const response = await axios.post(`${API}/login`, {
         email,
         password,
       });
@@ -102,7 +102,7 @@ export default function CheckoutPage() {
       price: item.price,
     }));
 
-    await axios.post("http://localhost:3000/order", {
+    await axios.post(`${API}/order`, {
       phone: recipienPhone,
       orderDate: new Date().toISOString().slice(0, 19).replace("T", " "),
       totalPrice,
