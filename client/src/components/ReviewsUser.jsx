@@ -7,7 +7,6 @@ export default function ReviewsUser() {
       <h1 className="text-3xl font-bold text-gray-800 mb-6">Мої відгуки</h1>
 
       <div className="bg-white border border-gray-300 rounded-xl p-6 shadow-md space-y-4">
-        {/* Відгук 1 */}
         <div className="border border-gray-200 rounded-lg p-4 bg-gray-50">
           <div className="flex justify-between items-center mb-2">
             <h2 className="text-lg font-semibold text-gray-800">Barrett</h2>

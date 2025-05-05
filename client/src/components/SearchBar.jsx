@@ -7,6 +7,8 @@ export default function SearchBar({ query }) {
   const [fetchedResults, setFetchedResults] = useState([]);
   const navigate = useNavigate();
 
+  const API = import.meta.env.VITE_API;
+
   const { setSearcBarOpen } = useModal();
 
   const handleClosePanel = () => {
@@ -33,9 +35,7 @@ export default function SearchBar({ query }) {
   useEffect(() => {
     const fetchProducts = async () => {
       try {
-        const response = await axios.get(
-          `http://localhost:3000/search-name/${query}`
-        );
+        const response = await axios.get(`${API}/search-name/${query}`);
 
         if (response.status === 200) {
           setFetchedResults(response.data.results);

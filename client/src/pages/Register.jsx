@@ -16,6 +16,7 @@ export default function Register() {
   const [isPasswordValid, setPasswordValid] = useState(true);
   const [isPasswordsSame, setPasswordsSame] = useState(true);
 
+  const API = import.meta.env.VITE_API;
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -31,7 +32,7 @@ export default function Register() {
     if (!isPasswordValid || !isPasswordsSame) return;
 
     try {
-      const response = await axios.post("http://localhost:3000/register", {
+      const response = await axios.post(`${API}/register`, {
         firstname,
         lastname,
         email,

@@ -23,11 +23,13 @@ export default function ProductPage() {
 
   const navigate = useNavigate();
 
+  const API = import.meta.env.VITE_API;
+
   useEffect(() => {
     const fetchProductByName = async () => {
       try {
         const response = await axios.get(
-          `http://localhost:3000/catalog/${category}/${decodedName}`
+          `${API}/catalog/${category}/${decodedName}`
         );
         if (response.status === 200) {
           setProduct(response.data.product[0]);

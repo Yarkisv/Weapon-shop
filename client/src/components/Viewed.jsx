@@ -9,7 +9,7 @@ export default function Viewed() {
       product_id: 1,
       name: "Назва товару 1",
       article: "A12345",
-      image: "", // можно вставить base64 строку
+      image: "",
       rating: 4,
       reviews_count: 12,
       price: 999,

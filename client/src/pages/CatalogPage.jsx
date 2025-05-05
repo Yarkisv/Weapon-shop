@@ -18,6 +18,8 @@ export default function CatalogPage() {
   const [armorType, setArmorType] = useState([]);
   const [armorThickness, setArmorThickness] = useState([]);
 
+  const API = import.meta.env.VITE_API;
+
   const isAircraft =
     products.length > 0 ? products[0].product_type === "Літак" : "";
   const isTank = products.length > 0 ? products[0].product_type === "Танк" : "";
@@ -25,9 +27,7 @@ export default function CatalogPage() {
 
   useEffect(() => {
     const fetchProducts = async () => {
-      const response = await axios.get(
-        `http://localhost:3000/catalog/${category}`
-      );
+      const response = await axios.get(`${API}/catalog/${category}`);
       if (response.status === 200) {
         setProducts(response.data.weapons);
         setFilteredProducts(response.data.weapons);

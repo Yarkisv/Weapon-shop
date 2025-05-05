@@ -8,12 +8,12 @@ export default function SearchPage() {
   const { query } = useParams();
   const [products, setProducts] = useState([]);
 
+  const API = import.meta.env.VITE_API;
+
   useEffect(() => {
     const fetchProductsByQuery = async () => {
       try {
-        const response = await axios.get(
-          `http://localhost:3000/search-products/${query}`
-        );
+        const response = await axios.get(`${API}}/search-products/${query}`);
 
         if (response.status === 200) {
           setProducts(response.data.products);

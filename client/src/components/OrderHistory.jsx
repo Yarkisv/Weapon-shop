@@ -4,11 +4,13 @@ import axios from "axios";
 export default function OrderHistory() {
   const [orders, setOrders] = useState([]);
 
+  const API = import.meta.env.VITE_API;
+
   useEffect(() => {
     const fetchOrders = async () => {
       const token = localStorage.getItem("token");
       try {
-        const response = await axios.get("http://localhost:3000/orders", {
+        const response = await axios.get(`${API}/orders`, {
           headers: {
             Authorization: `Bearer ${token}`,
           },

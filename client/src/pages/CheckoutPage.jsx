@@ -29,6 +29,8 @@ export default function CheckoutPage() {
   const { isBasketOpen, setBasketOpen } = useModal();
   const navigate = useNavigate();
 
+  const API = import.meta.env.VITE_API;
+
   useEffect(() => {
     const checkToken = async () => {
       const token = localStorage.getItem("token");
@@ -38,14 +40,11 @@ export default function CheckoutPage() {
       }
 
       try {
-        const response = await axios.get(
-          "http://localhost:3000/auth/validate",
-          {
-            headers: {
-              Authorization: `Bearer ${token}`,
-            },
-          }
-        );
+        const response = await axios.get(`${API}/auth/validate`, {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        });
         if (response.status === 200) {
           setIsValid(true);
           const storedUser = JSON.parse(localStorage.getItem("user"));

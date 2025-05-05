@@ -57,6 +57,10 @@ export default function Header() {
     navigate("/profile");
   };
 
+  const handleProfileWindowClick = () => {
+    setUserPanelOpen(true);
+  };
+
   const handleBasketClicked = () => {
     navigate("/profile/basket");
   };
@@ -288,7 +292,7 @@ export default function Header() {
           </div>
           <div
             className="flex flex-col items-center cursor-pointer transition-transform hover:scale-110"
-            onClick={handleProfileClick}
+            onClick={handleProfileWindowClick}
           >
             <img className="w-[24px] h-[24px]" src={profile} />
             <p className="text-white text-[13px]">Профіль</p>

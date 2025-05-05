@@ -26,6 +26,8 @@ export default function ProfilePage() {
   const [user, setUser] = useState([]);
   const navigate = useNavigate();
 
+  const API = import.meta.env.VITE_API;
+
   const handleLogoutClick = () => {
     localStorage.removeItem("token");
     localStorage.removeItem("isAuth");
@@ -40,7 +42,7 @@ export default function ProfilePage() {
       try {
         const token = localStorage.getItem("token");
 
-        const response = await axios.get("http://localhost:3000/profile", {
+        const response = await axios.get(`${API}/profile`, {
           headers: {
             Authorization: `Bearer ${token}`,
           },

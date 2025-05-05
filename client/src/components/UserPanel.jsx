@@ -16,8 +16,9 @@ import logout from "../images/ProfilePageImg/logout.svg";
 
 export default function UserPanel() {
   const { isUserPanelOpen, setUserPanelOpen } = useModal();
-
   const [isValid, setIsValid] = useState(false);
+
+  const API = import.meta.env.VITE_API;
 
   const navigate = useNavigate();
 
@@ -29,14 +30,11 @@ export default function UserPanel() {
       }
 
       try {
-        const response = await axios.get(
-          "http://localhost:3000/auth/validate",
-          {
-            headers: {
-              Authorization: `Bearer ${token}`,
-            },
-          }
-        );
+        const response = await axios.get(`${API}/auth/validate`, {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        });
         if (response.status === 200) {
           setIsValid(true);
         } else {
@@ -48,7 +46,7 @@ export default function UserPanel() {
     };
 
     checkToken();
-  }, []);
+  }, [isValid]);
 
   const handdleProfile = () => {
     navigate("/profile");
@@ -88,7 +86,7 @@ export default function UserPanel() {
     console.log(
       `Logout successful, token - [${localStorage.getItem("token")}]`
     );
-    setIsAuth(!!localStorage.getItem("isAuth"));
+    setIsValid(false);
   };
 
   const handleClosePanel = () => {

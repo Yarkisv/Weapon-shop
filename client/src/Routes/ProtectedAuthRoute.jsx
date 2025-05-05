@@ -5,6 +5,8 @@ import axios from "axios";
 export default function ProtectedAuthRoute({ children }) {
   const [isValid, setIsValid] = useState(false);
 
+  const API = import.meta.env.VITE_API;
+
   useEffect(() => {
     const checkToken = async () => {
       const token = localStorage.getItem("token");
@@ -14,14 +16,11 @@ export default function ProtectedAuthRoute({ children }) {
       }
 
       try {
-        const response = await axios.get(
-          "http://localhost:3000/auth/validate",
-          {
-            headers: {
-              Authorization: `Bearer ${token}`,
-            },
-          }
-        );
+        const response = await axios.get(`${API}/auth/validate`, {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        });
         if (response.status === 200) {
           setIsValid(true);
         } else {
