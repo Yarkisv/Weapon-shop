@@ -122,6 +122,12 @@ export default function MainPage() {
               <div className="w-[180px] h-[80px] bg-gray-300 rounded-lg flex items-center justify-center text-base text-gray-600">
                 Логотип 5
               </div>
+              <div className="w-[180px] h-[80px] bg-gray-300 rounded-lg flex items-center justify-center text-base text-gray-600">
+                Логотип 6
+              </div>
+              <div className="w-[180px] h-[80px] bg-gray-300 rounded-lg flex items-center justify-center text-base text-gray-600">
+                Логотип 7
+              </div>
             </div>
 
             <div className="flex shrink-0 gap-8 px-4">
@@ -139,6 +145,12 @@ export default function MainPage() {
               </div>
               <div className="w-[180px] h-[80px] bg-gray-300 rounded-lg flex items-center justify-center text-base text-gray-600">
                 Логотип 5
+              </div>
+              <div className="w-[180px] h-[80px] bg-gray-300 rounded-lg flex items-center justify-center text-base text-gray-600">
+                Логотип 6
+              </div>
+              <div className="w-[180px] h-[80px] bg-gray-300 rounded-lg flex items-center justify-center text-base text-gray-600">
+                Логотип 7
               </div>
             </div>
           </div>
