@@ -46,7 +46,7 @@ export default function UserPanel() {
     };
 
     checkToken();
-  }, [isValid]);
+  }, []);
 
   const handdleProfile = () => {
     navigate("/profile");
@@ -80,12 +80,8 @@ export default function UserPanel() {
 
   const handleLogoutClick = () => {
     localStorage.removeItem("token");
-    localStorage.removeItem("isAuth");
     localStorage.removeItem("user");
     navigate("/");
-    console.log(
-      `Logout successful, token - [${localStorage.getItem("token")}]`
-    );
     setIsValid(false);
   };
 

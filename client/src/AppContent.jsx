@@ -14,13 +14,14 @@ import SearchPage from "./pages/SearchPage";
 import UserPanel from "./components/UserPanel";
 import SavedWindow from "./components/SavedWindow";
 import Basket from "./components/Basket";
+import Menu from "./components/Menu";
 
 import ProtectedAuthRoute from "./Routes/ProtectedAuthRoute";
 import { useModal } from "./contexts/modalContext";
 import "./App.css";
 
 function AppContent() {
-  const { isUserPanelOpen, isBasketOpen, isSavedWindowOpen } =
+  const { isUserPanelOpen, isBasketOpen, isSavedWindowOpen, isMenuOpen } =
     useModal();
 
   return (
@@ -47,6 +48,7 @@ function AppContent() {
       {isUserPanelOpen && <UserPanel />}
       {isBasketOpen && <Basket />}
       {isSavedWindowOpen && <SavedWindow />}
+      {isMenuOpen && <Menu />}
     </Router>
   );
 }

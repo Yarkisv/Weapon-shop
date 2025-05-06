@@ -7,6 +7,7 @@ export const ModalProvider = ({ children }) => {
   const [isBasketOpen, setBasketOpen] = useState(false);
   const [isSavedWindowOpen, setSavedWindowOpen] = useState(false);
   const [isSearchBarOpen, setSearcBarOpen] = useState(false);
+  const [isMenuOpen, setMenuOpen] = useState(false);
 
   return (
     <ModalWindowsContext.Provider
@@ -19,6 +20,8 @@ export const ModalProvider = ({ children }) => {
         setSavedWindowOpen,
         isSearchBarOpen,
         setSearcBarOpen,
+        isMenuOpen,
+        setMenuOpen,
       }}
     >
       {children}
