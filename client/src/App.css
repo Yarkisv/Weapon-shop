@@ -25,7 +25,7 @@
     animation: fadeIn 0.5s ease-out forwards;
   }
 
-  @keyframes scrollLeft {
+  @keyframes scroll {
     0% {
       transform: translateX(0%);
     }
@@ -34,7 +34,7 @@
     }
   }
 
-  .animate-scroll-left {
-    animation: scrollLeft 20s linear infinite;
+  .animate-scroll {
+    animation: scroll 30s linear infinite;
   }
 }

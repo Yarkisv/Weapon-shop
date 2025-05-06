@@ -258,7 +258,7 @@ export default function Header() {
         )}
 
         <form
-          className="flex mx-auto  border-2 border-gray-300 bg-white rounded-md pl-2 w-[920px]  h-[40px] overflow-hidden"
+          className=" flex flex-1 max-w-[1000px] mx-4 border-2 border-gray-300 bg-white rounded-md pl-2 h-[40px] overflow-hidden"
           onSubmit={onSearchSubmit}
         >
           <input

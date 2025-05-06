@@ -9,7 +9,6 @@ import {
 import Header from "../components/Header";
 import AboutProductContainer from "../components/AboutProductContainer";
 import ProductCharacteristics from "../components/ProductCharacteristics";
-
 import ReviewContainer from "../components/ReviewsContainer";
 import axios from "axios";
 import Breadcrumbs from "../components/BreadCrumbs";
@@ -22,7 +21,6 @@ export default function ProductPage() {
   const decodedName = decodeURIComponent(name);
 
   const navigate = useNavigate();
-
   const API = import.meta.env.VITE_API;
 
   useEffect(() => {
@@ -46,12 +44,13 @@ export default function ProductPage() {
   }, [category, name]);
 
   return (
-    <div>
+    <div className="min-h-screen flex flex-col">
       <Header />
 
-      <div className="w-[1440px] flex flex-col mx-auto">
+      <main className="w-full max-w-[1440px] px-4 mx-auto flex flex-col">
         <Breadcrumbs />
-        <div className="flex gap-4 font-[Liberation_Sans] text-[18px] mt-2 pr-4 pb-1">
+
+        <div className="flex flex-wrap gap-4 font-[Liberation_Sans] text-[18px] mt-2 pb-1">
           <NavLink
             to={`/catalog/${category}/${name}`}
             end
@@ -101,7 +100,8 @@ export default function ProductPage() {
             />
           </Routes>
         </div>
-      </div>
+      </main>
+
       <Footer />
     </div>
   );

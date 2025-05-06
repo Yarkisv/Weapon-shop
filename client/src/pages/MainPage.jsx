@@ -14,6 +14,17 @@ import backgroundCategory from "../images/backgroundCategory.svg";
 import barret from "../images/barret.png";
 import A10A from "../images/A10A.png";
 import abrams from "../images/abrams.png";
+import anschutz from "../images/logoBrands/anschutz.png";
+import benelli from "../images/logoBrands/benelli.png";
+import Beretta from "../images/logoBrands/Beretta.png";
+import bersa from "../images/logoBrands/bersa.png";
+import colt from "../images/logoBrands/colt.png";
+import keltec from "../images/logoBrands/keltec.png";
+import SAUER from "../images/logoBrands/SAUER.png";
+import bt from "../images/logoBrands/bt.png";
+import thompson from "../images/logoBrands/thompson.png";
+import SA from "../images/logoBrands/SA.png";
+import norinco from "../images/logoBrands/norinco.png";
 
 export default function MainPage() {
   const navigate = useNavigate();
@@ -99,177 +110,168 @@ export default function MainPage() {
         </div>
       </div>
 
-      <div className="w-full bg-[#121212] py-12 overflow-hidden">
+      <div className="relative w-full overflow-hidden bg-[#121212] py-12">
         <h2 className="text-center text-white text-2xl font-semibold mb-8">
           Ми співпрацюємо з
         </h2>
 
         <div className="relative w-full overflow-hidden">
-          <div className="flex animate-scroll-left whitespace-nowrap">
-            <div className="flex shrink-0 gap-8 px-4">
-              <div className="w-[180px] h-[80px] bg-gray-300 rounded-lg flex items-center justify-center text-base text-gray-600">
-                Логотип 1
-              </div>
-              <div className="w-[180px] h-[80px] bg-gray-300 rounded-lg flex items-center justify-center text-base text-gray-600">
-                Логотип 2
-              </div>
-              <div className="w-[180px] h-[80px] bg-gray-300 rounded-lg flex items-center justify-center text-base text-gray-600">
-                Логотип 3
-              </div>
-              <div className="w-[180px] h-[80px] bg-gray-300 rounded-lg flex items-center justify-center text-base text-gray-600">
-                Логотип 4
-              </div>
-              <div className="w-[180px] h-[80px] bg-gray-300 rounded-lg flex items-center justify-center text-base text-gray-600">
-                Логотип 5
-              </div>
-              <div className="w-[180px] h-[80px] bg-gray-300 rounded-lg flex items-center justify-center text-base text-gray-600">
-                Логотип 6
-              </div>
-              <div className="w-[180px] h-[80px] bg-gray-300 rounded-lg flex items-center justify-center text-base text-gray-600">
-                Логотип 7
-              </div>
+          <div className="flex w-max animate-scroll whitespace-nowrap gap-8 px-4">
+            <div className="w-[180px] h-[80px] bg-white rounded-lg flex items-center justify-center">
+              <img src={anschutz} className="object-contain w-full h-full" />
+            </div>
+            <div className="w-[180px] h-[80px] bg-white rounded-lg flex items-center justify-center">
+              <img src={benelli} className="object-contain w-full h-full" />
+            </div>
+            <div className="w-[180px] h-[80px] bg-white rounded-lg flex items-center justify-center">
+              <img src={Beretta} className="object-contain w-full h-full" />
+            </div>
+            <div className="w-[180px] h-[80px] bg-white rounded-lg flex items-center justify-center">
+              <img src={bersa} className="object-contain w-full h-full" />
+            </div>
+            <div className="w-[180px] h-[80px] bg-white rounded-lg flex items-center justify-center">
+              <img src={colt} className="object-contain w-full h-full" />
+            </div>
+            <div className="w-[180px] h-[80px] bg-white rounded-lg flex items-center justify-center">
+              <img src={keltec} className="object-contain w-full h-full" />
+            </div>
+            <div className="w-[180px] h-[80px] bg-white rounded-lg flex items-center justify-center">
+              <img src={SAUER} className="object-contain w-full h-full" />
+            </div>
+            <div className="w-[180px] h-[80px] bg-white rounded-lg flex items-center justify-center">
+              <img src={bt} className="object-contain w-full h-full" />
+            </div>
+            <div className="w-[180px] h-[80px] bg-white rounded-lg flex items-center justify-center">
+              <img src={SA} className="object-contain w-full h-full" />
+            </div>
+            <div className="w-[180px] h-[80px] bg-white rounded-lg flex items-center justify-center">
+              <img src={thompson} className="object-contain w-full h-full" />
+            </div>
+            <div className="w-[180px] h-[80px] bg-white rounded-lg flex items-center justify-center">
+              <img src={norinco} className="object-contain w-full h-full" />
             </div>
 
-            <div className="flex shrink-0 gap-8 px-4">
-              <div className="w-[180px] h-[80px] bg-gray-300 rounded-lg flex items-center justify-center text-base text-gray-600">
-                Логотип 1
-              </div>
-              <div className="w-[180px] h-[80px] bg-gray-300 rounded-lg flex items-center justify-center text-base text-gray-600">
-                Логотип 2
-              </div>
-              <div className="w-[180px] h-[80px] bg-gray-300 rounded-lg flex items-center justify-center text-base text-gray-600">
-                Логотип 3
-              </div>
-              <div className="w-[180px] h-[80px] bg-gray-300 rounded-lg flex items-center justify-center text-base text-gray-600">
-                Логотип 4
-              </div>
-              <div className="w-[180px] h-[80px] bg-gray-300 rounded-lg flex items-center justify-center text-base text-gray-600">
-                Логотип 5
-              </div>
-              <div className="w-[180px] h-[80px] bg-gray-300 rounded-lg flex items-center justify-center text-base text-gray-600">
-                Логотип 6
-              </div>
-              <div className="w-[180px] h-[80px] bg-gray-300 rounded-lg flex items-center justify-center text-base text-gray-600">
-                Логотип 7
-              </div>
+            {/* Дублирование для бесконечного скролла */}
+            <div className="w-[180px] h-[80px] bg-white rounded-lg flex items-center justify-center">
+              <img src={anschutz} className="object-contain w-full h-full" />
+            </div>
+            <div className="w-[180px] h-[80px] bg-white rounded-lg flex items-center justify-center">
+              <img src={benelli} className="object-contain w-full h-full" />
+            </div>
+            <div className="w-[180px] h-[80px] bg-white rounded-lg flex items-center justify-center">
+              <img src={Beretta} className="object-contain w-full h-full" />
+            </div>
+            <div className="w-[180px] h-[80px] bg-white rounded-lg flex items-center justify-center">
+              <img src={bersa} className="object-contain w-full h-full" />
+            </div>
+            <div className="w-[180px] h-[80px] bg-white rounded-lg flex items-center justify-center">
+              <img src={colt} className="object-contain w-full h-full" />
+            </div>
+            <div className="w-[180px] h-[80px] bg-white rounded-lg flex items-center justify-center">
+              <img src={keltec} className="object-contain w-full h-full" />
+            </div>
+            <div className="w-[180px] h-[80px] bg-white rounded-lg flex items-center justify-center">
+              <img src={SAUER} className="object-contain w-full h-full" />
+            </div>
+            <div className="w-[180px] h-[80px] bg-white rounded-lg flex items-center justify-center">
+              <img src={bt} className="object-contain w-full h-full" />
+            </div>
+            <div className="w-[180px] h-[80px] bg-white rounded-lg flex items-center justify-center">
+              <img src={SA} className="object-contain w-full h-full" />
+            </div>
+            <div className="w-[180px] h-[80px] bg-white rounded-lg flex items-center justify-center">
+              <img src={thompson} className="object-contain w-full h-full" />
+            </div>
+            <div className="w-[180px] h-[80px] bg-white rounded-lg flex items-center justify-center">
+              <img src={norinco} className="object-contain w-full h-full" />
             </div>
           </div>
         </div>
       </div>
 
-      <div
-        className="flex flex-col relative overflow-x-hidden mx-auto gap-[20px] max-w-[1440px] py-8"
-        style={{
-          backgroundPosition: "center",
-          backgroundRepeat: "no-repeat",
-          backgroundSize: "cover",
-        }}
-      >
-        <div className="flex justify-center gap-4 flex-wrap px-8">
-          <div
-            className="relative cursor-pointer"
-            onClick={() => navigate("/catalog/guns")}
-          >
-            <img
-              src={backgroundCategory}
-              className="w-full h-full object-cover"
-              alt="Фон категории оружие"
-            />
-            <div className="absolute inset-0 m-auto flex justify-center items-center transition-transform duration-300 ease-in-out hover:scale-[1.08]">
-              <img
-                src={gunsCategory}
-                alt="guns"
-                className="w-[90%] h-[90%] object-contain pointer-events-none"
-              />
-            </div>
-          </div>
-
-          <div
-            className="relative cursor-pointer"
-            onClick={() => navigate("/catalog/bullets")}
-          >
-            <img
-              src={backgroundCategory}
-              className="w-full h-full object-cover"
-            />
-            <div className="absolute inset-0 m-auto flex justify-center items-center transition-transform duration-300 ease-in-out hover:scale-[1.08]">
-              <img
-                src={bulletsCategory}
-                className="w-[90%] h-[90%] object-contain pointer-events-none"
-              />
-            </div>
-          </div>
-
-          <div
-            className="relative cursor-pointer"
-            onClick={() => navigate("/catalog/knifes")}
-          >
-            <img
-              src={backgroundCategory}
-              className="w-full h-full object-cover"
-            />
-            <div className="absolute inset-0 m-auto flex justify-center items-center transition-transform duration-300 ease-in-out hover:scale-[1.08]">
-              <img
-                src={knifesCategory}
-                className="w-[90%] h-[90%] object-contain pointer-events-none"
-              />
-            </div>
-          </div>
-
-          <div
-            className="relative cursor-pointer"
-            onClick={() => navigate("/catalog/ammunition")}
-          >
-            <img
-              src={backgroundCategory}
-              className="w-full h-full object-cover"
-            />
-            <div className="absolute inset-0 m-auto flex justify-center items-center transition-transform duration-300 ease-in-out hover:scale-[1.08]">
-              <img
-                src={clothesCategory}
-                alt="clothes"
-                className="w-[90%] h-[90%] object-contain pointer-events-none"
-              />
-            </div>
-          </div>
+      <div className="max-w-[1440px] mx-auto py-12 px-6 grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+        <div
+          onClick={() => navigate("/catalog/guns")}
+          className="cursor-pointer bg-[#1a1a1a] border rounded  border-[#333] hover:border-[#555] transition-all duration-200 flex flex-col items-center px-4 py-6"
+        >
+          <img
+            src={gunsCategory}
+            alt="Вогнепальна зброя"
+            className="w-full h-32 object-contain mb-4 rotate-90"
+          />
+          <h3 className="text-center text-white text-base font-medium uppercase tracking-wide">
+            Вогнепальна зброя
+          </h3>
         </div>
 
-        <div className="flex justify-center items-center gap-[20px] px-8 flex-wrap">
-          <div
-            className="relative cursor-pointer"
-            onClick={() => navigate("/catalog/military-aircrafts")}
-          >
-            <img
-              src={bgPlanesTanks}
-              className="w-full h-full object-cover"
-              alt="Фон категории самолёты"
-            />
-            <div className="absolute inset-0 m-auto flex justify-center items-center transition-transform duration-300 ease-in-out hover:scale-[1.08]">
-              <img
-                src={planesCategory}
-                alt="planes"
-                className="w-[90%] h-[90%] object-contain pointer-events-none"
-              />
-            </div>
-          </div>
+        <div
+          onClick={() => navigate("/catalog/bullets")}
+          className="cursor-pointer bg-[#1a1a1a] border rounded  border-[#333] hover:border-[#555] transition-all duration-200 flex flex-col items-center px-4 py-6"
+        >
+          <img
+            src={bulletsCategory}
+            alt="Боєприпаси"
+            className="w-full h-32 object-contain mb-4 rotate-90"
+          />
+          <h3 className="text-center text-white text-base font-medium uppercase tracking-wide">
+            Боєприпаси
+          </h3>
+        </div>
 
-          <div
-            className="relative cursor-pointer"
-            onClick={() => navigate("/catalog/tanks")}
-          >
-            <img
-              src={bgPlanesTanks}
-              className="w-full h-full object-cover"
-              alt="Фон категории танки"
-            />
-            <div className="absolute inset-0 m-auto flex justify-center items-center transition-transform duration-300 ease-in-out hover:scale-[1.08]">
-              <img
-                src={tanksCategory}
-                alt="tanks"
-                className="w-[90%] h-[90%] object-contain pointer-events-none"
-              />
-            </div>
-          </div>
+        <div
+          onClick={() => navigate("/catalog/knifes")}
+          className="cursor-pointer bg-[#1a1a1a] border rounded  border-[#333] hover:border-[#555] transition-all duration-200 flex flex-col items-center px-4 py-6"
+        >
+          <img
+            src={knifesCategory}
+            alt="Холодна зброя"
+            className="w-full h-32 object-contain mb-4 rotate-90"
+          />
+          <h3 className="text-center text-white text-base font-medium uppercase tracking-wide">
+            Холодна зброя
+          </h3>
+        </div>
+
+        <div
+          onClick={() => navigate("/catalog/ammunition")}
+          className="cursor-pointer bg-[#1a1a1a] border rounded  border-[#333] hover:border-[#555] transition-all duration-200 flex flex-col items-center px-4 py-6"
+        >
+          <img
+            src={clothesCategory}
+            alt="Екіпірування"
+            className="w-full h-32 object-contain mb-4"
+          />
+          <h3 className="text-center text-white text-base font-medium uppercase tracking-wide">
+            Екіпірування
+          </h3>
+        </div>
+
+        <div
+          onClick={() => navigate("/catalog/military-aircrafts")}
+          className="cursor-pointer bg-[#1a1a1a] border rounded  border-[#333] hover:border-[#555] transition-all duration-200 flex flex-col items-center px-4 py-6"
+        >
+          <img
+            src={planesCategory}
+            alt="Військова авіація"
+            className="w-full h-32 object-contain mb-4"
+          />
+          <h3 className="text-center text-white text-base font-medium uppercase tracking-wide">
+            Військова авіація
+          </h3>
+        </div>
+
+        <div
+          onClick={() => navigate("/catalog/tanks")}
+          className="cursor-pointer bg-[#1a1a1a] border rounded  border-[#333] hover:border-[#555] transition-all duration-200 flex flex-col items-center px-4 py-6"
+        >
+          <img
+            src={tanksCategory}
+            alt="Бойові танки"
+            className="w-full h-32 object-contain mb-4"
+          />
+          <h3 className="text-center text-white text-base font-medium uppercase tracking-wide">
+            Бойові танки
+          </h3>
         </div>
       </div>
 
