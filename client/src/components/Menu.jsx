@@ -24,7 +24,9 @@ export default function Menu() {
     const checkToken = async () => {
       const token = localStorage.getItem("token");
 
-      if (!token) return;
+      if (!token) {
+        return;
+      }
 
       try {
         const response = await axios.get(`${API}/auth/validate`, {
@@ -48,7 +50,39 @@ export default function Menu() {
 
   const navigate = useNavigate();
 
-  const toggleMenu = () => setMenuOpen(false);
+  const toggleMenu = () => {
+    setMenuOpen(false);
+  };
+
+  const handleLikedWindow = () => {
+    navigate("/profile/wishlist");
+    toggleMenu();
+  };
+
+  const handleBasketClicked = () => {
+    navigate("/profile/basket");
+    toggleMenu();
+  };
+
+  const handleProfileClick = () => {
+    navigate("/profile");
+    toggleMenu();
+  };
+
+  const handleChatBotClick = () => {
+    navigate("/profile/chatbot");
+    toggleMenu();
+  };
+
+  const handleOrderHistoryClick = () => {
+    navigate("/profile/orderhistory");
+    toggleMenu();
+  };
+
+  const handleViewedClick = () => {
+    navigate("/profile/viewed");
+    toggleMenu();
+  };
 
   const handleLogout = () => {
     localStorage.removeItem("token");
@@ -59,11 +93,6 @@ export default function Menu() {
 
   const handleLoginClick = () => {
     navigate("/login");
-    toggleMenu();
-  };
-
-  const handleNavigation = (path) => {
-    navigate(path);
     toggleMenu();
   };
 
@@ -79,7 +108,10 @@ export default function Menu() {
           <img
             src={logoBlack}
             className="w-[140px] cursor-pointer"
-            onClick={() => handleNavigation("/")}
+            onClick={() => {
+              navigate("/");
+              toggleMenu();
+            }}
           />
           <FiX
             size={24}
@@ -91,7 +123,7 @@ export default function Menu() {
         {isValid ? (
           <div
             className="px-4 py-3 flex items-center gap-3 border-b border-gray-200 cursor-pointer"
-            onClick={() => handleNavigation("/profile")}
+            onClick={handleProfileClick}
           >
             <img
               src={profile}
@@ -119,7 +151,10 @@ export default function Menu() {
 
           <div
             className="flex items-center gap-3 py-2 cursor-pointer"
-            onClick={() => handleNavigation("/")}
+            onClick={() => {
+              navigate("/");
+              toggleMenu();
+            }}
           >
             <img
               src={home}
@@ -131,7 +166,10 @@ export default function Menu() {
 
           <div
             className="flex items-center gap-3 py-2 cursor-pointer"
-            onClick={() => handleNavigation("/profile/wishlist")}
+            onClick={() => {
+              handleLikedWindow();
+              toggleMenu();
+            }}
           >
             <img
               src={liked}
@@ -143,7 +181,10 @@ export default function Menu() {
 
           <div
             className="flex items-center gap-3 py-2 cursor-pointer"
-            onClick={() => handleNavigation("/profile/basket")}
+            onClick={() => {
+              handleBasketClicked();
+              toggleMenu();
+            }}
           >
             <img
               src={basket}
@@ -161,7 +202,7 @@ export default function Menu() {
 
           <div
             className="flex items-center gap-3 py-2 cursor-pointer"
-            onClick={() => handleNavigation("/profile/viewed")}
+            onClick={handleViewedClick}
           >
             <img
               src={visited}
@@ -173,7 +214,7 @@ export default function Menu() {
 
           <div
             className="flex items-center gap-3 py-2 cursor-pointer"
-            onClick={() => handleNavigation("/profile/orderhistory")}
+            onClick={handleOrderHistoryClick}
           >
             <img
               src={history}
@@ -185,7 +226,7 @@ export default function Menu() {
 
           <div
             className="flex items-center gap-3 py-2 cursor-pointer"
-            onClick={() => handleNavigation("/profile/chatbot")}
+            onClick={handleChatBotClick}
           >
             <img
               src={chat}
