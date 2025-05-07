@@ -54,8 +54,8 @@ export default function SearchBar({ query }) {
 
   return (
     <>
-      <div className="fixed inset-0  z-[9998]" onClick={handleClosePanel} />
-      <div className="absolute left-[51.7%] transform -translate-x-1/2 top-[52px] w-full max-w-[920px] bg-white border border-gray-300 rounded-lg shadow-xl z-50 p-4 transition-all duration-200">
+      <div className="fixed inset-0  z-[9996] " onClick={handleClosePanel} />
+      <div className="absolute z-[9997] left-[51.7%] transform -translate-x-1/2 top-[52px] w-full max-w-[920px] bg-white border border-gray-300 rounded-lg shadow-xl  p-4 transition-all duration-200">
         <div className="max-h-[220px] overflow-y-auto mb-4">
           <p className="text-sm text-gray-600 mb-2">
             Результати пошуку для: {query}

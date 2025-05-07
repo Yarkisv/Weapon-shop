@@ -12,6 +12,7 @@ import home from "../images/home.svg";
 import liked from "../images/liked.svg";
 import basket from "../images/basket.svg";
 import { FiX } from "react-icons/fi";
+import logout from "../images/ProfilePageImg/logout.svg";
 
 export default function Menu() {
   const { setMenuOpen } = useModal();
@@ -23,9 +24,7 @@ export default function Menu() {
     const checkToken = async () => {
       const token = localStorage.getItem("token");
 
-      if (!token) {
-        return;
-      }
+      if (!token) return;
 
       try {
         const response = await axios.get(`${API}/auth/validate`, {
@@ -49,39 +48,7 @@ export default function Menu() {
 
   const navigate = useNavigate();
 
-  const toggleMenu = () => {
-    setMenuOpen(false);
-  };
-
-  const handleLikedWindow = () => {
-    navigate("/profile/wishlist");
-    toggleMenu();
-  };
-
-  const handleBasketClicked = () => {
-    navigate("/profile/basket");
-    toggleMenu();
-  };
-
-  const handleProfileClick = () => {
-    navigate("/profile");
-    toggleMenu();
-  };
-
-  const handleChatBotClick = () => {
-    navigate("/profile/chatbot");
-    toggleMenu();
-  };
-
-  const handleOrderHistoryClick = () => {
-    navigate("/profile/orderhistory");
-    toggleMenu();
-  };
-
-  const handleViewedClick = () => {
-    navigate("/profile/viewed");
-    toggleMenu();
-  };
+  const toggleMenu = () => setMenuOpen(false);
 
   const handleLogout = () => {
     localStorage.removeItem("token");
@@ -92,6 +59,11 @@ export default function Menu() {
 
   const handleLoginClick = () => {
     navigate("/login");
+    toggleMenu();
+  };
+
+  const handleNavigation = (path) => {
+    navigate(path);
     toggleMenu();
   };
 
@@ -107,10 +79,7 @@ export default function Menu() {
           <img
             src={logoBlack}
             className="w-[140px] cursor-pointer"
-            onClick={() => {
-              navigate("/");
-              toggleMenu();
-            }}
+            onClick={() => handleNavigation("/")}
           />
           <FiX
             size={24}
@@ -122,7 +91,7 @@ export default function Menu() {
         {isValid ? (
           <div
             className="px-4 py-3 flex items-center gap-3 border-b border-gray-200 cursor-pointer"
-            onClick={handleProfileClick}
+            onClick={() => handleNavigation("/profile")}
           >
             <img
               src={profile}
@@ -135,10 +104,10 @@ export default function Menu() {
             </div>
           </div>
         ) : (
-          <div>
+          <div className="flex px-4 py-4">
             <button
               onClick={handleLoginClick}
-              className="border-2 rounded-lg w-[200px] h-[40px] cursor-pointer"
+              className="w-full max-w-[200px] py-2 px-4 bg-black text-white rounded-lg shadow hover:bg-neutral-800 transition duration-200"
             >
               Увійти
             </button>
@@ -150,10 +119,7 @@ export default function Menu() {
 
           <div
             className="flex items-center gap-3 py-2 cursor-pointer"
-            onClick={() => {
-              navigate("/");
-              toggleMenu();
-            }}
+            onClick={() => handleNavigation("/")}
           >
             <img
               src={home}
@@ -165,10 +131,7 @@ export default function Menu() {
 
           <div
             className="flex items-center gap-3 py-2 cursor-pointer"
-            onClick={() => {
-              handleLikedWindow();
-              toggleMenu();
-            }}
+            onClick={() => handleNavigation("/profile/wishlist")}
           >
             <img
               src={liked}
@@ -180,10 +143,7 @@ export default function Menu() {
 
           <div
             className="flex items-center gap-3 py-2 cursor-pointer"
-            onClick={() => {
-              handleBasketClicked();
-              toggleMenu();
-            }}
+            onClick={() => handleNavigation("/profile/basket")}
           >
             <img
               src={basket}
@@ -201,7 +161,7 @@ export default function Menu() {
 
           <div
             className="flex items-center gap-3 py-2 cursor-pointer"
-            onClick={handleViewedClick}
+            onClick={() => handleNavigation("/profile/viewed")}
           >
             <img
               src={visited}
@@ -213,7 +173,7 @@ export default function Menu() {
 
           <div
             className="flex items-center gap-3 py-2 cursor-pointer"
-            onClick={handleOrderHistoryClick}
+            onClick={() => handleNavigation("/profile/orderhistory")}
           >
             <img
               src={history}
@@ -225,7 +185,7 @@ export default function Menu() {
 
           <div
             className="flex items-center gap-3 py-2 cursor-pointer"
-            onClick={handleChatBotClick}
+            onClick={() => handleNavigation("/profile/chatbot")}
           >
             <img
               src={chat}
@@ -236,13 +196,15 @@ export default function Menu() {
           </div>
 
           {isValid && (
-            <div>
-              <button
-                className="border-2 rounded-lg w-[200px] h-[40px] cursor-pointer"
-                onClick={handleLogout}
-              >
-                Вийти
-              </button>
+            <div
+              className="flex items-center gap-3 text-[15px] text-red-600 cursor-pointer hover:text-red-800 transition"
+              onClick={handleLogout}
+            >
+              <img
+                src={logout}
+                className="w-[24px] h-[24px] filter contrast-0 brightness-0 transition-transform hover:scale-110"
+              />
+              Вийти
             </div>
           )}
         </div>

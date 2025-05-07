@@ -151,7 +151,6 @@ export default function MainPage() {
               <img src={norinco} className="object-contain w-full h-full" />
             </div>
 
-            {/* Дублирование для бесконечного скролла */}
             <div className="w-[180px] h-[80px] bg-white rounded-lg flex items-center justify-center">
               <img src={anschutz} className="object-contain w-full h-full" />
             </div>
@@ -188,8 +187,11 @@ export default function MainPage() {
           </div>
         </div>
       </div>
+      <p className="text-center text-3xl font-bold mt-[10px] text-black ">
+        Категорії
+      </p>
 
-      <div className="max-w-[1440px] mx-auto py-12 px-6 grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+      <div className="max-w-[1440px] mx-auto pt-[10px] px-6 grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
         <div
           onClick={() => navigate("/catalog/guns")}
           className="cursor-pointer bg-[#1a1a1a] border rounded  border-[#333] hover:border-[#555] transition-all duration-200 flex flex-col items-center px-4 py-6"

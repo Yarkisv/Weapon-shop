@@ -4,9 +4,14 @@ import ProductCard from "../components/ProductCard";
 import axios from "axios";
 import { useParams } from "react-router-dom";
 import Breadcrumbs from "../components/BreadCrumbs";
+import FiltersPanel from "../components/FiltersPanel";
 import Footer from "../components/Footer";
 
 export default function CatalogPage() {
+  const isMobile = window.innerWidth <= 768;
+
+  const [mobileFilterOpen, setMobileFilterOpen] = useState(false);
+
   const [products, setProducts] = useState([]);
   const [filteredProducts, setFilteredProducts] = useState([]);
   const [sortOption, setSortOption] = useState("");
@@ -111,6 +116,8 @@ export default function CatalogPage() {
     priceConfirmation,
   ]);
 
+  const showMobileButton = filteredProducts.length === 2 && isMobile;
+
   return (
     <div className="flex flex-col min-h-screen">
       <Header />
@@ -118,27 +125,27 @@ export default function CatalogPage() {
         <div className="max-w-[1440px] mx-auto px-4 py-[10px]">
           <Breadcrumbs />
           <div className="grid grid-cols-1 md:grid-cols-4 gap-6 min-h-[400px]">
-            <div className="md:col-span-1 bg-gray-100 rounded-md p-4 shadow-sm">
+            <div className="hidden md:block md:col-span-1 bg-gray-100 rounded-md p-4 shadow-sm">
               <h2 className="text-xl font-semibold mb-4">Фільтри</h2>
               <div className="space-y-4 ">
                 <div>
                   <span className="text-gray-700 block mb-1 text-sm">
                     Ціна (₴):
                   </span>
-                  <div className="flex gap-2 items-center mb-2">
+                  <div className="flex flex-wrap gap-2 items-center mb-2">
                     <input
                       type="text"
                       placeholder="від"
                       value={firstSortPrice}
                       onChange={(e) => setFirstSortPrice(e.target.value)}
-                      className="w-[90px] border border-gray-300 rounded px-2 py-1 text-sm focus:outline-none focus:ring-1 focus:ring-blue-500"
+                      className="min-w-[80px] max-w-[120px] w-full border border-gray-300 rounded px-2 py-1 text-sm focus:outline-none focus:ring-1 focus:ring-blue-500"
                     />
                     <input
                       type="text"
                       placeholder="до"
                       value={secondSortPrice}
                       onChange={(e) => setSecondSortPrice(e.target.value)}
-                      className="w-[90px] border border-gray-300 rounded px-2 py-1 text-sm focus:outline-none focus:ring-1 focus:ring-blue-500"
+                      className="min-w-[80px] max-w-[120px] w-full border border-gray-300 rounded px-2 py-1 text-sm focus:outline-none focus:ring-1 focus:ring-blue-500"
                     />
                     <button
                       className="bg-[#3b5b88] text-white cursor-pointer text-sm px-3 py-1 rounded hover:bg-[#2e486c] transition"
@@ -665,7 +672,7 @@ export default function CatalogPage() {
             </div>
 
             <div className="md:col-span-3 flex flex-col gap-6">
-              <div className="flex justify-end mr-[12px]">
+              <div className="flex justify-between items-center flex-wrap gap-2 px-3">
                 <label className="flex items-center gap-2 text-gray-700">
                   <span className="text-sm font-medium">Сортування:</span>
                   <select
@@ -676,9 +683,18 @@ export default function CatalogPage() {
                     <option value="expensive">Від дорогих</option>
                   </select>
                 </label>
+                <div className="md:hidden flex  mb-4">
+                  <button
+                    onClick={() => setMobileFilterOpen(true)}
+                    className="bg-blue-600 text-white px-4 py-2 rounded-md shadow-md hover:bg-blue-700 transition"
+                  >
+                    Фільтри
+                  </button>
+                </div>
               </div>
+
               {filteredProducts.length > 0 ? (
-                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 justify-items-center">
+                <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 auto-rows-fr justify-items-center">
                   {filteredProducts.map((product) => (
                     <ProductCard key={product.product_id} product={product} />
                   ))}
@@ -697,6 +713,35 @@ export default function CatalogPage() {
         </div>
       </div>
       <Footer />
+      {mobileFilterOpen && (
+        <div className="fixed inset-0 bg-black/40 z-9999 flex items-start justify-end">
+          <div className="w-3/4 max-w-sm bg-white p-4 shadow-xl overflow-y-auto h-full">
+            <div className="flex justify-between items-center mb-4">
+              <h2 className="text-xl font-semibold">Фільтри</h2>
+              <button
+                onClick={() => setMobileFilterOpen(false)}
+                className="text-sm text-blue-600 hover:underline"
+              >
+                Закрити
+              </button>
+            </div>
+            <div className="space-y-4">
+              <FiltersPanel
+                isTank={isTank}
+                isGun={isGun}
+                isAircraft={isAircraft}
+                firstSortPrice={firstSortPrice}
+                secondSortPrice={secondSortPrice}
+                handlePriceConfirmationClicked={handlePriceConfirmationClicked}
+                setFirstSortPrice={setFirstSortPrice}
+                setSecondSortPrice={setSecondSortPrice}
+                handleArmorTypeChange={handleArmorTypeChange}
+                handleArmorThicknessChange={handleArmorThicknessChange}
+              />
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 }

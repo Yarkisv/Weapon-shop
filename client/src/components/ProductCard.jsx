@@ -3,6 +3,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import { useCart } from "../contexts/cartContext";
 import { useSaved } from "../contexts/savedContext";
 import { useModal } from "../contexts/modalContext";
+
 import Rating from "./Rating";
 
 import likeOrder from "../images/likeOrder.svg";
@@ -43,7 +44,7 @@ export default function ProductCard({ product }) {
   };
 
   return (
-    <div className="w-[240px] h-[400px] bg-white border border-black/30 rounded-md flex flex-col items-center justify-between overflow-hidden transition duration-300 ease-in-out transform hover:scale-[1.01] hover:-translate-y-1 hover:shadow-lg">
+    <div className="w-full max-w-[240px] aspect-[3/5] h-[400px] bg-white border border-black/30 rounded-md flex flex-col items-center justify-between overflow-hidden transition duration-300 ease-in-out transform hover:scale-[1.01] hover:-translate-y-1 hover:shadow-lg">
       <div className="w-full h-[180px] flex justify-center items-center overflow-hidden cursor-pointer">
         <img
           src={`data:image/jpg;base64,${product.image}`}
@@ -70,10 +71,10 @@ export default function ProductCard({ product }) {
         />
         <p className="text-xl font-medium pl-2">{product.price} ₴</p>
       </div>
-      <div className="flex gap-2 justify-between px-2 pb-2">
+      <div className="flex gap-2 justify-center  px-2 pb-2">
         {isInCart ? (
           <button
-            className="flex items-center justify-center gap-1 h-9 w-[160px] bg-green-600 text-white text-[16px] font-sans rounded-md cursor-pointer hover:bg-green-700"
+            className="flex items-center justify-center gap-1 h-9 w-[160px] max-[400px]:w-full bg-green-600 text-white text-[16px] font-sans rounded-md cursor-pointer hover:bg-green-700"
             onClick={openCart}
           >
             <svg
@@ -82,19 +83,18 @@ export default function ProductCard({ product }) {
               stroke="currentColor"
               strokeWidth="2"
               viewBox="0 0 24 24"
-              xmlns="http://www.w3.org/2000/svg"
             >
               <path
                 strokeLinecap="round"
                 strokeLinejoin="round"
                 d="M5 13l4 4L19 7"
-              ></path>
+              />
             </svg>
             В корзині
           </button>
         ) : (
           <button
-            className="flex items-center justify-center cursor-pointer gap-1 h-9 w-[160px] bg-[#6382a1] text-white text-[16px] font-sans rounded-md transition hover:bg-[#4f6881]"
+            className="flex items-center justify-center gap-1 h-9 w-[160px] max-[400px]:w-full bg-[#6382a1] text-white text-[16px] font-sans rounded-md transition hover:bg-[#4f6881]"
             onClick={() => addToCart(product)}
           >
             <img className="w-4 h-4" src={basketCard} />
