@@ -1,11 +1,13 @@
 import React from "react";
 import { useCart } from "../contexts/cartContext";
+import { useNavigate } from "react-router-dom";
 
 import trash from "../images/trash.svg";
 import plus from "../images/plus.svg";
 import minus from "../images/minus.svg";
 
 export default function PageBasket() {
+  const navigate = useNavigate();
   const {
     orders,
     totalPrice,
@@ -16,10 +18,12 @@ export default function PageBasket() {
   } = useCart();
 
   return (
-    <div className="max-w-5xl mx-auto mt-10 px-4">
-      <h1 className="text-3xl font-bold text-gray-800 mb-6">Корзина</h1>
+    <div className="w-full max-w-5xl mx-auto mt-8 px-4">
+      <h1 className="text-3xl font-bold text-gray-800 mb-6 text-left">
+        Корзина
+      </h1>
 
-      <div className="bg-white border border-gray-300 rounded-xl p-6 shadow-md relative">
+      <div className="bg-white border border-gray-300 rounded-xl p-4 md:p-6 shadow-md relative">
         <div className="flex justify-between items-center mb-4">
           <p className="text-lg text-gray-600">Ваші товари</p>
           <button
@@ -33,20 +37,20 @@ export default function PageBasket() {
 
         {orders.length > 0 ? (
           <>
-            <div className="relative h-auto overflow-y-auto pr-2 mb-24">
+            <div className="relative h-auto overflow-y-auto pr-2 mb-[10px]">
               <div className="space-y-4">
                 {orders.map((order) => (
                   <div
                     key={order.product_id}
-                    className="flex items-center gap-4 border border-gray-200 rounded-lg p-4 bg-gray-50"
+                    className="flex  sm:flex-row sm:items-center gap-4 border border-gray-200 rounded-lg p-4 bg-gray-50"
                   >
                     <img
                       src={`data:image/jpg;base64,${order.image}`}
                       alt={order.name}
-                      className="w-[100px] h-[80px] rounded object-contain"
+                      className="w-[120px] h-[90px] rounded object-contain"
                     />
 
-                    <div className="flex-1">
+                    <div className="flex-1 w-full my-auto">
                       <h4 className="text-base font-semibold text-gray-800">
                         {order.name}
                       </h4>
@@ -60,29 +64,30 @@ export default function PageBasket() {
                       </p>
                     </div>
 
-                    <div className="flex items-center gap-2">
-                      <button
-                        onClick={() => decreaceQuantity(order.product_id)}
-                        className="w-6 h-6 bg-white border border-gray-300 cursor-pointer rounded hover:bg-gray-100 flex items-center justify-center"
-                      >
-                        <img src={minus} alt="-" className="w-3 h-3" />
-                      </button>
+                    <div className="flex flex-col sm:flex-row items-center gap-2 sm:ml-auto">
+                      <div className="flex sm:flex-row flex-col items-center gap-2">
+                        <button
+                          onClick={() => decreaceQuantity(order.product_id)}
+                          className="w-7 h-7 bg-white border border-gray-300 rounded hover:bg-gray-100 flex items-center justify-center"
+                        >
+                          <img src={minus} alt="-" className="w-3 h-3" />
+                        </button>
 
-                      <p className="text-base w-6 text-center">
-                        {order.quantity}
-                      </p>
+                        <p className="text-base text-center">
+                          {order.quantity}
+                        </p>
 
-                      <button
-                        onClick={() => increaceQuantity(order.product_id)}
-                        className="w-6 h-6 bg-white border border-gray-300 cursor-pointer rounded hover:bg-gray-100 flex items-center justify-center"
-                      >
-                        <img src={plus} alt="+" className="w-3 h-3" />
-                      </button>
+                        <button
+                          onClick={() => increaceQuantity(order.product_id)}
+                          className="w-7 h-7 bg-white border border-gray-300 rounded hover:bg-gray-100 flex items-center justify-center"
+                        >
+                          <img src={plus} alt="+" className="w-3 h-3" />
+                        </button>
+                      </div>
                     </div>
-
                     <button
                       onClick={() => removeItem(order.product_id)}
-                      className="ml-4 text-red-500 hover:text-red-700 cursor-pointer transition"
+                      className="text-red-500 hover:text-red-700 transition"
                       title="Видалити товар"
                     >
                       <img src={trash} alt="Remove" className="w-4 h-4" />
@@ -92,11 +97,23 @@ export default function PageBasket() {
               </div>
             </div>
 
-            <div className="sticky bottom-0 pb-2 left-0 bg-white border-t pt-4 flex justify-between items-center px-6 shadow-md ">
-              <p className="text-xl font-semibold text-gray-800">
-                Загальна сума:
-              </p>
-              <p className="text-xl font-bold text-green-700">{totalPrice} ₴</p>
+            <div className="fixed md:sticky  bottom-0 left-0 w-full md:w-auto bg-white border-t  pt-4 pb-4 md:pb-0 md:pt-4 px-6 flex flex-col justify-between items-center shadow-inner md:shadow-none">
+              <div className="flex">
+                <p className="text-xl font-semibold text-gray-800">
+                  Загальна сума:
+                </p>
+                <p className="text-xl font-bold text-green-700">
+                  {totalPrice} ₴
+                </p>
+              </div>
+
+              <button
+                className="cursor-pointer mt-[5px] bg-[#2c4a3e] text-white text-base w-full rounded-md h-11 flex items-center justify-center hover:bg-[#233b32] active:bg-[#1a2c25] hover:scale-[1.01] active:scale-[0.98] transition"
+                onClick={() => navigate("/checkout")}
+                disabled={orders.length === 0}
+              >
+                Перейти до оформлення
+              </button>
             </div>
           </>
         ) : (

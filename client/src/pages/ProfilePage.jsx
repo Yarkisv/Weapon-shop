@@ -1,4 +1,7 @@
 import React, { useEffect, useState } from "react";
+import { Routes, Route, Link, useNavigate } from "react-router-dom";
+import axios from "axios";
+
 import Header from "../components/Header";
 import UserInformation from "../components/UserInformation";
 import PageBasket from "../components/PageBasket";
@@ -7,9 +10,6 @@ import Viewed from "../components/Viewed";
 import OrderHistory from "../components/OrderHistory";
 import ChatBot from "../components/ChatBot";
 import ReviewsUser from "../components/ReviewsUser";
-
-import axios from "axios";
-import { Routes, Route, Link, useNavigate } from "react-router-dom";
 
 import profile from "../images/ProfilePageImg/profile.svg";
 import basket from "../images/basket.svg";
@@ -22,52 +22,59 @@ import logout from "../images/ProfilePageImg/logout.svg";
 import bonuses from "../images/bonuses.svg";
 import partners from "../images/partners.svg";
 
-export default function ProfilePage() {
-  const [user, setUser] = useState([]);
-  const navigate = useNavigate();
+import { HiMenu } from "react-icons/hi";
 
+export default function ProfilePage() {
+  const [user, setUser] = useState({});
+  const [menuOpen, setMenuOpen] = useState(false);
+  const navigate = useNavigate();
   const API = import.meta.env.VITE_API;
+
+  useEffect(() => {
+    (async () => {
+      try {
+        const token = localStorage.getItem("token");
+        const { data } = await axios.get(`${API}/profile`, {
+          headers: { Authorization: `Bearer ${token}` },
+        });
+        setUser(data.user);
+      } catch (e) {
+        console.error(e);
+      }
+    })();
+  }, []);
 
   const handleLogoutClick = () => {
     localStorage.removeItem("token");
     localStorage.removeItem("isAuth");
     navigate("/");
-    console.log(
-      `Logout successful, token - [${localStorage.getItem("token")}]`
-    );
   };
 
-  useEffect(() => {
-    const fethcUser = async () => {
-      try {
-        const token = localStorage.getItem("token");
-
-        const response = await axios.get(`${API}/profile`, {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        });
-
-        setUser(response.data.user);
-      } catch (error) {
-        console.log(error);
-      }
-    };
-
-    fethcUser();
-  }, []);
-
   return (
-    <div className="w-full">
+    <div className="w-full min-h-screen bg-gray-50">
       <Header />
-      <div className="flex flex-col mx-auto max-w-[1440px]">
-        <p className="text-center mt-5 text-4xl font-[Konkhmer Sleokchher]">
-          Вітаємо, {user.firstname}!
-        </p>
-        <div className="flex border-t border-gray-600 w-[1285px] mt-8 ml-6">
-          <aside className="w-[270px] sticky top-8 self-start  border-r mt-[5px] border-gray-300 bg-white shadow-md rounded-xl p-4">
-            <ul className="flex flex-col mt-5 gap-5 list-none text-gray-700 p-0 m-0">
-              <li className="flex items-center gap-3 text-[18px] font-medium cursor-pointer hover:text-black transition  whitespace-nowrap">
+
+      <div className="max-w-6xl mx-auto px-4 py-6">
+        {/* Заголовок + бургер */}
+        <div className="relative flex justify-center items-center mb-6 h-12">
+          <button
+            onClick={() => setMenuOpen(!menuOpen)}
+            className="absolute left-0 md:hidden p-2 text-gray-700 z-10"
+          >
+            <HiMenu className="w-7 h-7" />
+          </button>
+          <h1 className={`text-3xl font-bold`}>Вітаємо, {user.firstname}!</h1>
+        </div>
+
+        <div className="flex flex-col md:flex-row gap-6">
+          {/* Сайдбар */}
+          <aside
+            className={`${
+              menuOpen ? "block" : "hidden"
+            } md:block bg-white md:w-[250px] w-full rounded-xl shadow-md p-4`}
+          >
+            <ul className="flex flex-col gap-4 text-gray-700">
+              <li className="flex items-center gap-3 text-[18px] font-medium hover:text-black transition">
                 <img
                   src={profile}
                   className="w-6 h-6 filter contrast-0 brightness-0"
@@ -76,7 +83,7 @@ export default function ProfilePage() {
                   Профіль
                 </Link>
               </li>
-              <li className="flex items-center gap-3 text-[18px] font-medium cursor-pointer hover:text-black transition  whitespace-nowrap">
+              <li className="flex items-center gap-3 text-[18px] font-medium hover:text-black transition">
                 <img
                   src={basket}
                   className="w-6 h-6 filter contrast-0 brightness-0"
@@ -88,7 +95,7 @@ export default function ProfilePage() {
                   Корзина
                 </Link>
               </li>
-              <li className="flex items-center gap-3 text-[18px] font-medium cursor-pointer hover:text-black transition  whitespace-nowrap">
+              <li className="flex items-center gap-3 text-[18px] font-medium hover:text-black transition">
                 <img
                   src={liked}
                   className="w-6 h-6 filter contrast-0 brightness-0"
@@ -100,7 +107,7 @@ export default function ProfilePage() {
                   Обране
                 </Link>
               </li>
-              <li className="flex items-center gap-3 text-[18px] font-medium cursor-pointer hover:text-black transition  whitespace-nowrap">
+              <li className="flex items-center gap-3 text-[18px] font-medium hover:text-black transition">
                 <img
                   src={visited}
                   className="w-6 h-6 filter contrast-0 brightness-0"
@@ -112,7 +119,7 @@ export default function ProfilePage() {
                   Переглянуте
                 </Link>
               </li>
-              <li className="flex items-center gap-3 text-[18px] font-medium cursor-pointer hover:text-black transition  whitespace-nowrap">
+              <li className="flex items-center gap-3 text-[18px] font-medium hover:text-black transition">
                 <img
                   src={history}
                   className="w-6 h-6 filter contrast-0 brightness-0"
@@ -124,7 +131,7 @@ export default function ProfilePage() {
                   Історія замовлень
                 </Link>
               </li>
-              <li className="flex items-center gap-3 text-[18px] font-medium cursor-pointer hover:text-black transition  whitespace-nowrap">
+              <li className="flex items-center gap-3 text-[18px] font-medium hover:text-black transition">
                 <img
                   src={bonuses}
                   className="w-6 h-6 filter contrast-0 brightness-0"
@@ -136,7 +143,7 @@ export default function ProfilePage() {
                   Бонуси
                 </Link>
               </li>
-              <li className="flex items-center gap-3 text-[18px] font-medium cursor-pointer hover:text-black transition  whitespace-nowrap">
+              <li className="flex items-center gap-3 text-[18px] font-medium hover:text-black transition">
                 <img
                   src={chat}
                   className="w-6 h-6 filter contrast-0 brightness-0"
@@ -148,7 +155,7 @@ export default function ProfilePage() {
                   Чат-бот
                 </Link>
               </li>
-              <li className="flex items-center gap-3 text-[18px] font-medium cursor-pointer hover:text-black transition  whitespace-nowrap">
+              <li className="flex items-center gap-3 text-[18px] font-medium hover:text-black transition">
                 <img
                   src={partners}
                   className="w-6 h-6 filter contrast-0 brightness-0"
@@ -160,7 +167,7 @@ export default function ProfilePage() {
                   Співпраця
                 </Link>
               </li>
-              <li className="flex items-center gap-3 text-[18px] font-medium cursor-pointer hover:text-black transition  whitespace-nowrap">
+              <li className="flex items-center gap-3 text-[18px] font-medium hover:text-black transition">
                 <img
                   src={reviews}
                   className="w-6 h-6 filter contrast-0 brightness-0"
@@ -185,7 +192,8 @@ export default function ProfilePage() {
             </ul>
           </aside>
 
-          <div className="flex-grow p-4">
+          {/* Контент */}
+          <div className="flex-grow w-full bg-white rounded-xl shadow-md p-6">
             <Routes>
               <Route path="/" element={<UserInformation user={user} />} />
               <Route path="basket" element={<PageBasket />} />
