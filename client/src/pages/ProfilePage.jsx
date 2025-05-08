@@ -10,6 +10,8 @@ import Viewed from "../components/Viewed";
 import OrderHistory from "../components/OrderHistory";
 import ChatBot from "../components/ChatBot";
 import ReviewsUser from "../components/ReviewsUser";
+import Bonuses from "../components/Bonuses";
+import Partners from "../components/Partners";
 
 import profile from "../images/ProfilePageImg/profile.svg";
 import basket from "../images/basket.svg";
@@ -202,6 +204,8 @@ export default function ProfilePage() {
               <Route path="orderhistory" element={<OrderHistory />} />
               <Route path="chatbot" element={<ChatBot />} />
               <Route path="reviews" element={<ReviewsUser />} />
+              <Route path="bonuses" element={<Bonuses />} />
+              <Route path="partners" element={<Partners />} />
             </Routes>
           </div>
         </div>

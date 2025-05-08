@@ -13,6 +13,8 @@ export default function Register() {
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
 
+  const [errorMessage, setErrorMessage] = useState("");
+
   const [isPasswordValid, setPasswordValid] = useState(true);
   const [isPasswordsSame, setPasswordsSame] = useState(true);
 
@@ -44,7 +46,21 @@ export default function Register() {
         navigate("/login");
       }
     } catch (error) {
-      console.error(error);
+      console.error("Error: " + error);
+
+      if (error.response) {
+        if (error.response.status === 401) {
+          setErrorMessage(
+            "Вказані дані для входу є некоректними. Перевірте їх і повторіть спробу."
+          );
+        } else if (error.response.status === 409) {
+          setErrorMessage(
+            "Обліковий запис з даними які ви надали вже зареєстровано."
+          );
+        } else {
+          setErrorMessage("Сталася помилка при реєстрації. Спробуйте пізніше.");
+        }
+      }
     }
   };
 
@@ -75,7 +91,10 @@ export default function Register() {
               type="text"
               placeholder="Ім’я"
               value={firstname}
-              onChange={(e) => setFirstname(e.target.value)}
+              onChange={(e) => {
+                setFirstname(e.target.value);
+                setErrorMessage("");
+              }}
               required
               className="w-1/2 px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-black"
             />
@@ -83,7 +102,10 @@ export default function Register() {
               type="text"
               placeholder="Прізвище"
               value={lastname}
-              onChange={(e) => setLastname(e.target.value)}
+              onChange={(e) => {
+                setLastname(e.target.value);
+                setErrorMessage("");
+              }}
               required
               className="w-1/2 px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-black"
             />
@@ -93,7 +115,10 @@ export default function Register() {
             type="email"
             placeholder="Email"
             value={email}
-            onChange={(e) => setEmail(e.target.value)}
+            onChange={(e) => {
+              setEmail(e.target.value);
+              setErrorMessage("");
+            }}
             required
             className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-black"
           />
@@ -102,7 +127,10 @@ export default function Register() {
             type="text"
             placeholder="Телефон"
             value={phone}
-            onChange={(e) => setPhone(e.target.value)}
+            onChange={(e) => {
+              setPhone(e.target.value);
+              setErrorMessage("");
+            }}
             required
             className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-black"
           />
@@ -111,7 +139,10 @@ export default function Register() {
             type="password"
             placeholder="Пароль"
             value={password}
-            onChange={(e) => setPassword(e.target.value)}
+            onChange={(e) => {
+              setPassword(e.target.value);
+              setErrorMessage("");
+            }}
             required
             className={`w-full px-4 py-3 border ${
               isPasswordValid ? "border-gray-300" : "border-red-500"
@@ -127,7 +158,10 @@ export default function Register() {
             type="password"
             placeholder="Підтвердіть пароль"
             value={confirmPassword}
-            onChange={(e) => setConfirmPassword(e.target.value)}
+            onChange={(e) => {
+              setConfirmPassword(e.target.value);
+              setErrorMessage("");
+            }}
             required
             className={`w-full px-4 py-3 border ${
               isPasswordsSame ? "border-gray-300" : "border-red-500"
@@ -139,6 +173,7 @@ export default function Register() {
               : "Повторіть пароль для підтвердження"}
           </p>
 
+          {errorMessage && <p className="text-red-600">{errorMessage}</p>}
           <button
             type="submit"
             className="w-full py-3 cursor-pointer bg-black text-white font-semibold rounded-lg hover:bg-neutral-800 transition"

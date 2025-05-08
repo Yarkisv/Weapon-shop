@@ -46,8 +46,8 @@ export default function CheckoutPage() {
           },
         });
         if (response.status === 200) {
-          setIsValid(true);
           const storedUser = JSON.parse(localStorage.getItem("user"));
+          setIsValid(true);
           setUser(storedUser);
           setRecipientName(storedUser.firstname);
           setRecipienSurname(storedUser.lastname);
@@ -55,7 +55,6 @@ export default function CheckoutPage() {
           setEmail(storedUser.email || "");
         } else {
           localStorage.removeItem("token");
-          localStorage.removeItem("isAuth");
         }
       } catch (error) {
         console.log("Error: " + error);
@@ -63,7 +62,7 @@ export default function CheckoutPage() {
     };
 
     checkToken();
-  }, []);
+  }, [isValid]);
 
   const handleLogin = async (event) => {
     event.preventDefault();
@@ -75,14 +74,13 @@ export default function CheckoutPage() {
 
       if (response.status === 200) {
         const token = response.data.token;
-        const IsAuth = response.data.IsAuth;
         const user = response.data.user;
 
         localStorage.setItem("token", token);
-        localStorage.setItem("isAuth", IsAuth);
         localStorage.setItem("user", JSON.stringify(user));
 
         setUser(user);
+        setIsValid(true);
       }
     } catch (error) {
       console.log(error);
