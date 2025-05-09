@@ -97,8 +97,8 @@ export default function PageBasket() {
               </div>
             </div>
 
-            <div className="fixed md:sticky  bottom-0 left-0 w-full md:w-auto bg-white border-t  pt-4 pb-4 md:pb-0 md:pt-4 px-6 flex flex-col justify-between items-center shadow-inner md:shadow-none">
-              <div className="flex">
+            <div className="fixed md:sticky  bottom-0 left-0 w-full md:w-auto bg-white border-t  pt-4 pb-4 md:pb-0 md:pt-4 px-6 flex flex-col justify-between  shadow-inner md:shadow-none">
+              <div className="flex ">
                 <p className="text-xl font-semibold text-gray-800">
                   Загальна сума:
                 </p>

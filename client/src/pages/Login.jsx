@@ -61,6 +61,7 @@ export default function Login() {
           className="flex items-center mb-6 cursor-pointer"
           onClick={() => navigate("/")}
         >
+          {" "}
           <img src={back} alt="Назад" className="w-5 h-5 mr-2" />
           <span className="text-sm text-gray-700 hover:underline">
             На головну
@@ -95,7 +96,13 @@ export default function Login() {
             required
             className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-black"
           />
-          {errorMessage && <p className="text-red-600">{errorMessage}</p>}
+
+          {errorMessage && (
+            <p className="text-center text-red-600 bg-red-100 border border-red-500 rounded-lg py-2 px-4">
+              {errorMessage}
+            </p>
+          )}
+
           <button
             type="submit"
             className="w-full py-3 bg-black text-white font-semibold cursor-pointer rounded-lg hover:bg-neutral-800 transition"

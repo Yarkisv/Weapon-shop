@@ -173,7 +173,11 @@ export default function Register() {
               : "Повторіть пароль для підтвердження"}
           </p>
 
-          {errorMessage && <p className="text-red-600">{errorMessage}</p>}
+          {errorMessage && (
+            <p className="text-center text-red-600 bg-red-100 border border-red-500 rounded-lg py-2 px-4">
+              {errorMessage}
+            </p>
+          )}
           <button
             type="submit"
             className="w-full py-3 cursor-pointer bg-black text-white font-semibold rounded-lg hover:bg-neutral-800 transition"
