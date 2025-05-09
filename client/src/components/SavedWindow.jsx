@@ -1,20 +1,15 @@
-import React, { useEffect } from "react";
 import cancel from "../images/cancel.svg";
 import trash from "../images/trash.svg";
 import { useSaved } from "../contexts/savedContext";
 import { useModal } from "../contexts/modalContext";
 
 export default function SavedWindow() {
-  const { isSavedWindowOpen, setSavedWindowOpen } = useModal();
+  const { setSavedWindowOpen } = useModal();
   const { saved, clearSaved, removeFromSaved } = useSaved();
 
   const handleCloseWindow = () => {
     setSavedWindowOpen(false);
   };
-
-  useEffect(() => {
-    console.log(localStorage.getItem("saved"));
-  }, []);
 
   return (
     <>

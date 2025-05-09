@@ -1,4 +1,3 @@
-import React from "react";
 import { useSaved } from "../contexts/savedContext";
 
 import trash from "../images/trash.svg";

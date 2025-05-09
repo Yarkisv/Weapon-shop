@@ -1,4 +1,3 @@
-import React from "react";
 import { useModal } from "../contexts/modalContext";
 import { useNavigate } from "react-router-dom";
 import { useCart } from "../contexts/cartContext";
@@ -75,11 +74,8 @@ export default function Basket() {
                         />
                       </button>
                     </div>
-                    <p className="text-sm mt-1 text-gray-700">
-                      <strong>Калібр:</strong> {order.caliber}
-                    </p>
                     <p className="text-sm text-gray-700">
-                      <strong>Код:</strong> {order.code}
+                      <strong>Код: {order.article}</strong>
                     </p>
                     <p className="text-sm text-gray-800 font-semibold">
                       <strong>Ціна:</strong> {order.price} ₴

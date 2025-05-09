@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import Header from "../components/Header";
 import ProductCard from "../components/ProductCard";
 import axios from "axios";
@@ -338,61 +338,31 @@ export default function CatalogPage() {
                         Калібр
                       </p>
                       <div className="space-y-1">
-                        {[1, 2, 3, 4].map((val) => (
+                        {[
+                          ".223 Rem",
+                          "9x19mm",
+                          ".45 ACP",
+                          "5.45x39mm",
+                          "12 Gauge",
+                          ".50 BMG",
+                          "7.62x51mm",
+                          "5.56×45mm NATO",
+                          ".22 LR",
+                          "7.92×57mm Mauser",
+                          "9×19mm Parabellum",
+                          "7.62×25mm Tokarev",
+                          "5.56×45mm NATO + 20mm HE",
+                        ].map((caliber) => (
                           <label
-                            key={val}
+                            key={caliber}
                             className="flex items-center space-x-2 text-gray-700 cursor-pointer"
                           >
                             <input
                               type="checkbox"
-                              value={val}
+                              value={caliber}
                               className="accent-blue-600"
                             />
-                            <span>{val} Калібр</span>
-                          </label>
-                        ))}
-                      </div>
-                    </div>
-
-                    <div>
-                      <p className="text-lg font-medium text-gray-800 mb-2">
-                        Наявність (stock)
-                      </p>
-                      <div className="space-y-1">
-                        {["stock1", "stock2"].map((val) => (
-                          <label
-                            key={val}
-                            className="flex items-center space-x-2 text-gray-700 cursor-pointer"
-                          >
-                            <input
-                              type="radio"
-                              name="kbType"
-                              value={val}
-                              className="accent-blue-600"
-                            />
-                            <span>{val}</span>
-                          </label>
-                        ))}
-                      </div>
-                    </div>
-
-                    <div>
-                      <p className="text-lg font-medium text-gray-800 mb-2">
-                        Тип прикладу (stock type)
-                      </p>
-                      <div className="space-y-1">
-                        {["Тип A", "Тип B"].map((val, idx) => (
-                          <label
-                            key={idx}
-                            className="flex items-center space-x-2 text-gray-700 cursor-pointer"
-                          >
-                            <input
-                              type="radio"
-                              name="connectionType"
-                              value={val}
-                              className="accent-blue-600"
-                            />
-                            <span>{val}</span>
+                            <span>{caliber}</span>
                           </label>
                         ))}
                       </div>

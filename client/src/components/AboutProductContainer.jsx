@@ -1,4 +1,3 @@
-import React from "react";
 import shipment from "../images/shipment.svg";
 import novaPost from "../images/novaPost.svg";
 import buy from "../images/buy.svg";
@@ -62,16 +61,16 @@ export default function AboutProductContainer({ product }) {
             <div className="flex flex-col justify-end w-full max-w-[220px] gap-2">
               <button
                 onClick={() => addToCart(product)}
-                className="bg-[#68e568] text-white text-[20px] sm:text-[25px] font-sans w-full h-[44px] rounded flex items-center justify-center gap-2 transition hover:scale-105 hover:shadow-lg active:scale-95 active:shadow-md"
+                className="bg-[#68e568] text-white text-[20px] sm:text-[25px] font-sans w-full h-[44px] rounded flex items-center justify-center gap-2 transition hover:scale-105 hover:shadow-lg active:scale-95 active:shadow-md cursor-pointer"
               >
                 <img src={buy} alt="В кошик" className="w-5 h-5" />В кошик
               </button>
 
               <div className="flex gap-2">
-                <button className="flex-1 h-[44px] border border-black rounded flex items-center justify-center text-[16px] sm:text-[20px] font-sans bg-white transition hover:scale-105 hover:shadow-lg active:scale-95 active:shadow-md">
+                <button className="flex-1 h-[44px] border border-black rounded flex items-center justify-center text-[16px] sm:text-[20px] font-sans bg-white transition hover:scale-105 hover:shadow-lg active:scale-95 active:shadow-md cursor-pointer">
                   В 1 клік
                 </button>
-                <button className="w-[44px] h-[44px] border border-black rounded flex items-center justify-center bg-white transition hover:scale-105 hover:shadow-lg active:scale-95 active:shadow-md">
+                <button className="w-[44px] h-[44px] border border-black rounded flex items-center justify-center bg-white transition hover:scale-105 hover:shadow-lg active:scale-95 active:shadow-md cursor-pointer">
                   <img src={likeOrder} alt="like" className="w-5 h-5" />
                 </button>
               </div>
@@ -93,7 +92,7 @@ export default function AboutProductContainer({ product }) {
                     <p className="text-[16px] font-sans">Назва товару</p>
                     <div className="flex items-center justify-between">
                       <p className="text-[18px]">100₴</p>
-                      <button className="bg-[#68e568] text-white text-[14px] px-3 py-1 rounded transition hover:scale-105 hover:shadow-lg active:scale-95 active:shadow-md">
+                      <button className="bg-[#68e568] text-white text-[14px] px-3 py-1 rounded transition hover:scale-105 hover:shadow-lg active:scale-95 active:shadow-md cursor-pointer">
                         Купити
                       </button>
                     </div>

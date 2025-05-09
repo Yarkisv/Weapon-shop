@@ -15,24 +15,43 @@ export class UserModel {
       let stri = email.indexOf("@");
       let getEmail = email.slice(stri + 1);
       if (emails.includes(getEmail)) {
-        return false; //reverse
+        return false;
       }
-      return true; //reverse
+      return true;
     }
   }
 
-  static validatePassword(password) {
-    // проверка длины
-    if (password.length >= 8 && password.length <= 30) return true;
-    return false;
-  }
   static isUserExist(email) {
-    const Querry = "SELECT from Users where email = ?";
-    let result = connection.query(Querry, email, (err, res) => {
-      if (err) return false;
-      // return true;
+    const query = "SELECT * FROM Users WHERE email = ?";
+    connection.query(query, [email], (err, results) => {
+      if (err) {
+        console.error("DB error in isUserExist:", err);
+        return false;
+      }
+
+      if (results.length === 0) {
+        console.log("From class user not found");
+        return false;
+      }
+
+      if (results.length > 0) {
+        console.log("From class user exists");
+        return true;
+      }
     });
-    if (result.length === 0) return false;
-    return true;
+  }
+
+  static isPhoneExist(phone) {
+    const query = "select * from Users where phone = ?";
+    connection.query(query, [phone], (err, results) => {
+      if (err) {
+        console.error("DB error in isPhoneExist:", err);
+        return false;
+      }
+      if (results.length > 0) {
+        return false;
+      }
+      return true;
+    });
   }
 }

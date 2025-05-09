@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import {
   useNavigate,
   useParams,
@@ -16,11 +16,10 @@ import Footer from "../components/Footer";
 
 export default function ProductPage() {
   const [product, setProduct] = useState({});
-  const [errorMessage, setErrorMessage] = useState("");
+  const [ setErrorMessage] = useState("");
   const { name, category } = useParams();
   const decodedName = decodeURIComponent(name);
 
-  const navigate = useNavigate();
   const API = import.meta.env.VITE_API;
 
   useEffect(() => {

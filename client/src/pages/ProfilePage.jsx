@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { Routes, Route, Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 
@@ -57,7 +57,6 @@ export default function ProfilePage() {
       <Header />
 
       <div className="max-w-6xl mx-auto px-4 py-6">
-        {/* Заголовок + бургер */}
         <div className="relative flex justify-center items-center mb-6 h-12">
           <button
             onClick={() => setMenuOpen(!menuOpen)}
@@ -69,7 +68,6 @@ export default function ProfilePage() {
         </div>
 
         <div className="flex flex-col md:flex-row gap-6">
-          {/* Сайдбар */}
           <aside
             className={`${
               menuOpen ? "block" : "hidden"

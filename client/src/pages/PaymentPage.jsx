@@ -1,6 +1,5 @@
 import Footer from "../components/Footer";
 import logoBlack from "../images/logoBlack.svg";
-import React from "react";
 import { useNavigate } from "react-router-dom";
 
 export default function PaymentPage() {
@@ -24,7 +23,7 @@ export default function PaymentPage() {
           <p className="text-base sm:text-lg text-gray-800 mb-6">
             Введіть дані своєї картки для завершення оплати:
           </p>
-          <form className="space-y-4">
+          <div className="space-y-4">
             <div>
               <label className="block text-gray-700 font-medium mb-1">
                 Номер картки
@@ -68,12 +67,12 @@ export default function PaymentPage() {
               />
             </div>
             <button
-              type="submit"
-              className="w-full mt-4 bg-green-700 hover:bg-green-800 text-white py-3 rounded-md text-lg font-semibold transition"
+              onClick={() => navigate("/")}
+              className="w-full mt-4 bg-green-700 hover:bg-green-800 text-white py-3 rounded-md text-lg font-semibold transition cursor-pointer"
             >
               Оплатити зараз
             </button>
-          </form>
+          </div>
         </div>
       </main>
       <Footer />

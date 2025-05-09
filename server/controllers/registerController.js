@@ -24,15 +24,18 @@ export const regUser = async (req, res) => {
     return res.status(400).json({ message: "Invalid data" });
   }
 
-  if (UserModel.isUserExist(newUser.email)) {
-    console.error("User already exist");
-    return res.status(409).json({ message: "User already exist" });
-  }
+  // const isUserExist = await UserModel.isUserExist(newUser.email);
+  // console.log(isUserExist);
+  // if (isUserExist) {
+  //   console.error("User with this email already exists");
+  //   return res.status(409).json({ message: "User already exists" });
+  // }
 
-  if (UserModel.validateEmail(newUser.email)) {
-    console.error("Email is incorrect");
-    return res.status(401).json({ message: "Email is incorrect" });
-  }
+  // const isPhoneExist = await UserModel.isPhoneExist(newUser.phone);
+  // if (isPhoneExist) {
+  //   console.error("User with this phone already exist");
+  //   return res.status(409).json({ message: "User already exist" });
+  // }
 
   try {
     const hashed_password = await bcrypt.hash(newUser.password, 10);

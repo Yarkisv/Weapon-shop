@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { FiChevronLeft, FiChevronRight } from "react-icons/fi";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
@@ -9,8 +9,7 @@ import bulletsCategory from "../images/bulletsCategory.svg";
 import clothesCategory from "../images/clothesCategory.svg";
 import planesCategory from "../images/planesCategory.svg";
 import tanksCategory from "../images/tanksCategory.svg";
-import bgPlanesTanks from "../images/bgPlanesTanks.svg";
-import backgroundCategory from "../images/backgroundCategory.svg";
+
 import barret from "../images/barret.png";
 import A10A from "../images/A10A.png";
 import abrams from "../images/abrams.png";
@@ -207,6 +206,34 @@ export default function MainPage() {
         </div>
 
         <div
+          onClick={() => navigate("/catalog/military-aircrafts")}
+          className="cursor-pointer bg-[#1a1a1a] border rounded  border-[#333] hover:border-[#555] transition-all duration-200 flex flex-col items-center px-4 py-6"
+        >
+          <img
+            src={planesCategory}
+            alt="Військова авіація"
+            className="w-full h-32 object-contain mb-4"
+          />
+          <h3 className="text-center text-white text-base font-medium uppercase tracking-wide">
+            Військова авіація
+          </h3>
+        </div>
+
+        <div
+          onClick={() => navigate("/catalog/tanks")}
+          className="cursor-pointer bg-[#1a1a1a] border rounded  border-[#333] hover:border-[#555] transition-all duration-200 flex flex-col items-center px-4 py-6"
+        >
+          <img
+            src={tanksCategory}
+            alt="Бойові танки"
+            className="w-full h-32 object-contain mb-4"
+          />
+          <h3 className="text-center text-white text-base font-medium uppercase tracking-wide">
+            Бойові танки
+          </h3>
+        </div>
+
+        <div
           onClick={() => navigate("/catalog/bullets")}
           className="cursor-pointer bg-[#1a1a1a] border rounded  border-[#333] hover:border-[#555] transition-all duration-200 flex flex-col items-center px-4 py-6"
         >
@@ -245,34 +272,6 @@ export default function MainPage() {
           />
           <h3 className="text-center text-white text-base font-medium uppercase tracking-wide">
             Екіпірування
-          </h3>
-        </div>
-
-        <div
-          onClick={() => navigate("/catalog/military-aircrafts")}
-          className="cursor-pointer bg-[#1a1a1a] border rounded  border-[#333] hover:border-[#555] transition-all duration-200 flex flex-col items-center px-4 py-6"
-        >
-          <img
-            src={planesCategory}
-            alt="Військова авіація"
-            className="w-full h-32 object-contain mb-4"
-          />
-          <h3 className="text-center text-white text-base font-medium uppercase tracking-wide">
-            Військова авіація
-          </h3>
-        </div>
-
-        <div
-          onClick={() => navigate("/catalog/tanks")}
-          className="cursor-pointer bg-[#1a1a1a] border rounded  border-[#333] hover:border-[#555] transition-all duration-200 flex flex-col items-center px-4 py-6"
-        >
-          <img
-            src={tanksCategory}
-            alt="Бойові танки"
-            className="w-full h-32 object-contain mb-4"
-          />
-          <h3 className="text-center text-white text-base font-medium uppercase tracking-wide">
-            Бойові танки
           </h3>
         </div>
       </div>

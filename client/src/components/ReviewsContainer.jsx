@@ -1,10 +1,15 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import likeOrder from "../images/likeOrder.svg";
 import { FaStar } from "react-icons/fa";
+import { useCart } from "../contexts/cartContext";
+import { useSaved } from "../contexts/savedContext";
 
 export default function ReviewFormStatic({ product }) {
   const [rating, setRating] = useState(0);
   const [hover, setHover] = useState(null);
+
+  const { addToCart } = useCart();
+  const { addToSaved } = useSaved();
 
   return (
     <div className="max-w-6xl mx-auto mt-10 flex flex-col md:flex-row gap-6">
@@ -82,7 +87,10 @@ export default function ReviewFormStatic({ product }) {
         <div className="text-sm text-gray-500">Артикул: {product.article}</div>
 
         <div className="flex flex-col items-center w-full mt-4 space-y-3">
-          <button className="cursor-pointer bg-green-500 text-white text-lg font-semibold w-full h-12 rounded-[5px] flex items-center justify-center gap-2 transition-transform duration-200 hover:scale-105 hover:shadow-lg active:scale-95">
+          <button
+            onClick={() => addToCart(product)}
+            className="cursor-pointer bg-green-500 text-white text-lg font-semibold w-full h-12 rounded-[5px] flex items-center justify-center gap-2 transition-transform duration-200 hover:scale-105 hover:shadow-lg active:scale-95"
+          >
             В кошик
           </button>
 
@@ -90,7 +98,10 @@ export default function ReviewFormStatic({ product }) {
             <button className="cursor-pointer flex-1 h-12 border border-gray-300 rounded-[5px] flex items-center justify-center text-base font-medium bg-white hover:scale-105 hover:shadow-lg active:scale-95 transition-transform">
               В 1 клік
             </button>
-            <button className="cursor-pointer w-12 h-12 border border-gray-300 rounded-[5px] flex items-center justify-center bg-white hover:scale-105 hover:shadow-lg active:scale-95 transition-transform">
+            <button
+              onClick={() => addToSaved(product)}
+              className="cursor-pointer w-12 h-12 border border-gray-300 rounded-[5px] flex items-center justify-center bg-white hover:scale-105 hover:shadow-lg active:scale-95 transition-transform"
+            >
               <img src={likeOrder} />
             </button>
           </div>

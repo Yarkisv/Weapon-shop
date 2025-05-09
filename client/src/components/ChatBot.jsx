@@ -1,4 +1,3 @@
-import React from "react";
 import qrCode from "../images/qrCode.svg";
 import { Link } from "react-router-dom";
 

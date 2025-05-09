@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useModal } from "../contexts/modalContext";
 import SearchBar from "./SearchBar";
@@ -12,7 +12,6 @@ import search from "../images/search.svg";
 
 export default function Header() {
   const {
-    isUserPanelOpen,
     setUserPanelOpen,
     isBasketOpen,
     setBasketOpen,
@@ -113,7 +112,7 @@ export default function Header() {
             onClick={handleBasketClickedOpen}
           >
             <img className="w-[24px] h-[24px]" src={basket} />
-            <p className="text-white text-[13px]">Корзина</p>
+            <p className="text-white text-[13px]">Кошик</p>
           </div>
           <div
             className="flex flex-col items-center cursor-pointer transition-transform hover:scale-110"

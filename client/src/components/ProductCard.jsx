@@ -1,4 +1,3 @@
-import React from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { useCart } from "../contexts/cartContext";
 import { useSaved } from "../contexts/savedContext";
@@ -28,6 +27,16 @@ export default function ProductCard({ product }) {
   };
 
   const handleNavigateToProductPage = (name) => {
+    let viewedProducts =
+      JSON.parse(localStorage.getItem("viewedProducts")) || [];
+
+    if (
+      !viewedProducts.some((item) => item.product_id === product.product_id)
+    ) {
+      viewedProducts.push(product);
+      localStorage.setItem("viewedProducts", JSON.stringify(viewedProducts));
+    }
+
     navigate(`/catalog/${category}/${name}`);
   };
 
@@ -95,7 +104,7 @@ export default function ProductCard({ product }) {
             </button>
           ) : (
             <button
-              className="flex items-center justify-center gap-1 h-9 w-full bg-[#6382a1] text-white text-[14px] font-sans rounded-md transition hover:bg-[#4f6881] overflow-hidden text-ellipsis whitespace-nowrap"
+              className="flex items-center justify-center gap-1 h-9 w-full bg-[#6382a1] text-white text-[14px] font-sans rounded-md transition hover:bg-[#4f6881] overflow-hidden text-ellipsis whitespace-nowrap cursor-pointer"
               onClick={() => addToCart(product)}
             >
               <img className="w-4 h-4 flex-shrink-0" src={basketCard} />

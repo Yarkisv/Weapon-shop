@@ -1,4 +1,4 @@
-import React, { createContext, useState, useContext } from "react";
+import { createContext, useState, useContext } from "react";
 import { useModal } from "./modalContext";
 
 const SavedContext = createContext();
