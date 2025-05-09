@@ -672,7 +672,7 @@ export default function CatalogPage() {
             </div>
 
             <div className="md:col-span-3 flex flex-col gap-6">
-              <div className="flex justify-between items-center flex-wrap gap-2 px-3">
+              <div className="flex justify-between items-center gap-2 px-3">
                 <label className="flex items-center gap-2 text-gray-700">
                   <span className="text-sm font-medium">Сортування:</span>
                   <select
@@ -683,7 +683,7 @@ export default function CatalogPage() {
                     <option value="expensive">Від дорогих</option>
                   </select>
                 </label>
-                <div className="md:hidden flex  mb-4">
+                <div className="md:hidden flex items-center h-16">
                   <button
                     onClick={() => setMobileFilterOpen(true)}
                     className="bg-blue-600 text-white px-4 py-2 rounded-md shadow-md hover:bg-blue-700 transition"

@@ -71,52 +71,56 @@ export default function ProductCard({ product }) {
         />
         <p className="text-xl font-medium pl-2">{product.price} ₴</p>
       </div>
-      <div className="flex gap-2 justify-center  px-2 pb-2">
-        {isInCart ? (
-          <button
-            className="flex items-center justify-center gap-1 h-9 w-[160px] max-[400px]:w-full bg-green-600 text-white text-[16px] font-sans rounded-md cursor-pointer hover:bg-green-700"
-            onClick={openCart}
-          >
-            <svg
-              className="w-4 h-4"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="2"
-              viewBox="0 0 24 24"
+      <div className="flex justify-between items-center gap-2 px-2 pb-2 w-full">
+        <div className="flex-shrink min-w-0 w-full">
+          {isInCart ? (
+            <button
+              className="flex items-center justify-center gap-1 h-9 w-full bg-green-600 text-white text-[14px] font-sans rounded-md cursor-pointer hover:bg-green-700 overflow-hidden text-ellipsis whitespace-nowrap"
+              onClick={openCart}
             >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                d="M5 13l4 4L19 7"
-              />
-            </svg>
-            В корзині
-          </button>
-        ) : (
-          <button
-            className="flex items-center justify-center gap-1 h-9 w-[160px] max-[400px]:w-full bg-[#6382a1] text-white text-[16px] font-sans rounded-md transition hover:bg-[#4f6881]"
-            onClick={() => addToCart(product)}
-          >
-            <img className="w-4 h-4" src={basketCard} />
-            Купити
-          </button>
-        )}
+              <svg
+                className="w-4 h-4 flex-shrink-0"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  d="M5 13l4 4L19 7"
+                />
+              </svg>
+              В корзині
+            </button>
+          ) : (
+            <button
+              className="flex items-center justify-center gap-1 h-9 w-full bg-[#6382a1] text-white text-[14px] font-sans rounded-md transition hover:bg-[#4f6881] overflow-hidden text-ellipsis whitespace-nowrap"
+              onClick={() => addToCart(product)}
+            >
+              <img className="w-4 h-4 flex-shrink-0" src={basketCard} />
+              Купити
+            </button>
+          )}
+        </div>
 
-        {isSaved ? (
-          <button
-            className="w-9 h-9 border border-black flex items-center justify-center rounded-md bg-[#940c0e] hover:bg-[#760a0b]"
-            onClick={() => removeFromSaved(product.product_id)}
-          >
-            <img src={LikeOrderSaved} alt="Збережено" className="w-4 h-4" />
-          </button>
-        ) : (
-          <button
-            className="w-9 h-9 border cursor-pointer border-black flex items-center justify-center rounded-md bg-white hover:bg-gray-300"
-            onClick={() => addToSaved(product)}
-          >
-            <img src={likeOrder} alt="Зберегти" className="w-4 h-4" />
-          </button>
-        )}
+        <div className="flex-shrink-0 w-9 h-9">
+          {isSaved ? (
+            <button
+              className="w-full h-full border border-black flex items-center justify-center rounded-md bg-[#940c0e] hover:bg-[#760a0b]"
+              onClick={() => removeFromSaved(product.product_id)}
+            >
+              <img src={LikeOrderSaved} alt="Збережено" className="w-4 h-4" />
+            </button>
+          ) : (
+            <button
+              className="w-full h-full border border-black flex items-center justify-center rounded-md bg-white hover:bg-gray-300"
+              onClick={() => addToSaved(product)}
+            >
+              <img src={likeOrder} alt="Зберегти" className="w-4 h-4" />
+            </button>
+          )}
+        </div>
       </div>
     </div>
   );

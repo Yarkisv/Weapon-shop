@@ -24,7 +24,7 @@ export const regUser = async (req, res) => {
     return res.status(400).json({ message: "Invalid data" });
   }
 
-  if (!UserModel.isUserExist(newUser.email)) {
+  if (UserModel.isUserExist(newUser.email)) {
     console.error("User already exist");
     return res.status(409).json({ message: "User already exist" });
   }

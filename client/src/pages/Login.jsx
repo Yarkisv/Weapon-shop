@@ -10,6 +10,8 @@ import gunsWall from "../images/gunsWall.svg";
 export default function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [errorMessage, setErrorMessage] = useState("");
+
   const navigate = useNavigate();
 
   const API = import.meta.env.VITE_API;
@@ -31,7 +33,21 @@ export default function Login() {
         navigate("/");
       }
     } catch (error) {
-      console.log(error);
+      console.log("Error: " + error);
+
+      if (error.response) {
+        if (error.response.status === 401) {
+          setErrorMessage(
+            "Вказані дані для входу є некоректними. Перевірте їх і повторіть спробу."
+          );
+        } else if (error.response.status === 404) {
+          setErrorMessage(
+            "Обліковий запис з даними які ви надали не знайдено."
+          );
+        } else {
+          setErrorMessage("Сталася помилка при вході. Спробуйте пізніше.");
+        }
+      }
     }
   };
 
@@ -45,6 +61,7 @@ export default function Login() {
           className="flex items-center mb-6 cursor-pointer"
           onClick={() => navigate("/")}
         >
+          {" "}
           <img src={back} alt="Назад" className="w-5 h-5 mr-2" />
           <span className="text-sm text-gray-700 hover:underline">
             На головну
@@ -61,7 +78,10 @@ export default function Login() {
             type="email"
             placeholder="Email"
             value={email}
-            onChange={(e) => setEmail(e.target.value)}
+            onChange={(e) => {
+              setEmail(e.target.value);
+              setErrorMessage("");
+            }}
             required
             className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-black"
           />
@@ -69,10 +89,20 @@ export default function Login() {
             type="password"
             placeholder="Пароль"
             value={password}
-            onChange={(e) => setPassword(e.target.value)}
+            onChange={(e) => {
+              setPassword(e.target.value);
+              setErrorMessage("");
+            }}
             required
             className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-black"
           />
+
+          {errorMessage && (
+            <p className="text-center text-red-600 bg-red-100 border border-red-500 rounded-lg py-2 px-4">
+              {errorMessage}
+            </p>
+          )}
+
           <button
             type="submit"
             className="w-full py-3 bg-black text-white font-semibold cursor-pointer rounded-lg hover:bg-neutral-800 transition"
