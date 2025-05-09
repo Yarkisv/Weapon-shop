@@ -1,4 +1,4 @@
-import connection from "../db_config.js";
+import { connection } from "../db_config.js";
 import { UserModel } from "../models/usermodel.js";
 import bcrypt from "bcrypt";
 
@@ -24,25 +24,37 @@ export const regUser = async (req, res) => {
     return res.status(400).json({ message: "Invalid data" });
   }
 
-  // const isUserExist = await UserModel.isUserExist(newUser.email);
-  // console.log(isUserExist);
-  // if (isUserExist) {
-  //   console.error("User with this email already exists");
-  //   return res.status(409).json({ message: "User already exists" });
-  // }
-
-  // const isPhoneExist = await UserModel.isPhoneExist(newUser.phone);
-  // if (isPhoneExist) {
-  //   console.error("User with this phone already exist");
-  //   return res.status(409).json({ message: "User already exist" });
-  // }
-
   try {
+    if (UserModel.validateEmail(newUser.email)) {
+      console.log("Email is incorrect");
+      return res.status(400).json({message: "400"});
+    }
+
+    const [existingUsers] = await connection.query(
+      "select * from Users where email = ?",
+      newUser.email
+    );
+
+    if (existingUsers.length > 0) {
+      console.log("User already exists");
+      return res.status(409).json({ message: "Email вже зареєстровано" });
+    }
+
+    const [existingPhone] = await connection.query(
+      "select * from Users where phone = ?",
+      newUser.phone
+    );
+
+    if (existingPhone.length > 0) {
+      console.log("User with his phone already exists");
+      return res.status(409).json({ message: "Phone вже зареєстровано" });
+    }
+
     const hashed_password = await bcrypt.hash(newUser.password, 10);
 
-    const Querry =
-      "INSERT into users (firstname, lastname, email, phone, hashed_password) values (?,?,?,?,?)";
-    const DataArr = [
+    const query =
+      "INSERT INTO users (firstname, lastname, email, phone, hashed_password) VALUES (?, ?, ?, ?, ?)";
+    const userData = [
       newUser.firstname,
       newUser.lastname,
       newUser.email,
@@ -50,16 +62,12 @@ export const regUser = async (req, res) => {
       hashed_password,
     ];
 
-    connection.query(Querry, DataArr, (err, result) => {
-      if (err) {
-        console.error("Query is invalid: " + err);
-        return res.status(500).json({ message: "Server error" });
-      }
-      console.log("User created");
-      return res.status(201).json({ message: "User created" });
-    });
+    await connection.execute(query, userData);
+
+    console.log("User created");
+    return res.status(201).json({ message: "User created" });
   } catch (err) {
-    console.error("Error with hashing or querry: " + err);
+    console.error("Error with hashing or query: " + err);
     return res.status(500).json({ message: "Server error" });
   }
 };

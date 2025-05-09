@@ -1,4 +1,4 @@
-import connection from "../db_config.js";
+import { connection } from "../db_config.js";
 import path from "path";
 import fs from "fs";
 
@@ -98,9 +98,9 @@ export function getCatalog(req, res) {
             join Manufacturers m on p.manufacturer_id = m.manufacturer_id
             where p.type = "Літак";`;
   } else {
-    console.log("Unknown category")
+    console.log("Unknown category");
   }
-
+  
   connection.query(query, async (err, result) => {
     if (err) {
       console.log("Error " + err);

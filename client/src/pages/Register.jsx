@@ -57,6 +57,8 @@ export default function Register() {
           setErrorMessage(
             "Обліковий запис з даними які ви надали вже зареєстровано."
           );
+        } else if (error.response.status === 400) {
+          setErrorMessage("Надана вами пошта не є дійсною");
         } else {
           setErrorMessage("Сталася помилка при реєстрації. Спробуйте пізніше.");
         }

@@ -1,4 +1,4 @@
-import connection from "../db_config.js";
+import { connection } from "../db_config.js";
 import { UserModel } from "../models/usermodel.js";
 import jwt from "jsonwebtoken";
 import bcrypt from "bcrypt";

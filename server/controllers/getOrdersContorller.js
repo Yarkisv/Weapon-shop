@@ -1,4 +1,4 @@
-import connection from "../db_config.js";
+import { connection } from "../db_config.js";
 import fs from "fs";
 import path from "path";
 

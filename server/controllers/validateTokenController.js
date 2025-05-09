@@ -1,7 +1,6 @@
-import connection from "../db_config.js";
+import { connection } from "../db_config.js";
 
 export function validateToken(req, res) {
-
   const id = req.user_id;
 
   try {

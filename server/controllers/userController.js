@@ -1,4 +1,4 @@
-import connection from "../db_config.js";
+import { connection } from "../db_config.js";
 
 export const getUser = (req, res) => {
   const id = req.user_id;
@@ -25,7 +25,7 @@ export const getUser = (req, res) => {
         email: user.email,
         phone: user.phone,
       };
-      
+
       return res.status(200).json({ user: result[0], message: "User found" });
     });
   } catch (error) {
