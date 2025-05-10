@@ -18,36 +18,29 @@ export const regUser = async (req, res) => {
     !newUser.firstname ||
     !newUser.lastname
   ) {
-    console.log(
-      `data invalid ${newUser.userName} ${newUser.email} ${newUser.password}`
-    );
+    console.log(`Data invalid: ${newUser.email} ${newUser.password}`);
     return res.status(400).json({ message: "Invalid data" });
   }
 
   try {
     if (UserModel.validateEmail(newUser.email)) {
       console.log("Email is incorrect");
-      return res.status(400).json({message: "400"});
+      return res.status(400).json({ message: "Invalid email format" });
     }
 
     const [existingUsers] = await connection.query(
-      "select * from Users where email = ?",
-      newUser.email
+      "SELECT * FROM Users WHERE email = ? OR phone = ?",
+      [newUser.email, newUser.phone]
     );
 
     if (existingUsers.length > 0) {
-      console.log("User already exists");
-      return res.status(409).json({ message: "Email вже зареєстровано" });
-    }
-
-    const [existingPhone] = await connection.query(
-      "select * from Users where phone = ?",
-      newUser.phone
-    );
-
-    if (existingPhone.length > 0) {
-      console.log("User with his phone already exists");
-      return res.status(409).json({ message: "Phone вже зареєстровано" });
+      const userExistsMessage = existingUsers.find(
+        (user) => user.email === newUser.email
+      )
+        ? "Email вже зареєстровано"
+        : "Phone вже зареєстровано";
+      console.log(userExistsMessage);
+      return res.status(409).json({ message: userExistsMessage });
     }
 
     const hashed_password = await bcrypt.hash(newUser.password, 10);
@@ -62,9 +55,9 @@ export const regUser = async (req, res) => {
       hashed_password,
     ];
 
-    await connection.execute(query, userData);
+    await connection.query(query, userData);
 
-    console.log("User created");
+    console.log("User created successfully");
     return res.status(201).json({ message: "User created" });
   } catch (err) {
     console.error("Error with hashing or query: " + err);

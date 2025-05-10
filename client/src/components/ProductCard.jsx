@@ -116,14 +116,14 @@ export default function ProductCard({ product }) {
         <div className="flex-shrink-0 w-9 h-9">
           {isSaved ? (
             <button
-              className="w-full h-full border border-black flex items-center justify-center rounded-md bg-[#940c0e] hover:bg-[#760a0b]"
+              className="w-full h-full border border-black flex items-center justify-center rounded-md bg-[#940c0e] hover:bg-[#760a0b] cursor-pointer"
               onClick={() => removeFromSaved(product.product_id)}
             >
               <img src={LikeOrderSaved} alt="Збережено" className="w-4 h-4" />
             </button>
           ) : (
             <button
-              className="w-full h-full border border-black flex items-center justify-center rounded-md bg-white hover:bg-gray-300"
+              className="w-full h-full border border-black flex items-center justify-center rounded-md bg-white hover:bg-gray-300 cursor-pointer"
               onClick={() => addToSaved(product)}
             >
               <img src={likeOrder} alt="Зберегти" className="w-4 h-4" />

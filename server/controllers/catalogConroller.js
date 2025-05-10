@@ -2,7 +2,7 @@ import { connection } from "../db_config.js";
 import path from "path";
 import fs from "fs";
 
-export function getCatalog(req, res) {
+export async function getCatalog(req, res) {
   console.log("Received request for catalog");
 
   const productCategory = req.params.category;
@@ -11,14 +11,14 @@ export function getCatalog(req, res) {
   let query = "";
 
   if (productCategory === "guns") {
-    query = `select  
+    query = `SELECT  
               p.product_id,
               p.type,
               p.article,
-	            p.name_ AS product_name,
-	            p.price,
-	            p.manufacturer_id,
-	            p.category_id,
+              p.name_ AS product_name,
+              p.price,
+              p.manufacturer_id,
+              p.category_id,
               p.number_of_reviews,
               p.rating,
               p.description_,
@@ -31,12 +31,12 @@ export function getCatalog(req, res) {
               w.color,
               w.stock,
               w.stock_type
-            from Products p 
-            join Weapons w on p.product_id = w.product_id
-            join Manufacturers m on p.manufacturer_id = m.manufacturer_id
-            where p.type = "Зброя";`;
+            FROM Products p 
+            JOIN Weapons w ON p.product_id = w.product_id
+            JOIN Manufacturers m ON p.manufacturer_id = m.manufacturer_id
+            WHERE p.type = "Зброя";`;
   } else if (productCategory === "tanks") {
-    query = `select 
+    query = `SELECT 
               p.product_id,
               p.type,
               p.article,
@@ -62,19 +62,19 @@ export function getCatalog(req, res) {
               t.armor_type,
               t.fuel_capacity,
               t.transmission_type
-            from Products p 
-            join Tanks t on p.product_id = t.product_id
-            join Manufacturers m on p.manufacturer_id = m.manufacturer_id
-            where p.type = 'Танк';`;
+            FROM Products p 
+            JOIN Tanks t ON p.product_id = t.product_id
+            JOIN Manufacturers m ON p.manufacturer_id = m.manufacturer_id
+            WHERE p.type = 'Танк';`;
   } else if (productCategory === "military-aircrafts") {
-    query = `select 
-	            p.product_id,
+    query = `SELECT 
+              p.product_id,
               p.type,
               p.article,
-	            p.name_ AS product_name,
-	            p.price,
-	            p.manufacturer_id,
-	            p.category_id,
+              p.name_ AS product_name,
+              p.price,
+              p.manufacturer_id,
+              p.category_id,
               p.number_of_reviews,
               p.rating,
               p.description_,
@@ -93,27 +93,21 @@ export function getCatalog(req, res) {
               a.fuel_capacity,
               a.climb_rate,
               a.radar_range
-            from Products p 
-            join Aircrafts a on p.product_id = a.product_id
-            join Manufacturers m on p.manufacturer_id = m.manufacturer_id
-            where p.type = "Літак";`;
+            FROM Products p 
+            JOIN Aircrafts a ON p.product_id = a.product_id
+            JOIN Manufacturers m ON p.manufacturer_id = m.manufacturer_id
+            WHERE p.type = "Літак";`;
   } else {
     console.log("Unknown category");
+    return res.status(400).json({ message: "Unknown product category" });
   }
-  
-  connection.query(query, async (err, result) => {
-    if (err) {
-      console.log("Error " + err);
-      return res
-        .status(500)
-        .json({ message: "Error during fetching products" });
-    }
 
-    console.log(result);
+  try {
+    const [rows] = await connection.query(query);
 
     const weapons = await Promise.all(
-      result.map(async (product) => {
-        const filePath = path.join(process.cwd(), "", product.path_to);
+      rows.map(async (product) => {
+        const filePath = path.join(process.cwd(), product.path_to);
         let imageBase64 = null;
 
         if (fs.existsSync(filePath)) {
@@ -127,38 +121,33 @@ export function getCatalog(req, res) {
           console.warn(`File not found: ${filePath}`);
         }
 
+        const baseProduct = {
+          product_type: product.type,
+          product_id: product.product_id,
+          article: product.article,
+          reviews_count: product.number_of_reviews,
+          rating: product.rating,
+          desc: product.description_,
+          manufacturer_name: product.manufacturer_name,
+          country: product.country,
+          name: product.product_name,
+          price: product.price,
+          image: imageBase64,
+        };
+
         if (product.type === "Зброя") {
           return {
-            product_type: product.type,
-            product_id: product.product_id,
-            article: product.article,
-            reviews_count: product.number_of_reviews,
-            rating: product.rating,
-            desc: product.description_,
-            manufacturer_name: product.manufacturer_name,
-            country: product.country,
+            ...baseProduct,
             caliber: product.caliber,
             weight: product.weight,
             length: product.length,
             color: product.color,
             stock: product.stock,
             stock_type: product.stock_type,
-            name: product.product_name,
-            price: product.price,
-            image: imageBase64,
           };
         } else if (product.type === "Танк") {
           return {
-            product_type: product.type,
-            product_id: product.product_id,
-            article: product.article,
-            reviews_count: product.number_of_reviews,
-            rating: product.rating,
-            desc: product.description_,
-            manufacturer_name: product.manufacturer_name,
-            country: product.country,
-            name: product.product_name,
-            price: product.price,
+            ...baseProduct,
             armor_thickness: product.armor_thickness,
             crew_size: product.crew_size,
             engine_power: product.engine_power,
@@ -171,20 +160,10 @@ export function getCatalog(req, res) {
             armor_type: product.armor_type,
             fuel_capacity: product.fuel_capacity,
             transmission_type: product.transmission_type,
-            image: imageBase64,
           };
         } else if (product.type === "Літак") {
           return {
-            product_type: product.type,
-            product_id: product.product_id,
-            article: product.article,
-            reviews_count: product.number_of_reviews,
-            rating: product.rating,
-            desc: product.description_,
-            manufacturer_name: product.manufacturer_name,
-            country: product.country,
-            name: product.product_name,
-            price: product.price,
+            ...baseProduct,
             max_speed: product.max_speed,
             wingspan: product.wingspan,
             engine_count: product.engine_count,
@@ -197,17 +176,19 @@ export function getCatalog(req, res) {
             fuel_capacity: product.fuel_capacity,
             climb_rate: product.climb_rate,
             radar_range: product.radar_range,
-            image: imageBase64,
           };
         }
       })
     );
 
     return res.status(200).json({ weapons });
-  });
+  } catch (err) {
+    console.error("Database error:", err);
+    return res.status(500).json({ message: "Error during fetching products" });
+  }
 }
 
-export function getProductByName(req, res) {
+export async function getProductByName(req, res) {
   const name = req.params.name;
   const category = req.params.category;
 
@@ -302,16 +283,12 @@ export function getProductByName(req, res) {
             where p.name_ = ?;`;
   }
 
-  connection.query(query, [name], async (err, result) => {
-    if (err) {
-      console.log("Error during fetching product data by name");
-      return res.status(500).json({ message: "Server error" });
-    }
+  try {
+    const [rows] = await connection.query(query, [name]);
 
-    const product = await Promise.all(
-      result.map(async (product) => {
-        const filePath = path.join(process.cwd(), "", product.path_to);
-
+    const products = await Promise.all(
+      rows.map(async (product) => {
+        const filePath = path.join(process.cwd(), product.path_to);
         let imageBase64 = null;
 
         if (fs.existsSync(filePath)) {
@@ -400,6 +377,10 @@ export function getProductByName(req, res) {
         }
       })
     );
-    return res.status(200).json({ product });
-  });
+
+    res.status(200).json({ product: products });
+  } catch (err) {
+    console.error("Error during fetching product data by name:", err);
+    res.status(500).json({ message: "Server error" });
+  }
 }

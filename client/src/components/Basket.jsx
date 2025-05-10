@@ -23,7 +23,7 @@ export default function Basket() {
   };
 
   return (
-    <>
+    <div>
       <div
         className="fixed inset-0 bg-black/40 z-[9998]"
         onClick={handleClosePanel}
@@ -122,6 +122,6 @@ export default function Basket() {
           </button>
         </div>
       </div>
-    </>
+    </div>
   );
 }

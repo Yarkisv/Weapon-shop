@@ -2,23 +2,21 @@ import { connection } from "../db_config.js";
 import path from "path";
 import fs from "fs";
 
-export function searchProducts(req, res) {
+export async function searchProducts(req, res) {
   const query = req.params.query;
+  const dbQuery = `
+    SELECT 
+      p.product_id, 
+      p.name_,
+      p.type,
+      p.price,
+      p.path_to
+    FROM products p 
+    WHERE name_ LIKE ?;
+  `;
 
-  const dbQuery = `select
-	                  p.product_id, 
-                    p.name_,
-                    p.type,
-                    p.price,
-                    p.path_to
-                    from products p 
-                  where name_ like ?;`;
-
-  connection.query(dbQuery, `${query}%`, async (err, result) => {
-    if (err) {
-      console.log("SQL server error");
-      return res.status(500).json({ message: "SQL server error" });
-    }
+  try {
+    const [result] = await connection.query(dbQuery, [`${query}%`]);
 
     if (result.length === 0) {
       console.log("Products not found");
@@ -27,7 +25,7 @@ export function searchProducts(req, res) {
 
     const products = await Promise.all(
       result.map(async (product) => {
-        const filePath = path.join(process.cwd(), "", product.path_to);
+        const filePath = path.join(process.cwd(), product.path_to || "");
         let imageBase64 = null;
 
         if (fs.existsSync(filePath)) {
@@ -53,5 +51,8 @@ export function searchProducts(req, res) {
 
     console.log("Products fetched");
     return res.status(200).json({ results: products });
-  });
+  } catch (error) {
+    console.error("SQL server error", error);
+    return res.status(500).json({ message: "SQL server error" });
+  }
 }
