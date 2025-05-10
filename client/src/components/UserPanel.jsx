@@ -112,7 +112,7 @@ export default function UserPanel() {
           />
           {!isValid ? (
             <button
-              className="w-[410px] h-[50px] bg-black text-white text-[20px] rounded ml-4 mt-4 transition-transform hover:bg-neutral-900 hover:scale-105 active:bg-neutral-950 active:scale-95"
+              className="w-[410px] h-[50px] cursor-pointer bg-black text-white text-[20px] rounded ml-4 mt-4 transition-transform hover:bg-neutral-900 hover:scale-105 active:bg-neutral-950 active:scale-95"
               onClick={handleLoginClick}
             >
               Увійти
